@@ -16,7 +16,10 @@ public partial class StaffPage : ContentPage
     protected async override void OnAppearing()
     {
         base.OnAppearing();
-        await StaffVM.GetStaff();
+        if (!string.IsNullOrEmpty(StaffVM.CenterID))
+        {
+            await StaffVM.GetStaff(); // Load centers on page load
+        }
     }
     private async void OnBackButtonClicked(object sender, EventArgs e)
     {

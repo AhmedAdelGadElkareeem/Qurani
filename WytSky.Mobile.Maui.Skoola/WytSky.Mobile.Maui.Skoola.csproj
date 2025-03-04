@@ -182,6 +182,9 @@
 	  <Compile Update="Views\Public\SuccessPage.xaml.cs">
 	    <DependentUpon>SuccessPage.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Views\Quarni\Staff\AddStaff.xaml.cs">
+	    <DependentUpon>AddStaff.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Views\User\MyCoursesPage.xaml.cs">
 	    <DependentUpon>MyCoursesPage.xaml</DependentUpon>
 	  </Compile>
@@ -294,6 +297,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\Public\SuccessPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Quarni\Staff\AddStaff.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\User\AccountCreatedSuccessfullyPage.xaml">

@@ -1,13 +1,16 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.Input;
+using System.Collections.ObjectModel;
+using WytSky.Mobile.Maui.Skoola.AppResources;
+using WytSky.Mobile.Maui.Skoola.Dtos;
+using WytSky.Mobile.Maui.Skoola.Helpers;
 using WytSky.Mobile.Maui.Skoola.Models;
+using WytSky.Mobile.Maui.Skoola.Views.Courses;
+using WytSky.Mobile.Maui.Skoola.Views.Quarni;
+using WytSky.Mobile.Maui.Skoola.Views.Quarni.Centers;
+using WytSky.Mobile.Maui.Skoola.Views.Quarni.Staff;
 using WytSky.Mobile.Maui.Skoola.Views.Quarni.StudyGroups;
+using Settings = WytSky.Mobile.Maui.Skoola.Helpers.Settings;
 
 namespace WytSky.Mobile.Maui.Skoola.ViewModels
 {
@@ -16,7 +19,13 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
         [ObservableProperty]
         public ObservableCollection<StaffModel> staff = new ObservableCollection<StaffModel>();
 
-        [ObservableProperty] public string centerID;
+
+        [ObservableProperty] public string firstName;
+        [ObservableProperty] public string lastName;
+        [ObservableProperty] public string staffName;
+        [ObservableProperty] private string centerID;
+
+
         #region Methods
         public async Task GetStaff()
         {
@@ -49,8 +58,52 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
         [RelayCommand]
         public void OpenAddStaff()
         {
-            
+            var popup = new AddStaff();
+            popup.BindingContext = this;
+            ShowPopup(popup);
         }
         #endregion
+
+        [RelayCommand]
+        public async Task AddStaff()
+        {
+            try
+            {
+
+                IsRunning = true;
+
+                // Create form data dictionary
+                var formData = new Dictionary<string, object>
+                {
+                    { "FirstName", firstName },
+                    { "LastNme", lastName },
+                    { "CenterID" ,CenterID },
+                };
+
+                // Call the AddComplex service method
+                var result = await APIs.ServiceCenter.AddCenter(formData);
+
+                if (result != null)
+                {
+                    HidePopup();
+            //        Toast.ShowToastSuccess(SharedResources.AddedSuccessfully);
+                    await GetStaff();
+                }
+                else
+                {
+                    Toast.ShowToastError("");
+                }
+            }
+            catch (Exception ex)
+            {
+                ExtensionLogMethods.LogExtension(ex, "", "HomeVM", "AddComplex");
+                await App.Current.MainPage.DisplayAlert("Error", "An unexpected error occurred", "OK");
+            }
+            finally
+            {
+                IsRunning = false;
+            }
+        }
+
     }
 }

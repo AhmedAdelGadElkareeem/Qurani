@@ -12,7 +12,7 @@ namespace WytSky.Mobile.Maui.Skoola.APIs
     {
         public const string BASE = "appservices";
 
-        #region Centers
+        #region staff
         public async static Task<ObservableCollection<StaffModel>> GetStaff(string ParentId)
         {
             try
@@ -41,7 +41,38 @@ namespace WytSky.Mobile.Maui.Skoola.APIs
                 return null;
             }
         }
+
+        public async static Task<StaffModel> AddStaff(Dictionary<string, object> formData)
+        {
+            try
+            {
+                Dictionary<string, string> dictionary = new Dictionary<string, string>()
+                {
+                    {"_datatype","json"},
+                    {"_jsonarray","1"},
+                };
+
+                var result = await Services.RequestProvider.Current.PostDataMultipart<StaffModel>(BASE, "staff", dictionary, formData, Enums.AuthorizationType.UserNamePassword);
+                if (result != null && result.IsPassed)
+                {
+                    return result.Data;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                string ExceptionMseeage = string.Format(" Error : {0} - {1} ", ex.Message, ex.InnerException != null ? ex.InnerException.FullMessage() : "");
+                System.Diagnostics.Debug.WriteLine(ExceptionMseeage);
+                ExtensionLogMethods.LogExtension(ExceptionMseeage, System.Text.Json.JsonSerializer.Serialize(formData), "ServiceCartItem", "SaveNew()");
+                return null;
+            }
+        }
         #endregion
+
+
     }
 }
 
