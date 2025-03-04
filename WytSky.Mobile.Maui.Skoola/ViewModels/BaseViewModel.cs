@@ -1,8 +1,11 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Globalization;
+using Mopups.Pages;
+using Mopups.Services;
 using WytSky.Mobile.Maui.Skoola.AppResources;
 using WytSky.Mobile.Maui.Skoola.Helpers;
+using WytSky.Mobile.Maui.Skoola.Views;
 using WytSky.Mobile.Maui.Skoola.Views.User;
 
 namespace WytSky.Mobile.Maui.Skoola.ViewModels
@@ -54,6 +57,10 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
             }
         }
 
+        public static void OpenMainPage()
+        {
+            App.Current.MainPage = new NavigationPage(new HomePage());
+        }
         public void ResetUserNameAndPassword()
         {
             if (!Settings.IsLogedin)
@@ -62,7 +69,6 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
                 Settings.UserName = "";
             }
         }
-
         public void Logout()
         {
             try
@@ -90,8 +96,15 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
                 System.Diagnostics.Debug.WriteLine($"Error : {ex.Message}");
             }
         }
-
-
+        public void ShowPopup(PopupPage popup)
+        {
+            MopupService.Instance.PushAsync(popup);
+        }
+        public void HidePopup()
+        {
+            if(MopupService.Instance.PopupStack.Count > 0)
+                MopupService.Instance.PopAsync();
+        }
         public void ChangeLanguage()
         {
             try

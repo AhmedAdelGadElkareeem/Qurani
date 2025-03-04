@@ -1128,4 +1128,7 @@
   <data name="Text_DownloadAttachments" xml:space="preserve">
     <value>تحميل المرفقات</value>
   </data>
+  <data name="AddedSuccessfully" xml:space="preserve">
+    <value>تمت الاضافه بنجاح</value>
+  </data>
 </root>

@@ -46,7 +46,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.Students
                 });
 
                 if (addedStudent != null && addedStudent.rowsAffected > 0)
-                    Toast.ShowToastError(SharedResources.Msg_AddedSuccessfully);
+                    Toast.ShowToastError(SharedResources.AddedSuccessfully);
             }
             catch (Exception e)
             {

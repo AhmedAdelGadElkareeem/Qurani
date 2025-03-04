@@ -118,6 +118,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.User
             {
                 if (ChekLogInData())
                 {
+                    IsRunning = true;
                     var res = await APIs.ServiceApp.auth(UserName.Value.Replace(" ", ""), Password.Value);
                     if (res != null)
                     {
@@ -126,7 +127,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.User
                         Settings.Password = Password.Value;
                         Settings.AuthoToken = res.access_token;
                         Settings.SocialID = "";
-                        App.Current.MainPage = new MainPage();
+                        OpenMainPage();
                         // await GetClient();
                     }
                     else
@@ -137,9 +138,14 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.User
             }
             catch (Exception ex)
             {
-                string ExceptionMseeage = string.Format(" Error : {0} - {1} ", ex.Message, ex.InnerException != null ? ex.InnerException.FullMessage() : "");
+                string ExceptionMseeage = string.Format(" Error : {0} - {1} ", ex.Message,
+                    ex.InnerException != null ? ex.InnerException.FullMessage() : "");
                 System.Diagnostics.Debug.WriteLine(ExceptionMseeage);
                 ExtensionLogMethods.LogExtension(ExceptionMseeage, "", "SignInSignUpVM", "loginCommand");
+            }
+            finally
+            {
+                IsRunning = false;
             }
         }
 
@@ -149,7 +155,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.User
             try
             {
                 Settings.IsLogedin = true;
-                App.Current.MainPage = new MainPage();
+                OpenMainPage();
 
                 /*UserName = "sky365";
                 Password = "sky365@365";
@@ -199,7 +205,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.User
             {
                 /*await NavigateToPage.OpenPage(new ForgotPasswordPage(isFromLogin: false));
                 Settings.IsLogedin = true;
-                App.Current.MainPage = new MainPage();*/
+                OpenMainPage();*/
 
 
                 var userName = UserName.Value.Replace(" ", "");
@@ -745,7 +751,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.User
                     Settings.ClientPhone = res[0].Phone;
                     Settings.Client = res[0];
                     //await APIs.ServiceClient.UpdateCLientFbToken();
-                    App.Current.MainPage = new MainPage();
+                    OpenMainPage();
                 }
                 else
                 {

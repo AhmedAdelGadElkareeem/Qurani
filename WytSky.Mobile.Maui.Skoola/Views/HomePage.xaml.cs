@@ -6,14 +6,13 @@ namespace WytSky.Mobile.Maui.Skoola.Views
     public partial class HomePage : BaseContentPage
     {
         HomeVM homeVM = new HomeVM();
+
         public HomePage()
         {
             try
             {
                 InitializeComponent();
                 BindingContext = homeVM;
-                //AddPopupControl.DataSubmitted += OnDataSubmitted;
-
             }
             catch (Exception ex)
             {
@@ -31,32 +30,6 @@ namespace WytSky.Mobile.Maui.Skoola.Views
         {
             await DisplayAlert("تمت الإضافة", $"تمت إضافة {formData["اسم المجمع"]} بنجاح!", "موافق");
         }
-
-        private void OnFlyoutButtonClicked(object sender, EventArgs e)
-        {
-            // Example: Toggle visibility of the entry form
-            ComplexEntryLayout.IsVisible = !ComplexEntryLayout.IsVisible;
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         private async void EnRadioButton_CheckedChanged(object sender, CheckedChangedEventArgs e)
         {

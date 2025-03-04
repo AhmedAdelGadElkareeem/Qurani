@@ -12,15 +12,17 @@
     x:Name="root"
     Title="SignInSignUpPage">
     <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-        <VerticalStackLayout>
+        <Grid>
+                  <VerticalStackLayout>
             <VerticalStackLayout Margin="20,0" IsVisible="{Binding IsVisibleLogin}">
-                <Image
+                
+                <!--<Image
                     Margin="0,40,0,0"
                     Aspect="AspectFit"
                     HeightRequest="100"
                     HorizontalOptions="CenterAndExpand"
                     Source="logo"
-                    WidthRequest="200" />
+                    WidthRequest="200" />-->
 
                 <VerticalStackLayout
                     x:Name="stackLayoutLogin"
@@ -329,5 +331,9 @@
                 </Label>
             </VerticalStackLayout>
         </VerticalStackLayout>
+
+            <ActivityIndicator IsRunning="{Binding IsRunning}" IsVisible="{Binding IsRunning}" />
+        </Grid>
+  
     </ScrollView>
 </base:BaseContentPage>

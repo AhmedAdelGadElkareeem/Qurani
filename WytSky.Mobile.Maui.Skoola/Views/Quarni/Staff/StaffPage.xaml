@@ -10,12 +10,10 @@
     xmlns:resource="clr-namespace:WytSky.Mobile.Maui.Skoola.AppResources"
     xmlns:templates="clr-namespace:WytSky.Mobile.Maui.Skoola.Template"
     x:Name="root"
-    Title="StaffPage">
-    <VerticalStackLayout>
-       
-     
-        <CollectionView
-            x:Name="parentCategories"
+    Title="Staff Page">
+        <Grid VerticalOptions="FillAndExpand">
+            <Grid VerticalOptions="FillAndExpand">     
+                <CollectionView
             Margin="15,10,15,0"
             ItemsSource="{Binding Staff}">
             <CollectionView.ItemsLayout>
@@ -37,7 +35,7 @@
                             TextColor="{Binding TextColor}" />
 
                         <Frame.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.SelectParentCategoryCommand}" CommandParameter="{Binding .}" />
+                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.SelectStaffCommand}" CommandParameter="{Binding .}" />
                         </Frame.GestureRecognizers>
                     </Frame>
                 </DataTemplate>
@@ -46,6 +44,9 @@
                 <customControls:EmptyView />
             </CollectionView.EmptyView>
         </CollectionView>
-
-    </VerticalStackLayout>
+                <Button Style="{StaticResource AddButton}" 
+                        Command="{Binding OpenAddStaffCommand}"/>
+            </Grid>
+            <ActivityIndicator IsRunning="{Binding IsRunning}" IsVisible="{Binding IsRunning}" />
+        </Grid>
 </ContentPage>

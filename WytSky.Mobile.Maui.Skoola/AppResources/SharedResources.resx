@@ -1139,4 +1139,7 @@ Successfully Changed</value>
   <data name="Text_DownloadAttachments" xml:space="preserve">
     <value>Download Attachments</value>
   </data>
+  <data name="AddedSuccessfully" xml:space="preserve">
+    <value>Added Successfully</value>
+  </data>
 </root>

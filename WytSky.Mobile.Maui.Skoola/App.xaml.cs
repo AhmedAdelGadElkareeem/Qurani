@@ -19,13 +19,10 @@ namespace WytSky.Mobile.Maui.Skoola
             try
             {
                 InitializeComponent();
-                Settings.UserId = "1";
                 Application.Current.UserAppTheme = AppTheme.Light;
-                MainPage = new SignInSignUpPage();
-
                 if (Settings.IsLogedin)
                 {
-                    App.Current.MainPage = new MainPage();
+                    App.Current.MainPage = new NavigationPage(new HomePage());
                 }
                 else
                 {

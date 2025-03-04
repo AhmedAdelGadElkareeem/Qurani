@@ -73,7 +73,7 @@ public partial class StudyGroupVM : BaseViewModel
             var addedStudyGroup = await StudyGroupService.AddStudyGroup(formData);
 
             if (addedStudyGroup != null && addedStudyGroup.rowsAffected > 0)
-                Toast.ShowToastError(SharedResources.Msg_AddedSuccessfully);
+                Toast.ShowToastError(SharedResources.AddedSuccessfully);
         }
         catch (Exception e)
         {

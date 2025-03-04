@@ -10,22 +10,12 @@ public partial class CenterPage : ContentPage
     public CenterPage(string complexId)
     {
         InitializeComponent();
-        ComplexId = complexId;
-
-        // Pass the ComplexId to ViewModel
-        CenterVM = new CenterVM(ComplexId);
-        BindingContext = CenterVM;
-
-    }
-
-    public CenterPage()
-    {
-        InitializeComponent();
         CenterVM = new CenterVM();
+        CenterVM.ComplexId = complexId;
         BindingContext = CenterVM;
     }
 
-    private async void OnBackButtonClicked(object sender, EventArgs e)
+    /*private async void OnBackButtonClicked(object sender, EventArgs e)
     {
         if (Navigation.NavigationStack.Count > 1)
         {
@@ -35,18 +25,14 @@ public partial class CenterPage : ContentPage
         {
             Application.Current.MainPage = new NavigationPage(new HomePage()); // Fallback
         }
-    }
-    private void OnFlyoutButtonClicked(object sender, EventArgs e)
-    {
-        // Example: Toggle visibility of the entry form
-        ComplexEntryLayout.IsVisible = !ComplexEntryLayout.IsVisible;
-    }
+    }*/
+    
     protected async override void OnAppearing()
     {
         base.OnAppearing();
-        if (!string.IsNullOrEmpty(ComplexId))
+        if (!string.IsNullOrEmpty(CenterVM.ComplexId))
         {
-            await CenterVM.GetCenters(ComplexId); // Load centers on page load
+            await CenterVM.GetCenters(); // Load centers on page load
         }
     }
 }

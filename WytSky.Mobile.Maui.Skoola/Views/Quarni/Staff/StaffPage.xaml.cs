@@ -4,21 +4,19 @@ namespace WytSky.Mobile.Maui.Skoola.Views.Quarni;
 
 public partial class StaffPage : ContentPage
 {
-
     StaffVM StaffVM = new StaffVM();
-    private string CenterID;
     public StaffPage(string v)
     {
         InitializeComponent();
         OnAppearing();
         BindingContext = StaffVM;
-        this.CenterID = v;
+        StaffVM.CenterID = v;
     }
 
     protected async override void OnAppearing()
     {
         base.OnAppearing();
-        await StaffVM.GetStaff(CenterID);
+        await StaffVM.GetStaff();
     }
     private async void OnBackButtonClicked(object sender, EventArgs e)
     {

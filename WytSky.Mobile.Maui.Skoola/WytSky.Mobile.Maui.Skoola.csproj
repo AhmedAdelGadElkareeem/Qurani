@@ -185,6 +185,14 @@
 	  <Compile Update="Views\User\MyCoursesPage.xaml.cs">
 	    <DependentUpon>MyCoursesPage.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Views\Quarni\Centers\CenterPage.xaml.cs">
+	    <DependentUpon>CenterPage.xaml</DependentUpon>
+	    <SubType>Code</SubType>
+	  </Compile>
+	  <Compile Update="Views\Quarni\Staff\StaffPage.xaml.cs">
+	    <DependentUpon>StaffPage.xaml</DependentUpon>
+	    <SubType>Code</SubType>
+	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -288,12 +296,6 @@
 	  <MauiXaml Update="Views\Public\SuccessPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\Quarni\CenterPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\Quarni\StaffPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
 	  <MauiXaml Update="Views\User\AccountCreatedSuccessfullyPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -307,6 +309,14 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\User\SecurityPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Quarni\Centers\CenterPage.xaml">
+	    <SubType>Designer</SubType>
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Quarni\Staff\StaffPage.xaml">
+	    <SubType>Designer</SubType>
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

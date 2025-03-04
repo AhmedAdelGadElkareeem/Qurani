@@ -1,94 +1,62 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
+using WytSky.Mobile.Maui.Skoola.AppResources;
 using WytSky.Mobile.Maui.Skoola.Dtos;
+using WytSky.Mobile.Maui.Skoola.Helpers;
 using WytSky.Mobile.Maui.Skoola.Models;
 using WytSky.Mobile.Maui.Skoola.Views.Courses;
 using WytSky.Mobile.Maui.Skoola.Views.Quarni;
+using WytSky.Mobile.Maui.Skoola.Views.Quarni.Centers;
 using Settings = WytSky.Mobile.Maui.Skoola.Helpers.Settings;
 
 namespace WytSky.Mobile.Maui.Skoola.ViewModels
 {
     public partial class CenterVM : BaseViewModel
     {
-        [ObservableProperty]
-        public ObservableCollection<CentersModel> centers = new ObservableCollection<CentersModel>();
+        [ObservableProperty] private ObservableCollection<CentersModel> centers;
 
-        [ObservableProperty]
-        public CentersModel centersModel ;
-
-        [ObservableProperty]
-        public ObservableCollection<StaffModel> staff = new ObservableCollection<StaffModel>();
+        [ObservableProperty] private ObservableCollection<StaffModel> staff;
     
+        [ObservableProperty] private string complexId;
+        [ObservableProperty] private string centerName;
+        [ObservableProperty] private string centerNameEn;
+        [ObservableProperty] private string address;
         
-        private string complexId;
-
-        public CenterVM(string complexId = "")
-        {
-            CentersModel = new CentersModel();
-            if (!string.IsNullOrWhiteSpace(complexId) && int.TryParse(complexId, out int complexIdInt))
-            {
-                CentersModel.ComplexID = complexIdInt;
-            }
-        }
-
-
-        public CenterVM()
-        {
-        }
-
-        #region Methods
-        public async Task GetMainCategoriesByParentCategoryId(string ParentId)
-        {
-            IsRunning = true;
-            Staff = await APIs.ServiceStaff.GetStaff(ParentId);
-            IsRunning = false;
-        }
-
-     
-        #endregion
-
         #region Commands
         [RelayCommand]
         public async Task SelectParentCategory(CentersModel StaffModel)
         {
             try
             {
-                //CategoriesVisiblity = false;
-
-                foreach (var item in Staff)
+                /*foreach (var item in Staff)
                 {
                     item.IsSelected = false;
                     item.TextColor = Colors.DimGray;
                     item.BackgroundColor = Colors.White;
                 }
-
                 StaffModel.IsSelected = true;
                 StaffModel.TextColor = StringExtensions.ToColorFromResourceKey("White");
-                StaffModel.BackgroundColor = StringExtensions.ToColorFromResourceKey("PrimaryColor");
-                await GetMainCategoriesByParentCategoryId(StaffModel.CenterID.ToString());
-                App.Current.MainPage = new StaffPage(StaffModel.CenterID.ToString());
+                StaffModel.BackgroundColor = StringExtensions.ToColorFromResourceKey("PrimaryColor");*/
+                
+                App.Current.MainPage.Navigation.PushAsync(new StaffPage(StaffModel.CenterID.ToString()));
             }
             catch (Exception ex)
             {
                 ExtensionLogMethods.LogExtension(ex.Message, "", "HomeVM", "SelectCategory");
             }
         }
-        public async Task GetCenters(string ComplexID)
+        public async Task GetCenters()
            {
                try
                {
                    IsRunning = true;
-                //CategoriesVisiblity = false;
-
-                   Centers = await APIs.ServiceCenter.GetCenter(ComplexID);
+                   Centers = await APIs.ServiceCenter.GetCenter(ComplexId);
                    if (Centers != null && Centers.Count > 0)
                    {
                        Centers[0].TextColor = StringExtensions.ToColorFromResourceKey("White");
                        Centers[0].BackgroundColor = StringExtensions.ToColorFromResourceKey("PrimaryColor");
-
                        //await GetMainCategoriesByParentCategoryId(Complexes[0].Id.ToString()); Navigate to Masajid page
-
                    }
                    IsRunning = false;
                }
@@ -97,14 +65,15 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
                    ExtensionLogMethods.LogExtension(ex, "", "", "GetCenters");
                }
         }
-            [RelayCommand]
-            public async Task AddCenter()
+        
+        [RelayCommand]
+        public async Task AddCenter()
             {
             try
             {
-                if (string.IsNullOrWhiteSpace(CentersModel.CenterName))
+                if (string.IsNullOrWhiteSpace(CenterName))
                 {
-                    await App.Current.MainPage.DisplayAlert("Error", "يجب إدخال إسم المسجد", "OK");
+                   Toast.ShowToastError("Error", "يجب إدخال إسم المسجد");
                     return;
                 }
 
@@ -113,10 +82,10 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
                 // Create form data dictionary
                 var formData = new Dictionary<string, object>
                 {
-                    { "CenterName", CentersModel.CenterName },
-                    { "ComplexID" ,CentersModel.ComplexID },
-                    { "Address", CentersModel.Address}
-
+                    { "CenterName", CenterName },
+                    { "CenterNameEn", CenterNameEn },
+                    { "ComplexID" ,ComplexId },
+                    { "Address", Address}
                 };
 
                 // Call the AddComplex service method
@@ -124,13 +93,13 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
 
                 if (result != null)
                 {
-                    // Successfully added, update the list
-                    Centers.Add(result);
-                    await App.Current.MainPage.DisplayAlert("Success", "تم إضافة مسجد بنجاح", "OK");
+                    HidePopup();
+                    Toast.ShowToastSuccess(SharedResources.AddedSuccessfully);
+                    await GetCenters();
                 }
                 else
                 {
-                    await App.Current.MainPage.DisplayAlert("Error", "خطأ إثناء إضافة المسجد", "OK");
+                    Toast.ShowToastError("");
                 }
             }
             catch (Exception ex)
@@ -143,6 +112,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
                 IsRunning = false;
             }
         }
+        
         public async Task GetStaff(string CenterID)
         {
                 IsRunning = true;
@@ -165,6 +135,13 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
             {
                 ExtensionLogMethods.LogExtension(ex, "", "", "GetCenters");
             }
+        }
+
+        public async Task OpenAddCenter()
+        {
+            var popup = new AddCenter();
+            popup.BindingContext = this;
+            ShowPopup(popup);
         }
         #endregion
     }
