@@ -15,10 +15,8 @@ public partial class StudyGroupsPage : ContentPage
         InitializeComponent();
         BindingContext = studyGroupVM;
         
-        if(staffId != null)
-          studyGroupVM.StaffId = staffId;
-        else 
-            studyGroupVM.CenterId = centerId;
+        studyGroupVM.StaffId = staffId;
+        studyGroupVM.CenterId = centerId;
     }
 
     protected async override void OnAppearing()

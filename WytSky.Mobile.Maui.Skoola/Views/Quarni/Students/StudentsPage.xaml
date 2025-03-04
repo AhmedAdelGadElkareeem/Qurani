@@ -14,21 +14,24 @@
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <ContentView>
-                            <Border
-                                Margin="10"
-                                BackgroundColor="{StaticResource White}"
-                                StrokeShape="RoundRectangle 10"
-                                StrokeThickness="1">
-                                <VerticalStackLayout>
-                                    <Label Style="{StaticResource RegularLabelFont12}" Text="{Binding StudentCountryName}" />
-                                    <Label Style="{StaticResource RegularLabelFont12}" Text="{Binding StudentRegionName}" />
-                                    <Label Style="{StaticResource RegularLabelFont12}" Text="{Binding StudentGroupName}" />
-                                    <Label Style="{StaticResource RegularLabelFont12}" Text="{Binding StudentComplexName}" />
-                                    <Label Style="{StaticResource RegularLabelFont12}" Text="{Binding GroupCenterName}" />
-                                    <Label Style="{StaticResource RegularLabelFont12}" Text="{Binding GroupTeacherFirstName}" />
-                                    <Label Style="{StaticResource RegularLabelFont12}" Text="{Binding StudentFullName}" />
-                                </VerticalStackLayout>
-                            </Border>
+                            <Frame
+                                Padding="0"
+                                Margin="0,10,0,0"
+                                BackgroundColor="{Binding BackgroundColor}"
+                                BorderColor="{StaticResource BorderColor}"
+                                CornerRadius="5">
+                                <Label
+                                    Margin="15,5"
+                                    HorizontalOptions="CenterAndExpand"
+                                    HorizontalTextAlignment="Center"
+                                    Style="{StaticResource BoldLabelFont16}"
+                                    Text="{Binding StudentFullName}"
+                                    TextColor="{Binding TextColor}" />
+
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.SelectStaffCommand}" CommandParameter="{Binding .}" />
+                                </Frame.GestureRecognizers>
+                            </Frame>
                         </ContentView>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>

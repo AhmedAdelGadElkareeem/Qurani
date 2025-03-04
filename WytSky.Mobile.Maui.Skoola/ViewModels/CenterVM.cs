@@ -68,7 +68,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
         
         [RelayCommand]
         public async Task AddCenter()
-            {
+        {
             try
             {
                 if (string.IsNullOrWhiteSpace(CenterName))
@@ -112,31 +112,8 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
                 IsRunning = false;
             }
         }
-        
-        public async Task GetStaff(string CenterID)
-        {
-                IsRunning = true;
-            try
-            {
-                //CategoriesVisiblity = false;
 
-                Staff = await APIs.ServiceStaff.GetStaff(CenterID);
-                if (Centers != null && Centers.Count > 0)
-                {
-                    Centers[0].TextColor = StringExtensions.ToColorFromResourceKey("White");
-                    Centers[0].BackgroundColor = StringExtensions.ToColorFromResourceKey("PrimaryColor");
-
-                    //await GetMainCategoriesByParentCategoryId(Complexes[0].Id.ToString()); Navigate to Masajid page
-
-                }
-                IsRunning = false;
-            }
-            catch (Exception ex)
-            {
-                ExtensionLogMethods.LogExtension(ex, "", "", "GetCenters");
-            }
-        }
-
+        [RelayCommand]
         public async Task OpenAddCenter()
         {
             var popup = new AddCenter();

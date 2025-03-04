@@ -25,16 +25,18 @@ public partial class StudyGroupVM : BaseViewModel
 
     // add study group popup
     [ObservableProperty] public string  studyGroupName;
-        
+    [ObservableProperty] public string  studyGroupNameEn;
     public async Task GetStudyGroupsByStaffIdOrCenterId()
     {
         try
         {
             IsRunning = true;
             StudyGroups = await StudyGroupService.GetStudyGroups(StaffId, CenterId);
+            
             var roles = await AspUserRoleService.GetUserRoles();
-            AddVisibility = roles.Any(u =>
-                string.Equals(u.AspNetRolesName, "Administrators", StringComparison.OrdinalIgnoreCase));
+            if(roles != null)
+              AddVisibility = roles.Any(u =>
+                  string.Equals(u.AspNetRolesName, "Administrators", StringComparison.OrdinalIgnoreCase));
         }
         catch (Exception e)
         {
@@ -44,7 +46,6 @@ public partial class StudyGroupVM : BaseViewModel
         {
             IsRunning = false;
         }
-        
     }
 
     [RelayCommand]
@@ -63,17 +64,18 @@ public partial class StudyGroupVM : BaseViewModel
             var formData = new Dictionary<string, object>()
             {
                 { "GroupName", StudyGroupName },
+                { "GroupNameEn", StudyGroupNameEn },
+                { "TeacherID", StaffId },
+                { "CenterID", CenterId },
             };
             
-            if(StaffId != null)
-               formData.Add("TeacherID", StaffId);
-            else
-               formData.Add("CenterID", CenterId);
-
             var addedStudyGroup = await StudyGroupService.AddStudyGroup(formData);
-
             if (addedStudyGroup != null && addedStudyGroup.rowsAffected > 0)
+            {
+                HidePopup();
+                await GetStudyGroupsByStaffIdOrCenterId();
                 Toast.ShowToastError(SharedResources.AddedSuccessfully);
+            }
         }
         catch (Exception e)
         {
@@ -83,5 +85,11 @@ public partial class StudyGroupVM : BaseViewModel
         {
             HidePopup();
         }
+    }
+
+    [RelayCommand]
+    private void SelectStudyGroup(StudyGroupModel studyGroup)
+    {
+        App.Current.MainPage.Navigation.PushAsync(new StudentsPage(studyGroup.GroupID.ToString()));
     }
 }

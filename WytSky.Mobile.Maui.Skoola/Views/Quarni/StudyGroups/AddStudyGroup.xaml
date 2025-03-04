@@ -11,7 +11,9 @@
            CornerRadius="10">
         <VerticalStackLayout Margin="5,0">
             <Entry Text="{Binding StudyGroupName}"
-                   Placeholder="{x:Static res:SharedResources.Text_FullName}"/>
+                   Placeholder="اسم الحلقة عربي"/>
+            <Entry Text="{Binding StudyGroupNameEn}"
+                   Placeholder="اسم الحلقة انجليزي"/>
             <Button Style="{StaticResource BaseButton}"
                     Command="{Binding AddStudyGroupCommand}"
                     Text="{x:Static res:SharedResources.Text_Save}"/>

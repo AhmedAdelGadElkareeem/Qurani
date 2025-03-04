@@ -47,7 +47,7 @@ public class StudyGroupService
         }
         #endregion
         
-        #region Add Student
+        #region AddStudyGroup
         public static async Task<Dtos.ReturnData> AddStudyGroup(Dictionary<string, object> formData)
         {
             try
@@ -72,7 +72,7 @@ public class StudyGroupService
             {
                 string ExceptionMseeage = string.Format(" Error : {0} - {1} ", ex.Message, ex.InnerException != null ? ex.InnerException.FullMessage() : "");
                 System.Diagnostics.Debug.WriteLine(ExceptionMseeage);
-                ExtensionLogMethods.LogExtension(ExceptionMseeage, System.Text.Json.JsonSerializer.Serialize(formData), "StudyGroupService", "AddStudent");
+                ExtensionLogMethods.LogExtension(ExceptionMseeage, System.Text.Json.JsonSerializer.Serialize(formData), "StudyGroupService", "AddStudyGroup");
                 return null;
             }
         }

@@ -11,13 +11,10 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.Students
 {
     public partial class StudentsVM : BaseViewModel
     {
-        [ObservableProperty]
-        public ObservableCollection<StudentModel> students;
-
-        [ObservableProperty] public string groupId;
-
+        [ObservableProperty] private ObservableCollection<StudentModel> students;
+        [ObservableProperty] private string groupId;
         // add student popup
-        [ObservableProperty] public string  studentName;
+        [ObservableProperty] private string  studentName;
         
         public async Task GetStudentsByGroupId()
         {
@@ -41,12 +38,17 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.Students
             {
                 var addedStudent = await StudentService.AddStudent(new Dictionary<string, object>()
                 {
-                    { "GroupId", GroupId },
+                    { "GroupID", GroupId },
                     { "StudentFullName", StudentName },
+                    { "Status", "1" },
                 });
 
                 if (addedStudent != null && addedStudent.rowsAffected > 0)
+                {
+                    HidePopup();
+                    await GetStudentsByGroupId();
                     Toast.ShowToastError(SharedResources.AddedSuccessfully);
+                }
             }
             catch (Exception e)
             {

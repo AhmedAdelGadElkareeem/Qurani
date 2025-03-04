@@ -52,7 +52,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
         [RelayCommand]
         public void SelectStaff(StaffModel staff)
         {
-            App.Current.MainPage.Navigation.PushAsync(new StudyGroupsPage(staff.StaffID.ToString()));
+            App.Current.MainPage.Navigation.PushAsync(new StudyGroupsPage(staff.StaffID.ToString(),CenterID));
         }
         
         [RelayCommand]
