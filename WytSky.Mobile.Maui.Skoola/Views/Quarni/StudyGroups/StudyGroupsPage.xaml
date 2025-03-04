@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:customControls="clr-namespace:WytSky.Mobile.Maui.Skoola.CustomControl"
+             x:Class="WytSky.Mobile.Maui.Skoola.Views.Quarni.StudyGroups.StudyGroupsPage"
+             BackgroundColor="{StaticResource Gray100}">
+    <Grid>
+        <Grid>
+            <CollectionView Margin="15,10,15,0" 
+                            ItemsSource="{Binding StudyGroups}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <ContentView>
+                            <Border
+                                Margin="10"
+                                BackgroundColor="{StaticResource White}"
+                                StrokeShape="RoundRectangle 10"
+                                StrokeThickness="1">
+                                <VerticalStackLayout>
+                                    <Label Style="{StaticResource RegularLabelFont12}" Text="{Binding ComplexName}" />
+                                    <Label Style="{StaticResource RegularLabelFont12}" Text="{Binding CenterName}" />
+                                    <Label Style="{StaticResource RegularLabelFont12}" Text="{Binding TeacherFullName}" />
+                                    <Label Style="{StaticResource RegularLabelFont12}" Text="{Binding SubjectName}" />
+                                    <Label Style="{StaticResource RegularLabelFont12}" Text="{Binding GroupCenterName}" />
+                                    <Label Style="{StaticResource RegularLabelFont12}" Text="{Binding GroupTeacherFirstName}" />
+                                    <Label Style="{StaticResource RegularLabelFont12}" Text="{Binding GroupName}" />
+                                </VerticalStackLayout>
+                            </Border>
+                        </ContentView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+                <CollectionView.EmptyView>
+                    <customControls:EmptyView />
+                </CollectionView.EmptyView>
+            </CollectionView>
+            <Button Style="{StaticResource AddButton}"
+                    IsVisible="{Binding AddVisibility}"
+                    Command="{Binding OpenAddStudyGroupCommand}"/>
+        </Grid>
+        <ActivityIndicator IsRunning="{Binding IsRunning}" IsVisible="{Binding IsRunning}" />
+    </Grid>
+</ContentPage>
