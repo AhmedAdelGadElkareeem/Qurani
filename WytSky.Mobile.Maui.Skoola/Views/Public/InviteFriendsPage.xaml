@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<base:BaseContentPage
+    x:Class="WytSky.Mobile.Maui.Skoola.Views.Public.InviteFriendsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:base="clr-namespace:WytSky.Mobile.Maui.Skoola.Views"
+    xmlns:behaviors="clr-namespace:WytSky.Mobile.Maui.Skoola.Behaviors"
+    xmlns:customControl="clr-namespace:WytSky.Mobile.Maui.Skoola.CustomControl.Borderless"
+    xmlns:customControls="clr-namespace:WytSky.Mobile.Maui.Skoola.CustomControl"
+    xmlns:resource="clr-namespace:WytSky.Mobile.Maui.Skoola.AppResources"
+    xmlns:templates="clr-namespace:WytSky.Mobile.Maui.Skoola.Template"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    BackgroundColor="{StaticResource PageBackgroundColor}">
+    <Grid>
+        <Grid RowDefinitions="auto,*">
+            <customControls:WhiteBackView
+                BackgroundColor="{StaticResource White}"
+                HasPageName="True"
+                PageName="{x:Static resource:SharedResources.Text_InviteFriends}" />
+            <CollectionView
+                x:Name="contacts"
+                Grid.Row="1"
+                Margin="10,10,10,0"
+                ItemsSource="{Binding AllContacts}"
+                SelectionMode="Single">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout ItemSpacing="5" Orientation="Vertical" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border
+                            Margin="10,5"
+                            Padding="1"
+                            BackgroundColor="{Binding BackgroundColor}"
+                            Stroke="#D4D4D4"
+                            StrokeShape="RoundRectangle 5"
+                            StrokeThickness="1">
+                            <Grid Margin="10,0" ColumnDefinitions="*,auto">
+                                <VerticalStackLayout>
+                                    <Label
+                                        Style="{StaticResource BoldLabelFont16}"
+                                        Text="{Binding DisplayName}"
+                                        TextColor="{Binding TextColor}" />
+                                    <Label
+                                        Style="{StaticResource BoldLabelFont12}"
+                                        Text="{Binding Phone}"
+                                        TextColor="{Binding TextColor}" />
+                                    <Label
+                                        Style="{StaticResource BoldLabelFont12}"
+                                        Text="{Binding Email}"
+                                        TextColor="{Binding TextColor}" />
+                                </VerticalStackLayout>
+
+                                <Image
+                                    Grid.Column="1"
+                                    Source="{Binding Image}"
+                                    Style="{StaticResource ImageSize20}" />
+                            </Grid>
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding BindingContext.SelectedContactCommand, Source={x:Reference contacts}}" CommandParameter="{Binding .}" />
+                            </Border.GestureRecognizers>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+        <ActivityIndicator IsRunning="{Binding IsRunning}" />
+    </Grid>
+
+</base:BaseContentPage>

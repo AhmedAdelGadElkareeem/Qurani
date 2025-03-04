@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<base:BaseContentPage
+    x:Class="WytSky.Mobile.Maui.Skoola.Views.Public.SuccessPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:base="clr-namespace:WytSky.Mobile.Maui.Skoola.Views"
+    xmlns:behaviors="clr-namespace:WytSky.Mobile.Maui.Skoola.Behaviors"
+    xmlns:customControl="clr-namespace:WytSky.Mobile.Maui.Skoola.CustomControl.Borderless"
+    xmlns:customControls="clr-namespace:WytSky.Mobile.Maui.Skoola.CustomControl"
+    xmlns:resource="clr-namespace:WytSky.Mobile.Maui.Skoola.AppResources"
+    xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI">
+    <ScrollView>
+        <VerticalStackLayout Margin="15,0">
+
+            <skia:SKLottieView
+                Margin="0,80,0,0"
+                HeightRequest="300"
+                RepeatCount="-1"
+                RepeatMode="Restart"
+                Source="success.json"
+                WidthRequest="200" />
+
+            <Label
+                x:Name="labelMessage"
+                Margin="0,60,0,0"
+                HorizontalOptions="CenterAndExpand"
+                HorizontalTextAlignment="Center"
+                Style="{StaticResource BoldLabelFont22}"
+                TextColor="{StaticResource PrimaryColor}"
+                VerticalOptions="CenterAndExpand" />
+
+            <Button
+                Margin="0,80,0,0"
+                Clicked="HomeClicked"
+                Style="{StaticResource BaseButton}"
+                Text="{x:Static resource:SharedResources.Text_Home}" />
+        </VerticalStackLayout>
+    </ScrollView>
+
+</base:BaseContentPage>

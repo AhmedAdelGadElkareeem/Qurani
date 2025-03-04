@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<base:BaseContentPage
+    x:Class="WytSky.Mobile.Maui.Skoola.Views.Courses.CourseDetailsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:base="clr-namespace:WytSky.Mobile.Maui.Skoola.Views"
+    xmlns:behaviors="clr-namespace:WytSky.Mobile.Maui.Skoola.Behaviors"
+    xmlns:customControl="clr-namespace:WytSky.Mobile.Maui.Skoola.CustomControl.Borderless"
+    xmlns:customControls="clr-namespace:WytSky.Mobile.Maui.Skoola.CustomControl"
+    xmlns:resource="clr-namespace:WytSky.Mobile.Maui.Skoola.AppResources"
+    xmlns:templates="clr-namespace:WytSky.Mobile.Maui.Skoola.Template">
+    <ScrollView>
+        <Grid RowDefinitions="auto,*,auto">
+            <Grid>
+                <Image
+                    Aspect="AspectFill"
+                    HeightRequest="200"
+                    Source="test_Image" />
+                <Image
+                    HorizontalOptions="CenterAndExpand"
+                    Source="video"
+                    Style="{StaticResource ImageSize40}" />
+                <customControls:WhiteBackView VerticalOptions="Start" />
+            </Grid>
+
+            <VerticalStackLayout Grid.Row="1">
+                <Grid Margin="10,10,10,0" ColumnDefinitions="*,auto">
+                    <Label
+                        FontSize="20"
+                        Style="{StaticResource BoldLabelFont18}"
+                        Text="{Binding Course.Name}"
+                        TextColor="{StaticResource Blue}" />
+                    <Image
+                        Grid.Column="1"
+                        Source="red_favourite"
+                        Style="{StaticResource ImageSize25}" />
+                </Grid>
+
+                <Grid Margin="10,10,10,0" ColumnDefinitions="auto,auto,auto,*">
+                    <customControls:SimpleRatingControl
+                        Margin="0,10,0,0"
+                        AccentColor="{StaticResource Orange}"
+                        Amount="5"
+                        CurrentValue="4"
+                        StarSize="30" />
+                    <Label
+                        Grid.Column="1"
+                        Margin="5,0"
+                        Style="{StaticResource BoldLabelFont12}"
+                        Text="{Binding Course.Rate}"
+                        TextColor="{StaticResource Black}" />
+                    <Label
+                        Grid.Column="2"
+                        Margin="5,0"
+                        Style="{StaticResource BoldLabelFont14}"
+                        Text="(7.513 reviews)"
+                        TextColor="{StaticResource Black}" />
+                    <Frame
+                        Grid.Column="3"
+                        Padding="0"
+                        BackgroundColor="{StaticResource PrimaryColor}"
+                        CornerRadius=" 5"
+                        HorizontalOptions="EndAndExpand">
+                        <Label
+                            Margin="3"
+                            HorizontalOptions="CenterAndExpand"
+                            HorizontalTextAlignment="Center"
+                            Style="{StaticResource BoldLabelFont12}"
+                            Text="Software Development"
+                            TextColor="{StaticResource White}" />
+                    </Frame>
+                </Grid>
+
+                <Grid Margin="10,5" ColumnDefinitions="auto,auto">
+                    <Label
+                        Style="{StaticResource BoldLabelFont14}"
+                        Text="200$"
+                        TextColor="{StaticResource Gray400}"
+                        TextDecorations="Strikethrough" />
+                    <Label
+                        Grid.Column="1"
+                        Margin="5,0"
+                        Style="{StaticResource BoldLabelFont18}"
+                        Text="100$"
+                        TextColor="{StaticResource PrimaryColor}" />
+                </Grid>
+
+                <Grid Margin="10,5" ColumnDefinitions="*,*,*,*">
+                    <Grid ColumnDefinitions="auto,*">
+                        <Image Source="student" Style="{StaticResource ImageSize15}" />
+                        <Label
+                            Grid.Column="1"
+                            Margin="5,0"
+                            Style="{StaticResource BoldLabelFont12}"
+                            Text="243 students"
+                            TextColor="{StaticResource Gray300}" />
+                    </Grid>
+
+                    <Grid Grid.Column="1" ColumnDefinitions="auto,*">
+                        <Image Source="certificate" Style="{StaticResource ImageSize15}" />
+                        <Label
+                            Grid.Column="1"
+                            Margin="5,0"
+                            Style="{StaticResource BoldLabelFont12}"
+                            Text="certifcate"
+                            TextColor="{StaticResource Gray300}" />
+                    </Grid>
+
+                    <Grid Grid.Column="2" ColumnDefinitions="auto,*">
+                        <Image Source="time" Style="{StaticResource ImageSize15}" />
+                        <Label
+                            Grid.Column="1"
+                            Margin="5,0"
+                            Style="{StaticResource BoldLabelFont12}"
+                            Text="24 Hours"
+                            TextColor="{StaticResource Gray300}" />
+                    </Grid>
+
+                    <Grid Grid.Column="3" ColumnDefinitions="auto,*">
+                        <Image Source="discount" Style="{StaticResource ImageSize15}" />
+                        <Label
+                            Grid.Column="1"
+                            Margin="5,0"
+                            Style="{StaticResource BoldLabelFont12}"
+                            Text="50% Off"
+                            TextColor="{StaticResource Gray300}" />
+                    </Grid>
+
+                </Grid>
+
+                <Grid Margin="15,10,15,0" ColumnDefinitions="*,*,*">
+                    <VerticalStackLayout>
+                        <Label
+                            x:Name="aboutLabel"
+                            Margin="5,0"
+                            HorizontalOptions="CenterAndExpand"
+                            Style="{StaticResource BoldLabelFont18}"
+                            Text="{x:Static resource:SharedResources.Text_About}"
+                            TextColor="{StaticResource PrimaryColor}" />
+                        <BoxView
+                            x:Name="aboutusBoxView"
+                            Margin="0,10,0,0"
+                            HeightRequest="2"
+                            HorizontalOptions="FillAndExpand"
+                            Color="{StaticResource PrimaryColor}" />
+                        <VerticalStackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="AboutClicked" />
+                        </VerticalStackLayout.GestureRecognizers>
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Grid.Column="1">
+                        <Label
+                            x:Name="lessonsLabel"
+                            Margin="5,0"
+                            HorizontalOptions="CenterAndExpand"
+                            Style="{StaticResource BoldLabelFont18}"
+                            Text="{x:Static resource:SharedResources.Text_Lessons}"
+                            TextColor="{StaticResource Gray300}" />
+                        <BoxView
+                            x:Name="lessonsBoxView"
+                            Margin="0,10,0,0"
+                            HeightRequest="2"
+                            HorizontalOptions="FillAndExpand"
+                            Color="{StaticResource Gray100}" />
+                        <VerticalStackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="LessonsClicked" />
+                        </VerticalStackLayout.GestureRecognizers>
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Grid.Column="2">
+                        <Label
+                            x:Name="reviewsLabel"
+                            Margin="5,0"
+                            HorizontalOptions="CenterAndExpand"
+                            Style="{StaticResource BoldLabelFont18}"
+                            Text="{x:Static resource:SharedResources.Text_Reviews}"
+                            TextColor="{StaticResource Gray300}" />
+                        <BoxView
+                            x:Name="reviewsBoxView"
+                            Margin="0,10,0,0"
+                            HeightRequest="2"
+                            HorizontalOptions="FillAndExpand"
+                            Color="{StaticResource Gray100}" />
+                        <VerticalStackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="ReviewsClicked" />
+                        </VerticalStackLayout.GestureRecognizers>
+                    </VerticalStackLayout>
+                </Grid>
+
+                <VerticalStackLayout x:Name="aboutsStack" Margin="20,10,20,0">
+                    <VerticalStackLayout>
+                        <Label
+                            Style="{StaticResource BoldLabelFont18}"
+                            Text="{x:Static resource:SharedResources.Text_Mentor}"
+                            TextColor="{StaticResource Black100}" />
+
+                        <Grid Margin="0,10,0,0" ColumnDefinitions="auto,*">
+                            <Image Source="avatar" Style="{StaticResource ImageSize60}" />
+                            <VerticalStackLayout Grid.Column="1" Margin="10,0">
+                                <Label
+                                    Style="{StaticResource BoldLabelFont16}"
+                                    Text="Eslam Hisham"
+                                    TextColor="{StaticResource Black100}" />
+                                <Label
+                                    Style="{StaticResource RegularLabelFont14}"
+                                    Text="Senior Javascript at google"
+                                    TextColor="{StaticResource Gray300}" />
+                            </VerticalStackLayout>
+                        </Grid>
+                        <VerticalStackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OpenMentorDetailsPage" />
+                        </VerticalStackLayout.GestureRecognizers>
+                    </VerticalStackLayout>
+
+                    <Label
+                        Margin="0,5,0,0"
+                        Style="{StaticResource BoldLabelFont18}"
+                        Text="{x:Static resource:SharedResources.Text_AboutCourse}"
+                        TextColor="{StaticResource Black100}" />
+                    <Label Margin="0,5,0,0">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span
+                                    FontFamily="ManropeRegular"
+                                    FontSize="14"
+                                    Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum mollis nunc a molestie dicm. felis scelerisque aliquet lacinia, nulla "
+                                    TextColor="{StaticResource Gray300}" />
+                                <Span
+                                    FontFamily="ManropeBold"
+                                    FontSize="15"
+                                    Text=" See More ..."
+                                    TextColor="{StaticResource Black100}" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+
+
+                </VerticalStackLayout>
+
+                <Grid
+                    x:Name="lessonsStack"
+                    Margin="20,10,20,0"
+                    IsVisible="false"
+                    RowDefinitions="auto,*">
+                    <Label
+                        Style="{StaticResource BoldLabelFont18}"
+                        Text="120 Lessons"
+                        TextColor="{StaticResource Black100}" />
+                    <CollectionView
+                        Grid.Row="1"
+                        Margin="10,10,10,0"
+                        ItemsSource="{Binding Course.Lessons}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid RowDefinitions="auto,auto">
+                                    <Grid ColumnDefinitions="*,auto">
+                                        <Label
+                                            Style="{StaticResource RegularLabelFont16}"
+                                            Text="{Binding Name}"
+                                            TextColor="{StaticResource Gray300}" />
+                                        <Label
+                                            Grid.Column="1"
+                                            HorizontalOptions="EndAndExpand"
+                                            Style="{StaticResource RegularLabelFont16}"
+                                            Text="{Binding Duration}"
+                                            TextColor="{StaticResource Gray300}" />
+                                    </Grid>
+                                    <CollectionView
+                                        Grid.Row="1"
+                                        HeightRequest="200"
+                                        ItemsSource="{Binding Subjects}">
+                                        <CollectionView.ItemTemplate>
+                                            <DataTemplate>
+                                                <Frame
+                                                    Margin="5"
+                                                    Padding="0"
+                                                    BorderColor="{StaticResource Gray200}"
+                                                    CornerRadius="15">
+                                                    <Grid Margin="10,5" ColumnDefinitions="auto,*,auto">
+                                                        <Frame />
+                                                        <VerticalStackLayout Grid.Column="1">
+                                                            <Label
+                                                                Grid.Column="1"
+                                                                Style="{StaticResource BoldLabelFont16}"
+                                                                Text="{Binding Name}"
+                                                                TextColor="{StaticResource Black}" />
+                                                            <Label
+                                                                Grid.Column="1"
+                                                                Style="{StaticResource RegularLabelFont14}"
+                                                                Text="{Binding Duration}"
+                                                                TextColor="{StaticResource Gray300}" />
+                                                        </VerticalStackLayout>
+                                                        <Image
+                                                            Grid.Column="2"
+                                                            HorizontalOptions="EndAndExpand"
+                                                            Source="play_video"
+                                                            Style="{StaticResource ImageSize30}">
+                                                            <Image.Triggers>
+                                                                <DataTrigger
+                                                                    Binding="{Binding IsFree}"
+                                                                    TargetType="Image"
+                                                                    Value="false">
+                                                                    <Setter Property="Source" Value="lock" />
+                                                                </DataTrigger>
+                                                            </Image.Triggers>
+                                                        </Image>
+                                                    </Grid>
+                                                </Frame>
+                                            </DataTemplate>
+                                        </CollectionView.ItemTemplate>
+                                    </CollectionView>
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </Grid>
+
+                <VerticalStackLayout
+                    x:Name="reviewsStack"
+                    Margin="20,0"
+                    IsVisible="false">
+                    <templates:ReviewTemplate
+                        CommandParameter="{Binding CommandParameter}"
+                        ReviewItems="{Binding Course.Reviews}"
+                        ReviewsCount="{Binding Course.ReviewsCount}"
+                        SelectedReviewCommand="{Binding BindingContext.SelectedReviewCommand, Source={x:Reference reviewsStack}}" />
+                </VerticalStackLayout>
+
+            </VerticalStackLayout>
+
+            <Button
+                Grid.Row="2"
+                Margin="15,0,15,10"
+                Command="{Binding EnrollCourseCommand}"
+                Style="{StaticResource BaseButton}"
+                Text="Enroll Course / 100$" />
+        </Grid>
+    </ScrollView>
+
+</base:BaseContentPage>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<base:BaseContentView
+    x:Class="WytSky.Mobile.Maui.Skoola.CustomControl.ViewAll"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:base="clr-namespace:WytSky.Mobile.Maui.Skoola.CustomControl"
+    xmlns:resource="clr-namespace:WytSky.Mobile.Maui.Skoola.AppResources"
+    x:Name="root">
+    <HorizontalStackLayout BindingContext="{x:Reference root}" HorizontalOptions="EndAndExpand">
+        <Label
+            HorizontalOptions="Center"
+            Style="{StaticResource BoldLabelFont14}"
+            Text="{x:Static resource:SharedResources.Text_ViewAll}"
+            TextColor="{StaticResource Black100}"
+            VerticalOptions="Center" />
+        <Image
+            Margin="5,0"
+            Source="right_arrow"
+            Style="{StaticResource ImageSize10}">
+            <Image.Triggers>
+                <DataTrigger
+                    Binding="{Binding BindingContext.Lang, Source={x:Reference root}}"
+                    TargetType="Image"
+                    Value="ar">
+                    <Setter Property="Rotation" Value="180" />
+                </DataTrigger>
+            </Image.Triggers>
+        </Image>
+        <HorizontalStackLayout.GestureRecognizers>
+            <TapGestureRecognizer Command="{Binding OnViewAllClicked}" />
+        </HorizontalStackLayout.GestureRecognizers>
+    </HorizontalStackLayout>
+</base:BaseContentView>

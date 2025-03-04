@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Frame
+    x:Class="WytSky.Mobile.Maui.Skoola.CustomControl.CreditCardView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:Borderless="clr-namespace:WytSky.Mobile.Maui.Skoola.CustomControl.Borderless"
+    x:Name="CreditCardViewFrame"
+    Margin="20,10"
+    Padding="20"
+    BackgroundColor="{StaticResource PrimaryColor}"
+    CornerRadius="8"
+    HorizontalOptions="Center"
+    VerticalOptions="Start"
+    WidthRequest="300">
+    <Frame.Resources>
+        <Style x:Key="CreditCardImageLabelStyle" TargetType="Label">
+            <Setter Property="FontSize" Value="48" />
+            <Setter Property="TextColor" Value="#FFFFFF" />
+            <Setter Property="HorizontalOptions" Value="EndAndExpand" />
+        </Style>
+    </Frame.Resources>
+
+    <Grid
+        ColumnSpacing="30"
+        RowDefinitions="auto,auto,auto,auto,auto"
+        RowSpacing="0">
+
+        <Label
+            Style="{StaticResource BoldLabelFont14}"
+            Text="master card"
+            TextColor="{StaticResource White}" />
+
+        <Label
+            x:Name="CreditCardImageLabel"
+            Grid.Row="1"
+            Style="{StaticResource CreditCardImageLabelStyle}" />
+
+        <Label
+            Grid.Row="2"
+            Style="{StaticResource BoldLabelFont12}"
+            Text="{Binding HolderName}"
+            TextColor="{StaticResource White}" />
+
+        <Label
+            Grid.Row="3"
+            Style="{StaticResource BoldLabelFont12}"
+            Text="{Binding CardNumber}"
+            TextColor="{StaticResource White}" />
+
+        <Grid Grid.Row="4" ColumnDefinitions="*,*">
+            <Label
+                Style="{StaticResource BoldLabelFont12}"
+                Text="{Binding Expiration}"
+                TextColor="{StaticResource White}" />
+
+            <Label
+                Grid.Column="1"
+                Style="{StaticResource BoldLabelFont12}"
+                Text="{Binding CVV}"
+                TextColor="{StaticResource White}" />
+        </Grid>
+
+    </Grid>
+</Frame>

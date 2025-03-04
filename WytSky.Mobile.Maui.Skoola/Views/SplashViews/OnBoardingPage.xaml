@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<base:BaseContentPage
+    x:Class="WytSky.Mobile.Maui.Skoola.Views.SplashViews.OnBoardingPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:base="clr-namespace:WytSky.Mobile.Maui.Skoola.Views"
+    xmlns:customControl="clr-namespace:WytSky.Mobile.Maui.Skoola.CustomControl"
+    xmlns:resource="clr-namespace:WytSky.Mobile.Maui.Skoola.AppResources">
+    <ScrollView>
+        <VerticalStackLayout>
+
+            <Image
+                Margin="0,20,0,0"
+                Aspect="AspectFit"
+                HeightRequest="100"
+                HorizontalOptions="CenterAndExpand"
+                Source="logo"
+                WidthRequest="200" />
+
+            <CarouselView
+                x:Name="carouselList"
+                Margin="0,50,0,0"
+                ItemsSource="{Binding CarouselItems}"
+                Position="{Binding PositionSelected}">
+                <CarouselView.ItemTemplate>
+                    <DataTemplate>
+                        <VerticalStackLayout>
+                            <Image
+                                Aspect="AspectFit"
+                                BackgroundColor="Transparent"
+                                HeightRequest="200"
+                                Source="{Binding Image}" />
+                            <Label
+                                Margin="0,30,0,0"
+                                HorizontalOptions="CenterAndExpand"
+                                HorizontalTextAlignment="Center"
+                                Style="{StaticResource BoldLabelFont20}"
+                                Text="{Binding Title}"
+                                TextColor="{StaticResource Black}" />
+                            <Label
+                                Margin="0,30,0,0"
+                                HorizontalOptions="CenterAndExpand"
+                                HorizontalTextAlignment="Center"
+                                MaxLines="3"
+                                Style="{StaticResource RegularLabelFont14}"
+                                Text="{Binding Description}"
+                                TextColor="{StaticResource Black}" />
+                            <Image
+                                Margin="0,40,0,0"
+                                Aspect="AspectFit"
+                                HeightRequest="50"
+                                HorizontalOptions="CenterAndExpand"
+                                Source="{Binding ImageNumber}"
+                                WidthRequest="50" />
+                        </VerticalStackLayout>
+                    </DataTemplate>
+                </CarouselView.ItemTemplate>
+            </CarouselView>
+
+            <Button
+                BackgroundColor="{StaticResource PrimaryColor}"
+                Command="{Binding NextCommand}"
+                Style="{StaticResource BaseButton}"
+                Text="{x:Static resource:SharedResources.Text_Next}" />
+            <Button
+                Margin="10,20,10,0"
+                Command="{Binding SkipCommand}"
+                Style="{StaticResource SecondaryButton}"
+                Text="{x:Static resource:SharedResources.Text_Skip}" />
+
+        </VerticalStackLayout>
+
+    </ScrollView>
+</base:BaseContentPage>

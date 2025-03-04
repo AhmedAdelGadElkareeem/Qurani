@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<base:BaseContentPage
+    x:Class="WytSky.Mobile.Maui.Skoola.Views.Public.CustomerServiceChatPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:base="clr-namespace:WytSky.Mobile.Maui.Skoola.Views"
+    xmlns:customControl="clr-namespace:WytSky.Mobile.Maui.Skoola.CustomControl.Borderless"
+    xmlns:customControls="clr-namespace:WytSky.Mobile.Maui.Skoola.CustomControl"
+    xmlns:resource="clr-namespace:WytSky.Mobile.Maui.Skoola.AppResources"
+    xmlns:template="clr-namespace:WytSky.Mobile.Maui.Skoola.Template.Chat">
+
+    <base:BaseContentPage.Resources>
+        <DataTemplate x:Key="SentTemplate">
+            <template:SentMessageTemplate Title="{Binding Title}" Time="{Binding Time}" />
+        </DataTemplate>
+
+        <DataTemplate x:Key="RecievedTemplate">
+            <template:RecievedMessageTemplate Title="{Binding Title}" Time="{Binding Time}" />
+        </DataTemplate>
+    </base:BaseContentPage.Resources>
+
+    <Grid RowDefinitions="auto,*,auto">
+
+        <Grid Margin="10,10,10,0" ColumnDefinitions="auto,*,auto,auto">
+            <Image
+                HorizontalOptions="Start"
+                Source="white_back"
+                Style="{StaticResource ImageSize40}"
+                VerticalOptions="CenterAndExpand">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="GoBack" />
+                </Image.GestureRecognizers>
+                <Image.Triggers>
+                    <DataTrigger
+                        Binding="{Binding BindingContext.Lang, Source={x:Reference root}}"
+                        TargetType="Image"
+                        Value="ar">
+                        <Setter Property="Rotation" Value="180" />
+                    </DataTrigger>
+                </Image.Triggers>
+            </Image>
+
+            <Label
+                Grid.Column="1"
+                Margin="10,0"
+                Style="{StaticResource BoldLabelFont18}"
+                Text="{x:Static resource:SharedResources.Text_CustomerService}"
+                TextColor="{StaticResource Black}" />
+
+            <Image
+                Grid.Column="2"
+                Margin="10,0"
+                Source="customer_service_call"
+                Style="{StaticResource ImageSize30}"
+                VerticalOptions="CenterAndExpand" />
+
+            <Image
+                Grid.Column="3"
+                Margin="10,0"
+                Source="customer_service_more"
+                Style="{StaticResource ImageSize30}"
+                VerticalOptions="CenterAndExpand" />
+        </Grid>
+
+
+        <CollectionView
+            x:Name="messagesCollectionView"
+            Grid.Row="1"
+            ItemsSource="{Binding Messages}">
+            <CollectionView.ItemTemplate>
+                <template:ChatDataTemplateSelector RecievedMessageTemplate="{StaticResource RecievedTemplate}" SentMessageTemplate="{StaticResource SentTemplate}" />
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Grid
+            Grid.Row="2"
+            Margin="10,0"
+            ColumnDefinitions="*,auto,auto"
+            VerticalOptions="CenterAndExpand">
+            <Frame
+                Margin="5,10,5,5"
+                Padding="0"
+                CornerRadius="30"
+                HeightRequest="40">
+                <customControl:BorderlessEntry
+                    Margin="10,0"
+                    FontAttributes="Bold"
+                    FontFamily="ManropeRegular"
+                    FontSize="15"
+                    Placeholder="Type your message" />
+            </Frame>
+            <Image
+                Grid.Column="1"
+                Margin="5,0"
+                Source="customer_service_attach"
+                Style="{StaticResource ImageSize30}" />
+            <Image
+                Grid.Column="2"
+                Margin="5,0"
+                Source="customer_service_mic"
+                Style="{StaticResource ImageSize40}" />
+        </Grid>
+
+    </Grid>
+</base:BaseContentPage>

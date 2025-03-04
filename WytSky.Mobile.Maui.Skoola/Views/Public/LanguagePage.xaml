@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<base:BaseContentPage
+    x:Class="WytSky.Mobile.Maui.Skoola.Views.Public.LanguagePage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:base="clr-namespace:WytSky.Mobile.Maui.Skoola.Views"
+    xmlns:behaviors="clr-namespace:WytSky.Mobile.Maui.Skoola.Behaviors"
+    xmlns:customControl="clr-namespace:WytSky.Mobile.Maui.Skoola.CustomControl.Borderless"
+    xmlns:customControls="clr-namespace:WytSky.Mobile.Maui.Skoola.CustomControl"
+    xmlns:resource="clr-namespace:WytSky.Mobile.Maui.Skoola.AppResources"
+    xmlns:templates="clr-namespace:WytSky.Mobile.Maui.Skoola.Template"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    BackgroundColor="{StaticResource PageBackgroundColor}">
+    <ScrollView>
+        <Grid RowDefinitions="auto,*">
+            <customControls:WhiteBackView BackgroundColor="{StaticResource White}" />
+
+            <VerticalStackLayout Grid.Row="1">
+                <Frame
+                    Margin="15,15,15,0"
+                    Padding="0"
+                    BackgroundColor="{StaticResource White}"
+                    BorderColor="{StaticResource Gray200}"
+                    CornerRadius="10">
+                    <RadioButton
+                        Margin="10,5"
+                        CheckedChanged="EnRadioButton_CheckedChanged"
+                        Content="{x:Static resource:SharedResources.Text_EnglishUS}"
+                        FontFamily="ManropeRegular"
+                        FontSize="16"
+                        GroupName="language" />
+                </Frame>
+
+                <Frame
+                    Margin="15,15,15,0"
+                    Padding="0"
+                    BackgroundColor="{StaticResource White}"
+                    BorderColor="{StaticResource Gray200}"
+                    CornerRadius="10">
+                    <RadioButton
+                        Margin="10,5"
+                        CheckedChanged="ArCheckedChanged"
+                        Content="{x:Static resource:SharedResources.Text_Arabic}"
+                        FontFamily="ManropeRegular"
+                        FontSize="16"
+                        GroupName="language" />
+                </Frame>
+
+            </VerticalStackLayout>
+        </Grid>
+    </ScrollView>
+</base:BaseContentPage>

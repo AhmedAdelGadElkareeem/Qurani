@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:Borderless="clr-namespace:WytSky.Mobile.Maui.Skoola.CustomControl.Borderless"
+    x:Class="WytSky.Mobile.Maui.Skoola.CustomControl.MEntry"
+    x:Name="_root">
+    <ContentView.Content>
+        <Grid 
+            Margin="5"
+            BindingContext="{x:Reference _root}">
+            <Border 
+                StrokeThickness="1"
+                StrokeShape="RoundRectangle 15,5,5,15"
+                BackgroundColor="Transparent"
+                Padding="5"
+                Margin="0,5,0,0"
+                Stroke="{Binding BorderColor}"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="Center">
+                <StackLayout 
+                    Orientation="Horizontal">
+                    <Borderless:BorderlessEntry 
+                        Margin="5,0"
+                        FontSize="Small"
+                        Text="{Binding Text}"
+                        TextColor="{Binding TextColor}"
+                        Placeholder="{Binding Placeholder}"
+                        PlaceholderColor="{Binding PlaceholderColor}"
+                        IsPassword="{Binding IsShowPassword}"
+                        Keyboard="{Binding KeyboardType}"
+                        FontFamily="{Binding FontFamily}"
+                        HorizontalTextAlignment="{Binding HorizontalTextAlignment}"
+                        HorizontalOptions="FillAndExpand"
+                        BackgroundColor="Transparent" >
+                        <Borderless:BorderlessEntry.Triggers>
+                            <DataTrigger
+                                TargetType="Borderless:BorderlessEntry"
+                                Binding="{Binding IsPassword}"
+                                Value="false">
+                                <Setter Property="IsPassword" Value="false"/>
+                            </DataTrigger>
+                            <DataTrigger
+                                TargetType="Borderless:BorderlessEntry"
+                                Binding="{Binding IsPassword}"
+                                Value="true">
+                                <Setter Property="IsPassword" Value="{Binding IsShowPassword}"/>
+                            </DataTrigger>
+                        </Borderless:BorderlessEntry.Triggers>
+                    </Borderless:BorderlessEntry>
+                    <Image
+                        Margin="5"
+                        HorizontalOptions="End"
+                        IsVisible="{Binding IsPassword}"
+                        Source="pass_hide.png"
+                        VerticalOptions="Center"
+                        WidthRequest="25">
+                        <Image.Triggers>
+                            <DataTrigger
+                                TargetType="Image"
+                                Binding="{Binding IsShowPassword}"
+                                Value="false">
+                                <Setter Property="Source" Value="pass_hide.png"/>
+                            </DataTrigger>
+                            <DataTrigger
+                                TargetType="Image"
+                                Binding="{Binding IsShowPassword}"
+                                Value="true">
+                                <Setter Property="Source" Value="pass_show.png"/>
+                            </DataTrigger>
+                        </Image.Triggers>
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                        </Image.GestureRecognizers>
+                    </Image>
+                </StackLayout>
+            </Border>
+            <HorizontalStackLayout>
+                <Label
+                    HorizontalOptions="Start"
+                    VerticalOptions="Start"
+                    Margin="10,-5,10,0"
+                    FontSize="Medium"
+                    BackgroundColor="White"
+                    Opacity="1"
+                    Text="{Binding Placeholder}"
+                    TextColor="{Binding HeaderColor}">
+                    <Label.Triggers>
+                        <DataTrigger
+                                    TargetType="Label"
+                                    Binding="{Binding Placeholder.Length}"
+                                    Value="0">
+                            <Setter Property="IsVisible" Value="false"/>
+                        </DataTrigger>
+                        <DataTrigger
+                                    TargetType="Label"
+                                    Binding="{Binding Placeholder}"
+                                    Value="{x:Null}">
+                            <Setter Property="IsVisible" Value="false"/>
+                        </DataTrigger>
+                        <DataTrigger
+                                    TargetType="Label"
+                                    Binding="{Binding Placeholder.Length}"
+                                    Value="1">
+                            <Setter Property="IsVisible" Value="true"/>
+                        </DataTrigger>
+                    </Label.Triggers>
+                </Label>
+                <Label HorizontalOptions="StartAndExpand"
+                       IsVisible="{Binding IsRequired}">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text=" "/>
+                            <Span Text="*"
+                                  TextColor="Red"
+                                  FontAttributes="Bold"
+                                  FontSize="17"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </HorizontalStackLayout>
+        </Grid>
+    </ContentView.Content>
+</ContentView>

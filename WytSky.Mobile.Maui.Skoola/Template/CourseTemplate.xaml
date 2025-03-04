@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<customControl:BaseContentView
+    x:Class="WytSky.Mobile.Maui.Skoola.Template.CourseTemplate"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:customControl="clr-namespace:WytSky.Mobile.Maui.Skoola.CustomControl"
+    x:Name="root">
+    <Frame
+        Margin="0,5"
+        Padding="0"
+        BackgroundColor="{StaticResource White}"
+        BindingContext="{x:Reference root}"
+        CornerRadius="10"
+        HeightRequest="150">
+        <Grid Margin="10" ColumnDefinitions="auto,*">
+            <Frame
+                Margin="3"
+                Padding="0"
+                CornerRadius="10"
+                HeightRequest="120"
+                IsClippedToBounds="True"
+                WidthRequest="100">
+                <Image Aspect="AspectFill" Source="test_image" />
+            </Frame>
+
+            <VerticalStackLayout Grid.Column="1" Margin="5,0">
+                <Grid ColumnDefinitions="*,auto">
+                    <Border
+                        BackgroundColor="{StaticResource PrimaryColor}"
+                        HeightRequest="35"
+                        HorizontalOptions="FillAndExpand"
+                        StrokeShape="RoundRectangle 5">
+                        <Label
+                            Margin="5,0"
+                            HorizontalOptions="CenterAndExpand"
+                            Style="{StaticResource BoldLabelFont12}"
+                            Text="Software Development"
+                            TextColor="{StaticResource White}" />
+                    </Border>
+                    <Image
+                        x:Name="favImage"
+                        Grid.Column="1"
+                        Margin="5,0"
+                        HorizontalOptions="EndAndExpand"
+                        Source="favorite"
+                        Style="{StaticResource ImageSize25}">
+                        <Image.Triggers>
+                            <DataTrigger
+                                Binding="{Binding DataModel.Isfav}"
+                                TargetType="Image"
+                                Value="true">
+                                <Setter Property="Source" Value="red_favourite" />
+                            </DataTrigger>
+                        </Image.Triggers>
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="ChangeColor" />
+                        </Image.GestureRecognizers>
+                    </Image>
+                </Grid>
+
+                <Label
+                    Margin="10,5,10,0"
+                    Style="{StaticResource BoldLabelFont20}"
+                    Text="JavaScript"
+                    TextColor="{StaticResource Blue}" />
+
+                <Grid Margin="10,5" ColumnDefinitions="auto,auto">
+                    <Label
+                        Margin="5,0"
+                        Style="{StaticResource BoldLabelFont18}"
+                        Text="100$"
+                        TextColor="{StaticResource PrimaryColor}" />
+                    <Label
+                        Grid.Column="1"
+                        Margin="5,0"
+                        Style="{StaticResource BoldLabelFont14}"
+                        Text="200$"
+                        TextColor="{StaticResource Gray400}"
+                        TextDecorations="Strikethrough" />
+                </Grid>
+
+                <Grid ColumnDefinitions="auto,auto,auto">
+                    <Grid Margin="10,0" ColumnDefinitions="auto,auto">
+                        <customControl:SimpleRatingControl
+                            AccentColor="{StaticResource Orange}"
+                            Amount="1"
+                            CurrentValue="1"
+                            StarSize="25" />
+                        <Label
+                            Grid.Column="1"
+                            Margin="5,0"
+                            Style="{StaticResource BoldLabelFont12}"
+                            Text="4.2"
+                            TextColor="{StaticResource Black}" />
+                    </Grid>
+                    <BoxView
+                        Grid.Column="1"
+                        HorizontalOptions="CenterAndExpand"
+                        WidthRequest="1"
+                        Color="{StaticResource Gray200}" />
+                    <Grid
+                        Grid.Column="2"
+                        Margin="10,0"
+                        ColumnDefinitions="auto,auto">
+                        <Label
+                            Style="{StaticResource BoldLabelFont14}"
+                            Text="243"
+                            TextColor="{StaticResource Blue}" />
+                        <Label
+                            Grid.Column="1"
+                            Margin="3,0"
+                            Style="{StaticResource BoldLabelFont14}"
+                            Text="Enroll"
+                            TextColor="{StaticResource Blue}" />
+                    </Grid>
+                </Grid>
+            </VerticalStackLayout>
+        </Grid>
+        <Frame.GestureRecognizers>
+            <TapGestureRecognizer Command="{Binding SelectedCourseCommand}" CommandParameter="{Binding CommandParameter}" />
+        </Frame.GestureRecognizers>
+    </Frame>
+</customControl:BaseContentView>

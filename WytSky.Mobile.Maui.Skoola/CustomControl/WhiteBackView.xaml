@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<base:BaseContentView
+    x:Class="WytSky.Mobile.Maui.Skoola.CustomControl.WhiteBackView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:base="clr-namespace:WytSky.Mobile.Maui.Skoola.CustomControl"
+    x:Name="root">
+    <Grid
+        Margin="10,5,10,0"
+        BindingContext="{x:Reference root}"
+        ColumnDefinitions="auto,*"
+        HeightRequest="60">
+        <Image
+            HorizontalOptions="Start"
+            Source="white_back"
+            Style="{StaticResource ImageSize40}"
+            VerticalOptions="CenterAndExpand">
+            <Image.GestureRecognizers>
+                <TapGestureRecognizer Tapped="GoBack" />
+            </Image.GestureRecognizers>
+            <Image.Triggers>
+                <DataTrigger
+                    Binding="{Binding BindingContext.Lang, Source={x:Reference root}}"
+                    TargetType="Image"
+                    Value="ar">
+                    <Setter Property="Rotation" Value="180" />
+                </DataTrigger>
+            </Image.Triggers>
+        </Image>
+        <Label
+            Grid.Column="1"
+            Margin="10,0"
+            IsVisible="{Binding HasPageName}"
+            Style="{StaticResource BoldLabelFont18}"
+            Text="{Binding PageName}"
+            TextColor="{StaticResource Black}"
+            VerticalOptions="CenterAndExpand" />
+    </Grid>
+
+</base:BaseContentView>

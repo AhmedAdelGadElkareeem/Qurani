@@ -1,0 +1,13 @@
+<svg width="429" height="193" viewBox="0 0 429 193" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<path d="M0 0H429V153C429 175.091 411.091 193 389 193H40C17.9086 193 0 175.091 0 153V0Z" fill="#007BFF"/>
+	<!-- Updated Primary Color -->
+	<circle cx="100" cy="50" r="30" fill="white" opacity="0.2"/>
+	<circle cx="300" cy="80" r="50" fill="white" opacity="0.1"/>
+	<path d="M0 0H429V153C429 175.091 411.091 193 389 193H40C17.9086 193 0 175.091 0 153V0Z" fill="url(#pattern0)" fill-opacity="0.22"/>
+	<defs>
+		<pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+			<use xlink:href="#image0_577_9800" transform="matrix(0.00202175 -0.00288563 0.00137935 0.00477486 0.183754 -0.0622994)"/>
+		</pattern>
+		<image id="image0_577_9800" width="344" height="325" xlink:href="data:image/png;base64,..." />
+	</defs>
+</svg>

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<base:BaseContentPage
+    x:Class="WytSky.Mobile.Maui.Skoola.Views.Courses.EnrollCoursePage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:base="clr-namespace:WytSky.Mobile.Maui.Skoola.Views"
+    xmlns:behaviors="clr-namespace:WytSky.Mobile.Maui.Skoola.Behaviors"
+    xmlns:customControl="clr-namespace:WytSky.Mobile.Maui.Skoola.CustomControl.Borderless"
+    xmlns:customControls="clr-namespace:WytSky.Mobile.Maui.Skoola.CustomControl"
+    xmlns:resource="clr-namespace:WytSky.Mobile.Maui.Skoola.AppResources"
+    xmlns:templates="clr-namespace:WytSky.Mobile.Maui.Skoola.Template"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    BackgroundColor="{StaticResource PageBackgroundColor}">
+    <ScrollView>
+        <Grid RowDefinitions="auto,*,auto">
+
+            <customControls:WhiteBackView
+                BackgroundColor="{StaticResource White}"
+                HasPageName="True"
+                PageName="{x:Static resource:SharedResources.Text_EnrollToCourse}" />
+
+
+            <VerticalStackLayout Grid.Row="1" Margin="15,10,15,0">
+                <templates:CourseTemplate DataModel="{Binding Course}" />
+                <Label
+                    Margin="0,15,0,0"
+                    Style="{StaticResource BoldLabelFont18}"
+                    Text="{x:Static resource:SharedResources.Text_PaymentMethods}"
+                    TextColor="{StaticResource Black}" />
+                <Grid RowDefinitions="auto,auto" RowSpacing="0">
+                    <Frame
+                        Margin="0,10,0,0"
+                        Padding="0"
+                        BorderColor="#EEEEEE"
+                        CornerRadius="10"
+                        HeightRequest="60">
+                        <Grid Margin="10,5" ColumnDefinitions="auto,auto,*">
+                            <RadioButton GroupName="payment" />
+                            <Image
+                                Grid.Column="1"
+                                Source="vodafone"
+                                Style="{StaticResource ImageSize20}" />
+                            <Label
+                                Grid.Column="2"
+                                Margin="5,0"
+                                Style="{StaticResource BoldLabelFont18}"
+                                Text="{x:Static resource:SharedResources.Text_VodafoneCash}"
+                                TextColor="{StaticResource Black}"
+                                VerticalOptions="CenterAndExpand" />
+                        </Grid>
+                    </Frame>
+                    <Frame
+                        Grid.Row="1"
+                        Margin="0,10,0,0"
+                        Padding="0"
+                        BorderColor="#EEEEEE"
+                        CornerRadius="10"
+                        HeightRequest="60">
+                        <Grid Margin="10,5" ColumnDefinitions="auto,auto,*,auto">
+                            <RadioButton GroupName="payment" />
+                            <Image
+                                Grid.Column="1"
+                                Source="credit_card"
+                                Style="{StaticResource ImageSize20}" />
+                            <Label
+                                Grid.Column="2"
+                                Margin="5,0"
+                                HorizontalOptions="CenterAndExpand"
+                                Style="{StaticResource BoldLabelFont18}"
+                                Text="{x:Static resource:SharedResources.Text_CreditCard}"
+                                TextColor="{StaticResource Black}"
+                                VerticalOptions="CenterAndExpand" />
+                            <Label
+                                Grid.Column="3"
+                                Margin="5,0"
+                                HorizontalOptions="EndAndExpand"
+                                Style="{StaticResource RegularLabelFont14}"
+                                Text="32** **** **** **** **54"
+                                TextColor="{StaticResource Gray300}"
+                                VerticalOptions="CenterAndExpand" />
+                        </Grid>
+                    </Frame>
+                </Grid>
+
+                <Label
+                    Margin="0,15,0,0"
+                    Style="{StaticResource BoldLabelFont18}"
+                    Text="{x:Static resource:SharedResources.Text_CostDetails}"
+                    TextColor="{StaticResource Black}" />
+
+                <Grid Margin="0,10,0,0" ColumnDefinitions="*,auto">
+                    <Label
+                        Style="{StaticResource RegularLabelFont16}"
+                        Text="Javascript"
+                        TextColor="{StaticResource Black100}" />
+                    <Label
+                        Grid.Column="1"
+                        Style="{StaticResource BoldLabelFont18}"
+                        Text="100 $"
+                        TextColor="{StaticResource Black}" />
+                </Grid>
+
+                <Grid Margin="0,10,0,0" ColumnDefinitions="*,auto">
+                    <Label
+                        Style="{StaticResource RegularLabelFont16}"
+                        Text="Tax"
+                        TextColor="{StaticResource Black100}" />
+                    <Label
+                        Grid.Column="1"
+                        Style="{StaticResource BoldLabelFont18}"
+                        Text="100 $"
+                        TextColor="{StaticResource Black}" />
+                </Grid>
+
+                <BoxView
+                    Margin="0,10,0,0"
+                    HeightRequest="1"
+                    Color="{StaticResource DimGray}" />
+
+                <Grid Margin="0,10,0,0" ColumnDefinitions="*,auto">
+                    <Label
+                        Style="{StaticResource RegularLabelFont16}"
+                        Text="{x:Static resource:SharedResources.Text_Total}"
+                        TextColor="{StaticResource Black100}" />
+                    <Label
+                        Grid.Column="1"
+                        Style="{StaticResource BoldLabelFont18}"
+                        Text="200 $"
+                        TextColor="{StaticResource Black}" />
+                </Grid>
+            </VerticalStackLayout>
+
+            <Button
+                Grid.Row="2"
+                Command="{Binding PayNowCommand}"
+                Style="{StaticResource BaseButton}"
+                Text="{x:Static resource:SharedResources.Text_PayNow}" />
+        </Grid>
+    </ScrollView>
+
+</base:BaseContentPage>

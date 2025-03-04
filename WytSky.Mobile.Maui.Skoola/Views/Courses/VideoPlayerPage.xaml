@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<base:BaseContentPage
+    x:Class="WytSky.Mobile.Maui.Skoola.Views.Courses.VideoPlayerPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:base="clr-namespace:WytSky.Mobile.Maui.Skoola.Views"
+    xmlns:customcontrols="clr-namespace:WytSky.Mobile.Maui.Skoola.CustomControl"
+    xmlns:templates="clr-namespace:WytSky.Mobile.Maui.Skoola.Template"
+    xmlns:vlc="clr-namespace:LibVLCSharp.MAUI;assembly=LibVLCSharp.MAUI">
+    <Grid RowDefinitions="auto,*">
+        <customcontrols:BackView />
+        <WebView
+            x:Name="webView"
+            Grid.Row="1"
+            Margin="0,10,0,0"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand" />
+        <Grid
+            x:Name="videoPlayerStack"
+            Grid.Row="1"
+            RowDefinitions="auto,auto">
+            <vlc:VideoView
+                x:Name="VideoView"
+                Margin="0,10,0,0"
+                HeightRequest="600" />
+            <Grid Grid.Row="1" ColumnDefinitions="*,*,*">
+                <Button
+                    BackgroundColor="{StaticResource Blue}"
+                    Clicked="OnPlayVideoClicked"
+                    Text="Play"
+                    TextColor="{StaticResource White}" />
+                <Button
+                    Grid.Column="1"
+                    BackgroundColor="{StaticResource Blue}"
+                    Clicked="OnPauseVideoClicked"
+                    Text="Pause" />
+                <Button
+                    Grid.Column="2"
+                    BackgroundColor="{StaticResource Blue}"
+                    Clicked="OnStopVideoClicked"
+                    Text="Stop" />
+            </Grid>
+        </Grid>
+    </Grid>
+</base:BaseContentPage>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<base:BaseContentPage
+    x:Class="WytSky.Mobile.Maui.Skoola.Views.Payment.AddCreditCardPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:Borderless="clr-namespace:WytSky.Mobile.Maui.Skoola.CustomControl.Borderless"
+    xmlns:base="clr-namespace:WytSky.Mobile.Maui.Skoola.Views"
+    xmlns:behaviors="clr-namespace:WytSky.Mobile.Maui.Skoola.Behaviors"
+    xmlns:customControls="clr-namespace:WytSky.Mobile.Maui.Skoola.CustomControl"
+    xmlns:resource="clr-namespace:WytSky.Mobile.Maui.Skoola.AppResources"
+    xmlns:templates="clr-namespace:WytSky.Mobile.Maui.Skoola.Template"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    BackgroundColor="{StaticResource PageBackgroundColor}">
+    <ScrollView>
+        <Grid RowDefinitions="auto,auto,*,auto">
+            <customControls:WhiteBackView
+                BackgroundColor="{StaticResource White}"
+                HasPageName="True"
+                PageName="{x:Static resource:SharedResources.Text_AddNewCard}" />
+
+            <customControls:CreditCardView
+                Grid.Row="1"
+                CVV="{Binding CVV}"
+                CardNumber="{Binding CardNumber}"
+                Expiration="{Binding Expiration}"
+                HolderName="{Binding HolderName}" />
+
+            <Grid
+                Grid.Row="2"
+                BackgroundColor="{StaticResource White}"
+                HeightRequest="250"
+                RowDefinitions="auto,auto,auto"
+                RowSpacing="15">
+
+                <Frame
+                    Margin="10,0"
+                    Padding="0"
+                    CornerRadius="5">
+                    <Borderless:BorderlessEntry
+                        Margin="10,0"
+                        FontFamily="ManropeBold"
+                        FontSize="16"
+                        Placeholder="{x:Static resource:SharedResources.Text_HolderName}"
+                        Text="{Binding HolderName}"
+                        TextColor="{StaticResource Black100}" />
+                </Frame>
+
+                <Frame
+                    Grid.Row="1"
+                    Margin="10,0"
+                    Padding="0"
+                    CornerRadius="5">
+                    <Borderless:BorderlessEntry
+                        Margin="10,0"
+                        FontFamily="ManropeBold"
+                        FontSize="16"
+                        MaxLength="19"
+                        Placeholder="0000-0000-0000-0000"
+                        Text="{Binding CardNumber}"
+                        TextColor="{StaticResource Black100}" />
+                </Frame>
+
+                <Grid
+                    Grid.Row="2"
+                    Margin="10,0"
+                    ColumnDefinitions="*,*"
+                    ColumnSpacing="10">
+                    <Frame Padding="0" CornerRadius="5">
+                        <Borderless:BorderlessEntry
+                            Margin="10,0"
+                            FontFamily="ManropeBold"
+                            FontSize="16"
+                            MaxLength="5"
+                            Placeholder="yy/mm"
+                            Text="{Binding Expiration}"
+                            TextColor="{StaticResource Black100}" />
+                    </Frame>
+
+                    <Frame
+                        Grid.Column="1"
+                        Padding="0"
+                        CornerRadius="5">
+                        <Borderless:BorderlessEntry
+                            Margin="10,0"
+                            FontFamily="ManropeBold"
+                            FontSize="16"
+                            Keyboard="Numeric"
+                            MaxLength="3"
+                            Placeholder="***"
+                            Text="{Binding CVV}"
+                            TextColor="{StaticResource Black100}" />
+                    </Frame>
+                </Grid>
+            </Grid>
+
+            <Button
+                Grid.Row="3"
+                Command="{Binding AddNewCardCommand}"
+                Style="{StaticResource BaseButton}"
+                Text="{x:Static resource:SharedResources.Text_AddNewCard}" />
+        </Grid>
+    </ScrollView>
+</base:BaseContentPage>

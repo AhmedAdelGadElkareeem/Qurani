@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<base:BaseContentPage
+    x:Class="WytSky.Mobile.Maui.Skoola.Views.CartPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:base="clr-namespace:WytSky.Mobile.Maui.Skoola.Views"
+    xmlns:customControls="clr-namespace:WytSky.Mobile.Maui.Skoola.CustomControl"
+    xmlns:customcontrol="clr-namespace:WytSky.Mobile.Maui.Skoola.CustomControl.Borderless"
+    xmlns:resource="clr-namespace:WytSky.Mobile.Maui.Skoola.AppResources"
+    Title="CartPage">
+    <ScrollView>
+        <Grid RowDefinitions="auto,auto,auto">
+            <Grid Margin="10,10,10,0" ColumnDefinitions="auto,*">
+                <customControls:BackView x:Name="backView" />
+                <Label
+                    Grid.Column="1"
+                    HorizontalOptions="CenterAndExpand"
+                    Style="{StaticResource BoldLabelFont20}"
+                    Text="{x:Static resource:SharedResources.Text_Cart}"
+                    TextColor="{StaticResource Black}"
+                    VerticalOptions="CenterAndExpand" />
+            </Grid>
+
+            <CollectionView
+                x:Name="cartItems"
+                Grid.Row="1"
+                Margin="20,10"
+                ItemsSource="{Binding CartItems}">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout ItemSpacing="10" Orientation="Vertical" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid
+                            Margin="0,0,0,10"
+                            ColumnDefinitions="auto,*"
+                            HeightRequest="120">
+                            <Frame
+                                Padding="0"
+                                CornerRadius="100"
+                                HeightRequest="80"
+                                WidthRequest="80">
+                                <Image Aspect="AspectFill" Source="{Binding CatgeoryImageUrl}" />
+                                <!--
+                                    Source="featured_resturant"
+                                -->
+                            </Frame>
+                            <StackLayout Grid.Column="1" Margin="10,10,10,0">
+                                <Label
+                                    Margin="0,10,0,0"
+                                    Style="{StaticResource BoldLabelFont18}"
+                                    Text="{Binding Name}"
+                                    TextColor="{StaticResource Black}"
+                                    VerticalOptions="CenterAndExpand" />
+                                <Label
+                                    Margin="2"
+                                    LineBreakMode="TailTruncation"
+                                    MaxLines="2"
+                                    Style="{StaticResource RegularLabelFont16}"
+                                    Text="{Binding Description}"
+                                    TextColor="{StaticResource Gray100}"
+                                    VerticalOptions="CenterAndExpand" />
+                                <Grid
+                                    Margin="0,10,0,0"
+                                    ColumnDefinitions="auto,auto"
+                                    ColumnSpacing="10">
+                                    <Frame
+                                        Padding="0"
+                                        BackgroundColor="{StaticResource White}"
+                                        CornerRadius="15"
+                                        WidthRequest="140">
+                                        <Grid ColumnDefinitions="auto,*,auto" HeightRequest="30">
+                                            <Image
+                                                Aspect="AspectFit"
+                                                HeightRequest="30"
+                                                Source="minus"
+                                                WidthRequest="30">
+                                                <Image.GestureRecognizers>
+                                                    <TapGestureRecognizer Command="{Binding BindingContext.DecreaseQuantityCommand, Source={x:Reference cartItems}}" CommandParameter="{Binding .}" />
+                                                </Image.GestureRecognizers>
+                                            </Image>
+                                            <Label
+                                                Grid.Column="1"
+                                                HorizontalOptions="CenterAndExpand"
+                                                Style="{StaticResource BoldLabelFont16}"
+                                                Text="{Binding Quantity}"
+                                                TextColor="{StaticResource Black}"
+                                                VerticalOptions="CenterAndExpand" />
+                                            <Image
+                                                Grid.Column="2"
+                                                Aspect="AspectFit"
+                                                HeightRequest="30"
+                                                Source="plus"
+                                                WidthRequest="30">
+                                                <Image.GestureRecognizers>
+                                                    <TapGestureRecognizer Command="{Binding BindingContext.IncreaseQuantityCommand, Source={x:Reference cartItems}}" CommandParameter="{Binding .}" />
+                                                </Image.GestureRecognizers>
+                                            </Image>
+                                        </Grid>
+                                    </Frame>
+
+                                    <Frame
+                                        Grid.Column="1"
+                                        Padding="2"
+                                        BackgroundColor="{StaticResource White}"
+                                        CornerRadius="5"
+                                        WidthRequest="80">
+                                        <Label HorizontalOptions="CenterAndExpand">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span
+                                                        FontFamily="ManropeBold"
+                                                        FontSize="14"
+                                                        Text="{Binding ItemTotalPrice}"
+                                                        TextColor="{StaticResource Black}" />
+                                                    <Span Text=" " />
+                                                    <Span
+                                                        FontFamily="ManropeBold"
+                                                        FontSize="14"
+                                                        Text="{Binding CurrencyName}"
+                                                        TextColor="{StaticResource PrimaryColor}" />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                    </Frame>
+                                </Grid>
+                            </StackLayout>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+                <CollectionView.EmptyView>
+                    <customControls:EmptyView />
+                </CollectionView.EmptyView>
+            </CollectionView>
+
+            <StackLayout
+                Grid.Row="2"
+                Margin="20,20,20,10"
+                IsVisible="{Binding CartDetailsVisibility}">
+
+                <!--  Add Bonus to delivery  -->
+                <Label
+                    Grid.Column="1"
+                    Style="{StaticResource BoldLabelFont18}"
+                    Text="{x:Static resource:SharedResources.Text_AddBonusToDelivery}"
+                    TextColor="{StaticResource Black}"
+                    VerticalOptions="CenterAndExpand" />
+                <Frame
+                    Margin="5,20,5,0"
+                    Padding="0"
+                    BackgroundColor="{StaticResource White}"
+                    CornerRadius="40">
+                    <Grid Margin="10,5" ColumnDefinitions="*,auto">
+                        <customcontrol:BorderlessEntry
+                            FontSize="15"
+                            HorizontalOptions="FillAndExpand"
+                            Keyboard="Numeric"
+                            Placeholder="20 {Binding CurrencyName}"
+                            PlaceholderColor="{StaticResource Gray100}"
+                            Text="{Binding BounsToDelivery}"
+                            TextColor="{StaticResource Gray100}"
+                            VerticalOptions="CenterAndExpand" />
+                        <Button
+                            Grid.Column="1"
+                            BackgroundColor="{StaticResource PrimaryColor}"
+                            Command="{Binding AddBounsToDeliveryCommand}"
+                            CornerRadius="30"
+                            HorizontalOptions="EndAndExpand"
+                            Text="{x:Static resource:SharedResources.Text_Add}"
+                            TextColor="{StaticResource White}"
+                            WidthRequest="100" />
+                    </Grid>
+                </Frame>
+
+                <customControls:PricesView
+                    BounsToDelivery="{Binding BounsToDelivery}"
+                    CurrencyName="{Binding CurrencyName}"
+                    Delivery="{Binding Delivery}"
+                    Discount="{Binding Discount}"
+                    SubTotal="{Binding SubTotal}"
+                    TotalItems="{Binding TotalItems}"
+                    TotalPrice="{Binding TotalPrice}"
+                    Vat="{Binding Vat}" />
+
+                <BoxView
+                    HeightRequest="1"
+                    VerticalOptions="FillAndExpand"
+                    Color="Gray" />
+
+                <!--  Promo code  -->
+                <Frame
+                    Margin="5,20,5,0"
+                    Padding="0"
+                    BackgroundColor="{StaticResource White}"
+                    CornerRadius="40">
+                    <Grid Margin="10,5" ColumnDefinitions="*,auto">
+                        <customcontrol:BorderlessEntry
+                            HorizontalOptions="FillAndExpand"
+                            Placeholder="{x:Static resource:SharedResources.Text_PromoCode}"
+                            PlaceholderColor="Gray"
+                            VerticalOptions="CenterAndExpand" />
+                        <Button
+                            Grid.Column="1"
+                            BackgroundColor="{StaticResource PrimaryColor}"
+                            Command="{Binding ApplyCommand}"
+                            CornerRadius="30"
+                            HorizontalOptions="EndAndExpand"
+                            Text="{x:Static resource:SharedResources.Text_Apply}"
+                            TextColor="{StaticResource White}"
+                            WidthRequest="100" />
+                    </Grid>
+                </Frame>
+
+                <!--  CheckOut  -->
+                <Frame
+                    Margin="0,30,0,0"
+                    Padding="0"
+                    BackgroundColor="{StaticResource PrimaryColor}"
+                    CornerRadius="40"
+                    HeightRequest="50"
+                    HorizontalOptions="CenterAndExpand"
+                    WidthRequest="300">
+                    <Grid
+                        Margin="10,5"
+                        ColumnDefinitions="auto,*"
+                        HorizontalOptions="CenterAndExpand">
+                        <Label
+                            HorizontalOptions="CenterAndExpand"
+                            Style="{StaticResource RegularLabelFont18}"
+                            TextColor="{StaticResource White}"
+                            VerticalOptions="CenterAndExpand">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{x:Static resource:SharedResources.Text_CheckOut}" />
+                                    <Span Text=" (" />
+                                    <Span Text="{Binding TotalPrice}" />
+                                    <Span Text=" " />
+                                    <Span Text="{Binding CurrencyName}" />
+                                    <Span Text=")" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Image
+                            Grid.Column="1"
+                            Aspect="AspectFit"
+                            HeightRequest="35"
+                            Source="white_back"
+                            WidthRequest="35">
+                            <Image.Triggers>
+                                <DataTrigger
+                                    Binding="{Binding Lang}"
+                                    TargetType="Image"
+                                    Value="ar">
+                                    <Setter Property="Rotation" Value="180" />
+                                </DataTrigger>
+                            </Image.Triggers>
+                        </Image>
+                    </Grid>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding CheckOutCommand}" />
+                    </Frame.GestureRecognizers>
+                </Frame>
+            </StackLayout>
+        </Grid>
+    </ScrollView>
+</base:BaseContentPage>

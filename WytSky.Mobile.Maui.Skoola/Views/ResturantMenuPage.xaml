@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<base:BaseContentPage
+    x:Class="WytSky.Mobile.Maui.Skoola.Views.ResturantMenuPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:base="clr-namespace:WytSky.Mobile.Maui.Skoola.Views"
+    xmlns:customControl="clr-namespace:WytSky.Mobile.Maui.Skoola.CustomControl"
+    xmlns:resource="clr-namespace:WytSky.Mobile.Maui.Skoola.AppResources">
+    <ScrollView
+        HorizontalOptions="FillAndExpand"
+        VerticalOptions="FillAndExpand"
+        VerticalScrollBarVisibility="Never">
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Grid>
+                <Image
+                    Aspect="AspectFill"
+                    HeightRequest="300"
+                    Source="featured_resturant" />
+                <customControl:BackView />
+            </Grid>
+            <Frame
+                Margin="0,-30,0,0"
+                BackgroundColor="{StaticResource White}"
+                CornerRadius="20">
+                <StackLayout>
+                    <Grid ColumnDefinitions="auto,*">
+                        <Frame
+                            Padding="0"
+                            CornerRadius="60"
+                            HeightRequest="60"
+                            IsClippedToBounds="True"
+                            WidthRequest="60">
+                            <Image
+                                x:Name="image"
+                                Aspect="AspectFill"
+                                Source="resturant_1" />
+                        </Frame>
+                        <StackLayout Grid.Column="1" Margin="10,0">
+                            <Label
+                                x:Name="name"
+                                Margin="0,10,0,0"
+                                FontFamily="ManropeBold"
+                                FontSize="22"
+                                HorizontalOptions="FillAndExpand"
+                                MaxLines="1"
+                                Text="Vegan Lover"
+                                TextColor="{StaticResource Black}"
+                                VerticalOptions="CenterAndExpand" />
+                            <Grid Margin="0,10,0,0" ColumnDefinitions="*,*,*,*">
+                                <Label
+                                    FontSize="13"
+                                    Text="Chinese"
+                                    TextColor="{StaticResource Black}"
+                                    VerticalOptions="CenterAndExpand" />
+                                <Label
+                                    Grid.Column="1"
+                                    FontSize="13"
+                                    Text="Burger"
+                                    TextColor="{StaticResource Black}"
+                                    VerticalOptions="CenterAndExpand" />
+                                <Label
+                                    Grid.Column="2"
+                                    FontSize="13"
+                                    Text="Indonesian"
+                                    TextColor="{StaticResource Black}"
+                                    VerticalOptions="CenterAndExpand" />
+                                <Label
+                                    Grid.Column="3"
+                                    FontSize="13"
+                                    Text="SeaFood"
+                                    TextColor="{StaticResource Black}"
+                                    VerticalOptions="CenterAndExpand" />
+                            </Grid>
+                        </StackLayout>
+                    </Grid>
+
+                    <Grid
+                        Margin="0,20,0,0"
+                        ColumnDefinitions="*,*,*"
+                        ColumnSpacing="0"
+                        RowSpacing="0">
+                        <Grid ColumnDefinitions="auto,*" RowSpacing="0">
+                            <Image
+                                Aspect="AspectFit"
+                                HeightRequest="30"
+                                Source="delivery"
+                                VerticalOptions="Start"
+                                WidthRequest="30" />
+                            <Grid
+                                Grid.Column="1"
+                                Margin="10,0"
+                                RowSpacing="0">
+                                <Label
+                                    FontFamily="ManropeBold"
+                                    FontSize="15"
+                                    HorizontalOptions="FillAndExpand"
+                                    Text="$ 15.56"
+                                    TextColor="{StaticResource Black}"
+                                    VerticalOptions="Start" />
+                                <Label
+                                    Margin="0,20,0,0"
+                                    FontFamily="ManropeBold"
+                                    FontSize="15"
+                                    HorizontalOptions="FillAndExpand"
+                                    Text="{x:Static resource:SharedResources.Text_Delivery}"
+                                    TextColor="Gray"
+                                    VerticalOptions="CenterAndExpand" />
+                            </Grid>
+                        </Grid>
+                        <Grid Grid.Column="1" ColumnDefinitions="auto,*">
+                            <Image
+                                Aspect="AspectFit"
+                                HeightRequest="20"
+                                Source="time"
+                                VerticalOptions="Start"
+                                WidthRequest="20 " />
+                            <Grid
+                                Grid.Column="1"
+                                Margin="10,0"
+                                RowSpacing="0">
+                                <Label
+                                    FontFamily="ManropeBold"
+                                    FontSize="15"
+                                    HorizontalOptions="FillAndExpand"
+                                    Text="10-15 mins"
+                                    TextColor="{StaticResource Black}"
+                                    VerticalOptions="Start" />
+                                <Label
+                                    Margin="0,20,0,0"
+                                    FontFamily="ManropeBold"
+                                    FontSize="15"
+                                    HorizontalOptions="FillAndExpand"
+                                    Text="{x:Static resource:SharedResources.Text_Time}"
+                                    TextColor="Gray"
+                                    VerticalOptions="CenterAndExpand" />
+                            </Grid>
+                        </Grid>
+                        <Grid Grid.Column="2" ColumnDefinitions="auto,*">
+                            <Image
+                                Aspect="AspectFit"
+                                HeightRequest="20"
+                                Source="rate"
+                                VerticalOptions="Start"
+                                WidthRequest="20" />
+                            <Grid
+                                Grid.Column="1"
+                                Margin="10,0"
+                                RowSpacing="0">
+                                <Label
+                                    FontFamily="ManropeBold"
+                                    FontSize="15"
+                                    HorizontalOptions="FillAndExpand"
+                                    Text="4.5"
+                                    TextColor="{StaticResource Black}"
+                                    VerticalOptions="Start" />
+                                <Label
+                                    Margin="0,20,0,0"
+                                    FontFamily="ManropeBold"
+                                    FontSize="15"
+                                    HorizontalOptions="FillAndExpand"
+                                    Text="{x:Static resource:SharedResources.Text_Ratings}"
+                                    TextColor="Gray"
+                                    VerticalOptions="Start" />
+                            </Grid>
+                        </Grid>
+                    </Grid>
+
+                    <!--  Items  -->
+                    <CollectionView
+                        x:Name="items"
+                        Margin="5,15,5,0"
+                        HeightRequest="60">
+                        <CollectionView.ItemsLayout>
+                            <LinearItemsLayout ItemSpacing="10" Orientation="Horizontal" />
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Label
+                                    FontSize="18"
+                                    Text="{Binding Name}"
+                                    TextColor="Gray"
+                                    VerticalOptions="CenterAndExpand" />
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+
+                    <!--  Most Popular  -->
+                    <Label
+                        Margin="10,0"
+                        FontFamily="ManropeBold"
+                        FontSize="22"
+                        HorizontalOptions="FillAndExpand"
+                        MaxLines="1"
+                        Text="{x:Static resource:SharedResources.Text_MostPopular}"
+                        TextColor="{StaticResource Black}"
+                        VerticalOptions="CenterAndExpand" />
+                    <CollectionView
+                        x:Name="popularItems"
+                        Margin="10,10,10,0"
+                        HeightRequest="500"
+                        ItemsSource="{Binding PopularItems}">
+                        <CollectionView.ItemsLayout>
+                            <GridItemsLayout
+                                HorizontalItemSpacing="10"
+                                Orientation="Vertical"
+                                Span="2"
+                                VerticalItemSpacing="10" />
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Frame
+                                    Padding="5"
+                                    BackgroundColor="{StaticResource White}"
+                                    CornerRadius="10">
+                                    <StackLayout Padding="0">
+                                        <Grid>
+                                            <Frame
+                                                Padding="0"
+                                                CornerRadius="10"
+                                                HeightRequest="250">
+                                                <Image Aspect="AspectFill" Source="{Binding CatgeoryImageUrl}" />
+                                                <!--  Source="resturant_profile"  -->
+                                            </Frame>
+                                            <Frame
+                                                Margin="5"
+                                                Padding="0"
+                                                BackgroundColor="{StaticResource White}"
+                                                CornerRadius="10"
+                                                HorizontalOptions="Start"
+                                                VerticalOptions="Start">
+                                                <Label Margin="10,5">
+                                                    <Label.FormattedText>
+                                                        <FormattedString>
+                                                            <Span
+                                                                FontFamily="ManropeBold"
+                                                                FontSize="18"
+                                                                Text="{Binding Price}"
+                                                                TextColor="{StaticResource Black}" />
+                                                            <Span
+                                                                FontFamily="ManropeBold"
+                                                                FontSize="18"
+                                                                Text=" $"
+                                                                TextColor="{StaticResource PrimaryColor}" />
+                                                        </FormattedString>
+                                                    </Label.FormattedText>
+                                                </Label>
+                                            </Frame>
+                                            <Frame
+                                                Margin="5"
+                                                Padding="0"
+                                                BackgroundColor="{StaticResource White}"
+                                                CornerRadius="25"
+                                                HorizontalOptions="StartAndExpand"
+                                                VerticalOptions="EndAndExpand">
+                                                <StackLayout>
+                                                    <Grid
+                                                        ColumnDefinitions="*,auto"
+                                                        HeightRequest="30"
+                                                        WidthRequest="100">
+                                                        <Label
+                                                            FontFamily="ManropeBold"
+                                                            FontSize="15"
+                                                            HorizontalOptions="CenterAndExpand"
+                                                            Text="{x:Static resource:SharedResources.Text_Add}"
+                                                            TextColor="{StaticResource Black}"
+                                                            VerticalOptions="CenterAndExpand" />
+                                                        <Image
+                                                            Grid.Column="1"
+                                                            Aspect="AspectFit"
+                                                            HeightRequest="40"
+                                                            Source="plus"
+                                                            VerticalOptions="CenterAndExpand"
+                                                            WidthRequest="40">
+                                                            <Image.GestureRecognizers>
+                                                                <TapGestureRecognizer Command="{Binding BindingContext.IncreaseQuantityCommand, Source={x:Reference popularItems}}" CommandParameter="{Binding .}" />
+                                                            </Image.GestureRecognizers>
+                                                        </Image>
+                                                        <Grid.Triggers>
+                                                            <DataTrigger
+                                                                Binding="{Binding IsSelected}"
+                                                                TargetType="Grid"
+                                                                Value="true">
+                                                                <Setter Property="IsVisible" Value="false" />
+                                                            </DataTrigger>
+                                                        </Grid.Triggers>
+                                                    </Grid>
+                                                    <Grid
+                                                        ColumnDefinitions="auto,*,auto"
+                                                        HeightRequest="30"
+                                                        IsVisible="false"
+                                                        WidthRequest="110">
+                                                        <Image
+                                                            Aspect="AspectFit"
+                                                            HeightRequest="30"
+                                                            Source="minus"
+                                                            WidthRequest="30">
+                                                            <Image.GestureRecognizers>
+                                                                <TapGestureRecognizer Command="{Binding BindingContext.DecreaseQuantityCommand, Source={x:Reference popularItems}}" CommandParameter="{Binding .}" />
+                                                            </Image.GestureRecognizers>
+                                                        </Image>
+                                                        <Label
+                                                            Grid.Column="1"
+                                                            FontFamily="ManropeBold"
+                                                            FontSize="15"
+                                                            HorizontalOptions="CenterAndExpand"
+                                                            Text="{Binding Quantity}"
+                                                            TextColor="{StaticResource Black}"
+                                                            VerticalOptions="CenterAndExpand" />
+                                                        <Image
+                                                            Grid.Column="2"
+                                                            Aspect="AspectFit"
+                                                            HeightRequest="30"
+                                                            Source="plus"
+                                                            WidthRequest="30">
+                                                            <Image.GestureRecognizers>
+                                                                <TapGestureRecognizer Command="{Binding BindingContext.IncreaseQuantityCommand, Source={x:Reference popularItems}}" CommandParameter="{Binding .}" />
+                                                            </Image.GestureRecognizers>
+                                                        </Image>
+                                                        <Grid.Triggers>
+                                                            <DataTrigger
+                                                                Binding="{Binding IsSelected}"
+                                                                TargetType="Grid"
+                                                                Value="true">
+                                                                <Setter Property="IsVisible" Value="true" />
+                                                            </DataTrigger>
+                                                        </Grid.Triggers>
+                                                    </Grid>
+                                                </StackLayout>
+                                            </Frame>
+                                        </Grid>
+                                        <StackLayout Margin="10,5">
+                                            <Label
+                                                Margin="0,10,0,0"
+                                                FontFamily="ManropeBold"
+                                                FontSize="18"
+                                                HorizontalOptions="FillAndExpand"
+                                                Text="{Binding Name}"
+                                                TextColor="{StaticResource Black}"
+                                                VerticalOptions="CenterAndExpand" />
+                                            <Label
+                                                Margin="2"
+                                                FontSize="15"
+                                                HorizontalOptions="FillAndExpand"
+                                                LineBreakMode="TailTruncation"
+                                                MaxLines="2"
+                                                Text="{Binding Description}"
+                                                TextColor="Gray"
+                                                VerticalOptions="CenterAndExpand" />
+                                        </StackLayout>
+                                        <StackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding BindingContext.ItemDetailsCommand, Source={x:Reference popularItems}}" CommandParameter="{Binding .}" />
+                                        </StackLayout.GestureRecognizers>
+                                    </StackLayout>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+
+                    <Frame
+                        Margin="20,20,20,10"
+                        Padding="0"
+                        BackgroundColor="{StaticResource White}"
+                        CornerRadius="10">
+                        <Grid Margin="15,10" ColumnDefinitions="auto,*,auto">
+                            <Image
+                                Aspect="AspectFit"
+                                HeightRequest="20"
+                                Source="cart"
+                                WidthRequest="30" />
+                            <StackLayout Grid.Column="1">
+                                <Label
+                                    Margin="0,10,0,0"
+                                    FontFamily="ManropeBold"
+                                    FontSize="18"
+                                    HorizontalOptions="FillAndExpand"
+                                    VerticalOptions="CenterAndExpand">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="{Binding TotalItems}" />
+                                            <Span Text="{x:Static resource:SharedResources.Text_Items}" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <Label
+                                    Margin="2"
+                                    FontSize="13"
+                                    HorizontalOptions="FillAndExpand"
+                                    LineBreakMode="TailTruncation"
+                                    Text="{x:Static resource:SharedResources.Text_DeliveryFromRestaurantName}"
+                                    TextColor="Gray"
+                                    VerticalOptions="CenterAndExpand" />
+                            </StackLayout>
+                            <Label
+                                Grid.Column="2"
+                                FontAttributes="Bold"
+                                FontFamily="ManropeBold"
+                                FontSize="13"
+                                HorizontalOptions="EndAndExpand"
+                                TextColor="{StaticResource PrimaryColor}"
+                                VerticalOptions="CenterAndExpand">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="$ " />
+                                        <Span Text="{Binding SubTotal}" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                        </Grid>
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OpenCartItems" />
+                        </Frame.GestureRecognizers>
+                    </Frame>
+
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+    </ScrollView>
+</base:BaseContentPage>

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<customControls:BaseContentView
+    x:Class="WytSky.Mobile.Maui.Skoola.Template.ReviewTemplate"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:customControls="clr-namespace:WytSky.Mobile.Maui.Skoola.CustomControl"
+    x:Name="root">
+    <Grid BindingContext="{x:Reference root}" RowDefinitions="auto,*">
+        <CollectionView
+            x:Name="reviewsCounts"
+            Margin="0,10,0,0"
+            HeightRequest="40"
+            ItemsSource="{Binding ReviewsCount}">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout ItemSpacing="10" Orientation="Horizontal" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Border
+                        BackgroundColor="{StaticResource PrimaryColor}"
+                        HeightRequest="40"
+                        StrokeThickness="1">
+                        <Grid Margin="10,0" ColumnDefinitions="auto,auto">
+                            <customControls:SimpleRatingControl
+                                AccentColor="{StaticResource White}"
+                                Amount="1"
+                                CurrentValue="1"
+                                StarSize="20"
+                                VerticalOptions="CenterAndExpand">
+                                <customControls:SimpleRatingControl.Triggers>
+                                    <DataTrigger
+                                        Binding="{Binding IsSelected}"
+                                        TargetType="customControls:SimpleRatingControl"
+                                        Value="false">
+                                        <Setter Property="AccentColor" Value="{StaticResource Orange}" />
+                                    </DataTrigger>
+                                </customControls:SimpleRatingControl.Triggers>
+                            </customControls:SimpleRatingControl>
+                            <Label
+                                Grid.Column="1"
+                                Margin="5,0"
+                                Style="{StaticResource BoldLabelFont14}"
+                                Text="{Binding Number}"
+                                TextColor="{StaticResource White}">
+                                <Label.Triggers>
+                                    <DataTrigger
+                                        Binding="{Binding IsSelected}"
+                                        TargetType="Label"
+                                        Value="false">
+                                        <Setter Property="TextColor" Value="{StaticResource PrimaryColor}" />
+                                    </DataTrigger>
+                                </Label.Triggers>
+                            </Label>
+                        </Grid>
+                        <Border.Triggers>
+                            <DataTrigger
+                                Binding="{Binding IsSelected}"
+                                TargetType="Border"
+                                Value="false">
+                                <Setter Property="Stroke" Value="{StaticResource PrimaryColor}" />
+                                <Setter Property="StrokeThickness" Value="1" />
+                                <Setter Property="BackgroundColor" Value="{StaticResource White}" />
+                            </DataTrigger>
+                        </Border.Triggers>
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding BindingContext.SelectedReviewCommand, Source={x:Reference reviewsCounts}}" CommandParameter="{Binding .}" />
+                        </Border.GestureRecognizers>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <CollectionView
+            Grid.Row="1"
+            Margin="0,15,0,0"
+            ItemsSource="{Binding ReviewItems}">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout ItemSpacing="10" Orientation="Vertical" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <VerticalStackLayout Margin="15,0">
+                        <Grid ColumnDefinitions="auto,*,auto">
+                            <Frame
+                                Padding="0"
+                                CornerRadius="10"
+                                HeightRequest="60"
+                                IsClippedToBounds="True"
+                                WidthRequest="60">
+                                <Image Source="avatar" />
+                            </Frame>
+
+                            <VerticalStackLayout Grid.Column="1" Margin="10,0">
+                                <Label
+                                    Style="{StaticResource BoldLabelFont18}"
+                                    Text="{Binding ReviewerName}"
+                                    TextColor="{StaticResource Black}" />
+                                <Label
+                                    Style="{StaticResource RegularLabelFont16}"
+                                    Text="{Binding Time}"
+                                    TextColor="{StaticResource Gray300}" />
+                            </VerticalStackLayout>
+
+                            <Border
+                                Grid.Column="2"
+                                HeightRequest="40"
+                                Stroke="{StaticResource PrimaryColor}"
+                                StrokeThickness="1">
+                                <Grid Margin="10,0" ColumnDefinitions="auto,auto">
+                                    <customControls:SimpleRatingControl
+                                        AccentColor="{StaticResource Orange}"
+                                        Amount="1"
+                                        CurrentValue="{Binding Number}"
+                                        StarSize="25"
+                                        VerticalOptions="CenterAndExpand" />
+                                    <Label
+                                        Grid.Column="1"
+                                        Margin="5,0"
+                                        Style="{StaticResource BoldLabelFont18}"
+                                        Text="5"
+                                        TextColor="{StaticResource PrimaryColor}" />
+                                </Grid>
+                            </Border>
+                        </Grid>
+                        <Label
+                            Margin="10,5"
+                            MaxLines="2"
+                            Style="{StaticResource RegularLabelFont14}"
+                            Text="{Binding Description}"
+                            TextColor="{StaticResource Gray300}" />
+                        <BoxView
+                            Margin="5,10,5,0"
+                            HeightRequest="2"
+                            Color="{StaticResource Gray200}" />
+                    </VerticalStackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</customControls:BaseContentView>

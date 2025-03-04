@@ -1,0 +1,549 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<base:BaseContentPage
+    x:Class="WytSky.Mobile.Maui.Skoola.Views.Courses.CompletedCourseDetailsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:base="clr-namespace:WytSky.Mobile.Maui.Skoola.Views"
+    xmlns:behaviors="clr-namespace:WytSky.Mobile.Maui.Skoola.Behaviors"
+    xmlns:customControl="clr-namespace:WytSky.Mobile.Maui.Skoola.CustomControl.Borderless"
+    xmlns:customControls="clr-namespace:WytSky.Mobile.Maui.Skoola.CustomControl"
+    xmlns:resource="clr-namespace:WytSky.Mobile.Maui.Skoola.AppResources"
+    xmlns:templates="clr-namespace:WytSky.Mobile.Maui.Skoola.Template">
+    <ScrollView>
+        <Grid RowDefinitions="auto,*,auto">
+            <Grid>
+                <Image
+                    Aspect="AspectFill"
+                    HeightRequest="210"
+                    Source="test_image.png" />
+                <customControls:WhiteBackView VerticalOptions="Start" />
+            </Grid>
+
+            <VerticalStackLayout Grid.Row="1">
+                <Grid Margin="15,10" ColumnDefinitions="*,auto">
+                    <VerticalStackLayout>
+                        <Label
+                            Style="{StaticResource RegularLabelFont16}"
+                            Text="Software Course"
+                            TextColor="{StaticResource TextColor}" />
+                        <Label
+                            FontSize="20"
+                            Style="{StaticResource BoldLabelFont22}"
+                            Text="Java"
+                            TextColor="{StaticResource TextColor}" />
+                    </VerticalStackLayout>
+                    <Grid Grid.Column="1" ColumnDefinitions="auto,*">
+                        <Image
+                            Margin="5,0"
+                            Source="avatar"
+                            Style="{StaticResource ImageSize40}" />
+                        <Label
+                            Grid.Column="1"
+                            Style="{StaticResource BoldLabelFont14}"
+                            Text="Eslam Hisham"
+                            TextColor="{StaticResource Black}" />
+                    </Grid>
+                </Grid>
+
+                <Label
+                    Margin="15,5"
+                    FontFamily="ManropeRegular"
+                    FontSize="14"
+                    Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum mollis nunc a molestie dicm.  felis scelerisque aliquet lacinia, nulla Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum mollis nunc a molestie dicm. felis scelerisque aliquet lacinia, nulla"
+                    TextColor="{StaticResource Black}" />
+
+                <Grid
+                    Margin="10,5"
+                    ColumnDefinitions="*,*"
+                    ColumnSpacing="10">
+                    <Frame
+                        Padding="0"
+                        BackgroundColor="{StaticResource PrimaryColor}"
+                        CornerRadius="10"
+                        HeightRequest="40">
+                        <Grid
+                            Margin="10,5"
+                            ColumnDefinitions="*,auto"
+                            HorizontalOptions="CenterAndExpand"
+                            VerticalOptions="CenterAndExpand">
+                            <Label
+                                Margin="10,0"
+                                Style="{StaticResource RegularLabelFont18}"
+                                Text="{x:Static resource:SharedResources.Text_DemoVideo}"
+                                TextColor="{StaticResource White}" />
+                            <Image
+                                Grid.Column="1"
+                                Source="demo_video"
+                                Style="{StaticResource ImageSize20}" />
+                        </Grid>
+                    </Frame>
+                    <Frame
+                        Grid.Column="1"
+                        Padding="0"
+                        BorderColor="{StaticResource PrimaryColor}"
+                        CornerRadius="10"
+                        HeightRequest="40">
+                        <Grid
+                            Margin="10,5"
+                            ColumnDefinitions="*,auto"
+                            HorizontalOptions="CenterAndExpand"
+                            VerticalOptions="CenterAndExpand">
+                            <Label
+                                Margin="10,0"
+                                Style="{StaticResource RegularLabelFont18}"
+                                Text="{x:Static resource:SharedResources.Text_ExternalLink}"
+                                TextColor="{StaticResource TextColor}" />
+                            <Image
+                                Grid.Column="1"
+                                Source="external_link"
+                                Style="{StaticResource ImageSize20}" />
+                        </Grid>
+                    </Frame>
+                </Grid>
+
+                <Grid Margin="15,10,15,0" ColumnDefinitions="*,*,*,*">
+                    <VerticalStackLayout>
+                        <Label
+                            x:Name="lessonsLabel"
+                            Margin="5,0"
+                            HorizontalOptions="CenterAndExpand"
+                            Style="{StaticResource BoldLabelFont12}"
+                            Text="{x:Static resource:SharedResources.Text_Lessons}"
+                            TextColor="{StaticResource PrimaryColor}" />
+                        <BoxView
+                            x:Name="lessonsBoxView"
+                            Margin="0,10,0,0"
+                            HeightRequest="2"
+                            HorizontalOptions="FillAndExpand"
+                            Color="{StaticResource PrimaryColor}" />
+                        <VerticalStackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="LessonsClicked" />
+                        </VerticalStackLayout.GestureRecognizers>
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Grid.Column="1">
+                        <Label
+                            x:Name="commentsLabel"
+                            Margin="5,0"
+                            HorizontalOptions="CenterAndExpand"
+                            Style="{StaticResource BoldLabelFont12}"
+                            Text="{x:Static resource:SharedResources.Text_Comments}"
+                            TextColor="{StaticResource Gray300}" />
+                        <BoxView
+                            x:Name="commentsBoxView"
+                            Margin="0,10,0,0"
+                            HeightRequest="2"
+                            HorizontalOptions="FillAndExpand"
+                            Color="{StaticResource Gray100}" />
+                        <VerticalStackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="CommentsClicked" />
+                        </VerticalStackLayout.GestureRecognizers>
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Grid.Column="2">
+                        <Label
+                            x:Name="attachmentsLabel"
+                            Margin="5,0"
+                            HorizontalOptions="CenterAndExpand"
+                            Style="{StaticResource BoldLabelFont12}"
+                            Text="{x:Static resource:SharedResources.Text_Attachments}"
+                            TextColor="{StaticResource Gray300}" />
+                        <BoxView
+                            x:Name="attachmentsBoxView"
+                            Margin="0,10,0,0"
+                            HeightRequest="2"
+                            HorizontalOptions="FillAndExpand"
+                            Color="{StaticResource Gray100}" />
+                        <VerticalStackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="AttachmentsClicked" />
+                        </VerticalStackLayout.GestureRecognizers>
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Grid.Column="3">
+                        <Label
+                            x:Name="questionsLabel"
+                            Margin="5,0"
+                            HorizontalOptions="CenterAndExpand"
+                            Style="{StaticResource BoldLabelFont12}"
+                            Text="{x:Static resource:SharedResources.Text_Questions}"
+                            TextColor="{StaticResource Gray300}" />
+                        <BoxView
+                            x:Name="questionsBoxView"
+                            Margin="0,10,0,0"
+                            HeightRequest="2"
+                            HorizontalOptions="FillAndExpand"
+                            Color="{StaticResource Gray100}" />
+                        <VerticalStackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="QuestionsClicked" />
+                        </VerticalStackLayout.GestureRecognizers>
+                    </VerticalStackLayout>
+                </Grid>
+
+                <Grid
+                    x:Name="lessonsStack"
+                    Margin="20,10,20,0"
+                    RowDefinitions="auto,*">
+                    <Label
+                        Style="{StaticResource BoldLabelFont18}"
+                        Text="120 Lessons"
+                        TextColor="{StaticResource Black100}" />
+                    <CollectionView
+                        Grid.Row="1"
+                        Margin="10,10,10,0"
+                        ItemsSource="{Binding Course.Lessons}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid RowDefinitions="auto,auto">
+                                    <Grid ColumnDefinitions="*,auto">
+                                        <Label
+                                            Style="{StaticResource RegularLabelFont16}"
+                                            Text="{Binding Name}"
+                                            TextColor="{StaticResource Gray300}" />
+                                        <Label
+                                            Grid.Column="1"
+                                            HorizontalOptions="EndAndExpand"
+                                            Style="{StaticResource RegularLabelFont16}"
+                                            Text="{Binding Duration}"
+                                            TextColor="{StaticResource Gray300}" />
+                                    </Grid>
+                                    <CollectionView Grid.Row="1" ItemsSource="{Binding Subjects}">
+                                        <CollectionView.ItemTemplate>
+                                            <DataTemplate>
+                                                <Frame
+                                                    Margin="5"
+                                                    Padding="0"
+                                                    BorderColor="{StaticResource Gray200}"
+                                                    CornerRadius="15">
+                                                    <VerticalStackLayout Margin="5">
+                                                        <Grid Margin="10,5" ColumnDefinitions="auto,*,auto">
+                                                            <Frame
+                                                                Padding="0"
+                                                                BackgroundColor="#2F99461F"
+                                                                CornerRadius="30"
+                                                                HeightRequest="40"
+                                                                WidthRequest="40">
+                                                                <Label
+                                                                    Margin="5,0"
+                                                                    HorizontalOptions="CenterAndExpand"
+                                                                    Style="{StaticResource BoldLabelFont16}"
+                                                                    Text="1"
+                                                                    TextColor="{StaticResource TextColor}"
+                                                                    VerticalOptions="CenterAndExpand" />
+                                                            </Frame>
+                                                            <VerticalStackLayout Grid.Column="1" Margin="10,0">
+                                                                <Label
+                                                                    Grid.Column="1"
+                                                                    Style="{StaticResource BoldLabelFont16}"
+                                                                    Text="{Binding Name}"
+                                                                    TextColor="{StaticResource Black}" />
+                                                                <Label
+                                                                    Grid.Column="1"
+                                                                    Style="{StaticResource RegularLabelFont14}"
+                                                                    Text="{Binding Duration}"
+                                                                    TextColor="{StaticResource Gray300}" />
+                                                            </VerticalStackLayout>
+                                                            <Image
+                                                                Grid.Column="2"
+                                                                HorizontalOptions="EndAndExpand"
+                                                                Source="down_arrow"
+                                                                Style="{StaticResource ImageSize15}" />
+                                                        </Grid>
+                                                        <Frame
+                                                            Margin="10,5"
+                                                            Padding="0"
+                                                            BorderColor="{StaticResource PrimaryColor}"
+                                                            CornerRadius="10"
+                                                            HeightRequest="40">
+                                                            <Grid
+                                                                Margin="10,5"
+                                                                ColumnDefinitions="*,auto"
+                                                                VerticalOptions="CenterAndExpand">
+                                                                <Label
+                                                                    Margin="10,0"
+                                                                    HorizontalOptions="CenterAndExpand"
+                                                                    Style="{StaticResource RegularLabelFont14}"
+                                                                    Text="{x:Static resource:SharedResources.Text_DownloadAttachments}"
+                                                                    TextColor="{StaticResource TextColor}" />
+                                                                <Image
+                                                                    Grid.Column="1"
+                                                                    Rotation="90"
+                                                                    Source="external_link"
+                                                                    Style="{StaticResource ImageSize20}" />
+                                                            </Grid>
+                                                        </Frame>
+                                                    </VerticalStackLayout>
+                                                </Frame>
+                                            </DataTemplate>
+                                        </CollectionView.ItemTemplate>
+                                    </CollectionView>
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </Grid>
+
+                <VerticalStackLayout
+                    x:Name="commentsStack"
+                    Margin="20,10,20,0"
+                    IsVisible="false">
+                    <CollectionView ItemsSource="{Binding Course.Comments}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <VerticalStackLayout Margin="10,5">
+                                    <Grid ColumnDefinitions="auto,*,auto,auto">
+                                        <Frame
+                                            Padding="0"
+                                            CornerRadius="20"
+                                            HeightRequest="40">
+                                            <Image Source="avatar" />
+                                        </Frame>
+                                        <Label
+                                            Grid.Column="1"
+                                            Margin="10,0"
+                                            Style="{StaticResource BoldLabelFont14}"
+                                            Text="{Binding Creator}" />
+                                        <Image
+                                            Grid.Column="2"
+                                            Margin="10,0"
+                                            Source="reply"
+                                            Style="{StaticResource ImageSize30}" />
+                                        <Image
+                                            Grid.Column="3"
+                                            Margin="10,0"
+                                            Source="like"
+                                            Style="{StaticResource ImageSize30}" />
+                                    </Grid>
+                                    <Label
+                                        MaxLines="2"
+                                        Style="{StaticResource RegularLabelFont14}"
+                                        Text="{Binding Title}"
+                                        TextColor="Gray" />
+                                    <Grid ColumnDefinitions="auto,auto" HorizontalOptions="End">
+                                        <Label
+                                            Style="{StaticResource RegularLabelFont14}"
+                                            Text="{Binding Time}"
+                                            TextColor="Gray" />
+                                        <Label
+                                            Grid.Column="1"
+                                            Margin="10,0"
+                                            Style="{StaticResource RegularLabelFont14}"
+                                            Text="{Binding Date}"
+                                            TextColor="Gray" />
+                                    </Grid>
+                                    <CollectionView Margin="15,10" ItemsSource="{Binding Replies}">
+                                        <CollectionView.ItemTemplate>
+                                            <DataTemplate>
+                                                <VerticalStackLayout Margin="10,5">
+                                                    <Grid ColumnDefinitions="auto,*,auto,auto">
+                                                        <Frame
+                                                            Padding="0"
+                                                            CornerRadius="20"
+                                                            HeightRequest="40">
+                                                            <Image Source="avatar" />
+                                                        </Frame>
+                                                        <Label
+                                                            Grid.Column="1"
+                                                            Margin="10,0"
+                                                            Style="{StaticResource BoldLabelFont14}"
+                                                            Text="{Binding Creator}" />
+                                                        <Image
+                                                            Grid.Column="2"
+                                                            Margin="10,0"
+                                                            Source="reply"
+                                                            Style="{StaticResource ImageSize40}" />
+                                                        <Image
+                                                            Grid.Column="3"
+                                                            Margin="10,0"
+                                                            Source="like"
+                                                            Style="{StaticResource ImageSize30}" />
+                                                    </Grid>
+                                                    <Label
+                                                        MaxLines="2"
+                                                        Style="{StaticResource RegularLabelFont14}"
+                                                        Text="{Binding Title}"
+                                                        TextColor="Gray" />
+                                                    <Grid ColumnDefinitions="auto,auto" HorizontalOptions="End">
+                                                        <Label
+                                                            Style="{StaticResource RegularLabelFont14}"
+                                                            Text="{Binding Time}"
+                                                            TextColor="Gray" />
+                                                        <Label
+                                                            Grid.Column="1"
+                                                            Margin="10,0"
+                                                            Style="{StaticResource RegularLabelFont14}"
+                                                            Text="{Binding Date}"
+                                                            TextColor="Gray" />
+                                                    </Grid>
+
+                                                </VerticalStackLayout>
+                                            </DataTemplate>
+                                        </CollectionView.ItemTemplate>
+                                    </CollectionView>
+                                    <Frame
+                                        Margin="5,10,5,5"
+                                        Padding="0"
+                                        CornerRadius="30"
+                                        HeightRequest="50">
+                                        <Grid
+                                            Margin="10,0"
+                                            ColumnDefinitions="*,auto,auto"
+                                            VerticalOptions="CenterAndExpand">
+                                            <customControl:BorderlessEntry
+                                                FontFamily="ManropeRegular"
+                                                FontSize="15"
+                                                Placeholder="Type your comment" />
+                                            <Image
+                                                Grid.Column="1"
+                                                Margin="5,0"
+                                                Source="attach"
+                                                Style="{StaticResource ImageSize30}" />
+                                            <Image
+                                                Grid.Column="2"
+                                                Margin="5,0"
+                                                Source="send_message"
+                                                Style="{StaticResource ImageSize30}" />
+                                        </Grid>
+                                    </Frame>
+                                </VerticalStackLayout>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </VerticalStackLayout>
+
+                <VerticalStackLayout
+                    x:Name="questionsStack"
+                    Margin="20,10,20,0"
+                    IsVisible="false">
+                    <CollectionView ItemsSource="{Binding Course.Comments}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <VerticalStackLayout Margin="10,5">
+                                    <Grid ColumnDefinitions="auto,*,auto,auto">
+                                        <Frame
+                                            Padding="0"
+                                            CornerRadius="20"
+                                            HeightRequest="40">
+                                            <Image Source="avatar" />
+                                        </Frame>
+                                        <Label
+                                            Grid.Column="1"
+                                            Margin="10,0"
+                                            Style="{StaticResource BoldLabelFont14}"
+                                            Text="{Binding Creator}" />
+                                        <Image
+                                            Grid.Column="2"
+                                            Margin="10,0"
+                                            Source="reply"
+                                            Style="{StaticResource ImageSize30}" />
+                                        <Image
+                                            Grid.Column="3"
+                                            Margin="10,0"
+                                            Source="like"
+                                            Style="{StaticResource ImageSize30}" />
+                                    </Grid>
+                                    <Label
+                                        MaxLines="2"
+                                        Style="{StaticResource RegularLabelFont14}"
+                                        Text="{Binding Title}"
+                                        TextColor="Gray" />
+                                    <Grid ColumnDefinitions="auto,auto" HorizontalOptions="End">
+                                        <Label
+                                            Style="{StaticResource RegularLabelFont14}"
+                                            Text="{Binding Time}"
+                                            TextColor="Gray" />
+                                        <Label
+                                            Grid.Column="1"
+                                            Margin="10,0"
+                                            Style="{StaticResource RegularLabelFont14}"
+                                            Text="{Binding Date}"
+                                            TextColor="Gray" />
+                                    </Grid>
+                                    <CollectionView Margin="15,10" ItemsSource="{Binding Replies}">
+                                        <CollectionView.ItemTemplate>
+                                            <DataTemplate>
+                                                <VerticalStackLayout Margin="10,5">
+                                                    <Grid ColumnDefinitions="auto,*,auto,auto">
+                                                        <Frame
+                                                            Padding="0"
+                                                            CornerRadius="20"
+                                                            HeightRequest="40">
+                                                            <Image Source="avatar" />
+                                                        </Frame>
+                                                        <Label
+                                                            Grid.Column="1"
+                                                            Margin="10,0"
+                                                            Style="{StaticResource BoldLabelFont14}"
+                                                            Text="{Binding Creator}" />
+                                                        <Image
+                                                            Grid.Column="2"
+                                                            Margin="10,0"
+                                                            Source="reply"
+                                                            Style="{StaticResource ImageSize40}" />
+                                                        <Image
+                                                            Grid.Column="3"
+                                                            Margin="10,0"
+                                                            Source="like"
+                                                            Style="{StaticResource ImageSize30}" />
+                                                    </Grid>
+                                                    <Label
+                                                        MaxLines="2"
+                                                        Style="{StaticResource RegularLabelFont14}"
+                                                        Text="{Binding Title}"
+                                                        TextColor="Gray" />
+                                                    <Grid ColumnDefinitions="auto,auto" HorizontalOptions="End">
+                                                        <Label
+                                                            Style="{StaticResource RegularLabelFont14}"
+                                                            Text="{Binding Time}"
+                                                            TextColor="Gray" />
+                                                        <Label
+                                                            Grid.Column="1"
+                                                            Margin="10,0"
+                                                            Style="{StaticResource RegularLabelFont14}"
+                                                            Text="{Binding Date}"
+                                                            TextColor="Gray" />
+                                                    </Grid>
+
+                                                </VerticalStackLayout>
+                                            </DataTemplate>
+                                        </CollectionView.ItemTemplate>
+                                    </CollectionView>
+                                    <Frame
+                                        Margin="5,10,5,5"
+                                        Padding="0"
+                                        CornerRadius="30"
+                                        HeightRequest="50">
+                                        <Grid
+                                            Margin="10,0"
+                                            ColumnDefinitions="*,auto,auto"
+                                            VerticalOptions="CenterAndExpand">
+                                            <customControl:BorderlessEntry
+                                                FontFamily="ManropeRegular"
+                                                FontSize="15"
+                                                Placeholder="Type your comment" />
+                                            <Image
+                                                Grid.Column="1"
+                                                Margin="5,0"
+                                                Source="attach"
+                                                Style="{StaticResource ImageSize30}" />
+                                            <Image
+                                                Grid.Column="2"
+                                                Margin="5,0"
+                                                Source="send_message"
+                                                Style="{StaticResource ImageSize30}" />
+                                        </Grid>
+                                    </Frame>
+                                </VerticalStackLayout>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </VerticalStackLayout>
+
+                <VerticalStackLayout
+                    x:Name="attachmentsStack"
+                    Margin="20,10,20,0"
+                    IsVisible="false" />
+
+            </VerticalStackLayout>
+        </Grid>
+    </ScrollView>
+</base:BaseContentPage>

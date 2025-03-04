@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="WytSky.Mobile.Maui.Skoola.CustomControl.CustomHeader"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:customcontrol="clr-namespace:WytSky.Mobile.Maui.Skoola.CustomControl.Borderless"
+    xmlns:resource="clr-namespace:WytSky.Mobile.Maui.Skoola.AppResources"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    x:Name="root">
+    <VerticalStackLayout BindingContext="{x:Reference root}">
+        <Grid Margin="10,15,10,0" ColumnDefinitions="auto,auto,*,auto">
+            <Frame
+                Padding="0"
+                BackgroundColor="{StaticResource White}"
+                CornerRadius="20"
+                HeightRequest="30"
+                IsVisible="{Binding IsMenuVisible}">
+                <Image
+                    Aspect="AspectFit"
+                    HeightRequest="25"
+                    Source="menu">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OpenMenu" />
+                    </Image.GestureRecognizers>
+                </Image>
+            </Frame>
+            <Image
+                Aspect="AspectFit"
+                HeightRequest="30"
+                IsVisible="{Binding IsMenuVisible, Converter={StaticResource InvertedBoolConverter}}"
+                Source="back"
+                WidthRequest="30">
+                <Image.Triggers>
+                    <DataTrigger
+                        Binding="{Binding BindingContext.Lang, Source={x:Reference root}}"
+                        TargetType="Image"
+                        Value="ar">
+                        <Setter Property="Rotation" Value="180" />
+                    </DataTrigger>
+                    <DataTrigger
+                        Binding="{Binding BindingContext.Lang, Source={x:Reference root}}"
+                        TargetType="Image"
+                        Value="en">
+                        <Setter Property="Rotation" Value="0" />
+                    </DataTrigger>
+                </Image.Triggers>
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="GoBack" />
+                </Image.GestureRecognizers>
+            </Image>
+            <Image
+                Grid.Column="1"
+                Margin="10,0"
+                Aspect="AspectFit"
+                HeightRequest="40"
+                Source="profile.png"
+                WidthRequest="40" />
+            <VerticalStackLayout
+                Grid.Column="2"
+                Margin="5,0"
+                VerticalOptions="CenterAndExpand">
+                <Label
+                    HorizontalOptions="FillAndExpand"
+                    Style="{StaticResource RegularLabelFont12}"
+                    Text="{x:Static resource:SharedResources.Text_DeliverTo}"
+                    TextColor="{StaticResource Gray100}" />
+                <Label
+                    HorizontalOptions="FillAndExpand"
+                    Style="{StaticResource BoldLabelFont16}"
+                    Text="....."
+                    TextColor="{StaticResource Black}" />
+            </VerticalStackLayout>
+            <Image
+                Grid.Column="3"
+                Aspect="AspectFit"
+                HeightRequest="30"
+                Source="cart"
+                WidthRequest="30">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OpenCartPage" />
+                </Image.GestureRecognizers>
+            </Image>
+        </Grid>
+        <Grid
+            Margin="20,5"
+            ColumnDefinitions="*,auto"
+            HeightRequest="40"
+            IsVisible="{Binding IsSearchVisible}">
+            <Frame
+                Padding="0"
+                BackgroundColor="{StaticResource White}"
+                CornerRadius="5">
+                <Grid ColumnDefinitions="auto,*">
+                    <Image
+                        Margin="10,0"
+                        Aspect="AspectFit"
+                        HeightRequest="15"
+                        Source="search"
+                        WidthRequest="15" />
+                    <customcontrol:BorderlessEntry
+                        Grid.Column="1"
+                        Margin="5,0"
+                        FontSize="15"
+                        Placeholder="{x:Static resource:SharedResources.Text_FindFoodRestaurant}"
+                        PlaceholderColor="Gray"
+                        Text="{Binding SearchText}"
+                        TextColor="Gray" />
+                </Grid>
+            </Frame>
+            <Image
+                Grid.Column="1"
+                Margin="10,0"
+                Aspect="AspectFit"
+                HeightRequest="20"
+                IsVisible="{Binding IsGridListVisible, Converter={StaticResource InvertedBoolConverter}}"
+                Source="filter"
+                WidthRequest="20" />
+            <Grid
+                Grid.Column="1"
+                ColumnDefinitions="*,*"
+                IsVisible="{Binding IsGridListVisible}">
+                <Image
+                    x:Name="gridImage"
+                    Margin="5,0"
+                    Aspect="AspectFit"
+                    HeightRequest="40"
+                    Source="red_grid"
+                    WidthRequest="40">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding GridCommand}" Tapped="GridClicked" />
+                    </Image.GestureRecognizers>
+                </Image>
+                <Image
+                    x:Name="listImage"
+                    Grid.Column="1"
+                    Margin="5,0"
+                    Aspect="AspectFit"
+                    HeightRequest="50"
+                    Source="list"
+                    WidthRequest="50">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ListCommand}" Tapped="ListClicked" />
+                    </Image.GestureRecognizers>
+                </Image>
+            </Grid>
+        </Grid>
+    </VerticalStackLayout>
+</ContentView>

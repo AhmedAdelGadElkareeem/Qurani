@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<base:BaseContentPage
+    x:Class="WytSky.Mobile.Maui.Skoola.Views.CheckoutPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:base="clr-namespace:WytSky.Mobile.Maui.Skoola.Views"
+    xmlns:customControls="clr-namespace:WytSky.Mobile.Maui.Skoola.CustomControl"
+    xmlns:resource="clr-namespace:WytSky.Mobile.Maui.Skoola.AppResources"
+    Title="CheckoutPage">
+    <ScrollView>
+        <Grid RowDefinitions="auto,auto,auto,auto">
+            <Grid Margin="10,10,10,0" ColumnDefinitions="auto,*">
+                <customControls:BackView />
+                <Label
+                    Grid.Column="1"
+                    HorizontalOptions="CenterAndExpand"
+                    Style="{StaticResource BoldLabelFont22}"
+                    Text="{x:Static resource:SharedResources.Text_Cart}"
+                    TextColor="{StaticResource Black}"
+                    VerticalOptions="CenterAndExpand" />
+            </Grid>
+
+            <StackLayout Grid.Row="1" Margin="30,10,30,0">
+                <Label
+                    Style="{StaticResource RegularLabelFont14}"
+                    Text="{x:Static resource:SharedResources.Text_DeliverTo}"
+                    TextColor="{StaticResource Gray100}"
+                    VerticalOptions="CenterAndExpand" />
+                <Grid ColumnDefinitions="*,auto">
+                    <Label
+                        Style="{StaticResource BoldLabelFont20}"
+                        Text="...."
+                        TextColor="{StaticResource Black}"
+                        VerticalOptions="CenterAndExpand" />
+                    <Image
+                        Grid.Column="1"
+                        Aspect="AspectFit"
+                        HeightRequest="35"
+                        HorizontalOptions="Start"
+                        Source="down_arrow"
+                        WidthRequest="35" />
+                </Grid>
+            </StackLayout>
+
+            <CollectionView
+                x:Name="cartItems"
+                Grid.Row="2"
+                Margin="20,10">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout ItemSpacing="10" Orientation="Vertical" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid ColumnDefinitions="auto,*" HeightRequest="120">
+                            <Frame
+                                Padding="0"
+                                CornerRadius="100"
+                                HeightRequest="80"
+                                WidthRequest="80">
+                                <Image Aspect="AspectFill" Source="{Binding CatgeoryImageUrl}" />
+                                <!--
+                                    Source="featured_resturant"
+                                -->
+                            </Frame>
+                            <StackLayout Grid.Column="1" Margin="10,10,10,0">
+                                <Label
+                                    Margin="0,10,0,0"
+                                    Style="{StaticResource BoldLabelFont18}"
+                                    Text="{Binding Name}"
+                                    TextColor="{StaticResource Black}"
+                                    VerticalOptions="CenterAndExpand" />
+                                <Label
+                                    Margin="2"
+                                    LineBreakMode="TailTruncation"
+                                    MaxLines="2"
+                                    Style="{StaticResource RegularLabelFont16}"
+                                    Text="{Binding Description}"
+                                    TextColor="{StaticResource Gray100}"
+                                    VerticalOptions="CenterAndExpand" />
+                                <Grid
+                                    Margin="0,10,0,0"
+                                    ColumnDefinitions="auto,auto"
+                                    ColumnSpacing="10">
+                                    <Frame
+                                        Padding="3"
+                                        BackgroundColor="{StaticResource White}"
+                                        CornerRadius="10"
+                                        WidthRequest="120">
+                                        <Grid
+                                            Margin="10,5"
+                                            ColumnDefinitions="auto,*,auto"
+                                            HeightRequest="30">
+                                            <Image
+                                                Aspect="AspectFit"
+                                                HeightRequest="30"
+                                                Source="minus"
+                                                WidthRequest="30">
+                                                <Image.GestureRecognizers>
+                                                    <TapGestureRecognizer Command="{Binding BindingContext.DecreaseQuantityCommand, Source={x:Reference cartItems}}" CommandParameter="{Binding .}" />
+                                                </Image.GestureRecognizers>
+                                            </Image>
+                                            <Label
+                                                Grid.Column="1"
+                                                HorizontalOptions="CenterAndExpand"
+                                                Style="{StaticResource BoldLabelFont16}"
+                                                Text="{Binding Quantity}"
+                                                TextColor="{StaticResource Black}"
+                                                VerticalOptions="CenterAndExpand" />
+                                            <Image
+                                                Grid.Column="2"
+                                                Aspect="AspectFit"
+                                                HeightRequest="30"
+                                                Source="plus"
+                                                WidthRequest="30">
+                                                <Image.GestureRecognizers>
+                                                    <TapGestureRecognizer Command="{Binding BindingContext.IncreaseQuantityCommand, Source={x:Reference cartItems}}" CommandParameter="{Binding .}" />
+                                                </Image.GestureRecognizers>
+                                            </Image>
+                                        </Grid>
+                                    </Frame>
+
+                                    <Frame
+                                        Grid.Column="1"
+                                        Padding="4"
+                                        BackgroundColor="{StaticResource White}"
+                                        CornerRadius="5"
+                                        WidthRequest="80">
+                                        <Label HorizontalOptions="CenterAndExpand">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span
+                                                        FontFamily="ManropeBold"
+                                                        FontSize="14"
+                                                        Text="{Binding ItemTotalPrice}"
+                                                        TextColor="{StaticResource Black}" />
+                                                    <Span Text=" " />
+                                                    <Span
+                                                        FontFamily="ManropeBold"
+                                                        FontSize="14"
+                                                        Text="{Binding CurrencyName}"
+                                                        TextColor="{StaticResource PrimaryColor}" />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                    </Frame>
+                                </Grid>
+                            </StackLayout>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+                <CollectionView.EmptyView>
+                    <customControls:EmptyView />
+                </CollectionView.EmptyView>
+            </CollectionView>
+
+            <StackLayout Grid.Row="3" Margin="20,20,20,10">
+
+                <!--  Payment Methods  -->
+                <Label
+                    Style="{StaticResource BoldLabelFont20}"
+                    Text="{x:Static resource:SharedResources.Text_PaymentMethods}"
+                    TextColor="{StaticResource Black}"
+                    VerticalOptions="CenterAndExpand" />
+                <Grid RowDefinitions="auto,auto,auto" RowSpacing="0">
+                    <Frame
+                        Margin="0,10,0,0"
+                        Padding="0"
+                        BorderColor="#EEEEEE"
+                        CornerRadius="10"
+                        HeightRequest="60">
+                        <Grid Margin="10,5" ColumnDefinitions="auto,*">
+                            <RadioButton GroupName="payment" />
+                            <Label
+                                Grid.Column="1"
+                                Style="{StaticResource RegularLabelFont18}"
+                                Text="{x:Static resource:SharedResources.Text_CashOnDelivery}"
+                                TextColor="#292D32"
+                                VerticalOptions="CenterAndExpand" />
+                        </Grid>
+                    </Frame>
+                    <Frame
+                        Grid.Row="1"
+                        Margin="0,10,0,0"
+                        Padding="0"
+                        BorderColor="#EEEEEE"
+                        CornerRadius="10"
+                        HeightRequest="60">
+                        <Grid Margin="10,5" ColumnDefinitions="auto,auto,*">
+                            <RadioButton GroupName="payment" />
+                            <Image
+                                Grid.Column="1"
+                                Aspect="AspectFit"
+                                HeightRequest="20"
+                                Source="vodafone"
+                                WidthRequest="20" />
+                            <Label
+                                Grid.Column="2"
+                                Margin="10,0"
+                                Style="{StaticResource RegularLabelFont18}"
+                                Text="{x:Static resource:SharedResources.Text_VodafoneCash}"
+                                TextColor="#292D32"
+                                VerticalOptions="CenterAndExpand" />
+                        </Grid>
+                    </Frame>
+                    <Frame
+                        Grid.Row="2"
+                        Margin="0,10,0,0"
+                        Padding="0"
+                        BorderColor="#EEEEEE"
+                        CornerRadius="10"
+                        HeightRequest="60">
+                        <Grid Margin="10,5" ColumnDefinitions="auto,auto,auto,auto">
+                            <RadioButton GroupName="payment" />
+                            <Image
+                                Grid.Column="1"
+                                Aspect="AspectFit"
+                                HeightRequest="20"
+                                Source="credit_card"
+                                WidthRequest="20" />
+                            <Label
+                                Grid.Column="2"
+                                Margin="10,0"
+                                HorizontalOptions="CenterAndExpand"
+                                Style="{StaticResource RegularLabelFont18}"
+                                Text="{x:Static resource:SharedResources.Text_CreditCard}"
+                                TextColor="#292D32"
+                                VerticalOptions="CenterAndExpand" />
+                            <Label
+                                Grid.Column="3"
+                                Margin="5,0"
+                                HorizontalOptions="EndAndExpand"
+                                Style="{StaticResource RegularLabelFont14}"
+                                Text="32** **** **** **** **54"
+                                TextColor="{StaticResource Gray100}"
+                                VerticalOptions="CenterAndExpand" />
+                        </Grid>
+                    </Frame>
+                </Grid>
+
+                <!--  Add Payment Methods  -->
+                <Grid
+                    Margin="0,30,0,0"
+                    ColumnDefinitions="auto,auto"
+                    HorizontalOptions="CenterAndExpand"
+                    IsVisible="false">
+                    <Label
+                        HorizontalOptions="CenterAndExpand"
+                        Style="{StaticResource BoldLabelFont20}"
+                        Text="{x:Static resource:SharedResources.Text_AddPaymentMethod}"
+                        TextColor="{StaticResource Black}"
+                        VerticalOptions="CenterAndExpand" />
+                    <Image
+                        Grid.Column="1"
+                        Aspect="AspectFit"
+                        HeightRequest="20"
+                        Source="gray_arrow_right"
+                        VerticalOptions="CenterAndExpand"
+                        WidthRequest="20" />
+                </Grid>
+
+                <customControls:PricesView
+                    BounsToDelivery="{Binding BounsToDelivery}"
+                    CurrencyName="{Binding CurrencyName}"
+                    Delivery="{Binding Delivery}"
+                    Discount="{Binding Discount}"
+                    SubTotal="{Binding SubTotal}"
+                    TotalItems="{Binding TotalItems}"
+                    TotalPrice="{Binding TotalPrice}"
+                    Vat="{Binding Vat}" />
+
+                <BoxView
+                    HeightRequest="1"
+                    VerticalOptions="FillAndExpand"
+                    Color="Gray" />
+
+                <!--  Place Order  -->
+                <Frame
+                    Margin="0,30,0,0"
+                    Padding="0"
+                    BackgroundColor="{StaticResource PrimaryColor}"
+                    CornerRadius="40"
+                    HeightRequest="50"
+                    HorizontalOptions="CenterAndExpand"
+                    WidthRequest="300">
+                    <Grid
+                        Margin="10,5"
+                        ColumnDefinitions="auto,*"
+                        HorizontalOptions="CenterAndExpand">
+                        <Label
+                            HorizontalOptions="CenterAndExpand"
+                            Style="{StaticResource RegularLabelFont18}"
+                            TextColor="{StaticResource White}"
+                            VerticalOptions="CenterAndExpand">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{x:Static resource:SharedResources.Text_PlaceOrder}" />
+                                    <Span Text=" (" />
+                                    <Span Text="{Binding TotalPrice}" />
+                                    <Span Text=" " />
+                                    <Span Text="{Binding CurrencyName}" />
+                                    <Span Text=")" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Image
+                            Grid.Column="1"
+                            Aspect="AspectFit"
+                            HeightRequest="35"
+                            Source="white_back"
+                            WidthRequest="35">
+                            <Image.Triggers>
+                                <DataTrigger
+                                    Binding="{Binding Lang}"
+                                    TargetType="Image"
+                                    Value="ar">
+                                    <Setter Property="Rotation" Value="180" />
+                                </DataTrigger>
+                            </Image.Triggers>
+                        </Image>
+                    </Grid>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding PlaceOrderCommand}" />
+                    </Frame.GestureRecognizers>
+                </Frame>
+            </StackLayout>
+
+        </Grid>
+    </ScrollView>
+</base:BaseContentPage>

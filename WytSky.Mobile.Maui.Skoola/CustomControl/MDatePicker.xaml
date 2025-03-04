@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:Borderless="clr-namespace:WytSky.Mobile.Maui.Skoola.CustomControl.Borderless"
+    x:Class="WytSky.Mobile.Maui.Skoola.CustomControl.MDatePicker"
+    x:Name="_root">
+    <ContentView.Content>
+        <Grid 
+            Margin="5"
+            BindingContext="{x:Reference _root}">
+            <Border 
+                StrokeThickness="1"
+                StrokeShape="RoundRectangle 15,5,5,15"
+                BackgroundColor="Transparent"
+                Padding="5"
+                Margin="0,5,0,0"
+                Stroke="{Binding BorderColor}"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="Center">
+                <Borderless:BorderlessDatePicker 
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand"
+                    Date="{Binding Date}"
+                    TextColor="{Binding TextColor}"
+                    FontFamily="{Binding FontFamily}"
+                    DateSelected="datePicker_DateSelected"
+                    x:Name="datePicker" />
+            </Border>
+            <HorizontalStackLayout>
+                <Label
+                    HorizontalOptions="Start"
+                    VerticalOptions="Start"
+                    Margin="10,-5,0,0"
+                    FontSize="Medium"
+                    BackgroundColor="White"
+                    Opacity="1"
+                    Text="{Binding Header}"
+                    IsVisible="true"
+                    TextColor="{Binding HeaderColor}">
+                    <Label.Triggers>
+                        <DataTrigger
+                            TargetType="Label"
+                            Binding="{Binding Date}"
+                            Value="{x:Null}">
+                            <Setter Property="IsVisible" Value="false"/>
+                        </DataTrigger>
+                    </Label.Triggers>
+                </Label>
+                <Label HorizontalOptions="StartAndExpand"
+                       IsVisible="{Binding IsRequired}">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text=" "/>
+                            <Span Text="*" TextColor="Red"
+                                  FontAttributes="Bold"
+                                  FontSize="17"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </HorizontalStackLayout>
+        </Grid>
+        <!--<Border 
+            BindingContext="{x:Reference _root}"
+            StrokeThickness="1"
+            StrokeShape="RoundRectangle 15,5,5,15"
+            BackgroundColor="Transparent"
+            Padding="5"
+            Margin="0,5,0,0"
+            Stroke="black"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="Center">
+            <StackLayout Margin="5">
+                <Label
+                    Text="{Binding Date}"
+                    HorizontalOptions="Start"
+                    VerticalOptions="Start"
+                    Margin="10,-5,0,0"
+                    FontSize="Medium"
+                    BackgroundColor="White"
+                    Opacity="1"
+                    TextColor="{Binding HeaderColor}"/>
+                <DatePicker 
+                    IsVisible="false"
+                    Date="{Binding Date}"
+                    x:Name="datePicker" />
+            </StackLayout>
+        </Border>-->
+    </ContentView.Content>
+    <View.GestureRecognizers>
+        <TapGestureRecognizer Tapped="OpenDatePicker"/>
+    </View.GestureRecognizers>
+</ContentView>

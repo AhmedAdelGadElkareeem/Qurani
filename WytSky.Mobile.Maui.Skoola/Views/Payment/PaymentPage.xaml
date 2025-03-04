@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<base:BaseContentPage
+    x:Class="WytSky.Mobile.Maui.Skoola.Views.Payment.PaymentPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:base="clr-namespace:WytSky.Mobile.Maui.Skoola.Views"
+    xmlns:behaviors="clr-namespace:WytSky.Mobile.Maui.Skoola.Behaviors"
+    xmlns:customControl="clr-namespace:WytSky.Mobile.Maui.Skoola.CustomControl.Borderless"
+    xmlns:customControls="clr-namespace:WytSky.Mobile.Maui.Skoola.CustomControl"
+    xmlns:resource="clr-namespace:WytSky.Mobile.Maui.Skoola.AppResources"
+    xmlns:templates="clr-namespace:WytSky.Mobile.Maui.Skoola.Template"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    BackgroundColor="{StaticResource PageBackgroundColor}">
+    <Grid RowDefinitions="auto,*,auto">
+        <customControls:WhiteBackView
+            BackgroundColor="{StaticResource White}"
+            HasPageName="True"
+            PageName="{x:Static resource:SharedResources.Text_Payment}" />
+        <CollectionView
+            Grid.Row="1"
+            Margin="10,0"
+            BackgroundColor="{StaticResource White}"
+            ItemsSource="{Binding Payments}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="10" ColumnDefinitions="auto,*,auto">
+                        <Image Source="{Binding Image}" Style="{StaticResource ImageSize20}" />
+                        <Label
+                            Grid.Column="1"
+                            Margin="10,0"
+                            Style="{StaticResource RegularLabelFont16}"
+                            Text="{Binding Name}" />
+                        <Label
+                            Grid.Column="2"
+                            Style="{StaticResource RegularLabelFont14}"
+                            Text="{Binding Status}"
+                            TextColor="{StaticResource PrimaryColor}">
+                            <Label.Triggers>
+                                <DataTrigger
+                                    Binding="{Binding IsConnected}"
+                                    TargetType="Label"
+                                    Value="true">
+                                    <Setter Property="TextColor" Value="{StaticResource ErrorColor}" />
+                                </DataTrigger>
+                            </Label.Triggers>
+                        </Label>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <Button
+            Grid.Row="2"
+            Command="{Binding OpenCreditCardPageCommand}"
+            Style="{StaticResource BaseButton}"
+            Text="{x:Static resource:SharedResources.Text_AddNewCard}" />
+    </Grid>
+</base:BaseContentPage>

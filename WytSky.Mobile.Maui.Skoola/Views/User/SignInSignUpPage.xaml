@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<base:BaseContentPage
+    x:Class="WytSky.Mobile.Maui.Skoola.Views.User.SignInSignUpPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:Borderless="clr-namespace:WytSky.Mobile.Maui.Skoola.CustomControl.Borderless"
+    xmlns:base="clr-namespace:WytSky.Mobile.Maui.Skoola.Views"
+    xmlns:behaviors="clr-namespace:WytSky.Mobile.Maui.Skoola.Behaviors"
+    xmlns:borderless="clr-namespace:WytSky.Mobile.Maui.Skoola.CustomControl.Borderless"
+    xmlns:customControls="clr-namespace:WytSky.Mobile.Maui.Skoola.CustomControl"
+    xmlns:resource="clr-namespace:WytSky.Mobile.Maui.Skoola.AppResources"
+    x:Name="root"
+    Title="SignInSignUpPage">
+    <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <VerticalStackLayout>
+            <VerticalStackLayout Margin="20,0" IsVisible="{Binding IsVisibleLogin}">
+                <Image
+                    Margin="0,40,0,0"
+                    Aspect="AspectFit"
+                    HeightRequest="100"
+                    HorizontalOptions="CenterAndExpand"
+                    Source="logo"
+                    WidthRequest="200" />
+
+                <VerticalStackLayout
+                    x:Name="stackLayoutLogin"
+                    Margin="0,20,0,0"
+                    VerticalOptions="CenterAndExpand">
+                    <customControls:ValidationEntry
+                        EntryValidatableObject="{Binding UserName}"
+                        Placeholder="johndoe@example.com"
+                        TextLabel="{x:Static resource:SharedResources.Text_Email}" />
+                    <customControls:ValidationEntry
+                        EntryValidatableObject="{Binding Password}"
+                        HasPasswordImage="True"
+                        Placeholder="**************************"
+                        TextLabel="{x:Static resource:SharedResources.Text_Password}" />
+
+                    <VerticalStackLayout Margin="10,20,10,0" IsVisible="false">
+                        <Label Style="{StaticResource BoldLabelFont16}" Text="{x:Static resource:SharedResources.Text_UserType}" />
+                        <Border
+                            Stroke="{StaticResource Gray200}"
+                            StrokeShape="RoundRectangle 5"
+                            StrokeThickness="1">
+                            <borderless:BorderlessPicker
+                                Title="{x:Static resource:SharedResources.Text_UserType}"
+                                Margin="10,0"
+                                ItemsSource="{Binding UserTypes}" />
+                        </Border>
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+
+                <Label
+                    Margin="10,10,10,0"
+                    HorizontalOptions="EndAndExpand"
+                    HorizontalTextAlignment="Center"
+                    Style="{StaticResource BoldLabelFont12}"
+                    Text="{x:Static resource:SharedResources.Text_ForgotPassword}"
+                    TextColor="{StaticResource Black}">
+                    <View.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ForgetPasswordCommand}" />
+                    </View.GestureRecognizers>
+                </Label>
+
+                <Button
+                    Margin="0,60,0,0"
+                    Command="{Binding LoginCommand}"
+                    Style="{StaticResource BaseButton}"
+                    Text="{x:Static resource:SharedResources.Text_Login}" />
+                <Button
+                    Command="{Binding ResgisterCommand}"
+                    Style="{StaticResource SecondaryButton}"
+                    Text="{x:Static resource:SharedResources.Text_CreateAccount}" />
+
+                <Label
+                    Margin="0,20,0,0"
+                    HorizontalOptions="CenterAndExpand"
+                    HorizontalTextAlignment="Center"
+                    IsVisible="false"
+                    Style="{StaticResource BoldLabelFont16}"
+                    Text="{x:Static resource:SharedResources.Text_ContinueAsGuest}"
+                    TextColor="{StaticResource PrimaryColor}">
+                    <View.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ContinueAsGuestCommand}" />
+                    </View.GestureRecognizers>
+                </Label>
+
+                <Label
+                    Margin="0,40,0,0"
+                    HorizontalOptions="CenterAndExpand"
+                    IsVisible="false"
+                    Style="{StaticResource RegularLabelFont16}"
+                    Text="{x:Static resource:SharedResources.Text_Or}"
+                    TextColor="{StaticResource Black}" />
+
+                <BoxView
+                    Margin="10,5,10,0"
+                    HeightRequest="1"
+                    HorizontalOptions="FillAndExpand"
+                    IsVisible="false"
+                    Color="{StaticResource Gray200}" />
+
+                <!--  Google and Apple  -->
+                <Grid
+                    Margin="0,30,0,0"
+                    ColumnDefinitions="*,*"
+                    ColumnSpacing="10"
+                    IsVisible="false">
+                    <Frame
+                        Padding="0"
+                        BackgroundColor="{StaticResource Gray100}"
+                        CornerRadius="5"
+                        HeightRequest="50">
+                        <Grid ColumnDefinitions="auto,*" HorizontalOptions="CenterAndExpand">
+                            <Image
+                                Margin="5,0"
+                                Source="google"
+                                Style="{StaticResource ImageSize30}" />
+                            <Label
+                                Grid.Column="1"
+                                HorizontalOptions="CenterAndExpand"
+                                HorizontalTextAlignment="Center"
+                                Style="{StaticResource BoldLabelFont12}"
+                                Text="{x:Static resource:SharedResources.Text_SignInWithGoogle}"
+                                TextColor="{StaticResource Black}"
+                                VerticalOptions="CenterAndExpand" />
+                        </Grid>
+                    </Frame>
+                    <Frame
+                        Grid.Column="1"
+                        Padding="0"
+                        BackgroundColor="{StaticResource Black}"
+                        CornerRadius="5"
+                        HeightRequest="50">
+                        <Grid ColumnDefinitions="auto,*" HorizontalOptions="CenterAndExpand">
+                            <Image
+                                Margin="5,0"
+                                Source="apple"
+                                Style="{StaticResource ImageSize30}" />
+                            <Label
+                                Grid.Column="1"
+                                HorizontalOptions="CenterAndExpand"
+                                HorizontalTextAlignment="Center"
+                                Style="{StaticResource BoldLabelFont12}"
+                                Text="{x:Static resource:SharedResources.Text_SignInWithApple}"
+                                TextColor="{StaticResource White}"
+                                VerticalOptions="CenterAndExpand" />
+                        </Grid>
+                    </Frame>
+
+                </Grid>
+            </VerticalStackLayout>
+
+            <VerticalStackLayout
+                Margin="20,0"
+                IsVisible="{Binding IsVisibleRegister}"
+                VerticalOptions="FillAndExpand">
+
+                <Label
+                    Margin="0,20,0,0"
+                    Style="{StaticResource BoldLabelFont22}"
+                    Text="{x:Static resource:SharedResources.Text_SignUp}"
+                    TextColor="{StaticResource Black}"
+                    VerticalOptions="Start" />
+                <Label
+                    Style="{StaticResource RegularLabelFont14}"
+                    Text="We’ll get you up and running so you can verify your personal information and customize your account."
+                    TextColor="{StaticResource Gray300}"
+                    VerticalOptions="Start" />
+
+                <!--  Google and Apple  -->
+                <Grid
+                    Margin="0,30,0,0"
+                    ColumnDefinitions="*,*"
+                    ColumnSpacing="10">
+                    <Frame
+                        Padding="0"
+                        BackgroundColor="{StaticResource Gray100}"
+                        CornerRadius="5"
+                        HeightRequest="50">
+                        <Grid ColumnDefinitions="auto,*" HorizontalOptions="CenterAndExpand">
+                            <Image
+                                Margin="5,0"
+                                Source="google"
+                                Style="{StaticResource ImageSize30}" />
+                            <Label
+                                Grid.Column="1"
+                                HorizontalOptions="CenterAndExpand"
+                                HorizontalTextAlignment="Center"
+                                Style="{StaticResource BoldLabelFont12}"
+                                Text="{x:Static resource:SharedResources.Text_SignInWithGoogle}"
+                                TextColor="{StaticResource Black}"
+                                VerticalOptions="CenterAndExpand" />
+                        </Grid>
+                    </Frame>
+                    <Frame
+                        Grid.Column="1"
+                        Padding="0"
+                        BackgroundColor="{StaticResource Black}"
+                        CornerRadius="5"
+                        HeightRequest="50">
+                        <Grid ColumnDefinitions="auto,*" HorizontalOptions="CenterAndExpand">
+                            <Image
+                                Margin="5,0"
+                                Source="apple"
+                                Style="{StaticResource ImageSize30}" />
+                            <Label
+                                Grid.Column="1"
+                                HorizontalOptions="CenterAndExpand"
+                                HorizontalTextAlignment="Center"
+                                Style="{StaticResource BoldLabelFont12}"
+                                Text="{x:Static resource:SharedResources.Text_SignInWithApple}"
+                                TextColor="{StaticResource White}"
+                                VerticalOptions="CenterAndExpand" />
+                        </Grid>
+                    </Frame>
+
+                </Grid>
+
+                <Label
+                    Margin="0,20,0,0"
+                    HorizontalOptions="CenterAndExpand"
+                    HorizontalTextAlignment="Center"
+                    Style="{StaticResource RegularLabelFont14}"
+                    Text="{x:Static resource:SharedResources.Text_OrSignUpWith}"
+                    TextColor="{StaticResource Black}" />
+
+                <Grid Margin="0,10,0,0" ColumnDefinitions="*,*">
+                    <customControls:ValidationEntry
+                        Grid.ColumnSpan="2"
+                        EntryValidatableObject="{Binding UserName}"
+                        Placeholder="Alexander"
+                        TextLabel="{x:Static resource:SharedResources.Text_FullName}" />
+                    <customControls:ValidationEntry
+                        Grid.Column="1"
+                        IsVisible="False"
+                        Placeholder="Doe"
+                        TextLabel="{x:Static resource:SharedResources.Text_LastName}" />
+                </Grid>
+                <customControls:ValidationEntry
+                    EntryValidatableObject="{Binding Email}"
+                    Placeholder="johndoe@example.com"
+                    TextLabel="{x:Static resource:SharedResources.Text_Email}" />
+                <customControls:ValidationEntry
+                    EntryValidatableObject="{Binding Phone}"
+                    Placeholder="01054784587"
+                    TextLabel="{x:Static resource:SharedResources.Text_Phone}" />
+                <customControls:ValidationEntry
+                    EntryValidatableObject="{Binding Password}"
+                    HasPasswordImage="True"
+                    IsPassword="True"
+                    Placeholder="at least 8 charachter"
+                    TextLabel="{x:Static resource:SharedResources.Text_Password}" />
+                <customControls:ValidationEntry
+                    EntryValidatableObject="{Binding ConfirmPassword}"
+                    HasPasswordImage="True"
+                    IsPassword="True"
+                    TextLabel="{x:Static resource:SharedResources.Text_ConfirmPassword}" />
+
+                <VerticalStackLayout Margin="10,20,10,0">
+                    <Label Style="{StaticResource BoldLabelFont16}" Text="{x:Static resource:SharedResources.Text_UserType}" />
+                    <Border
+                        Stroke="{StaticResource Gray200}"
+                        StrokeShape="RoundRectangle 5"
+                        StrokeThickness="1">
+                        <borderless:BorderlessPicker
+                            Title="{x:Static resource:SharedResources.Text_UserType}"
+                            Margin="10,0"
+                            ItemsSource="{Binding UserTypes}" />
+                    </Border>
+                </VerticalStackLayout>
+
+                <Grid Margin="10,15,10,0" ColumnDefinitions="auto,*">
+                    <CheckBox />
+                    <Label
+                        Grid.Column="1"
+                        Margin="10,0"
+                        Style="{StaticResource RegularLabelFont14}"
+                        Text="{x:Static resource:SharedResources.Text_RememberMe}"
+                        TextColor="{StaticResource Black}"
+                        VerticalOptions="CenterAndExpand" />
+                </Grid>
+
+                <Label
+                    Margin="0,30,0,0"
+                    Style="{StaticResource BoldLabelFont16}"
+                    Text="{x:Static resource:SharedResources.Text_HowDidYouHearAboutUs}"
+                    TextColor="{StaticResource Black}" />
+                <Frame
+                    Margin="0,10,0,0"
+                    Padding="0"
+                    CornerRadius="5">
+                    <Grid Margin="5,0" ColumnDefinitions="*,auto">
+                        <Borderless:BorderlessPicker Title="Friends Family" TitleColor="{StaticResource Black}" />
+                        <Image
+                            Grid.Column="1"
+                            HorizontalOptions="EndAndExpand"
+                            Source="down_arrow"
+                            Style="{StaticResource ImageSize15}" />
+                    </Grid>
+                </Frame>
+
+                <Button
+                    Margin="0,40,0,0"
+                    Command="{Binding CreateAccountCommand}"
+                    Style="{StaticResource BaseButton}"
+                    Text="{x:Static resource:SharedResources.Text_SignUp}" />
+
+                <Label Margin="0,30,0,10" HorizontalOptions="CenterAndExpand">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span
+                                FontFamily="ManropeRegular"
+                                FontSize="14"
+                                Text="{x:Static resource:SharedResources.Msg_AlreadyHaveAcoount}"
+                                TextColor="{StaticResource Black}" />
+                            <Span Text=" " />
+                            <Span
+                                FontFamily="ManropeBold"
+                                FontSize="14"
+                                Text="{x:Static resource:SharedResources.Text_Login}"
+                                TextColor="{StaticResource PrimaryColor}"
+                                TextDecorations="Underline" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                    <View.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding BackToLoginCommand}" />
+                    </View.GestureRecognizers>
+                </Label>
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+</base:BaseContentPage>

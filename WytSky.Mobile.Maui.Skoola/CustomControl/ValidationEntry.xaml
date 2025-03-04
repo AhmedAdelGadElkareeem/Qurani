@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<base:BaseContentView
+    x:Class="WytSky.Mobile.Maui.Skoola.CustomControl.ValidationEntry"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:Borderless="clr-namespace:WytSky.Mobile.Maui.Skoola.CustomControl.Borderless"
+    xmlns:base="clr-namespace:WytSky.Mobile.Maui.Skoola.CustomControl"
+    x:Name="_root">
+    <VerticalStackLayout Margin="10,20,10,0" BindingContext="{x:Reference _root}">
+        <Label Style="{StaticResource BoldLabelFont16}" Text="{Binding TextLabel}" />
+        <Border
+            x:Name="container"
+            HorizontalOptions="FillAndExpand"
+            Stroke="{StaticResource Gray200}"
+            StrokeShape="RoundRectangle 5"
+            StrokeThickness="1">
+            <Grid ColumnDefinitions="*,auto">
+                <Borderless:BorderlessEntry
+                    Margin="15,0"
+                    Completed="HideKeyboardCompleted"
+                    FontFamily="AhlanWorldArbfonts"
+                    FontSize="16"
+                    HorizontalOptions="FillAndExpand"
+                    IsEnabled="{Binding EntryIsEnabled}"
+                    IsPassword="{Binding IsPassword}"
+                    Keyboard="{Binding KeyboardType}"
+                    Placeholder="{Binding Placeholder}"
+                    PlaceholderColor="{StaticResource GrayTextColor}"
+                    Text="{Binding EntryValidatableObject.Value, Mode=TwoWay}"
+                    TextColor="{StaticResource Black}"
+                    Unfocused="HideKeyboard"
+                    VerticalOptions="CenterAndExpand">
+                    <Borderless:BorderlessEntry.Triggers>
+                        <DataTrigger
+                            Binding="{Binding EntryValidatableObject.IsValid}"
+                            TargetType="Borderless:BorderlessEntry"
+                            Value="false">
+                            <Setter Property="PlaceholderColor" Value="{StaticResource ErrorColor}" />
+                        </DataTrigger>
+                    </Borderless:BorderlessEntry.Triggers>
+                </Borderless:BorderlessEntry>
+                <Image
+                    Grid.Column="1"
+                    Margin="5"
+                    HorizontalOptions="End"
+                    IsVisible="{Binding HasPasswordImage}"
+                    Source="pass_hide"
+                    VerticalOptions="Center"
+                    WidthRequest="25">
+                    <Image.Triggers>
+                        <DataTrigger
+                            Binding="{Binding IsPassword}"
+                            TargetType="Image"
+                            Value="false">
+                            <Setter Property="Source" Value="pass_hide" />
+                        </DataTrigger>
+                        <DataTrigger
+                            Binding="{Binding IsPassword}"
+                            TargetType="Image"
+                            Value="true">
+                            <Setter Property="Source" Value="pass_show" />
+                        </DataTrigger>
+                    </Image.Triggers>
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="ShowHidePassword" />
+                    </Image.GestureRecognizers>
+                </Image>
+            </Grid>
+            <Border.Triggers>
+                <DataTrigger
+                    Binding="{Binding EntryValidatableObject.IsValid}"
+                    TargetType="Border"
+                    Value="false">
+                    <Setter Property="Stroke" Value="{StaticResource ErrorColor}" />
+                </DataTrigger>
+            </Border.Triggers>
+        </Border>
+    </VerticalStackLayout>
+
+
+    <!--<Label Margin="20,5,20,0"
+       IsVisible="{Binding EntryValidatableObject.IsValid, Source={x:Reference _root}, Converter={StaticResource InverseBoolConverter}}"
+       Style="{StaticResource ErrorLabel}"
+       Text="{Binding EntryValidatableObject.Errors, Source={x:Reference _root}, Converter={StaticResource FirstValidationErrorConverter}}" />-->
+</base:BaseContentView>

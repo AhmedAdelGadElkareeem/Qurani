@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="WytSky.Mobile.Maui.Skoola.CustomControl.PricesView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:resource="clr-namespace:WytSky.Mobile.Maui.Skoola.AppResources"
+    x:Name="root">
+    <VerticalStackLayout BindingContext="{x:Reference root}">
+        <!--#region prices-->
+        <!--  Subtotal  -->
+        <Grid Margin="10,5" ColumnDefinitions="*,auto">
+            <Label
+                HorizontalOptions="FillAndExpand"
+                Style="{StaticResource BoldLabelFont18}"
+                Text="{x:Static resource:SharedResources.Text_Subtotal}"
+                TextColor="{StaticResource Black}"
+                VerticalOptions="CenterAndExpand" />
+            <Label Grid.Column="1">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span
+                            FontFamily="ManropeBold"
+                            FontSize="18"
+                            Text="{Binding SubTotal}"
+                            TextColor="{StaticResource Black}" />
+                        <Span Text=" " />
+                        <Span
+                            FontFamily="ManropeBold"
+                            FontSize="16"
+                            Text="{Binding CurrencyName}"
+                            TextColor="{StaticResource PrimaryColor}" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+        </Grid>
+
+        <!--  Delivery  -->
+        <Grid Margin="10,5" ColumnDefinitions="*,auto">
+            <Label
+                HorizontalOptions="FillAndExpand"
+                Style="{StaticResource BoldLabelFont18}"
+                Text="{x:Static resource:SharedResources.Text_Delivery}"
+                TextColor="{StaticResource Black}"
+                VerticalOptions="CenterAndExpand" />
+            <Label Grid.Column="1">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span
+                            FontFamily="ManropeBold"
+                            FontSize="18"
+                            Text="{Binding Delivery}"
+                            TextColor="{StaticResource Black}" />
+                        <Span Text=" " />
+                        <Span
+                            FontFamily="ManropeBold"
+                            FontSize="16"
+                            Text="{Binding CurrencyName}"
+                            TextColor="{StaticResource PrimaryColor}" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+        </Grid>
+
+        <!--  Vat  -->
+        <Grid Margin="10,5" ColumnDefinitions="*,auto">
+            <Label
+                HorizontalOptions="FillAndExpand"
+                Style="{StaticResource BoldLabelFont18}"
+                Text="{x:Static resource:SharedResources.Text_Vat}"
+                TextColor="{StaticResource Black}"
+                VerticalOptions="CenterAndExpand" />
+            <Label Grid.Column="1">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span
+                            FontFamily="ManropeBold"
+                            FontSize="18"
+                            Text="{Binding Vat}"
+                            TextColor="{StaticResource Black}" />
+                        <Span Text=" " />
+                        <Span
+                            FontFamily="ManropeBold"
+                            FontSize="16"
+                            Text="{Binding CurrencyName}"
+                            TextColor="{StaticResource PrimaryColor}" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+        </Grid>
+
+        <!--  Discount 50%  -->
+        <Grid Margin="10,5" ColumnDefinitions="*,auto">
+            <Label
+                HorizontalOptions="FillAndExpand"
+                Style="{StaticResource BoldLabelFont18}"
+                Text="{x:Static resource:SharedResources.Text_Discount50}"
+                TextColor="{StaticResource Black}"
+                VerticalOptions="CenterAndExpand" />
+            <Label Grid.Column="1">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span
+                            FontFamily="ManropeBold"
+                            FontSize="18"
+                            Text="{Binding Discount}"
+                            TextColor="{StaticResource Black}" />
+                        <Span Text=" " />
+                        <Span
+                            FontFamily="ManropeBold"
+                            FontSize="16"
+                            Text="{Binding CurrencyName}"
+                            TextColor="{StaticResource PrimaryColor}" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+        </Grid>
+
+        <!--  Bouns to delivery  -->
+        <Grid Margin="10,5" ColumnDefinitions="*,auto">
+            <Label
+                HorizontalOptions="FillAndExpand"
+                Style="{StaticResource BoldLabelFont18}"
+                Text="{x:Static resource:SharedResources.Text_BonusToDelivery}"
+                TextColor="{StaticResource Black}"
+                VerticalOptions="CenterAndExpand" />
+            <Label Grid.Column="1">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span
+                            FontFamily="ManropeBold"
+                            FontSize="18"
+                            Text="{Binding BounsToDelivery}"
+                            TextColor="{StaticResource Black}" />
+                        <Span Text=" " />
+                        <Span
+                            FontFamily="ManropeBold"
+                            FontSize="16"
+                            Text="{Binding CurrencyName}"
+                            TextColor="{StaticResource PrimaryColor}" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+        </Grid>
+        <!--#endregion-->
+
+        <BoxView
+            HeightRequest="2"
+            VerticalOptions="FillAndExpand"
+            Color="#EEEEEE" />
+
+        <!--  Total payment  -->
+        <VerticalStackLayout Margin="10,15,10,10">
+            <Label
+                HorizontalOptions="FillAndExpand"
+                Style="{StaticResource BoldLabelFont18}"
+                Text="{x:Static resource:SharedResources.Text_TotalPayment}"
+                TextColor="{StaticResource Black}"
+                VerticalOptions="CenterAndExpand" />
+
+            <Grid ColumnDefinitions="*,auto">
+                <Label
+                    Style="{StaticResource RegularLabelFont14}"
+                    TextColor="{StaticResource Gray100}"
+                    VerticalOptions="CenterAndExpand">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="{Binding TotalItems}" />
+                            <Span Text=" " />
+                            <Span Text="{x:Static resource:SharedResources.Text_Items}" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Label Grid.Column="1">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span
+                                FontFamily="ManropeBold"
+                                FontSize="22"
+                                Text="{Binding TotalPrice}"
+                                TextColor="{StaticResource Black}" />
+                            <Span Text=" " />
+                            <Span
+                                FontFamily="ManropeBold"
+                                FontSize="16"
+                                Text="{Binding CurrencyName}"
+                                TextColor="{StaticResource PrimaryColor}" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </Grid>
+
+            <Label Margin="5,0" IsVisible="{Binding IsPaymentMethodVisible}">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span
+                            FontFamily="ManropeBold"
+                            FontSize="16"
+                            Text="{x:Static resource:SharedResources.Text_PaymentMethod}"
+                            TextColor="{StaticResource Black100}" />
+                        <Span Text=" " />
+                        <Span
+                            FontFamily="ManropeBold"
+                            FontSize="16"
+                            Text="cash on delivery"
+                            TextColor="{StaticResource Gray100}" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+        </VerticalStackLayout>
+    </VerticalStackLayout>
+
+</ContentView>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<base:BaseContentPage
+    x:Class="WytSky.Mobile.Maui.Skoola.Views.Notification.NotificationsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:base="clr-namespace:WytSky.Mobile.Maui.Skoola.Views"
+    xmlns:customcontrol="clr-namespace:WytSky.Mobile.Maui.Skoola.CustomControl.Borderless"
+    xmlns:customcontrols="clr-namespace:WytSky.Mobile.Maui.Skoola.CustomControl"
+    xmlns:resource="clr-namespace:WytSky.Mobile.Maui.Skoola.AppResources"
+    Title="{x:Static resource:SharedResources.Text_Notification}"
+    BackgroundColor="{StaticResource PageBackgroundColor}"
+    IconImageSource="menu_notification">
+    <Grid RowDefinitions="auto,*">
+        <Label
+            Margin="0,30,0,0"
+            HeightRequest="30"
+            HorizontalOptions="CenterAndExpand"
+            Style="{StaticResource BoldLabelFont18}"
+            Text="{x:Static resource:SharedResources.Text_Notification}"
+            TextColor="{StaticResource Black100}"
+            VerticalOptions="CenterAndExpand" />
+        <CollectionView
+            Grid.Row="1"
+            Margin="0,15,0,0"
+            ItemsSource="{Binding Notifications}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <VerticalStackLayout Margin="0,10,0,0" BackgroundColor="{Binding BackgroundColor}">
+                        <Grid Margin="10,10,10,0" ColumnDefinitions="auto,*">
+                            <Image Source="avatar" Style="{StaticResource ImageSize60}" />
+                            <VerticalStackLayout Grid.Column="1" Margin="10,0">
+                                <Label
+                                    Style="{StaticResource BoldLabelFont16}"
+                                    Text="{Binding CreatedBy}"
+                                    TextColor="{StaticResource PrimaryColor}" />
+                                <Label
+                                    Style="{StaticResource RegularLabelFont14}"
+                                    Text="{Binding Content}"
+                                    TextColor="{StaticResource Gray300}" />
+                                <Grid Margin="0,10,0,0" ColumnDefinitions="*,auto">
+                                    <Grid ColumnDefinitions="auto,auto">
+                                        <Image Source="time" Style="{StaticResource ImageSize20}" />
+                                        <Label
+                                            Grid.Column="1"
+                                            Margin="5,0"
+                                            Style="{StaticResource RegularLabelFont14}"
+                                            Text="3 hour ago"
+                                            TextColor="{StaticResource Black100}" />
+                                    </Grid>
+                                    <Grid Grid.Column="1" ColumnDefinitions="auto,auto">
+                                        <Label
+                                            Style="{StaticResource RegularLabelFont14}"
+                                            Text="{Binding CreatedOnString}"
+                                            TextColor="{StaticResource Black100}" />
+                                        <Image
+                                            Grid.Column="1"
+                                            Margin="5,0"
+                                            Source="notification_not_read"
+                                            Style="{StaticResource ImageSize20}">
+                                            <Image.Triggers>
+                                                <DataTrigger
+                                                    Binding="{Binding IsRead}"
+                                                    TargetType="Image"
+                                                    Value="false">
+                                                    <Setter Property="Source" Value="notification_is_read" />
+                                                </DataTrigger>
+                                            </Image.Triggers>
+                                        </Image>
+                                    </Grid>
+                                </Grid>
+                            </VerticalStackLayout>
+                        </Grid>
+                    </VerticalStackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</base:BaseContentPage>

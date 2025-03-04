@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<VerticalStackLayout
+    x:Class="WytSky.Mobile.Maui.Skoola.Template.Chat.SentMessageTemplate"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Name="root">
+    <Border
+        Margin="10,5"
+        BackgroundColor="LightGray"
+        BindingContext="{x:Reference root}"
+        HeightRequest="50"
+        HorizontalOptions="Start"
+        StrokeShape="RoundRectangle 0,20,20,20">
+        <HorizontalStackLayout Margin="5">
+            <Label
+                Margin="10,0"
+                HorizontalOptions="FillAndExpand"
+                Style="{StaticResource RegularLabelFont16}"
+                Text="{Binding Title}"
+                TextColor="{StaticResource DimGray}"
+                VerticalOptions="Start" />
+            <Label
+                Grid.Column="1"
+                Margin="5,0"
+                HorizontalOptions="End"
+                Style="{StaticResource RegularLabelFont12}"
+                Text="{Binding Time}"
+                TextColor="{StaticResource DimGray}"
+                VerticalOptions="EndAndExpand" />
+        </HorizontalStackLayout>
+    </Border>
+</VerticalStackLayout>

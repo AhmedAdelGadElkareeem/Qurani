@@ -1,0 +1,8 @@
+﻿<maui:MauiWinUIApplication
+    x:Class="WytSky.Mobile.Maui.Skoola.WinUI.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:maui="using:Microsoft.Maui"
+    xmlns:local="using:WytSky.Mobile.Maui.Skoola.WinUI">
+
+</maui:MauiWinUIApplication>

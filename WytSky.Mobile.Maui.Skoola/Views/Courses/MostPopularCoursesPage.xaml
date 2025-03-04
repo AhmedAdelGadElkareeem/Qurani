@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<base:BaseContentPage
+    x:Class="WytSky.Mobile.Maui.Skoola.Views.Courses.MostPopularCoursesPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:base="clr-namespace:WytSky.Mobile.Maui.Skoola.Views"
+    xmlns:behaviors="clr-namespace:WytSky.Mobile.Maui.Skoola.Behaviors"
+    xmlns:customControl="clr-namespace:WytSky.Mobile.Maui.Skoola.CustomControl.Borderless"
+    xmlns:customControls="clr-namespace:WytSky.Mobile.Maui.Skoola.CustomControl"
+    xmlns:resource="clr-namespace:WytSky.Mobile.Maui.Skoola.AppResources"
+    xmlns:templates="clr-namespace:WytSky.Mobile.Maui.Skoola.Template"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
+    <Grid RowDefinitions="auto,auto,*">
+        <customControls:WhiteBackView
+            BackgroundColor="{StaticResource White}"
+            HasPageName="True"
+            PageName="{x:Static resource:SharedResources.Text_MostPopularCourses}" />
+        <CollectionView
+            x:Name="categories"
+            Grid.Row="1"
+            Margin="15,10,15,0"
+            HeightRequest="40"
+            ItemsSource="{Binding Categories}">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout ItemSpacing="10" Orientation="Horizontal" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Border
+                        BackgroundColor="{StaticResource PrimaryColor}"
+                        HeightRequest="40"
+                        StrokeThickness="1">
+                        <Grid Margin="10,0" ColumnDefinitions="auto,auto">
+                            <Image
+                                HorizontalOptions="Start"
+                                Source="test_image2"
+                                Style="{StaticResource ImageSize20}" />
+                            <Label
+                                Grid.Column="1"
+                                Margin="5,0"
+                                Style="{StaticResource BoldLabelFont14}"
+                                Text="{Binding Name}"
+                                TextColor="{StaticResource White}">
+                                <Label.Triggers>
+                                    <DataTrigger
+                                        Binding="{Binding IsSelected}"
+                                        TargetType="Label"
+                                        Value="false">
+                                        <Setter Property="TextColor" Value="{StaticResource PrimaryColor}" />
+                                    </DataTrigger>
+                                </Label.Triggers>
+                            </Label>
+                        </Grid>
+                        <Border.Triggers>
+                            <DataTrigger
+                                Binding="{Binding IsSelected}"
+                                TargetType="Border"
+                                Value="false">
+                                <Setter Property="Stroke" Value="{StaticResource PrimaryColor}" />
+                                <Setter Property="StrokeThickness" Value="1" />
+                                <Setter Property="BackgroundColor" Value="{StaticResource White}" />
+                            </DataTrigger>
+                        </Border.Triggers>
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding BindingContext.SelectCategoryCommand, Source={x:Reference categories}}" CommandParameter="{Binding .}" />
+                        </Border.GestureRecognizers>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <CollectionView
+            x:Name="mostPopularCourses"
+            Grid.Row="2"
+            Margin="20,5,20,0"
+            ItemsSource="{Binding MostPopularCourses}">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout ItemSpacing="10" Orientation="Vertical" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <templates:CourseTemplate
+                        CommandParameter="{Binding .}"
+                        DataModel="{Binding .}"
+                        SelectedCourseCommand="{Binding BindingContext.SelectCourseCommand, Source={x:Reference mostPopularCourses}}" />
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</base:BaseContentPage>

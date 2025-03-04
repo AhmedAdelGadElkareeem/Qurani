@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<base:BaseContentPage
+    x:Class="WytSky.Mobile.Maui.Skoola.Views.Payment.PaymentSuccessfullyPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:base="clr-namespace:WytSky.Mobile.Maui.Skoola.Views"
+    xmlns:customControls="clr-namespace:WytSky.Mobile.Maui.Skoola.CustomControl"
+    xmlns:resource="clr-namespace:WytSky.Mobile.Maui.Skoola.AppResources"
+    xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
+    xmlns:templates="clr-namespace:WytSky.Mobile.Maui.Skoola.Template">
+    <ScrollView>
+        <Grid RowDefinitions="auto,*,auto">
+
+            <customControls:WhiteBackView IsVisible="false" VerticalOptions="Start" />
+
+            <VerticalStackLayout
+                Grid.Row="1"
+                HorizontalOptions="CenterAndExpand"
+                VerticalOptions="CenterAndExpand">
+
+                <skia:SKLottieView
+                    Margin="0,20,0,0"
+                    HeightRequest="200"
+                    RepeatCount="-1"
+                    RepeatMode="Restart"
+                    Source="success.json"
+                    WidthRequest="200" />
+
+                <Label
+                    HorizontalOptions="CenterAndExpand"
+                    HorizontalTextAlignment="Center"
+                    Style="{StaticResource BoldLabelFont20}"
+                    Text="{x:Static resource:SharedResources.PaymentAddedSuccessfully}"
+                    TextColor="{StaticResource TextColor}"
+                    VerticalOptions="Center" />
+
+                <Label
+                    Margin="0,20,0,0"
+                    HorizontalOptions="CenterAndExpand"
+                    HorizontalTextAlignment="Center"
+                    Style="{StaticResource BoldLabelFont14}"
+                    Text="This course added to your courses Enjoy and learn now" />
+
+                <templates:CourseTemplate
+                    Margin="0,20,0,0"
+                    CommandParameter="{Binding .}"
+                    DataModel="{Binding Course}" />
+            </VerticalStackLayout>
+
+            <Button
+                Grid.Row="2"
+                Margin="15,0,15,10"
+                Command="{Binding OpenMyCoursesCommand}"
+                Style="{StaticResource BaseButton}"
+                Text="{x:Static resource:SharedResources.Text_MyCourses}" />
+        </Grid>
+    </ScrollView>
+
+</base:BaseContentPage>

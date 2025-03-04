@@ -1,0 +1,1142 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Text_AboutUs" xml:space="preserve">
+    <value>AboutUs</value>
+  </data>
+  <data name="Text_Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="Text_ContactUs" xml:space="preserve">
+    <value>ContactUs</value>
+  </data>
+  <data name="Text_Home" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="Text_Language" xml:space="preserve">
+    <value>العربية</value>
+  </data>
+  <data name="Text_PrivacyPolicy" xml:space="preserve">
+    <value>Privacy Policy</value>
+  </data>
+  <data name="Text_ShareApp" xml:space="preserve">
+    <value>Share App</value>
+  </data>
+  <data name="Text_Skip" xml:space="preserve">
+    <value>Skip</value>
+  </data>
+  <data name="Text_TermsConditions" xml:space="preserve">
+    <value>Terms and Conditions</value>
+  </data>
+  <data name="Text_DontShow" xml:space="preserve">
+    <value>Don't show again</value>
+  </data>
+  <data name="Text_Next" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="Text_Previous" xml:space="preserve">
+    <value>Previous</value>
+  </data>
+  <data name="Image_BackW_01" xml:space="preserve">
+    <value>BackW_01_EN.png</value>
+  </data>
+  <data name="Image_Back_01" xml:space="preserve">
+    <value>Back_01_EN.png</value>
+  </data>
+  <data name="Text_AttachFile" xml:space="preserve">
+    <value>Attach File</value>
+  </data>
+  <data name="Text_Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="Text_Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="Text_FullName" xml:space="preserve">
+    <value>Full Name</value>
+  </data>
+  <data name="Text_Phone" xml:space="preserve">
+    <value>Phone</value>
+  </data>
+  <data name="Text_SendTicket" xml:space="preserve">
+    <value>Send Ticket</value>
+  </data>
+  <data name="Text_Subject" xml:space="preserve">
+    <value>Subject</value>
+  </data>
+  <data name="Text_Privacy" xml:space="preserve">
+    <value>Privacy Policy</value>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>Kuwait - Salmiya - St. Salem Al Mubarak - Ganja Pulse</value>
+  </data>
+  <data name="Msg_ConnectionError" xml:space="preserve">
+    <value>No Internet Connection , Make sure that Wi-Fi or mobile data is turned on , then try again</value>
+  </data>
+  <data name="Msg_Error" xml:space="preserve">
+    <value>Sorry: An error has occurred, try again</value>
+  </data>
+  <data name="Msg_NoData" xml:space="preserve">
+    <value>Sorry : no data is available for viewing at this time</value>
+  </data>
+  <data name="Msg_NoInternetConnection" xml:space="preserve">
+    <value>No Internet Connection , Make sure that Wi-Fi or mobile data is turned on , then try again</value>
+  </data>
+  <data name="Msg_Success" xml:space="preserve">
+    <value>Operation accomplished successfully</value>
+  </data>
+  <data name="Msg_NoValidDescription" xml:space="preserve">
+    <value>Sorry : you entered an incorrect Description</value>
+  </data>
+  <data name="Msg_NoValidName" xml:space="preserve">
+    <value>Sorry : you entered an incorrect Name</value>
+  </data>
+  <data name="Text_AddNew" xml:space="preserve">
+    <value>Add New</value>
+  </data>
+  <data name="Text_Canceled" xml:space="preserve">
+    <value>Canceled</value>
+  </data>
+  <data name="Text_Date" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="Text_Done" xml:space="preserve">
+    <value>Done</value>
+  </data>
+  <data name="Text_High" xml:space="preserve">
+    <value>High</value>
+  </data>
+  <data name="Text_Implementation" xml:space="preserve">
+    <value>Implementation</value>
+  </data>
+  <data name="Text_Low" xml:space="preserve">
+    <value>Low</value>
+  </data>
+  <data name="Text_Medium" xml:space="preserve">
+    <value>Medium</value>
+  </data>
+  <data name="Text_Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Text_Planing" xml:space="preserve">
+    <value>Planing</value>
+  </data>
+  <data name="Text_Priority" xml:space="preserve">
+    <value>Priority</value>
+  </data>
+  <data name="Text_Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="Text_Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="Text_ToDoList" xml:space="preserve">
+    <value>To Do List</value>
+  </data>
+  <data name="Text_Back" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="Text_TryAgain" xml:space="preserve">
+    <value>Try Again</value>
+  </data>
+  <data name="Test_OrganiztionCode" xml:space="preserve">
+    <value>Organiztion Code</value>
+  </data>
+  <data name="Text_GetUrl" xml:space="preserve">
+    <value>Get Url</value>
+  </data>
+  <data name="Msg_NotValidOrgCode" xml:space="preserve">
+    <value>Sorry : you entered an incorrect Code</value>
+  </data>
+  <data name="Msg_NotValidPassword" xml:space="preserve">
+    <value>Sorry : you entered an incorrect Password</value>
+  </data>
+  <data name="Msg_NotValidUserName" xml:space="preserve">
+    <value>Sorry : you entered an incorrect UserName</value>
+  </data>
+  <data name="Msg_NotValidMessage" xml:space="preserve">
+    <value>Sorry : you entered an incorrect Message</value>
+  </data>
+  <data name="Msg_SendNewMessage" xml:space="preserve">
+    <value>There are messages that have not been sent, they will be sent automatically as soon as an internet connection is available</value>
+  </data>
+  <data name="Msg_AlreadyHaveAcoount" xml:space="preserve">
+    <value>Already have an acoount ?</value>
+  </data>
+  <data name="Msg_DontHaveAcoount" xml:space="preserve">
+    <value>Don’t have an acoount ?</value>
+  </data>
+  <data name="Text_Login" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="Text_Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="Text_Register" xml:space="preserve">
+    <value>Register</value>
+  </data>
+  <data name="Text_ResetPassword" xml:space="preserve">
+    <value>Reset Password</value>
+  </data>
+  <data name="Text_SignIn" xml:space="preserve">
+    <value>Sign in</value>
+  </data>
+  <data name="Text_SignUp" xml:space="preserve">
+    <value>Sign Up</value>
+  </data>
+  <data name="Text_WelcomeTo" xml:space="preserve">
+    <value>Welcome To</value>
+  </data>
+  <data name="Text_Categories" xml:space="preserve">
+    <value>Categories</value>
+  </data>
+  <data name="Text_SeeAll" xml:space="preserve">
+    <value>See all</value>
+  </data>
+  <data name="Text_BestSell" xml:space="preserve">
+    <value>Best Sell</value>
+  </data>
+  <data name="Text_Featured" xml:space="preserve">
+    <value>Featured</value>
+  </data>
+  <data name="Text_ItemDetails" xml:space="preserve">
+    <value>Item Details</value>
+  </data>
+  <data name="Text_Reviews" xml:space="preserve">
+    <value>Reviews</value>
+  </data>
+  <data name="Text_AddToCart" xml:space="preserve">
+    <value>Add To Cart</value>
+  </data>
+  <data name="Text_Cart" xml:space="preserve">
+    <value>Cart</value>
+  </data>
+  <data name="Text_Continue" xml:space="preserve">
+    <value>Continue</value>
+  </data>
+  <data name="Text_Favorites" xml:space="preserve">
+    <value>Favorites</value>
+  </data>
+  <data name="Text_MyOrders" xml:space="preserve">
+    <value>My Orders</value>
+  </data>
+  <data name="Text_OrderAgain" xml:space="preserve">
+    <value>Order Again</value>
+  </data>
+  <data name="Text_Profile" xml:space="preserve">
+    <value>Profile</value>
+  </data>
+  <data name="Text_LogOut" xml:space="preserve">
+    <value>Log Out</value>
+  </data>
+  <data name="Text_RateApp" xml:space="preserve">
+    <value>Rate App</value>
+  </data>
+  <data name="Text_EmailOrPhone" xml:space="preserve">
+    <value>Email / Phone</value>
+  </data>
+  <data name="Text_FacebookLogin" xml:space="preserve">
+    <value>Login by using Facebook</value>
+  </data>
+  <data name="Text_Notification" xml:space="preserve">
+    <value>Notification</value>
+  </data>
+  <data name="Text_ServiceRequest" xml:space="preserve">
+    <value>Service Request</value>
+  </data>
+  <data name="Text_SelectLocation" xml:space="preserve">
+    <value>Select Location</value>
+  </data>
+  <data name="Text_Location" xml:space="preserve">
+    <value>Location</value>
+  </data>
+  <data name="Text_All" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="Text_Service" xml:space="preserve">
+    <value>Service</value>
+  </data>
+  <data name="Text_ServicAappropriate" xml:space="preserve">
+    <value>Appropriate time to provide the service</value>
+  </data>
+  <data name="Text_Loading" xml:space="preserve">
+    <value>Loading ...</value>
+  </data>
+  <data name="Msg_CloseApp" xml:space="preserve">
+    <value>Are you sure you want to close the application?</value>
+  </data>
+  <data name="Text_Cancle" xml:space="preserve">
+    <value>Cancle</value>
+  </data>
+  <data name="Text_CloseApp" xml:space="preserve">
+    <value>Close alurt</value>
+  </data>
+  <data name="Text_AddressDetail" xml:space="preserve">
+    <value>Address Detail</value>
+  </data>
+  <data name="Text_ServiceDetails" xml:space="preserve">
+    <value>Service Details</value>
+  </data>
+  <data name="Text_Camera" xml:space="preserve">
+    <value>Camera</value>
+  </data>
+  <data name="Text_Gallery" xml:space="preserve">
+    <value>Gallery</value>
+  </data>
+  <data name="Text_SelectPhoto" xml:space="preserve">
+    <value>Select Photo</value>
+  </data>
+  <data name="Text_SelectPhotoFrom" xml:space="preserve">
+    <value>Select Photo From ?</value>
+  </data>
+  <data name="Text_CameraVideo" xml:space="preserve">
+    <value>Camera</value>
+  </data>
+  <data name="Text_Change" xml:space="preserve">
+    <value>Change</value>
+  </data>
+  <data name="Text_SelectVideo" xml:space="preserve">
+    <value>Select Video</value>
+  </data>
+  <data name="Text_SelectVideoFrom" xml:space="preserve">
+    <value>Select Video From ?</value>
+  </data>
+  <data name="Text_ConfirmPassword" xml:space="preserve">
+    <value>Confirm Password</value>
+  </data>
+  <data name="Msg_PasswordValdation" xml:space="preserve">
+    <value>Password must be at least 8 characters long and contain numbers, letters and @</value>
+  </data>
+  <data name="Msg_NotValidEmail" xml:space="preserve">
+    <value>Sorry: you entered an incorrect email</value>
+  </data>
+  <data name="Msg_NotValidName" xml:space="preserve">
+    <value>Sorry: you entered an incorrect name</value>
+  </data>
+  <data name="Msg_PasswordNotMatch" xml:space="preserve">
+    <value>Sorry: the password and confirm the password mismatch</value>
+  </data>
+  <data name="Msg_NotValidPhone" xml:space="preserve">
+    <value>Sorry: you have entered an incorrect phone number</value>
+  </data>
+  <data name="Text_OrderNow" xml:space="preserve">
+    <value>Order Now</value>
+  </data>
+  <data name="Text_AttachPicture" xml:space="preserve">
+    <value>Attach a Picture</value>
+  </data>
+  <data name="Text_AttachVideo" xml:space="preserve">
+    <value>Attach a Video</value>
+  </data>
+  <data name="Text_AttachVoice" xml:space="preserve">
+    <value>Attach a Voice</value>
+  </data>
+  <data name="Text_Choose" xml:space="preserve">
+    <value>Choose</value>
+  </data>
+  <data name="Text_ChooseService" xml:space="preserve">
+    <value>Choose a service</value>
+  </data>
+  <data name="Text_GetLocation" xml:space="preserve">
+    <value>Get Location</value>
+  </data>
+  <data name="Text_OrderDetails" xml:space="preserve">
+    <value>Order Details</value>
+  </data>
+  <data name="Text_Play" xml:space="preserve">
+    <value>Play</value>
+  </data>
+  <data name="Text_Record" xml:space="preserve">
+    <value>Record</value>
+  </data>
+  <data name="Text_StopRecording" xml:space="preserve">
+    <value>Stop Recording</value>
+  </data>
+  <data name="Text_Order" xml:space="preserve">
+    <value>Order</value>
+  </data>
+  <data name="Text_Address" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="Text_Approval" xml:space="preserve">
+    <value>Has been approved</value>
+  </data>
+  <data name="Text_AwaitingApproval" xml:space="preserve">
+    <value>Awaiting approval</value>
+  </data>
+  <data name="Text_Technical" xml:space="preserve">
+    <value>Technical</value>
+  </data>
+  <data name="Text_Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="Msg_NotAvailabelService" xml:space="preserve">
+    <value>Sorry: .... Service is not available at the time of the area you have chosen.
+Do you want us to notify you when the service is available?</value>
+  </data>
+  <data name="Text_Yes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="Text_From" xml:space="preserve">
+    <value>From</value>
+  </data>
+  <data name="Text_To" xml:space="preserve">
+    <value>To</value>
+  </data>
+  <data name="Text_Details" xml:space="preserve">
+    <value>More details ...</value>
+  </data>
+  <data name="Text_Notes" xml:space="preserve">
+    <value>Notes</value>
+  </data>
+  <data name="Text_PersonalData" xml:space="preserve">
+    <value>Personal data</value>
+  </data>
+  <data name="Msg_TimeExpired" xml:space="preserve">
+    <value>Sorry: the time limit has expired. Please log in again</value>
+  </data>
+  <data name="Msg_UserNoValid" xml:space="preserve">
+    <value>Sorry: this user is not authorized to use the application at this time, you must contact the administration to find out the reason</value>
+  </data>
+  <data name="Text_Preview" xml:space="preserve">
+    <value>Preview</value>
+  </data>
+  <data name="Msg_NotValidNewPassword" xml:space="preserve">
+    <value>Sorry : you entered an incorrect New Password</value>
+  </data>
+  <data name="Text_ChangePassword" xml:space="preserve">
+    <value>Change Password</value>
+  </data>
+  <data name="Text_NewPassword" xml:space="preserve">
+    <value>New Password</value>
+  </data>
+  <data name="Text_OldPassword" xml:space="preserve">
+    <value>Old Password</value>
+  </data>
+  <data name="Text_AppleLogin" xml:space="preserve">
+    <value>Login by using Apple</value>
+  </data>
+  <data name="Text_BrowseServices" xml:space="preserve">
+    <value>Browse Services</value>
+  </data>
+  <data name="Msg_UnableGetLocation" xml:space="preserve">
+    <value>Sorry: we were not able to locate your current location. This may be due to the lack of permission for the application to determine the location or because the GPS feature has not been activated on your device
+You can activate the location feature or manually locate your site in order to benefit from our services</value>
+  </data>
+  <data name="Text_OrderNumber" xml:space="preserve">
+    <value>Order Number</value>
+  </data>
+  <data name="Msg_EmailNotValid" xml:space="preserve">
+    <value>Sorry : you have entered an e-mail address that does not exist. Please make sure that you are using the data of an account already registered
+If you do not have an account, you can register now</value>
+  </data>
+  <data name="Msg_SocialEmail" xml:space="preserve">
+    <value>Sorry : this account cannot be reset because it does not contain a password. You have logged in through a social media site. You can log in the same way now.</value>
+  </data>
+  <data name="Msg_VerficationCode" xml:space="preserve">
+    <value>Enter the code that you received on the e-mail</value>
+  </data>
+  <data name="Text_VerficationCode" xml:space="preserve">
+    <value>Verfication Code</value>
+  </data>
+  <data name="Text_CancelOrder" xml:space="preserve">
+    <value>Cancel Order</value>
+  </data>
+  <data name="Text_Completed" xml:space="preserve">
+    <value>Completed</value>
+  </data>
+  <data name="Text_MsgContact" xml:space="preserve">
+    <value>Click here to continue with management if they do not find the right time</value>
+  </data>
+  <data name="Text_BrowseProducts" xml:space="preserve">
+    <value>Browse Products</value>
+  </data>
+  <data name="Msg_EmailAlreadyUse" xml:space="preserve">
+    <value>Sorry, you have already entered an email already in use</value>
+  </data>
+  <data name="Text_CheckOut" xml:space="preserve">
+    <value>Check Out</value>
+  </data>
+  <data name="Text_SelectItems" xml:space="preserve">
+    <value>Select Items</value>
+  </data>
+  <data name="Text_Total" xml:space="preserve">
+    <value>Total</value>
+  </data>
+  <data name="Text_InProcess" xml:space="preserve">
+    <value>In Process</value>
+  </data>
+  <data name="Text_Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="Text_Message" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="Text_Success" xml:space="preserve">
+    <value>Success</value>
+  </data>
+  <data name="Text_Warning" xml:space="preserve">
+    <value>Warning</value>
+  </data>
+  <data name="Text_Trending" xml:space="preserve">
+    <value>Trending</value>
+  </data>
+  <data name="Text_ContinueAsGuest" xml:space="preserve">
+    <value>Continue as guest</value>
+  </data>
+  <data name="Text_EnterYourEmail" xml:space="preserve">
+    <value>Enter Your Email</value>
+  </data>
+  <data name="Text_EnterYourName" xml:space="preserve">
+    <value>Enter Your Name</value>
+  </data>
+  <data name="Text_EnterYourPassword" xml:space="preserve">
+    <value>Enter Your Password</value>
+  </data>
+  <data name="Text_EnterYourPhone" xml:space="preserve">
+    <value>Enter Your Phone</value>
+  </data>
+  <data name="Text_ForgotYourPassword" xml:space="preserve">
+    <value>Forgot your password ?</value>
+  </data>
+  <data name="Text_ForgotYourUsername" xml:space="preserve">
+    <value>Forgot your username ?</value>
+  </data>
+  <data name="Text_ReEnterYourPassword" xml:space="preserve">
+    <value>Re-enter Your Password</value>
+  </data>
+  <data name="Text_Search" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="Text_Add" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="Msg_NoDataFound" xml:space="preserve">
+    <value>No Data Found</value>
+  </data>
+  <data name="Msg_SessionExpired" xml:space="preserve">
+    <value>Session Expired, Please Login Again</value>
+  </data>
+  <data name="Text_DeliveryAddress" xml:space="preserve">
+    <value>Delivery Address</value>
+  </data>
+  <data name="Text_HelpsFaqs" xml:space="preserve">
+    <value>Helps &amp; FAQs</value>
+  </data>
+  <data name="Text_MyProfile" xml:space="preserve">
+    <value>My Profile</value>
+  </data>
+  <data name="Text_PaymentMethods" xml:space="preserve">
+    <value>Payment Methods</value>
+  </data>
+  <data name="Text_Settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="Text_Voucher" xml:space="preserve">
+    <value>Voucher</value>
+  </data>
+  <data name="Text_CreateAccount" xml:space="preserve">
+    <value>Create account</value>
+  </data>
+  <data name="Text_EmailMeAboutSpecialPricing" xml:space="preserve">
+    <value>Email Me About Special Pricing</value>
+  </data>
+  <data name="Text_Facebook" xml:space="preserve">
+    <value>Facebook</value>
+  </data>
+  <data name="Text_Google" xml:space="preserve">
+    <value>Google</value>
+  </data>
+  <data name="Text_keepMeSignIn" xml:space="preserve">
+    <value>keep me sign in</value>
+  </data>
+  <data name="Text_LoginToYourAccount" xml:space="preserve">
+    <value>Login To Your Account</value>
+  </data>
+  <data name="Text_OrContinueWith" xml:space="preserve">
+    <value>Or Continue With</value>
+  </data>
+  <data name="Text_SignUpForFree" xml:space="preserve">
+    <value>Sign Up For Free</value>
+  </data>
+  <data name="Text_AddBonusToDelivery" xml:space="preserve">
+    <value>Add Bonus to delivery</value>
+  </data>
+  <data name="Text_AddPaymentMethod" xml:space="preserve">
+    <value>Add Payment Method</value>
+  </data>
+  <data name="Text_Apply" xml:space="preserve">
+    <value>Apply</value>
+  </data>
+  <data name="Text_BonusToDelivery" xml:space="preserve">
+    <value>Bouns to delivery</value>
+  </data>
+  <data name="Text_CashOnDelivery" xml:space="preserve">
+    <value>Cash On Delivery</value>
+  </data>
+  <data name="Text_CreditCard" xml:space="preserve">
+    <value>Credit Card</value>
+  </data>
+  <data name="Text_DeliverTo" xml:space="preserve">
+    <value>Deliver to</value>
+  </data>
+  <data name="Text_Delivery" xml:space="preserve">
+    <value>Delivery</value>
+  </data>
+  <data name="Text_DeliveryFromRestaurantName" xml:space="preserve">
+    <value>Delivery from restaurant name</value>
+  </data>
+  <data name="Text_Discount50" xml:space="preserve">
+    <value>Discount 50%</value>
+  </data>
+  <data name="Text_FeaturedRestaurant" xml:space="preserve">
+    <value>Featured Restaurant</value>
+  </data>
+  <data name="Text_FreeDelivery" xml:space="preserve">
+    <value>Free Delivery</value>
+  </data>
+  <data name="Text_FreeDeliveryForOrder" xml:space="preserve">
+    <value>You’ve to order at least 10$ for using free delivery for 1 month.</value>
+  </data>
+  <data name="Text_FreeDeliveryOneMonth" xml:space="preserve">
+    <value>Free Delivery for 1 Month!</value>
+  </data>
+  <data name="Text_Items" xml:space="preserve">
+    <value>Items</value>
+  </data>
+  <data name="Text_MostPopular" xml:space="preserve">
+    <value>Most Popular</value>
+  </data>
+  <data name="Text_NearestRestaurant" xml:space="preserve">
+    <value>Nearest Restaurant</value>
+  </data>
+  <data name="Text_PlaceOrder" xml:space="preserve">
+    <value>Place Order</value>
+  </data>
+  <data name="Text_PromoCode" xml:space="preserve">
+    <value>Promo code</value>
+  </data>
+  <data name="Text_Ratings" xml:space="preserve">
+    <value>Ratings</value>
+  </data>
+  <data name="Text_RestaurantsOffers" xml:space="preserve">
+    <value>Restaurants Offers</value>
+  </data>
+  <data name="Text_Subtotal" xml:space="preserve">
+    <value>Sub total</value>
+  </data>
+  <data name="Text_Time" xml:space="preserve">
+    <value>Time</value>
+  </data>
+  <data name="Text_TotalPayment" xml:space="preserve">
+    <value>Total Payment</value>
+  </data>
+  <data name="Text_Vat" xml:space="preserve">
+    <value>Vat</value>
+  </data>
+  <data name="Text_ViewMore" xml:space="preserve">
+    <value>View More</value>
+  </data>
+  <data name="Text_VodafoneCash" xml:space="preserve">
+    <value>Vodafone Cash</value>
+  </data>
+  <data name="Text_Alert" xml:space="preserve">
+    <value>Alert</value>
+  </data>
+  <data name="Text_CartItemsDeleted" xml:space="preserve">
+    <value>Cart Items Deleted</value>
+  </data>
+  <data name="Text_CodeSentTo" xml:space="preserve">
+    <value>Code sent to</value>
+  </data>
+  <data name="Text_CodeWillExpireIn" xml:space="preserve">
+    <value>code will expire in</value>
+  </data>
+  <data name="Text_Congrats" xml:space="preserve">
+    <value>Congrats!</value>
+  </data>
+  <data name="Text_Enter4DigitVerificationCode" xml:space="preserve">
+    <value>Enter 4-digit
+Verification code</value>
+  </data>
+  <data name="Text_FindFoodRestaurant" xml:space="preserve">
+    <value>Find for food or restaurant...</value>
+  </data>
+  <data name="Text_No" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="Text_PasswordResetSuccessfully" xml:space="preserve">
+    <value>Password Reset Successfully</value>
+  </data>
+  <data name="Text_ProfileReadyForUse" xml:space="preserve">
+    <value>Your Profile Is Ready To Use</value>
+  </data>
+  <data name="Text_SelectWhichContact" xml:space="preserve">
+    <value>Select which contact details should we use to reset your password</value>
+  </data>
+  <data name="Text_SetLocation" xml:space="preserve">
+    <value>Set Location</value>
+  </data>
+  <data name="Text_ThisDataWillDisplayedInYourProfile" xml:space="preserve">
+    <value>This data will be displayed in your account profile for security</value>
+  </data>
+  <data name="Text_UploadYourPhotoProfile" xml:space="preserve">
+    <value>Upload Your Photo Profile</value>
+  </data>
+  <data name="Text_ViaEmail" xml:space="preserve">
+    <value>Via Email:</value>
+  </data>
+  <data name="Text_ViaSms" xml:space="preserve">
+    <value>Via sms:</value>
+  </data>
+  <data name="Text_YouHaveCartItems" xml:space="preserve">
+    <value>You have items in your cart you need to send order ?</value>
+  </data>
+  <data name="Text_YourLocation" xml:space="preserve">
+    <value>Your Location</value>
+  </data>
+  <data name="Text_CartItemsSavedLocally" xml:space="preserve">
+    <value>CartI items saved locally and will be save when have active an internet connection </value>
+  </data>
+  <data name="Text_MustLogin" xml:space="preserve">
+    <value>Must login</value>
+  </data>
+  <data name="Text_Nearest" xml:space="preserve">
+    <value>Nearest</value>
+  </data>
+  <data name="Text_Offers" xml:space="preserve">
+    <value>Offers</value>
+  </data>
+  <data name="Text_ThereAreItemsInCart" xml:space="preserve">
+    <value>There are items in cart must saved first</value>
+  </data>
+  <data name="Text_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Text_History" xml:space="preserve">
+    <value>History</value>
+  </data>
+  <data name="Text_RateOrder" xml:space="preserve">
+    <value>Rate Order</value>
+  </data>
+  <data name="Text_ReOrder" xml:space="preserve">
+    <value>Re Order</value>
+  </data>
+  <data name="Text_TrackOrder" xml:space="preserve">
+    <value>Track Order</value>
+  </data>
+  <data name="Text_UpComing" xml:space="preserve">
+    <value>Upcoming</value>
+  </data>
+  <data name="Text_Delivered" xml:space="preserve">
+    <value>Delivered</value>
+  </data>
+  <data name="Text_DeliveredBy" xml:space="preserve">
+    <value>Delivered By : </value>
+  </data>
+  <data name="Text_Delivering" xml:space="preserve">
+    <value>Delivering</value>
+  </data>
+  <data name="Text_EstimatedTime" xml:space="preserve">
+    <value>Estimated Time</value>
+  </data>
+  <data name="Text_InPrepparation" xml:space="preserve">
+    <value>In Prepparation</value>
+  </data>
+  <data name="Text_PaymentMethod" xml:space="preserve">
+    <value>Payment Method :</value>
+  </data>
+  <data name="Text_Send" xml:space="preserve">
+    <value>Send</value>
+  </data>
+  <data name="Text_FirstName" xml:space="preserve">
+    <value>First Name</value>
+  </data>
+  <data name="Text_LastName" xml:space="preserve">
+    <value>Last Name</value>
+  </data>
+  <data name="Text_Or" xml:space="preserve">
+    <value>Or</value>
+  </data>
+  <data name="Text_OrSignUpWith" xml:space="preserve">
+    <value>or sign up with</value>
+  </data>
+  <data name="Text_RememberMe" xml:space="preserve">
+    <value>Remember me</value>
+  </data>
+  <data name="Text_SignInWithApple" xml:space="preserve">
+    <value>Sign up with Apple</value>
+  </data>
+  <data name="Text_SignInWithGoogle" xml:space="preserve">
+    <value>Sign up with Google</value>
+  </data>
+  <data name="Text_AccountVerified" xml:space="preserve">
+    <value>Account Verified</value>
+  </data>
+  <data name="Text_EnrollNow" xml:space="preserve">
+    <value>Enroll Now</value>
+  </data>
+  <data name="Text_ForgetPassword" xml:space="preserve">
+    <value>Forget Password</value>
+  </data>
+  <data name="Text_ForgotPassword" xml:space="preserve">
+    <value>Forgot Password ?</value>
+  </data>
+  <data name="Text_Hi" xml:space="preserve">
+    <value>Hi</value>
+  </data>
+  <data name="Text_HowDidYouHearAboutUs" xml:space="preserve">
+    <value>How did you hear about us ? (optional)</value>
+  </data>
+  <data name="Text_MostPopularCourses" xml:space="preserve">
+    <value>Most Popular Courses</value>
+  </data>
+  <data name="Text_NotGetTheCode" xml:space="preserve">
+    <value>Didn't get the code ?</value>
+  </data>
+  <data name="Text_PasswordChangedSuccessfully" xml:space="preserve">
+    <value>New Password 
+Successfully Changed</value>
+  </data>
+  <data name="Text_PhoneVerified" xml:space="preserve">
+    <value>Congratulations, your Phone number has been verified. You can add your interests</value>
+  </data>
+  <data name="Text_PleaseTypeCode" xml:space="preserve">
+    <value>Please type this code below for next step</value>
+  </data>
+  <data name="Text_Resend" xml:space="preserve">
+    <value>Resend</value>
+  </data>
+  <data name="Text_TopMentors" xml:space="preserve">
+    <value>Top Mentors</value>
+  </data>
+  <data name="Text_TopRatedCourses" xml:space="preserve">
+    <value>Top Rated Courses</value>
+  </data>
+  <data name="Text_ViewAll" xml:space="preserve">
+    <value>View All</value>
+  </data>
+  <data name="Text_WelcomeToQurani" xml:space="preserve">
+    <value>Welcome To Quarani.net</value>
+  </data>
+  <data name="Text_WillSendCode" xml:space="preserve">
+    <value>We will send verification code to your Phone</value>
+  </data>
+  <data name="Text_About" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="Text_AboutCourse" xml:space="preserve">
+    <value>About Course</value>
+  </data>
+  <data name="Text_Lessons" xml:space="preserve">
+    <value>Lessons</value>
+  </data>
+  <data name="Text_Mentor" xml:space="preserve">
+    <value>Mentor</value>
+  </data>
+  <data name="Text_Courses" xml:space="preserve">
+    <value>Courses</value>
+  </data>
+  <data name="Text_Students" xml:space="preserve">
+    <value>Students</value>
+  </data>
+  <data name="Text_Website" xml:space="preserve">
+    <value>Website</value>
+  </data>
+  <data name="Text_Mentors" xml:space="preserve">
+    <value>Mentors</value>
+  </data>
+  <data name="Text_MyCourses" xml:space="preserve">
+    <value>My Courses</value>
+  </data>
+  <data name="Text_Certificate" xml:space="preserve">
+    <value>Certificate</value>
+  </data>
+  <data name="Text_Ongoing" xml:space="preserve">
+    <value>Ongoing</value>
+  </data>
+  <data name="Text_Chat" xml:space="preserve">
+    <value>Chat</value>
+  </data>
+  <data name="Text_ClearAll" xml:space="preserve">
+    <value>Clear All</value>
+  </data>
+  <data name="Text_DarkMode" xml:space="preserve">
+    <value>Dark Mode</value>
+  </data>
+  <data name="Text_HelpCenter" xml:space="preserve">
+    <value>Help Center</value>
+  </data>
+  <data name="Text_InviteFriends" xml:space="preserve">
+    <value>Invite Friends</value>
+  </data>
+  <data name="Text_Payment" xml:space="preserve">
+    <value>Payment</value>
+  </data>
+  <data name="Text_Security" xml:space="preserve">
+    <value>Security</value>
+  </data>
+  <data name="Text_AppUpdate" xml:space="preserve">
+    <value>App Update</value>
+  </data>
+  <data name="Text_Arabic" xml:space="preserve">
+    <value>Arabic</value>
+  </data>
+  <data name="Text_BiometricId" xml:space="preserve">
+    <value>Biometric ID</value>
+  </data>
+  <data name="Text_BirthDate" xml:space="preserve">
+    <value>Birth Date</value>
+  </data>
+  <data name="Text_Cashback" xml:space="preserve">
+    <value>Cash back</value>
+  </data>
+  <data name="Text_Country" xml:space="preserve">
+    <value>Country</value>
+  </data>
+  <data name="Text_CurrentPassword" xml:space="preserve">
+    <value>Current Password</value>
+  </data>
+  <data name="Text_EditProfile" xml:space="preserve">
+    <value>Edit Profile</value>
+  </data>
+  <data name="Text_EnglishUK" xml:space="preserve">
+    <value>English (UK)</value>
+  </data>
+  <data name="Text_EnglishUS" xml:space="preserve">
+    <value>English (US)</value>
+  </data>
+  <data name="Text_FaceId" xml:space="preserve">
+    <value>Face ID</value>
+  </data>
+  <data name="Text_Gender" xml:space="preserve">
+    <value>Gender</value>
+  </data>
+  <data name="Text_GeneralNotification" xml:space="preserve">
+    <value>General Notification</value>
+  </data>
+  <data name="Text_NewPasswordCreatedSuccessfully" xml:space="preserve">
+    <value>New Password Created Successfully</value>
+  </data>
+  <data name="Text_SaveChanges" xml:space="preserve">
+    <value>Save Changes</value>
+  </data>
+  <data name="Text_Sound" xml:space="preserve">
+    <value>Sound</value>
+  </data>
+  <data name="Text_SpecialOffers" xml:space="preserve">
+    <value>Special Offers</value>
+  </data>
+  <data name="Text_Title" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="Text_Vibrate" xml:space="preserve">
+    <value>Vibrate</value>
+  </data>
+  <data name="Text_AddNewCard" xml:space="preserve">
+    <value>Add New Card</value>
+  </data>
+  <data name="Text_CardAddedSuccessfully" xml:space="preserve">
+    <value>Card Added Successfully</value>
+  </data>
+  <data name="Text_CardNumber" xml:space="preserve">
+    <value>Card Number</value>
+  </data>
+  <data name="Text_Connected" xml:space="preserve">
+    <value>Connected</value>
+  </data>
+  <data name="Text_CVV" xml:space="preserve">
+    <value>CVV</value>
+  </data>
+  <data name="Text_Expiration" xml:space="preserve">
+    <value>Expiry Date</value>
+  </data>
+  <data name="Text_HolderName" xml:space="preserve">
+    <value>Holder Name</value>
+  </data>
+  <data name="Text_NotConnected" xml:space="preserve">
+    <value>Not Connected</value>
+  </data>
+  <data name="Text_CustomerService" xml:space="preserve">
+    <value>Customer Service</value>
+  </data>
+  <data name="Text_EnrollToCourse" xml:space="preserve">
+    <value>Enroll To Course</value>
+  </data>
+  <data name="Text_Faq" xml:space="preserve">
+    <value>Faq</value>
+  </data>
+  <data name="Text_Instgram" xml:space="preserve">
+    <value>Instgram</value>
+  </data>
+  <data name="Text_PayNow" xml:space="preserve">
+    <value>Pay Now</value>
+  </data>
+  <data name="Text_Twitter" xml:space="preserve">
+    <value>Twitter</value>
+  </data>
+  <data name="Text_Whatsapp" xml:space="preserve">
+    <value>Whatsapp</value>
+  </data>
+  <data name="Text_CostDetails" xml:space="preserve">
+    <value>Cost Details</value>
+  </data>
+  <data name="PaymentAddedSuccessfully" xml:space="preserve">
+    <value>Payment Added Successfully</value>
+  </data>
+  <data name="VerifyAccount" xml:space="preserve">
+    <value>Verify Account</value>
+  </data>
+  <data name="AccountCreatedSuccessfully" xml:space="preserve">
+    <value>Account Created Successfully</value>
+  </data>
+  <data name="CanUseYourAccount" xml:space="preserve">
+    <value>Congratulations, your acount has been created. You can start using the app</value>
+  </data>
+  <data name="Text_Comments" xml:space="preserve">
+    <value>Comments</value>
+  </data>
+  <data name="Text_Questions" xml:space="preserve">
+    <value>Questions</value>
+  </data>
+  <data name="Text_Attachments" xml:space="preserve">
+    <value>Attachments</value>
+  </data>
+  <data name="Text_UserType" xml:space="preserve">
+    <value>User Type</value>
+  </data>
+  <data name="Text_Student" xml:space="preserve">
+    <value>Student</value>
+  </data>
+  <data name="Text_Parent" xml:space="preserve">
+    <value>Parent</value>
+  </data>
+  <data name="Text_Teatcher" xml:space="preserve">
+    <value>Teatcher</value>
+  </data>
+  <data name="Text_DemoVideo" xml:space="preserve">
+    <value>Demo Video</value>
+  </data>
+  <data name="Text_ExternalLink" xml:space="preserve">
+    <value>External Link</value>
+  </data>
+  <data name="Text_DownloadAttachments" xml:space="preserve">
+    <value>Download Attachments</value>
+  </data>
+</root>

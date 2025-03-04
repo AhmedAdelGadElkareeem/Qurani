@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<base:BaseContentPage
+    x:Class="WytSky.Mobile.Maui.Skoola.Views.User.AccountCreatedSuccessfullyPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:base="clr-namespace:WytSky.Mobile.Maui.Skoola.Views"
+    xmlns:resource="clr-namespace:WytSky.Mobile.Maui.Skoola.AppResources"
+    xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI">
+    <ScrollView>
+        <Grid RowDefinitions="*,auto">
+            <VerticalStackLayout VerticalOptions="CenterAndExpand">
+
+                <skia:SKLottieView
+                    HeightRequest="300"
+                    RepeatCount="-1"
+                    RepeatMode="Restart"
+                    Source="success.json"
+                    WidthRequest="200" />
+
+                <Label
+                    HorizontalTextAlignment="Center"
+                    Style="{StaticResource BoldLabelFont20}"
+                    Text="{x:Static resource:SharedResources.AccountCreatedSuccessfully}"
+                    TextColor="{StaticResource PrimaryColor}"
+                    VerticalOptions="Center" />
+
+                <Label
+                    Margin="10,20,10,0"
+                    HorizontalTextAlignment="Center"
+                    Style="{StaticResource RegularLabelFont16}"
+                    Text="{x:Static resource:SharedResources.CanUseYourAccount}"
+                    TextColor="{StaticResource Gray500}" />
+
+            </VerticalStackLayout>
+
+            <Button
+                Grid.Row="1"
+                Margin="10,0,10,10"
+                Clicked="Login"
+                Style="{StaticResource BaseButton}"
+                Text="{x:Static resource:SharedResources.Text_Login}" />
+        </Grid>
+
+    </ScrollView>
+
+</base:BaseContentPage>

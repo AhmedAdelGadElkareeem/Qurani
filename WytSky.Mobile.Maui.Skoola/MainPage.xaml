@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage
+    x:Class="WytSky.Mobile.Maui.Skoola.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:android="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.AndroidSpecific;assembly=Microsoft.Maui.Controls"
+    xmlns:category="clr-namespace:WytSky.Mobile.Maui.Skoola.Views.Category"
+    xmlns:courses="clr-namespace:WytSky.Mobile.Maui.Skoola.Views.Courses"
+    xmlns:home="clr-namespace:WytSky.Mobile.Maui.Skoola.Views"
+    xmlns:notification="clr-namespace:WytSky.Mobile.Maui.Skoola.Views.Notification"
+    xmlns:user="clr-namespace:WytSky.Mobile.Maui.Skoola.Views.User"
+    android:TabbedPage.IsSmoothScrollEnabled="False"
+    android:TabbedPage.IsSwipePagingEnabled="False"
+    android:TabbedPage.ToolbarPlacement="Bottom">
+    <home:HomePage />
+    <!--<category:CategoriesPage />
+    <user:MyCoursesPage />
+    <notification:NotificationsPage />
+    <user:MyProfilePage />-->
+</TabbedPage>

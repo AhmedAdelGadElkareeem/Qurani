@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<base:BaseContentPage
+    x:Class="WytSky.Mobile.Maui.Skoola.Views.OffersPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:base="clr-namespace:WytSky.Mobile.Maui.Skoola.Views"
+    xmlns:customControl="clr-namespace:WytSky.Mobile.Maui.Skoola.CustomControl"
+    xmlns:resource="clr-namespace:WytSky.Mobile.Maui.Skoola.AppResources">
+    <VerticalStackLayout>
+        <customControl:CustomHeader IsMenuVisible="False" IsSearchVisible="False" />
+        <CollectionView
+            x:Name="offers"
+            Margin="30,10"
+            HeightRequest="700"
+            ItemsSource="{Binding Offers}">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout ItemSpacing="10" Orientation="Vertical" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid HeightRequest="200">
+                        <Frame
+                            Padding="0"
+                            CornerRadius="10"
+                            IsClippedToBounds="True">
+                            <Image Aspect="AspectFill" Source="test_image" />
+                        </Frame>
+                        <Frame
+                            Margin="20,10,20,15"
+                            Padding="0"
+                            CornerRadius="10"
+                            VerticalOptions="EndAndExpand">
+                            <Grid Margin="10,5" ColumnDefinitions="auto,*,auto">
+                                <Frame
+                                    Padding="0"
+                                    CornerRadius="10"
+                                    HeightRequest="60"
+                                    WidthRequest="60">
+                                    <Image Aspect="AspectFit" Source="test_image" />
+                                </Frame>
+                                <VerticalStackLayout Grid.Column="1" Margin="10,0">
+                                    <Label
+                                        Style="{StaticResource BoldLabelFont16}"
+                                        Text="{Binding Name}"
+                                        TextColor="{StaticResource Black100}"
+                                        VerticalOptions="Start" />
+                                    <Label
+                                        Margin="0,5,0,0"
+                                        Style="{StaticResource RegularLabelFont14}"
+                                        Text="{Binding Description}"
+                                        TextColor="{StaticResource Gray100}"
+                                        VerticalOptions="Start" />
+                                    <Grid ColumnDefinitions="auto,auto">
+                                        <Label Margin="0,5,0,0" VerticalOptions="CenterAndExpand">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span
+                                                        FontAttributes="Bold"
+                                                        FontFamily="ManropeBold"
+                                                        Text="{Binding PriceAfter}"
+                                                        TextColor="{StaticResource Black100}" />
+                                                    <Span
+                                                        FontFamily="ManropeBold"
+                                                        Text=" $"
+                                                        TextColor="{StaticResource Black100}" />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <Label
+                                            Grid.Column="1"
+                                            Margin="10,5,10,0"
+                                            TextDecorations="Strikethrough"
+                                            VerticalOptions="CenterAndExpand">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span
+                                                        FontFamily="ManropeRegular"
+                                                        FontSize="12"
+                                                        Text="{Binding PriceBefore}"
+                                                        TextColor="{StaticResource Gray100}" />
+                                                    <Span
+                                                        FontFamily="ManropeRegular"
+                                                        FontSize="12"
+                                                        Text=" $"
+                                                        TextColor="{StaticResource Gray100}" />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                    </Grid>
+                                </VerticalStackLayout>
+                                <Frame
+                                    Grid.Column="2"
+                                    Margin="5"
+                                    Padding="0"
+                                    BackgroundColor="{StaticResource White}"
+                                    CornerRadius="25"
+                                    HorizontalOptions="StartAndExpand"
+                                    VerticalOptions="EndAndExpand">
+                                    <VerticalStackLayout>
+                                        <Grid
+                                            ColumnDefinitions="*,auto"
+                                            HeightRequest="30"
+                                            WidthRequest="90">
+                                            <Label
+                                                HorizontalOptions="CenterAndExpand"
+                                                Style="{StaticResource BoldLabelFont14}"
+                                                Text="{x:Static resource:SharedResources.Text_Add}"
+                                                TextColor="{StaticResource Black}"
+                                                VerticalOptions="CenterAndExpand" />
+                                            <Image
+                                                Grid.Column="1"
+                                                Aspect="AspectFit"
+                                                HeightRequest="30"
+                                                Source="plus"
+                                                VerticalOptions="CenterAndExpand"
+                                                WidthRequest="40">
+                                                <Image.GestureRecognizers>
+                                                    <TapGestureRecognizer Command="{Binding BindingContext.IncreaseQuantityCommand, Source={x:Reference offers}}" CommandParameter="{Binding .}" />
+                                                </Image.GestureRecognizers>
+                                            </Image>
+                                            <Grid.Triggers>
+                                                <DataTrigger
+                                                    Binding="{Binding IsSelected}"
+                                                    TargetType="Grid"
+                                                    Value="true">
+                                                    <Setter Property="IsVisible" Value="false" />
+                                                </DataTrigger>
+                                            </Grid.Triggers>
+                                        </Grid>
+                                        <Grid
+                                            ColumnDefinitions="auto,*,auto"
+                                            HeightRequest="30"
+                                            IsVisible="false"
+                                            WidthRequest="90">
+                                            <Image
+                                                Aspect="AspectFit"
+                                                HeightRequest="30"
+                                                Source="minus"
+                                                WidthRequest="30">
+                                                <Image.GestureRecognizers>
+                                                    <TapGestureRecognizer Command="{Binding BindingContext.DecreaseQuantityCommand, Source={x:Reference offers}}" CommandParameter="{Binding .}" />
+                                                </Image.GestureRecognizers>
+                                            </Image>
+                                            <Label
+                                                Grid.Column="1"
+                                                HorizontalOptions="CenterAndExpand"
+                                                Style="{StaticResource BoldLabelFont14}"
+                                                Text="{Binding Quantity}"
+                                                TextColor="{StaticResource Black}"
+                                                VerticalOptions="CenterAndExpand" />
+                                            <Image
+                                                Grid.Column="2"
+                                                Aspect="AspectFit"
+                                                HeightRequest="30"
+                                                Source="plus"
+                                                WidthRequest="30">
+                                                <Image.GestureRecognizers>
+                                                    <TapGestureRecognizer Command="{Binding BindingContext.IncreaseQuantityCommand, Source={x:Reference offers}}" CommandParameter="{Binding .}" />
+                                                </Image.GestureRecognizers>
+                                            </Image>
+                                            <Grid.Triggers>
+                                                <DataTrigger
+                                                    Binding="{Binding IsSelected}"
+                                                    TargetType="Grid"
+                                                    Value="true">
+                                                    <Setter Property="IsVisible" Value="true" />
+                                                </DataTrigger>
+                                            </Grid.Triggers>
+                                        </Grid>
+                                    </VerticalStackLayout>
+                                </Frame>
+                            </Grid>
+                        </Frame>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+            <CollectionView.EmptyView>
+                <customControl:EmptyView />
+            </CollectionView.EmptyView>
+        </CollectionView>
+    </VerticalStackLayout>
+</base:BaseContentPage>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<FlyoutPage
+    x:Class="WytSky.Mobile.Maui.Skoola.Views.Public.MenuPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:WytSky.Mobile.Maui.Skoola.Views"
+    Title="MenuPage"
+    BackgroundColor="{StaticResource White}">
+    <FlyoutPage.Flyout>
+        <ContentPage x:Name="MasterPage" Title="☰">
+            <ContentPage.Content>
+                <Grid Margin="20,0,20,10" RowDefinitions="auto,auto,*">
+                    <Image
+                        Grid.Row="0"
+                        Margin="0,50,0,0"
+                        Aspect="AspectFit"
+                        HeightRequest="40"
+                        HorizontalOptions="Start"
+                        IsVisible="false"
+                        Source="back"
+                        WidthRequest="40">
+                        <Image.Triggers>
+                            <DataTrigger
+                                Binding="{Binding Lang}"
+                                TargetType="Image"
+                                Value="ar">
+                                <Setter Property="Rotation" Value="180" />
+                            </DataTrigger>
+                        </Image.Triggers>
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="HideMenu" />
+                        </Image.GestureRecognizers>
+                    </Image>
+
+                    <Grid
+                        Grid.Row="1"
+                        Margin="0,50,0,0"
+                        ColumnDefinitions="auto,*">
+                        <Image
+                            Aspect="AspectFit"
+                            HeightRequest="50"
+                            Source="profile.png" />
+                        <VerticalStackLayout
+                            Grid.Column="1"
+                            Margin="10,5"
+                            VerticalOptions="CenterAndExpand">
+                            <Label
+                                Style="{StaticResource RegularLabelFont14}"
+                                Text="{Binding Name}"
+                                TextColor="{StaticResource Gray100}" />
+                            <Label
+                                FontAttributes="Bold"
+                                Style="{StaticResource BoldLabelFont16}"
+                                Text="{Binding Email}"
+                                TextColor="{StaticResource Black100}" />
+                        </VerticalStackLayout>
+                    </Grid>
+
+                    <ListView
+                        x:Name="MenuItemsListView"
+                        Grid.Row="2"
+                        Margin="0,10,0,0"
+                        HasUnevenRows="true"
+                        ItemsSource="{Binding MenuItems}"
+                        SeparatorVisibility="None"
+                        VerticalScrollBarVisibility="Never">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <StackLayout Margin="0,15,0,0" HorizontalOptions="FillAndExpand">
+                                        <StackLayout Orientation="Horizontal">
+                                            <Image
+                                                HeightRequest="30"
+                                                Source="{Binding Icon}"
+                                                VerticalOptions="Center" />
+                                            <Label
+                                                Margin="20,0"
+                                                Style="{StaticResource RegularLabelFont16}"
+                                                Text="{Binding Title}"
+                                                TextColor="{StaticResource Black100}" />
+                                        </StackLayout>
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
+            </ContentPage.Content>
+        </ContentPage>
+    </FlyoutPage.Flyout>
+    <FlyoutPage.Detail>
+        <NavigationPage>
+            <x:Arguments>
+                <pages:HomePage />
+            </x:Arguments>
+        </NavigationPage>
+    </FlyoutPage.Detail>
+</FlyoutPage>

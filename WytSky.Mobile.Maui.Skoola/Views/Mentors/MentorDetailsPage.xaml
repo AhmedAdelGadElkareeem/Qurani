@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<base:BaseContentPage
+    x:Class="WytSky.Mobile.Maui.Skoola.Views.Mentors.MentorDetailsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:base="clr-namespace:WytSky.Mobile.Maui.Skoola.Views"
+    xmlns:behaviors="clr-namespace:WytSky.Mobile.Maui.Skoola.Behaviors"
+    xmlns:customControl="clr-namespace:WytSky.Mobile.Maui.Skoola.CustomControl.Borderless"
+    xmlns:customControls="clr-namespace:WytSky.Mobile.Maui.Skoola.CustomControl"
+    xmlns:resource="clr-namespace:WytSky.Mobile.Maui.Skoola.AppResources"
+    xmlns:templates="clr-namespace:WytSky.Mobile.Maui.Skoola.Template"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
+    <ScrollView>
+        <VerticalStackLayout>
+            <customControls:WhiteBackView />
+
+            <VerticalStackLayout Margin="0,10,0,0" HorizontalOptions="CenterAndExpand">
+                <Image Source="avatar" Style="{StaticResource ImageSize60}" />
+                <VerticalStackLayout Margin="10,0" HorizontalOptions="CenterAndExpand">
+                    <Label
+                        HorizontalOptions="CenterAndExpand"
+                        HorizontalTextAlignment="Center"
+                        Style="{StaticResource BoldLabelFont22}"
+                        Text="Eslam Hisham"
+                        TextColor="{StaticResource Black}" />
+                    <Label
+                        HorizontalOptions="CenterAndExpand"
+                        HorizontalTextAlignment="Center"
+                        Style="{StaticResource RegularLabelFont12}"
+                        Text="Senior Javascript at google"
+                        TextColor="{StaticResource Gray300}" />
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+
+            <Grid Margin="10,5" ColumnDefinitions="*,*,*">
+                <VerticalStackLayout>
+                    <Label
+                        HorizontalOptions="CenterAndExpand"
+                        Style="{StaticResource BoldLabelFont18}"
+                        Text="25"
+                        TextColor="{StaticResource Black}" />
+                    <Label
+                        HorizontalOptions="CenterAndExpand"
+                        Style="{StaticResource BoldLabelFont12}"
+                        Text="{x:Static resource:SharedResources.Text_Courses}"
+                        TextColor="{StaticResource Gray300}" />
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Grid.Column="1">
+                    <Label
+                        HorizontalOptions="CenterAndExpand"
+                        Style="{StaticResource BoldLabelFont18}"
+                        Text="3,540"
+                        TextColor="{StaticResource Black}" />
+                    <Label
+                        HorizontalOptions="CenterAndExpand"
+                        Style="{StaticResource BoldLabelFont12}"
+                        Text="{x:Static resource:SharedResources.Text_Students}"
+                        TextColor="{StaticResource Gray300}" />
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Grid.Column="2">
+                    <Label
+                        HorizontalOptions="CenterAndExpand"
+                        Style="{StaticResource BoldLabelFont18}"
+                        Text="21,450"
+                        TextColor="{StaticResource Black}" />
+                    <Label
+                        HorizontalOptions="CenterAndExpand"
+                        Style="{StaticResource BoldLabelFont12}"
+                        Text="{x:Static resource:SharedResources.Text_Reviews}"
+                        TextColor="{StaticResource Gray300}" />
+                </VerticalStackLayout>
+            </Grid>
+
+            <Grid
+                Margin="20,10,20,0"
+                ColumnDefinitions="*,*"
+                ColumnSpacing="10">
+                <Frame
+                    Padding="0"
+                    BackgroundColor="{StaticResource PrimaryColor}"
+                    CornerRadius="15"
+                    HeightRequest="50">
+                    <Grid
+                        Margin="10,5"
+                        ColumnDefinitions="*,auto"
+                        HorizontalOptions="CenterAndExpand">
+                        <Label
+                            HorizontalOptions="CenterAndExpand"
+                            Style="{StaticResource BoldLabelFont18}"
+                            Text="{x:Static resource:SharedResources.Text_Message}"
+                            TextColor="{StaticResource White}" />
+                        <Image
+                            Grid.Column="1"
+                            Margin="10,0"
+                            Source="message"
+                            Style="{StaticResource ImageSize20}">
+                            <Image.Behaviors>
+                                <toolkit:IconTintColorBehavior TintColor="{StaticResource White}" />
+                            </Image.Behaviors>
+                        </Image>
+                    </Grid>
+                </Frame>
+                <Frame
+                    Grid.Column="1"
+                    Padding="0"
+                    BorderColor="{StaticResource PrimaryColor}"
+                    CornerRadius="15"
+                    HeightRequest="50">
+                    <Grid
+                        Margin="10,5"
+                        ColumnDefinitions="*,auto"
+                        HorizontalOptions="CenterAndExpand">
+                        <Label
+                            HorizontalOptions="CenterAndExpand"
+                            Style="{StaticResource BoldLabelFont18}"
+                            Text="{x:Static resource:SharedResources.Text_Website}"
+                            TextColor="{StaticResource Black100}" />
+                        <Image
+                            Grid.Column="1"
+                            Margin="10,0"
+                            Source="website"
+                            Style="{StaticResource ImageSize20}" />
+                    </Grid>
+                </Frame>
+            </Grid>
+
+            <Grid Margin="15,15,15,0" ColumnDefinitions="*,*,*">
+                <VerticalStackLayout>
+                    <Label
+                        x:Name="coursesLabel"
+                        Margin="5,0"
+                        HorizontalOptions="CenterAndExpand"
+                        Style="{StaticResource RegularLabelFont16}"
+                        Text="{x:Static resource:SharedResources.Text_Courses}"
+                        TextColor="{StaticResource PrimaryColor}" />
+                    <BoxView
+                        x:Name="coursesBoxView"
+                        Margin="0,10,0,0"
+                        HeightRequest="2"
+                        HorizontalOptions="FillAndExpand"
+                        Color="{StaticResource PrimaryColor}" />
+                    <VerticalStackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="CoursesClicked" />
+                    </VerticalStackLayout.GestureRecognizers>
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Grid.Column="1">
+                    <Label
+                        x:Name="studentsLabel"
+                        Grid.Column="1"
+                        Margin="5,0"
+                        HorizontalOptions="CenterAndExpand"
+                        Style="{StaticResource RegularLabelFont16}"
+                        Text="{x:Static resource:SharedResources.Text_Students}"
+                        TextColor="{StaticResource Gray300}" />
+                    <BoxView
+                        x:Name="studentsBoxView"
+                        Margin="0,10,0,0"
+                        HeightRequest="2"
+                        HorizontalOptions="FillAndExpand"
+                        Color="{StaticResource Gray100}" />
+                    <VerticalStackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="StudentsClicked" />
+                    </VerticalStackLayout.GestureRecognizers>
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Grid.Column="2">
+                    <Label
+                        x:Name="reviewsLabel"
+                        Grid.Column="2"
+                        Margin="5,0"
+                        HorizontalOptions="CenterAndExpand"
+                        Style="{StaticResource RegularLabelFont16}"
+                        Text="{x:Static resource:SharedResources.Text_Reviews}"
+                        TextColor="{StaticResource Gray300}" />
+                    <BoxView
+                        x:Name="reviewsBoxView"
+                        Margin="0,10,0,0"
+                        HeightRequest="2"
+                        HorizontalOptions="FillAndExpand"
+                        Color="{StaticResource Gray100}" />
+                    <VerticalStackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="ReviewsClicked" />
+                    </VerticalStackLayout.GestureRecognizers>
+                </VerticalStackLayout>
+
+            </Grid>
+
+            <VerticalStackLayout x:Name="coursesStack" Margin="20,10,20,0">
+                <CollectionView ItemsSource="{Binding Courses}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <templates:CourseTemplate DataModel="{Binding .}" />
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </VerticalStackLayout>
+
+            <Grid
+                x:Name="studentsStack"
+                Margin="20,10,20,0"
+                IsVisible="false"
+                RowDefinitions="auto,*">
+                <CollectionView
+                    Grid.Row="1"
+                    Margin="10,10,10,0"
+                    ItemsSource="{Binding Students}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <VerticalStackLayout Margin="10,5">
+                                <Grid ColumnDefinitions="auto,*,auto">
+                                    <Frame
+                                        Padding="0"
+                                        CornerRadius="10"
+                                        HeightRequest="50"
+                                        IsClippedToBounds="True"
+                                        WidthRequest="50">
+                                        <Image Source="avatar" />
+                                    </Frame>
+
+                                    <VerticalStackLayout Grid.Column="1" Margin="10,0">
+                                        <Label
+                                            Style="{StaticResource BoldLabelFont18}"
+                                            Text="{Binding Name}"
+                                            TextColor="{StaticResource Black}" />
+                                        <Label
+                                            Style="{StaticResource RegularLabelFont16}"
+                                            Text="{Binding Title}"
+                                            TextColor="{StaticResource Gray300}" />
+                                    </VerticalStackLayout>
+
+                                    <Image
+                                        Grid.Column="2"
+                                        Source="message"
+                                        Style="{StaticResource ImageSize20}">
+                                        <Image.Behaviors>
+                                            <toolkit:IconTintColorBehavior TintColor="{StaticResource Black100}" />
+                                        </Image.Behaviors>
+                                    </Image>
+                                </Grid>
+
+                            </VerticalStackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Grid>
+
+            <VerticalStackLayout
+                x:Name="reviewsStack"
+                Margin="20,0"
+                IsVisible="false">
+                <templates:ReviewTemplate
+                    ReviewItems="{Binding Reviews}"
+                    ReviewsCount="{Binding ReviewsCount}"
+                    SelectedReviewCommand="{Binding SelectedReviewCommand}" />
+            </VerticalStackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</base:BaseContentPage>
