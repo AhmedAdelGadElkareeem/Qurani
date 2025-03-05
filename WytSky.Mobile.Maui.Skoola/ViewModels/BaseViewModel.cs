@@ -108,7 +108,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
         {
             try
             {
-                await App.Current.MainPage.Navigation.PushModalAsync(page);
+                await App.Current.MainPage.Navigation.PushAsync(page);
             }
             catch (Exception e)
             {

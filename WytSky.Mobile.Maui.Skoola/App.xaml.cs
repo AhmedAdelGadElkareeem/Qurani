@@ -1,4 +1,5 @@
 ﻿using WytSky.Mobile.Maui.Skoola.Helpers;
+using WytSky.Mobile.Maui.Skoola.Views.Complexes;
 using WytSky.Mobile.Maui.Skoola.Views.User;
 
 namespace WytSky.Mobile.Maui.Skoola
@@ -16,7 +17,7 @@ namespace WytSky.Mobile.Maui.Skoola
                 IsArabic = Settings.Language == "ar";
                 if (Settings.IsLogedin)
                 {
-                    App.Current.MainPage = new MainPage();
+                    App.Current.MainPage = new NavigationPage(new ComplexesPage());
                 }
                 else
                 {

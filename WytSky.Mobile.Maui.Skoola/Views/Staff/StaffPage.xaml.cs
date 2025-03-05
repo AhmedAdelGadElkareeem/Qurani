@@ -5,7 +5,7 @@ namespace WytSky.Mobile.Maui.Skoola.Views.Staff;
 
 public partial class StaffPage : BaseContentPage
 {
-    StaffVM StaffVM = new();
+    StaffVM StaffVM = new StaffVM();
     public StaffPage(CentersModel centerIdModel)
     {
         InitializeComponent();
