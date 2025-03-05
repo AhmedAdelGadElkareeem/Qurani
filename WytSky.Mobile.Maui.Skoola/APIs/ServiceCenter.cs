@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using WytSky.Mobile.Maui.Skoola.Helpers;
 using WytSky.Mobile.Maui.Skoola.Models;
 
 namespace WytSky.Mobile.Maui.Skoola.APIs
@@ -8,13 +9,13 @@ namespace WytSky.Mobile.Maui.Skoola.APIs
         public const string BASE = "appservices";
 
         #region Centers
-        public async static Task<ObservableCollection<CentersModel>> GetCenter(string ParentId)
+        public async static Task<ObservableCollection<CentersModel>> GetCenter()
         {
             try
             {
                 var dictionary = new Dictionary<string, string>()
                 {
-                      {"ComplexID", ParentId},
+                      {"ComplexID", Settings.ComplexId},
                       {"_datatype", "json"},
                       {"_jsonarray", "1"},
                 };

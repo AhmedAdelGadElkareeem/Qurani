@@ -14,7 +14,6 @@
     <Grid VerticalOptions="FillAndExpand">
         <Grid VerticalOptions="FillAndExpand">
             <CollectionView
-                x:Name="centers"
                 Margin="15,10,15,0"
                 ItemsSource="{Binding Centers}"
                 VerticalOptions="FillAndExpand">
@@ -67,23 +66,23 @@
 
                                 <Grid ColumnDefinitions="auto,auto,auto">
                                     <Button
-                                        Command="{Binding Source={x:Reference centers}}, Path=BindingContext.OpenStudyGroupsCommand}"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.OpenStudyGroupsCommand}"
                                         CommandParameter="{Binding .}"
                                         Text="{x:Static resource:SharedResources.StudyGroups}" />
                                     <Button
                                         Grid.Column="1"
-                                        Command="{Binding Source={x:Reference centers}}, Path=BindingContext.OpenStaffsCommand}"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.OpenStaffsCommand}"
                                         CommandParameter="{Binding .}"
                                         Text="{x:Static resource:SharedResources.Staffs}" />
                                     <Button
                                         Grid.Column="2"
-                                        Command="{Binding Source={x:Reference centers}}, Path=BindingContext.OpenStudentsCommand}"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.OpenStudentsCommand}"
                                         CommandParameter="{Binding .}"
                                         Text="{x:Static resource:SharedResources.Students}" />
                                 </Grid>
                             </VerticalStackLayout>
                             <Border.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding Source={x:Reference centers}}, Path=BindingContext.SelectCenterCommand}" CommandParameter="{Binding .}" />
+                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.SelectCenterCommand}" CommandParameter="{Binding .}" />
                             </Border.GestureRecognizers>
                         </Border>
                     </DataTemplate>

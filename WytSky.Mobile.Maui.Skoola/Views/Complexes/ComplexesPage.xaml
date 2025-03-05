@@ -16,10 +16,7 @@
         <Grid RowDefinitions="auto,*" VerticalOptions="FillAndExpand">
             <customControls:LogoView />
             <Grid Grid.Row="1">
-                <CollectionView
-                    x:Name="complexes"
-                    Margin="15,10,15,0"
-                    ItemsSource="{Binding Complexes}">
+                <CollectionView Margin="15,10,15,0" ItemsSource="{Binding Complexes}">
                     <CollectionView.ItemsLayout>
                         <LinearItemsLayout ItemSpacing="15" Orientation="Vertical" />
                     </CollectionView.ItemsLayout>
@@ -75,7 +72,7 @@
                                 </VerticalStackLayout>
 
                                 <Border.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding Source={x:Reference complexes}, Path=BindingContext.SelectComplexCommand}" CommandParameter="{Binding .}" />
+                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.SelectComplexCommand}" CommandParameter="{Binding .}" />
                                 </Border.GestureRecognizers>
                             </Border>
                         </DataTemplate>

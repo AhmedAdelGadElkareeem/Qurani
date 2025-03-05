@@ -12,21 +12,10 @@ namespace WytSky.Mobile.Maui.Skoola.Dtos
         #endregion
 
         #region Properties
-        public bool IsFavorite
-        {
-            get => _IsFavorite;
-            set => SetProperty(ref _IsFavorite, value);
-        }
-        public string FavoriteImage
-        {
-            get => _FavoriteImage;
-            set => SetProperty(ref _FavoriteImage, value);
-        }
-        public int Quantity
-        {
-            get => _Quantity;
-            set => SetProperty(ref _Quantity, value);
-        }
+        public bool IsFavorite { get; set; }
+        public string FavoriteImage { get; set; }
+        public int Quantity { get; set; }
+
         public string ImageUrl { get { return string.IsNullOrEmpty(picsurl) ? "default_image.png" : Services.ApiServices.BaseImage + picsurl; } }
         #endregion
 

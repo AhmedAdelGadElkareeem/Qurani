@@ -11,16 +11,13 @@ public partial class StaffPage : BaseContentPage
         InitializeComponent();
         BindingContext = StaffVM;
         Title = App.IsArabic ? centerIdModel.CenterName : centerIdModel.CenterNameEn;
-        StaffVM.CenterID = centerIdModel.CenterID.ToString();
     }
 
     protected async override void OnAppearing()
     {
         base.OnAppearing();
-        if (!string.IsNullOrEmpty(StaffVM.CenterID))
-        {
-            await StaffVM.GetStaff();
-        }
+        await StaffVM.GetStaff();
+
     }
 
 }

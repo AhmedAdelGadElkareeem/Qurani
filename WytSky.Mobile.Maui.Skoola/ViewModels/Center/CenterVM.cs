@@ -14,7 +14,6 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
     public partial class CenterVM : BaseViewModel
     {
         [ObservableProperty] private ObservableCollection<CentersModel> centers;
-        [ObservableProperty] private string complexId;
         [ObservableProperty] private string centerName;
         [ObservableProperty] private string centerNameEn;
         [ObservableProperty] private string address;
@@ -28,7 +27,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
             try
             {
                 IsRunning = true;
-                Centers = await APIs.ServiceCenter.GetCenter(ComplexId);
+                Centers = await APIs.ServiceCenter.GetCenter();
                 IsRunning = false;
             }
             catch (Exception ex)
@@ -77,7 +76,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
                 {
                     { "CenterName", CenterName },
                     { "CenterNameEn", CenterNameEn },
-                    { "ComplexID" , ComplexId },
+                    { "ComplexID" , Settings.ComplexId },
                     { "SupervisorID" ,Settings.UserId },
                     { "isActive" ,true },
                     { "Address", Address},
@@ -141,7 +140,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
                 NameEn = centerModel.CenterNameEn
             };
             Settings.CenterId = centerModel.CenterID.ToString();
-            await OpenPushAsyncPage(new StudentsPage(centerModel));
+            await OpenPushAsyncPage(new StudentsPage(baseModel));
         }
         #endregion
     }

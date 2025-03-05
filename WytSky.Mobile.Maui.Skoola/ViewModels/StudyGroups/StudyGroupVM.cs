@@ -60,8 +60,6 @@ public partial class StudyGroupVM : BaseViewModel
                 { "GroupName", StudyGroupName },
                 { "GroupNameEn", StudyGroupNameEn },
                 { "TeacherID", Settings.StaffId },
-                { "CenterID", Settings.CenterId },
-                { "ComplexID", Settings.ComplexId },
             };
 
             var addedStudyGroup = await StudyGroupService.AddStudyGroup(formData);

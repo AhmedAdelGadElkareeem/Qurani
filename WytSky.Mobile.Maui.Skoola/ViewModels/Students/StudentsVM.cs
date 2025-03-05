@@ -45,7 +45,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.Students
 
                 if (addedStudent != null && addedStudent.rowsAffected > 0)
                 {
-                    await GetStudentsByGroupId();
+                    await GetStudentsByStudyGroupId();
                     Toast.ShowToastError(SharedResources.AddedSuccessfully);
                 }
             }

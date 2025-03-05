@@ -12,16 +12,12 @@ public partial class CenterPage : BaseContentPage
         InitializeComponent();
         CenterVM = new CenterVM();
         Title = complex.ComplexName;
-        CenterVM.ComplexId =  complex.ComplexID.ToString();
         BindingContext = CenterVM;
     }
     
     protected async override void OnAppearing()
     {
         base.OnAppearing();
-        if (!string.IsNullOrEmpty(CenterVM.ComplexId))
-        {
-            await CenterVM.GetCenters();
-        }
+        await CenterVM.GetCenters();
     }
 }
