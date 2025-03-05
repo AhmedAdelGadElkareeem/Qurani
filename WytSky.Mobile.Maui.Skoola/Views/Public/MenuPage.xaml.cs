@@ -31,7 +31,7 @@ public partial class MenuPage : FlyoutPage
             ExtensionLogMethods.LogExtension(ExceptionMseeage, "", "MenuPage", "Constructor");
         }
     }
-    public MenuPage(Page page)
+    /*public MenuPage(Page page)
     {
         try
         {
@@ -57,7 +57,7 @@ public partial class MenuPage : FlyoutPage
             System.Diagnostics.Debug.WriteLine(ExceptionMseeage);
             ExtensionLogMethods.LogExtension(ExceptionMseeage, "", "MenuPage", "Paramaterized Constructor");
         }
-    }
+    }*/
     private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
     {
         try

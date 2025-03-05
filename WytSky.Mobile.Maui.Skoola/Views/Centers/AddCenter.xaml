@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<pages:PopupPage
+    x:Class="WytSky.Mobile.Maui.Skoola.Views.Centers.AddCenter"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:Mopups.Pages;assembly=Mopups"
+    xmlns:res="clr-namespace:WytSky.Mobile.Maui.Skoola.AppResources">
+    <ScrollView>
+        <Frame
+            Margin="20,10"
+            Padding="10"
+            BackgroundColor="White"
+            CornerRadius="20"
+            HeightRequest="300"
+            VerticalOptions="CenterAndExpand">
+            <VerticalStackLayout>
+                <Entry
+                    Placeholder="{x:Static res:SharedResources.CenterNameAr}"
+                    Text="{Binding CenterName, Mode=TwoWay}"
+                    TextColor="Black" />
+                <Entry
+                    Placeholder="{x:Static res:SharedResources.CenterNameEn}"
+                    Text="{Binding CenterNameEn, Mode=TwoWay}"
+                    TextColor="Black" />
+                <Entry
+                    Placeholder="{x:Static res:SharedResources.DitrictName}"
+                    Text="{Binding DitrictName, Mode=TwoWay}"
+                    TextColor="Black" />
+                <Entry
+                    Placeholder="{x:Static res:SharedResources.Address}"
+                    Text="{Binding Address, Mode=TwoWay}"
+                    TextColor="Black" />
+                <Entry
+                    Placeholder="{x:Static res:SharedResources.City}"
+                    Text="{Binding CityName, Mode=TwoWay}"
+                    TextColor="Black" />
+                <Entry
+                    Keyboard="Telephone"
+                    Placeholder="{x:Static res:SharedResources.Text_Phone}"
+                    Text="{Binding Phone, Mode=TwoWay}"
+                    TextColor="Black" />
+                <Entry
+                    Placeholder="{x:Static res:SharedResources.Text_Email}"
+                    Text="{Binding Email, Mode=TwoWay}"
+                    TextColor="Black" />
+                <Editor
+                    Placeholder="{x:Static res:SharedResources.Text_Notes}"
+                    Text="{Binding Notes, Mode=TwoWay}"
+                    TextColor="Black" />
+                <Button
+                    Command="{Binding AddCenterCommand}"
+                    Style="{StaticResource BaseButton}"
+                    Text="{x:Static res:SharedResources.Text_Save}" />
+            </VerticalStackLayout>
+        </Frame>
+    </ScrollView>
+
+</pages:PopupPage>

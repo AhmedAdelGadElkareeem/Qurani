@@ -1142,4 +1142,40 @@ Successfully Changed</value>
   <data name="AddedSuccessfully" xml:space="preserve">
     <value>Added Successfully</value>
   </data>
+  <data name="CentersNumber" xml:space="preserve">
+    <value>Centers number :</value>
+  </data>
+  <data name="Text_Region" xml:space="preserve">
+    <value>Region</value>
+  </data>
+  <data name="ComplexName" xml:space="preserve">
+    <value>Complex name</value>
+  </data>
+  <data name="CenterNameAr" xml:space="preserve">
+    <value>Center name arabic</value>
+  </data>
+  <data name="CenterNameEn" xml:space="preserve">
+    <value>Center name english</value>
+  </data>
+  <data name="DitrictName" xml:space="preserve">
+    <value>Ditrict name</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>City</value>
+  </data>
+  <data name="Students" xml:space="preserve">
+    <value>Students</value>
+  </data>
+  <data name="Staffs" xml:space="preserve">
+    <value>Staffs</value>
+  </data>
+  <data name="StudyGroups" xml:space="preserve">
+    <value>Study groups</value>
+  </data>
+  <data name="StudyGroupAr" xml:space="preserve">
+    <value>Study group arabic</value>
+  </data>
+  <data name="StudyGroupEn" xml:space="preserve">
+    <value>Study group english</value>
+  </data>
 </root>

@@ -7,7 +7,7 @@
         <Setter Property="BarTextColor" Value="{StaticResource White}" />
         <Setter Property="IconColor" Value="{StaticResource White}" />
     </Style>
-    
+
     <!--  Bold Labels  -->
     <Style x:Key="BoldLabelFont22" TargetType="Label">
         <Setter Property="HorizontalOptions" Value="FillAndExpand" />
@@ -193,11 +193,9 @@
         <Setter Property="Margin" Value="0,20,0,0" />
         <Setter Property="BorderWidth" Value="1" />
     </Style>
-    
-    <Style
-        x:Key="AddButton"
-        TargetType="Button">
-        <Setter Property="TextColor" Value="{StaticResource White }" />
+
+    <Style x:Key="AddButton" TargetType="Button">
+        <Setter Property="TextColor" Value="{StaticResource White}" />
         <Setter Property="BackgroundColor" Value="{StaticResource PrimaryColor}" />
         <Setter Property="Margin" Value="5" />
         <Setter Property="CornerRadius" Value="40" />
@@ -209,6 +207,7 @@
         <Setter Property="FontSize" Value="18" />
         <Setter Property="Text" Value="+" />
     </Style>
+
     <!--#endregion-->
 
 
@@ -633,7 +632,7 @@
         <Setter Property="Shell.TabBarUnselectedColor" Value="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource Gray200}}" />
     </Style>
 
-   
+
 
     <Style TargetType="TabbedPage">
         <Setter Property="BarBackgroundColor" Value="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray950}}" />

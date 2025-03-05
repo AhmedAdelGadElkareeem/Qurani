@@ -3,7 +3,7 @@ using WytSky.Mobile.Maui.Skoola.Models;
 
 namespace WytSky.Mobile.Maui.Skoola.Dtos
 {
-    public class ItemDto : BaseModel
+    public class ItemDto
     {
         #region PrivateField
         private string _FavoriteImage = "IFHeartGray.png";

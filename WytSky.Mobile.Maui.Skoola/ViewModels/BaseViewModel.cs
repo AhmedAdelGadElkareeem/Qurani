@@ -7,6 +7,8 @@ using WytSky.Mobile.Maui.Skoola.AppResources;
 using WytSky.Mobile.Maui.Skoola.Helpers;
 using WytSky.Mobile.Maui.Skoola.Views;
 using WytSky.Mobile.Maui.Skoola.Views.User;
+using WytSky.Mobile.Maui.Skoola.Models;
+using System.Collections.ObjectModel;
 
 namespace WytSky.Mobile.Maui.Skoola.ViewModels
 {
@@ -26,6 +28,12 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
 
         [ObservableProperty]
         public string languageTitle;
+
+        [ObservableProperty]
+        ObservableCollection<CountryModel> countries;
+
+        [ObservableProperty]
+        ObservableCollection<RegionModel> regions;
 
         public BaseViewModel()
         {
@@ -59,7 +67,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
 
         public static void OpenMainPage()
         {
-            App.Current.MainPage = new NavigationPage(new HomePage());
+            App.Current.MainPage = new NavigationPage(new MainPage());
         }
         public void ResetUserNameAndPassword()
         {
@@ -96,13 +104,23 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
                 System.Diagnostics.Debug.WriteLine($"Error : {ex.Message}");
             }
         }
+        public async Task OpenPushAsyncPage(Page page)
+        {
+            try
+            {
+                await App.Current.MainPage.Navigation.PushAsync(page);
+            }
+            catch (Exception)
+            {
+            }
+        }
         public void ShowPopup(PopupPage popup)
         {
             MopupService.Instance.PushAsync(popup);
         }
         public void HidePopup()
         {
-            if(MopupService.Instance.PopupStack.Count > 0)
+            if (MopupService.Instance.PopupStack.Count > 0)
                 MopupService.Instance.PopAsync();
         }
         public void ChangeLanguage()
@@ -118,19 +136,31 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
                 else
                 {
                     Settings.Language = "ar";
-                    culture = new CultureInfo("ar-AE");
+                    culture = new CultureInfo("ar-EG");
                 }
                 Thread.CurrentThread.CurrentCulture = culture;
                 Thread.CurrentThread.CurrentUICulture = culture;
-                AppResources.SharedResources.Culture = culture;
+                SharedResources.Culture = culture;
                 Thread.CurrentThread.CurrentUICulture.NumberFormat = new CultureInfo("en").NumberFormat;
                 Thread.CurrentThread.CurrentUICulture.DateTimeFormat = new CultureInfo("en").DateTimeFormat;
-                App.Current.MainPage = new MainPage();
+                OpenMainPage();
             }
             catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine(string.Format(" Error : {0} - {1} ", ex.Message, ex.InnerException != null ? ex.InnerException.FullMessage() : ""));
             }
+        }
+
+
+        public async Task GetCountries()
+        {
+            Countries = await APIs.ServiceCountriesRegions.GetCountries();
+            await GetRegions(Countries[0].CountryID.Value.ToString());
+        }
+
+        public async Task GetRegions(string countryId)
+        {
+            Regions = await APIs.ServiceCountriesRegions.GetRegions(countryId);
         }
     }
 }

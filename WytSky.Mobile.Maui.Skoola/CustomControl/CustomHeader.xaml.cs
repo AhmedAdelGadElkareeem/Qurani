@@ -90,7 +90,7 @@ public partial class CustomHeader : ContentView
     
     private void OpenCartPage(object sender, EventArgs e)
     {
-        NavigateToPage.OpenPage(new CartPage());
+        //NavigateToPage.OpenPage(new CartPage());
     }
 
     private void OpenMenu(object sender, TappedEventArgs e)

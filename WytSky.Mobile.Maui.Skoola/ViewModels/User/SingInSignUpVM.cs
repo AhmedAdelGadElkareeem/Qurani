@@ -128,7 +128,6 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.User
                         Settings.AuthoToken = res.access_token;
                         Settings.SocialID = "";
                         OpenMainPage();
-                        // await GetClient();
                     }
                     else
                     {
@@ -374,7 +373,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.User
                  ExtensionLogMethods.LogExtension(ExceptionMseeage, "", "SignInSignUpVM", "Login()");
              }
          }*/
-        private async void ResetSendCode()
+       /*private async void ResetSendCode()
         {
             try
             {
@@ -421,7 +420,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.User
                 System.Diagnostics.Debug.WriteLine(ExceptionMseeage);
                 ExtensionLogMethods.LogExtension(ExceptionMseeage, "", "SignInSignUpVM", "createAccountCommand");
             }
-        }
+        }*/
         private void CommandVerficationCode()
         {
             try
@@ -452,7 +451,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.User
         {
             try
             {
-                await NavigateToPage.OpenPage(new ForgotPasswordPage(isFromLogin: true));
+                //await NavigateToPage.OpenPage(new ForgotPasswordPage(isFromLogin: true));
             }
             catch (Exception ex)
             {

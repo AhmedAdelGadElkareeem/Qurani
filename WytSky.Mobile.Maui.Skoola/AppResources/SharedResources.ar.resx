@@ -1131,4 +1131,40 @@
   <data name="AddedSuccessfully" xml:space="preserve">
     <value>تمت الاضافه بنجاح</value>
   </data>
+  <data name="CentersNumber" xml:space="preserve">
+    <value>عدد المساجد : </value>
+  </data>
+  <data name="Text_Region" xml:space="preserve">
+    <value>المنطقة</value>
+  </data>
+  <data name="ComplexName" xml:space="preserve">
+    <value>اسم المجمع</value>
+  </data>
+  <data name="CenterNameAr" xml:space="preserve">
+    <value>اسم المسجد بالعربي</value>
+  </data>
+  <data name="CenterNameEn" xml:space="preserve">
+    <value>اسم المسجد بالانجليزي</value>
+  </data>
+  <data name="DitrictName" xml:space="preserve">
+    <value>اسم الحي</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>المدينة</value>
+  </data>
+  <data name="Students" xml:space="preserve">
+    <value>الطلاب</value>
+  </data>
+  <data name="Staffs" xml:space="preserve">
+    <value>المعلمين</value>
+  </data>
+  <data name="StudyGroups" xml:space="preserve">
+    <value>الحلقات</value>
+  </data>
+  <data name="StudyGroupAr" xml:space="preserve">
+    <value>اسم الحلقة بالعربي</value>
+  </data>
+  <data name="StudyGroupEn" xml:space="preserve">
+    <value>اسم الحلقة بالانجليزى</value>
+  </data>
 </root>

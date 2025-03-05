@@ -34,7 +34,7 @@ namespace WytSky.Mobile.Maui.Skoola.Services
             string json = "", url = "";
             try
             {
-                await App.ShowPopupService.Show(new LoadingPopup());
+                await MopupService.Instance.PushAsync(new LoadingPopup());
                 {
                     HttpClient client = new HttpClient(new HttpClientHandler())
                     {
@@ -149,7 +149,7 @@ namespace WytSky.Mobile.Maui.Skoola.Services
                 try
                 {
                     if (MopupService.Instance.PopupStack.Count > 0)
-                        App.ShowPopupService.Dispose();
+                        await MopupService.Instance.PopAllAsync();
                 }
                 catch (Exception ex)
                 {
@@ -277,7 +277,7 @@ namespace WytSky.Mobile.Maui.Skoola.Services
                 try
                 {
                     if (MopupService.Instance.PopupStack.Count > 0)
-                        App.ShowPopupService.Dispose();
+                        await MopupService.Instance.PopAllAsync();
                 }
                 catch (Exception ex)
                 {
@@ -293,7 +293,7 @@ namespace WytSky.Mobile.Maui.Skoola.Services
             string url = "";
             try
             {
-                await App.ShowPopupService.Show(new LoadingPopup());
+                await MopupService.Instance.PushAsync(new LoadingPopup());
                 {
                     HttpClient client = new HttpClient(new HttpClientHandler())
                     {
@@ -403,7 +403,7 @@ namespace WytSky.Mobile.Maui.Skoola.Services
                 try
                 {
                     if (MopupService.Instance.PopupStack.Count > 0)
-                        App.ShowPopupService.Dispose();
+                        await MopupService.Instance.PopAllAsync();
                 }
                 catch (Exception ex)
                 {
@@ -527,7 +527,7 @@ namespace WytSky.Mobile.Maui.Skoola.Services
                 try
                 {
                     if (MopupService.Instance.PopupStack.Count > 0)
-                        App.ShowPopupService.Dispose();
+                        await MopupService.Instance.PopAllAsync();
                 }
                 catch (Exception ex)
                 {
@@ -544,7 +544,7 @@ namespace WytSky.Mobile.Maui.Skoola.Services
             try
             {
                 if (isLoading)
-                    await App.ShowPopupService.Show(new LoadingPopup());
+                    await MopupService.Instance.PushAsync(new LoadingPopup());
                 {
                     client.DefaultRequestHeaders.Accept.Clear();
                     client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
@@ -655,7 +655,7 @@ namespace WytSky.Mobile.Maui.Skoola.Services
                     try
                     {
                         if (MopupService.Instance.PopupStack.Count > 0)
-                            App.ShowPopupService.Dispose();
+                            await MopupService.Instance.PopAllAsync();
                     }
                     catch (Exception ex)
                     {
@@ -776,7 +776,7 @@ namespace WytSky.Mobile.Maui.Skoola.Services
                 try
                 {
                     if (MopupService.Instance.PopupStack.Count > 0)
-                        App.ShowPopupService.Dispose();
+                        await MopupService.Instance.PopAllAsync();
                 }
                 catch (Exception ex)
                 {
@@ -792,7 +792,7 @@ namespace WytSky.Mobile.Maui.Skoola.Services
             string json = "", url = "";
             try
             {
-                await App.ShowPopupService.Show(new LoadingPopup());
+                await MopupService.Instance.PushAsync(new LoadingPopup());
                 {
                     client.DefaultRequestHeaders.Accept.Clear();
                     client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
@@ -917,7 +917,7 @@ namespace WytSky.Mobile.Maui.Skoola.Services
                 try
                 {
                     if (MopupService.Instance.PopupStack.Count > 0)
-                        App.ShowPopupService.Dispose();
+                        await MopupService.Instance.PopAllAsync();
                 }
                 catch (Exception ex)
                 {
@@ -933,7 +933,7 @@ namespace WytSky.Mobile.Maui.Skoola.Services
             string json = "", url = "";
             try
             {
-                await App.ShowPopupService.Show(new LoadingPopup());
+                await MopupService.Instance.PushAsync(new LoadingPopup());
                 {
                     HttpClient client = new HttpClient(new HttpClientHandler())
                     {
@@ -1063,7 +1063,7 @@ namespace WytSky.Mobile.Maui.Skoola.Services
                 try
                 {
                     if (MopupService.Instance.PopupStack.Count > 0)
-                        App.ShowPopupService.Dispose();
+                        await MopupService.Instance.PopAllAsync();
                 }
                 catch (Exception ex)
                 {
@@ -1079,7 +1079,7 @@ namespace WytSky.Mobile.Maui.Skoola.Services
             string url = "";
             try
             {
-                await App.ShowPopupService.Show(new LoadingPopup());
+                await MopupService.Instance.PushAsync(new LoadingPopup());
                 {
                     StringBuilder query = new StringBuilder().Append("?");
                     if (d != null && d.Count > 0)
@@ -1179,7 +1179,7 @@ namespace WytSky.Mobile.Maui.Skoola.Services
                 try
                 {
                     if (MopupService.Instance.PopupStack.Count > 0)
-                        App.ShowPopupService.Dispose();
+                        await MopupService.Instance.PopAllAsync();
                 }
                 catch (Exception ex)
                 {
@@ -1295,7 +1295,7 @@ namespace WytSky.Mobile.Maui.Skoola.Services
                 try
                 {
                     if (MopupService.Instance.PopupStack.Count > 0)
-                        App.ShowPopupService.Dispose();
+                        await MopupService.Instance.PopAllAsync();
                 }
                 catch (Exception ex)
                 {
@@ -1312,7 +1312,7 @@ namespace WytSky.Mobile.Maui.Skoola.Services
             string url = "";
             try
             {
-                await App.ShowPopupService.Show(new LoadingPopup());
+                await MopupService.Instance.PushAsync(new LoadingPopup());
                 {
                     StringBuilder query = new StringBuilder().Append("?");
                     if (d != null && d.Count > 0)
@@ -1411,7 +1411,7 @@ namespace WytSky.Mobile.Maui.Skoola.Services
                 try
                 {
                     if (MopupService.Instance.PopupStack.Count > 0)
-                        App.ShowPopupService.Dispose();
+                        await MopupService.Instance.PopAllAsync();
                 }
                 catch (Exception ex)
                 {
@@ -1427,7 +1427,7 @@ namespace WytSky.Mobile.Maui.Skoola.Services
             string url = "", json = "";
             try
             {
-                await App.ShowPopupService.Show(new LoadingPopup());
+                await MopupService.Instance.PushAsync(new LoadingPopup());
                 {
                     client.DefaultRequestHeaders.Accept.Clear();
                     client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
@@ -1537,7 +1537,7 @@ namespace WytSky.Mobile.Maui.Skoola.Services
                 try
                 {
                     if (MopupService.Instance.PopupStack.Count > 0)
-                        App.ShowPopupService.Dispose();
+                        await MopupService.Instance.PopAllAsync();
                 }
                 catch (Exception ex)
                 {
@@ -1554,7 +1554,7 @@ namespace WytSky.Mobile.Maui.Skoola.Services
             try
             {
                 //if (isLoading)
-                //    await App.ShowPopupService.Show(new LoadingPopup());
+                //    await MopupService.Instance.PushAsync(new LoadingPopup());
                 {
                     client.DefaultRequestHeaders.Accept.Clear();
                     client.DefaultRequestHeaders.Authorization = null;
@@ -1666,7 +1666,7 @@ namespace WytSky.Mobile.Maui.Skoola.Services
                 {
                     if (isLoading)
                         if (MopupService.Instance.PopupStack.Count > 0)
-                            App.ShowPopupService.Dispose();
+                            await MopupService.Instance.PopAllAsync();
                 }
                 catch (Exception ex)
                 {
@@ -1682,7 +1682,7 @@ namespace WytSky.Mobile.Maui.Skoola.Services
             string url = "";
             try
             {
-                await App.ShowPopupService.Show(new LoadingPopup());
+                await MopupService.Instance.PushAsync(new LoadingPopup());
                 {
                     client.DefaultRequestHeaders.Accept.Clear();
                     client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
@@ -1790,7 +1790,7 @@ namespace WytSky.Mobile.Maui.Skoola.Services
                 try
                 {
                     if (MopupService.Instance.PopupStack.Count > 0)
-                        App.ShowPopupService.Dispose();
+                        await MopupService.Instance.PopAllAsync();
                 }
                 catch (Exception ex)
                 {
@@ -1913,7 +1913,7 @@ namespace WytSky.Mobile.Maui.Skoola.Services
                 try
                 {
                     if (MopupService.Instance.PopupStack.Count > 0)
-                        App.ShowPopupService.Dispose();
+                        await MopupService.Instance.PopAllAsync();
                 }
                 catch (Exception ex)
                 {
@@ -2034,7 +2034,7 @@ namespace WytSky.Mobile.Maui.Skoola.Services
                 try
                 {
                     if (MopupService.Instance.PopupStack.Count > 0)
-                        App.ShowPopupService.Dispose();
+                        await MopupService.Instance.PopAllAsync();
                 }
                 catch (Exception ex)
                 {

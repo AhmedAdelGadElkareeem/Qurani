@@ -1,19 +1,10 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WytSky.Mobile.Maui.Skoola.Helpers;
 using System.Collections.ObjectModel;
 using WytSky.Mobile.Maui.Skoola.Dtos.Used;
 using CommunityToolkit.Mvvm.Input;
 using WytSky.Mobile.Maui.Skoola.Views.User;
-using WytSky.Mobile.Maui.Skoola.Views.Notification;
-using WytSky.Mobile.Maui.Skoola.Views.Public;
-using CommunityToolkit.Maui.Alerts;
 using WytSky.Mobile.Maui.Skoola.AppResources;
-using WytSky.Mobile.Maui.Skoola.Views.Payment;
 using System.Globalization;
 
 namespace WytSky.Mobile.Maui.Skoola.ViewModels.User
@@ -81,13 +72,13 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.User
         [RelayCommand]
         public async Task OpenNotificationSettingsPage()
         {
-            await NavigateToPage.OpenPage(new NotificationSettingsPage());
+            //await NavigateToPage.OpenPage(new NotificationSettingsPage());
         }
 
         [RelayCommand]
         public async Task OpenSecurityPage()
         {
-            await NavigateToPage.OpenPage(new SecurityPage());
+            //await NavigateToPage.OpenPage(new SecurityPage());
         }
 
         [RelayCommand]
@@ -149,25 +140,25 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.User
         [RelayCommand]
         public async Task OpenPaymentPage()
         {
-            await NavigateToPage.OpenPage(new PaymentPage());
+            //await NavigateToPage.OpenPage(new PaymentPage());
         }
 
         [RelayCommand]
         public async Task OpenPrivacyPolicyPage()
         {
-            await NavigateToPage.OpenPage(new PrivacyPolicyPage());
+            //await NavigateToPage.OpenPage(new PrivacyPolicyPage());
         }
 
         [RelayCommand]
         public async Task OpenHelpCenterPage()
         {
-            await NavigateToPage.OpenPage(new HelpCenterPage());
+            //await NavigateToPage.OpenPage(new HelpCenterPage());
         }
 
         [RelayCommand]
         public async Task OpenInviteFreindsPage()
         {
-            await NavigateToPage.OpenPage(new InviteFriendsPage());
+            //await NavigateToPage.OpenPage(new InviteFriendsPage());
         }
 
         [RelayCommand]

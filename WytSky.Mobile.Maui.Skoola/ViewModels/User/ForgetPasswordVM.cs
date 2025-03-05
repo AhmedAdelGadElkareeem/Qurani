@@ -51,7 +51,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.User
         [RelayCommand]
         public async Task NextAccountVerified()
         {
-            await NavigateToPage.OpenPage(new InterestsPage());
+            //await NavigateToPage.OpenPage(new InterestsPage());
         }
 
         [RelayCommand]

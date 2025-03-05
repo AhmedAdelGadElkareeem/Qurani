@@ -155,19 +155,16 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="LibVLCSharp.MAUI" Version="3.9.1" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.0" />
-    <PackageReference Include="CommunityToolkit.Maui" Version="10.0.0" />
-    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
-    <PackageReference Include="Mopups" Version="1.3.2" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-    <PackageReference Include="RestSharp" Version="112.1.0" />
-    <PackageReference Include="SkiaSharp.Extended.UI.Maui" Version="2.0.0" />
-    <PackageReference Include="Microsoft.Maui.Controls.Maps" Version="9.0.21" />
-    <PackageReference Include="VideoLAN.LibVLC.Android" Version="3.5.3" />
-    <PackageReference Include="VideoLAN.LibVLC.iOS" Version="3.3.18" />
-    <PackageReference Include="Microsoft.Maui.Controls" Version="9.0.21" />
-
+		<PackageReference Include="CommunityToolkit.Maui" Version="10.0.0" />
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+		<PackageReference Include="Mopups" Version="1.3.2" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+		<PackageReference Include="RestSharp" Version="112.1.0" />
+		<PackageReference Include="SkiaSharp.Extended.UI.Maui" Version="2.0.0" />
+		<PackageReference Include="Microsoft.Maui.Controls.Maps" Version="9.0.21" />
+		<PackageReference Include="Microsoft.Maui.Controls" Version="9.0.21" />
+		<PackageReference Include="FFImageLoading.Maui" Version="1.2.7" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -176,23 +173,17 @@
 	    <AutoGen>True</AutoGen>
 	    <DependentUpon>SharedResources.resx</DependentUpon>
 	  </Compile>
-	  <Compile Update="Views\HomePage.xaml.cs">
+	  <Compile Update="Views\Complexes\ComplexesPage.xaml.cs">
 	    <DependentUpon>HomePage.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Views\Public\SuccessPage.xaml.cs">
-	    <DependentUpon>SuccessPage.xaml</DependentUpon>
-	  </Compile>
-	  <Compile Update="Views\Quarni\Staff\AddStaff.xaml.cs">
+	  <Compile Update="Views\Staff\AddStaff.xaml.cs">
 	    <DependentUpon>AddStaff.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Views\User\MyCoursesPage.xaml.cs">
-	    <DependentUpon>MyCoursesPage.xaml</DependentUpon>
-	  </Compile>
-	  <Compile Update="Views\Quarni\Centers\CenterPage.xaml.cs">
+	  <Compile Update="Views\Centers\CenterPage.xaml.cs">
 	    <DependentUpon>CenterPage.xaml</DependentUpon>
 	    <SubType>Code</SubType>
 	  </Compile>
-	  <Compile Update="Views\Quarni\Staff\StaffPage.xaml.cs">
+	  <Compile Update="Views\Staff\StaffPage.xaml.cs">
 	    <DependentUpon>StaffPage.xaml</DependentUpon>
 	    <SubType>Code</SubType>
 	  </Compile>
@@ -212,6 +203,9 @@
 	  <MauiXaml Update="CustomControl\CreditCardView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="CustomControl\LogoView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="CustomControl\NotificationSettingsCard.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -224,85 +218,10 @@
 	  <MauiXaml Update="MainPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Template\Chat\RecievedMessageTemplate.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Template\Chat\SentMessageTemplate.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
 	  <MauiXaml Update="Template\CourseTemplate.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Template\ReviewTemplate.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\Category\CategoriesResultsPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\Courses\AllCoursesByCategoryPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\Courses\CompletedCourseDetailsPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\Courses\CourseContentPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\Courses\CourseDetailsPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\Courses\CourseMaterialPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\Courses\EnrollCoursePage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\Courses\MostPopularCoursesPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\Courses\VideoPlayerPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\Mentors\AllMentorsPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\Mentors\MentorDetailsPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\Notification\NotificationSettingsPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\Payment\AddCreditCardPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\Payment\PaymentPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\Payment\PaymentSuccessfullyPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\Public\CustomerServiceChatPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\Public\HelpCenterPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\Public\InviteFriendsPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\Public\LanguagePage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\Public\PrivacyPolicyPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\Public\SuccessPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\Quarni\Staff\AddStaff.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\User\AccountCreatedSuccessfullyPage.xaml">
+	  <MauiXaml Update="Views\Staff\AddStaff.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\User\ChangePasswordPage.xaml">
@@ -311,22 +230,37 @@
 	  <MauiXaml Update="Views\User\EditProfilePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\User\InterestsPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\User\SecurityPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\Quarni\Centers\CenterPage.xaml">
+	  <MauiXaml Update="Views\Centers\CenterPage.xaml">
 	    <SubType>Designer</SubType>
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\Quarni\Staff\StaffPage.xaml">
+	  <MauiXaml Update="Views\Staff\StaffPage.xaml">
 	    <SubType>Designer</SubType>
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>
 
-	
+	<ItemGroup>
+	  <AndroidNativeLibrary Remove="C:\Users\pv12646\.nuget\packages\videolan.libvlc.android\3.5.3\build\android-armv8\libvlc.so" />
+	</ItemGroup>
 
+	<ItemGroup>
+	  <AndroidNativeLibrary Remove="C:\Users\pv12646\.nuget\packages\videolan.libvlc.android\3.5.3\build\android-armv8\libc++_shared.so" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <AndroidNativeLibrary Remove="C:\Users\pv12646\.nuget\packages\videolan.libvlc.android\3.5.3\build\android-x86_64\libvlc.so" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <AndroidNativeLibrary Remove="C:\Users\pv12646\.nuget\packages\videolan.libvlc.android\3.5.3\build\android-x86_64\libc++_shared.so" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <AndroidNativeLibrary Remove="C:\Users\pv12646\.nuget\packages\videolan.libvlc.android\3.5.3\build\android-armv7\libvlc.so" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <AndroidNativeLibrary Remove="C:\Users\pv12646\.nuget\packages\videolan.libvlc.android\3.5.3\build\android-armv7\libc++_shared.so" />
+	</ItemGroup>
 </Project>

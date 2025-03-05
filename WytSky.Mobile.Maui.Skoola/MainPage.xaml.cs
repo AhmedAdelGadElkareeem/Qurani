@@ -1,6 +1,6 @@
 namespace WytSky.Mobile.Maui.Skoola;
 
-public partial class MainPage : TabbedPage
+public partial class MainPage : FlyoutPage
 {
 	public MainPage()
 	{

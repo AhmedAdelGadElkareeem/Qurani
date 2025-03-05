@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 using WytSky.Mobile.Maui.Skoola.Models;
 
 namespace WytSky.Mobile.Maui.Skoola.APIs
@@ -13,13 +8,13 @@ namespace WytSky.Mobile.Maui.Skoola.APIs
         public const string BASE = "appservices";
 
         #region staff
-        public async static Task<ObservableCollection<StaffModel>> GetStaff(string ParentId)
+        public async static Task<ObservableCollection<StaffModel>> GetStaff()
         {
             try
             {
                 var dictionary = new Dictionary<string, string>()
                 {
-                      {"CenterID", ParentId},
+                      {"CenterID", Helpers.Settings.CenterId},
                       {"_datatype", "json"},
                       {"_jsonarray", "1"},
                 };

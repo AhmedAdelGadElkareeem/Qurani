@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Maui;
+using FFImageLoading.Maui;
 using Microsoft.Extensions.Logging;
 using Microsoft.Maui.Platform;
 using Mopups.Hosting;
@@ -6,8 +7,6 @@ using SkiaSharp.Views.Maui.Controls.Hosting;
 using WytSky.Mobile.Maui.Skoola.CustomControl.Borderless;
 using WytSky.Mobile.Maui.Skoola.Services;
 using WytSky.Mobile.Maui.Skoola.Services.Implementation;
-using LibVLCSharp.MAUI;
-
 
 namespace WytSky.Mobile.Maui.Skoola
 {
@@ -16,26 +15,25 @@ namespace WytSky.Mobile.Maui.Skoola
         public static MauiApp CreateMauiApp()
         {
             var builder = MauiApp.CreateBuilder();
-            builder.UseMauiApp<App>()
-                .UseMauiCommunityToolkit()
-                .UseSkiaSharp() // to use animation
-            //.UseMauiMaps()// to use maps
-            .ConfigureMopups() // to use popups
-            .UseLibVLCSharp()
-            .ConfigureFonts(fonts =>
-            {
-                fonts.AddFont("Manrope_Bold.ttf", "ManropeBold");
-                fonts.AddFont("Manrope_Regular.ttf", "ManropeRegular");
-                fonts.AddFont("materialdesignicons_webfont.ttf", "MaterialDesignIcons"); // for rate view
-                fonts.AddFont("FontAwesome6-Brands.otf", "FA6Brands"); // for credit card view
-                fonts.AddFont("FontAwesome6-Regular.otf", "FA6Regular"); // for credit card view
-            }).ConfigureMauiHandlers((handlers) =>
-            {
-            }).Services.AddTransient<IShowPopupService, ShowPopupService>();
-#if DEBUG
-            builder.Logging.AddDebug();
-#endif
-            AddHandlers();
+                builder.UseMauiApp<App>()
+                        .UseMauiCommunityToolkit()
+                        .UseFFImageLoading()
+                        .UseSkiaSharp() // to use animation
+                        .ConfigureMopups() // to use popups
+                        .ConfigureFonts(fonts =>
+                        {
+                            fonts.AddFont("Manrope_Bold.ttf", "ManropeBold");
+                            fonts.AddFont("Manrope_Regular.ttf", "ManropeRegular");
+                            fonts.AddFont("materialdesignicons_webfont.ttf", "MaterialDesignIcons"); // for rate view
+                            fonts.AddFont("FontAwesome6-Brands.otf", "FA6Brands"); // for credit card view
+                            fonts.AddFont("FontAwesome6-Regular.otf", "FA6Regular"); // for credit card view
+                        }).ConfigureMauiHandlers((handlers) =>
+                        {
+                        }).Services.AddTransient<IShowPopupService, ShowPopupService>();
+            #if DEBUG
+                        builder.Logging.AddDebug();
+            #endif
+                        AddHandlers();
             return builder.Build();
         }
 

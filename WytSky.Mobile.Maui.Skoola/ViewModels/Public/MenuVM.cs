@@ -47,7 +47,6 @@ namespace WytSky.Mobile.Maui.Skoola.ViewPublic
                 SetMune();
                 Name = Settings.ClientName;
                 Email = Settings.ClientEmail;
-
             }
             catch (System.Exception ex)
             {
@@ -64,17 +63,8 @@ namespace WytSky.Mobile.Maui.Skoola.ViewPublic
                 MenuItems = new ObservableCollection<MenuModelItem>(new[]
                 {
                         new MenuModelItem { Icon="menu_my_profile",Title = SharedResources.Text_MyProfile , TargetType = typeof(MyProfilePage)},
-
-                        //new MenuModelItem { Icon="menu_voucher",Title = SharedResources.Text_Voucher , TargetType = typeof(HomePage)},
-                        //new MenuModelItem { Icon="menu_address",Title = SharedResources.Text_DeliveryAddress , TargetType = typeof(HomePage)},
-                        //new MenuModelItem { Icon="menu_payment",Title = SharedResources.Text_PaymentMethods , TargetType = typeof(HomePage)},
-                        //new MenuModelItem { Icon="menu_contact_us",Title = SharedResources.Text_ContactUs , TargetType = typeof(HomePage)},
-                        //new MenuModelItem { Icon="menu_settings",Title = SharedResources.Text_Settings , TargetType = typeof(HomePage)},
-                        //new MenuModelItem { Icon="menu_helps",Title = SharedResources.Text_HelpsFaqs , TargetType = typeof(HomePage)},
-
                         new MenuModelItem { Icon="menu_language",Title = SharedResources.Text_Language , CommandE = new Command(ChangeLanguage) ,TargetType = null},
                         new MenuModelItem { Icon="menu_logout",Title = SharedResources.Text_LogOut  , CommandE = new Command(Logout)  , TargetType = null },
-                        //new MenuModelItem { Icon="menu_share",Title = SharedResources.Text_ShareApp  , CommandE = new Command(ShareApp)  , TargetType = null },
                 });
             }
             catch (Exception ex)

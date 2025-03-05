@@ -1,25 +1,25 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.Input;
-using WytSky.Mobile.Maui.Skoola.APIs.Students;
 using WytSky.Mobile.Maui.Skoola.AppResources;
 using WytSky.Mobile.Maui.Skoola.Helpers;
-using WytSky.Mobile.Maui.Skoola.Models.Qurani.Students;
-using WytSky.Mobile.Maui.Skoola.Views.Quarni.Students;
+using WytSky.Mobile.Maui.Skoola.APIs;
+using WytSky.Mobile.Maui.Skoola.Models;
+using WytSky.Mobile.Maui.Skoola.Views.Students;
 
 namespace WytSky.Mobile.Maui.Skoola.ViewModels.Students
 {
     public partial class StudentsVM : BaseViewModel
     {
         [ObservableProperty] private ObservableCollection<StudentModel> students;
-        [ObservableProperty] private string groupId;
+
         // add student popup
         [ObservableProperty] private string  studentName;
         
-        public async Task GetStudentsByGroupId()
+        public async Task GetStudentsByStudyGroupId()
         {
             IsRunning = true;
-            Students = await StudentService.GetStudents(GroupId);
+            Students = await StudentService.GetStudents();
             IsRunning = false;
         }
 
@@ -38,14 +38,13 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.Students
             {
                 var addedStudent = await StudentService.AddStudent(new Dictionary<string, object>()
                 {
-                    { "GroupID", GroupId },
+                    { "GroupID", Settings.StudyGroupId },
                     { "StudentFullName", StudentName },
                     { "Status", "1" },
                 });
 
                 if (addedStudent != null && addedStudent.rowsAffected > 0)
                 {
-                    HidePopup();
                     await GetStudentsByGroupId();
                     Toast.ShowToastError(SharedResources.AddedSuccessfully);
                 }

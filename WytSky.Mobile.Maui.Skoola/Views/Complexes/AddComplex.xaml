@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<pages:PopupPage
+    x:Class="WytSky.Mobile.Maui.Skoola.Views.Complexes.AddComplex"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:customContorols="clr-namespace:WytSky.Mobile.Maui.Skoola.CustomControl.Borderless"
+    xmlns:pages="clr-namespace:Mopups.Pages;assembly=Mopups"
+    xmlns:res="clr-namespace:WytSky.Mobile.Maui.Skoola.AppResources">
+    <Frame
+        Margin="20,10"
+        Padding="10"
+        BackgroundColor="White"
+        CornerRadius="10"
+        HeightRequest="300">
+        <VerticalStackLayout
+            Padding="15"
+            BackgroundColor="White"
+            VerticalOptions="CenterAndExpand">
+
+            <Entry
+                BackgroundColor="White"
+                HorizontalTextAlignment="Center"
+                Placeholder="{x:Static res:SharedResources.ComplexName}"
+                Text="{Binding ComplexName, Mode=TwoWay}"
+                TextColor="Black" />
+
+            <Picker
+                Title="{x:Static res:SharedResources.Text_Country}"
+                ItemDisplayBinding="{Binding Name}"
+                ItemsSource="{Binding Countries}"
+                SelectedItem="{Binding SelectedCountry, Mode=TwoWay}"
+                TextColor="{StaticResource Black}"
+                TitleColor="{StaticResource Black}" />
+
+            <Picker
+                Title="{x:Static res:SharedResources.Text_Region}"
+                ItemDisplayBinding="{Binding Name}"
+                ItemsSource="{Binding Regions}"
+                SelectedItem="{Binding SelectedRegion, Mode=TwoWay}"
+                TextColor="{StaticResource Black}"
+                TitleColor="{StaticResource Black}" />
+
+            <Button
+                Command="{Binding AddComplexCommand}"
+                Style="{StaticResource BaseButton}"
+                Text="{x:Static res:SharedResources.Text_Save}" />
+        </VerticalStackLayout>
+    </Frame>
+</pages:PopupPage>

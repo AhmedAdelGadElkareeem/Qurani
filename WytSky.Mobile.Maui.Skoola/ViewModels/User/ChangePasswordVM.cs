@@ -24,7 +24,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.User
         [RelayCommand]
         public void OnChangePassword()
         {
-            NavigateToPage.OpenPage(new SuccessPage(SharedResources.Text_NewPasswordCreatedSuccessfully));
+            //NavigateToPage.OpenPage(new SuccessPage(SharedResources.Text_NewPasswordCreatedSuccessfully));
         }
     }
 }

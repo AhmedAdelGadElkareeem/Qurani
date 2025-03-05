@@ -127,6 +127,31 @@ public class Settings
         get { return Preferences.Get("IMEIKey", DependencyService.Get<Services.IDevice>().GetIdentifier()); }
         set { Preferences.Set("IMEIKey", value); }
     }
+    public static string ComplexId
+    {
+        get { return Preferences.Get("ComplexId", null); }
+        set { Preferences.Set("ComplexId", value); }
+    }
+    public static string CenterId
+    {
+        get { return Preferences.Get("CenterId", null); }
+        set { Preferences.Set("CenterId", value); }
+    }
+    public static string StaffId
+    {
+        get { return Preferences.Get("StaffId", null); }
+        set { Preferences.Set("StaffId", value); }
+    }
+    public static string StudyGroupId
+    {
+        get { return Preferences.Get("StudyGroupId", null); }
+        set { Preferences.Set("StudyGroupId", value); }
+    }
+    public static string StudentId
+    {
+        get { return Preferences.Get("StudentId", null); }
+        set { Preferences.Set("StudentId", value); }
+    }
     public static System.Collections.ObjectModel.ObservableCollection<StItem> FavoriteItems
     {
         get

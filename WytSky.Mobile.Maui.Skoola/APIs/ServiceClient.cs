@@ -276,7 +276,7 @@ namespace WytSky.Mobile.Maui.Skoola.APIs
         #endregion
         
         #region ResendVerficationCode(object item)
-        public async static System.Threading.Tasks.Task<Models.ResultApi<Models.Verfication>> ResendVerficationCode(object item)
+        /*public async static System.Threading.Tasks.Task<Models.ResultApi<Models.Verfication>> ResendVerficationCode(object item)
         {
             try
             {
@@ -297,7 +297,7 @@ namespace WytSky.Mobile.Maui.Skoola.APIs
                 ExtensionLogMethods.LogExtension(ExceptionMseeage, System.Text.Json.JsonSerializer.Serialize(item), "ServiceTechnical", "SignUp()");
                 return null;
             }
-        }
+        }*/
         #endregion
 
         #region SignUpSocial(Dtos.StClient item)

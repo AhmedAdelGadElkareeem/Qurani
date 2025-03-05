@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<pages:PopupPage
+    x:Class="WytSky.Mobile.Maui.Skoola.Views.Staff.AddStaff"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:Mopups.Pages;assembly=Mopups"
+    xmlns:res="clr-namespace:WytSky.Mobile.Maui.Skoola.AppResources">
+    <Grid Padding="15" VerticalOptions="End">
+        <Frame
+            Margin="20,10"
+            Padding="10"
+            BackgroundColor="White"
+            CornerRadius="20"
+            HeightRequest="300">
+            <VerticalStackLayout>
+                <Entry
+                    BackgroundColor="White"
+                    Placeholder="{x:Static res:SharedResources.Text_FirstName}"
+                    Text="{Binding FirstName, Mode=TwoWay}"
+                    TextColor="Black" />
+                <Entry
+                    BackgroundColor="White"
+                    Placeholder="{x:Static res:SharedResources.Text_LastName}"
+                    Text="{Binding LastName, Mode=TwoWay}"
+                    TextColor="Black" />
+
+                <Button
+                    Command="{Binding AddStaffCommand}"
+                    Style="{StaticResource BaseButton}"
+                    Text="{x:Static res:SharedResources.Text_Save}" />
+
+            </VerticalStackLayout>
+        </Frame>
+    </Grid>
+</pages:PopupPage>
