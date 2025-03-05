@@ -4,13 +4,8 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:base="clr-namespace:WytSky.Mobile.Maui.Skoola.Views"
-    xmlns:behaviors="clr-namespace:WytSky.Mobile.Maui.Skoola.Behaviors"
-    xmlns:customControl="clr-namespace:WytSky.Mobile.Maui.Skoola.CustomControl.Borderless"
     xmlns:customControls="clr-namespace:WytSky.Mobile.Maui.Skoola.CustomControl"
-    xmlns:resource="clr-namespace:WytSky.Mobile.Maui.Skoola.AppResources"
-    xmlns:templates="clr-namespace:WytSky.Mobile.Maui.Skoola.Template"
-    x:Name="root"
-    IconImageSource="filter">
+    xmlns:resource="clr-namespace:WytSky.Mobile.Maui.Skoola.AppResources">
     <Grid VerticalOptions="FillAndExpand">
         <Grid VerticalOptions="FillAndExpand">
             <CollectionView

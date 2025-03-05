@@ -5,7 +5,7 @@ using CommunityToolkit.Mvvm.Messaging;
 
 namespace WytSky.Mobile.Maui.Skoola.Views.Public;
 
-public partial class MenuPage : FlyoutPage
+public partial class MenuPage : ContentPage
 {
     public MenuPage()
     {
@@ -15,14 +15,8 @@ public partial class MenuPage : FlyoutPage
             this.FlowDirection = Settings.Language == "en" ?
                 FlowDirection.LeftToRight : FlowDirection.RightToLeft;
             NavigationPage.SetHasNavigationBar(this, false);
-            this.Flyout.BindingContext = new MenuVM();
+            BindingContext = new MenuVM();
             MenuItemsListView.ItemSelected += ListView_ItemSelected;
-
-            // sent from custom header when click on menu
-            WeakReferenceMessenger.Default.Register<string>(this, (r, m) =>
-            {
-                IsPresented = true;
-            });
         }
         catch (System.Exception ex)
         {
@@ -31,34 +25,12 @@ public partial class MenuPage : FlyoutPage
             ExtensionLogMethods.LogExtension(ExceptionMseeage, "", "MenuPage", "Constructor");
         }
     }
-    /*public MenuPage(Page page)
-    {
-        try
-        {
-            InitializeComponent();
-            this.FlowDirection = (Settings.Language == "en") ? FlowDirection.LeftToRight : FlowDirection.RightToLeft;
-            NavigationPage.SetHasNavigationBar(this, false);
-            //this.Detail = page;
-            var _newPage = (Page)Activator.CreateInstance(page.GetType());
-            _newPage.Title = page.Title;
-            Detail = new NavigationPage(_newPage);
-            this.Flyout.BindingContext = new MenuVM();
-            MenuItemsListView.ItemSelected += ListView_ItemSelected;
 
-            // sent from custom header when click on menu
-            WeakReferenceMessenger.Default.Register<string>(this, (r, m) =>
-            {
-                IsPresented = true;
-            });
-        }
-        catch (System.Exception ex)
-        {
-            string ExceptionMseeage = string.Format(" Error : {0} - {1} ", ex.Message, ex.InnerException != null ? ex.InnerException.FullMessage() : "");
-            System.Diagnostics.Debug.WriteLine(ExceptionMseeage);
-            ExtensionLogMethods.LogExtension(ExceptionMseeage, "", "MenuPage", "Paramaterized Constructor");
-        }
-    }*/
     private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+    {
+ 
+    }
+    /*private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
     {
         try
         {
@@ -106,5 +78,5 @@ public partial class MenuPage : FlyoutPage
     private void HideMenu(object sender, TappedEventArgs e)
     {
         IsPresented = false;
-    }
+    }*/
 }

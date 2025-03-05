@@ -9,9 +9,8 @@
     xmlns:customControls="clr-namespace:WytSky.Mobile.Maui.Skoola.CustomControl"
     xmlns:resource="clr-namespace:WytSky.Mobile.Maui.Skoola.AppResources"
     xmlns:templates="clr-namespace:WytSky.Mobile.Maui.Skoola.Template"
-    x:Name="root"
-    Title="{x:Static resource:SharedResources.Text_Home}"
-    IconImageSource="menu_home">
+    Title="{x:Static resource:SharedResources.Complexes}"
+    x:Name="root">
     <Grid RowDefinitions="*">
         <Grid RowDefinitions="auto,*" VerticalOptions="FillAndExpand">
             <customControls:LogoView />

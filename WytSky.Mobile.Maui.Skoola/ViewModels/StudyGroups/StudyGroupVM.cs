@@ -82,13 +82,8 @@ public partial class StudyGroupVM : BaseViewModel
     [RelayCommand]
     private async Task SelectStudyGroup(StudyGroupModel studyGroup)
     {
+        string name = App.IsArabic ? studyGroup.GroupName : studyGroup.GroupNameEn;
         Settings.StudyGroupId = studyGroup.GroupID.ToString();
-        var baseModel = new BaseModel()
-        {
-            ID = studyGroup.GroupID.ToString(),
-            NameAr = studyGroup.GroupName,
-            NameEn = studyGroup.GroupNameEn
-        };
-        await OpenPushAsyncPage(new StudentsPage(baseModel));
+        await OpenPushAsyncPage(new StudentsPage(name));
     }
 }

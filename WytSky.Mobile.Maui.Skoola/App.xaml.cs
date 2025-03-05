@@ -16,7 +16,7 @@ namespace WytSky.Mobile.Maui.Skoola
                 IsArabic = Settings.Language == "ar";
                 if (Settings.IsLogedin)
                 {
-                    App.Current.MainPage = new NavigationPage(new MainPage());
+                    App.Current.MainPage = new MainPage();
                 }
                 else
                 {

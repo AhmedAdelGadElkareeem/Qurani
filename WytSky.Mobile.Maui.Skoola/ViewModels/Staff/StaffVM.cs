@@ -39,12 +39,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
         public async Task SelectStaff(StaffModel staff)
         {
             Settings.StaffId = staff.StaffID.ToString();
-            var baseModel = new BaseModel()
-            {
-                NameAr = staff.FullName,
-                NameEn = staff.FullName,
-            };
-            await OpenPushAsyncPage(new StudyGroupsPage(baseModel));
+            await OpenPushAsyncPage(new StudyGroupsPage(staff.FullName));
         }
 
         [RelayCommand]

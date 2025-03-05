@@ -4,9 +4,10 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:complexes="clr-namespace:WytSky.Mobile.Maui.Skoola.Views.Complexes"
+    NavigationPage.HasNavigationBar="True"
     xmlns:menu="clr-namespace:WytSky.Mobile.Maui.Skoola.Views.Public">
     <FlyoutPage.Flyout>
-        <menu:MenuPage x:Name="flyoutPage" />
+        <menu:MenuPage x:Name="flyoutPage" Title="menu page"/>
     </FlyoutPage.Flyout>
     <FlyoutPage.Detail>
         <NavigationPage>

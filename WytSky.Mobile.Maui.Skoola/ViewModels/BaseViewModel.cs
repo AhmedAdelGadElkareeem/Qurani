@@ -108,10 +108,11 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
         {
             try
             {
-                await App.Current.MainPage.Navigation.PushAsync(page);
+                await App.Current.MainPage.Navigation.PushModalAsync(page);
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                string er = e.Message;
             }
         }
         public void ShowPopup(PopupPage popup)

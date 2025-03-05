@@ -1167,4 +1167,7 @@
   <data name="StudyGroupEn" xml:space="preserve">
     <value>اسم الحلقة بالانجليزى</value>
   </data>
+  <data name="Complexes" xml:space="preserve">
+    <value>المجمعات</value>
+  </data>
 </root>

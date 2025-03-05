@@ -21,11 +21,10 @@ namespace WytSky.Mobile.Maui.Skoola.APIs
                       {"_jsonarray", "1"},
                 };
 
-                if (!string.IsNullOrEmpty(Settings.CenterId))
-                    dictionary.Add("CenterID", Settings.CenterId);
+                if (!string.IsNullOrEmpty(Settings.StudyGroupId))
+                    dictionary.Add("CenterID", Settings.StudyGroupId);
 
-                else if (!string.IsNullOrEmpty(Settings.StudyGroupId))
-                    dictionary.Add("GroupID", Settings.StudyGroupId);
+                else  dictionary.Add("GroupID", Settings.CenterId);
 
                 var result = await Services.RequestProvider.Current.GetData<TempletData<StudentModel>>(BASE, "studygroupstudentlist", dictionary, Enums.AuthorizationType.UserNamePassword);
                 if (result != null && result.IsPassed)

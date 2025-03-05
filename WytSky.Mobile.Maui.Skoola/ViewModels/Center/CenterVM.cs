@@ -114,13 +114,8 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
         public async Task OpenStudyGroups(CentersModel centerModel)
         {
             Settings.CenterId = centerModel.CenterID.ToString();
-            var baseModel = new BaseModel()
-            {
-                ID = centerModel.CenterID.ToString(),
-                NameAr = centerModel.CenterName,
-                NameEn = centerModel.CenterNameEn
-            };
-            await OpenPushAsyncPage(new StudyGroupsPage(baseModel));
+            string name = App.IsArabic ? centerModel.CenterName : centerModel.CenterNameEn;
+            await OpenPushAsyncPage(new StudyGroupsPage(name));
         }
 
         [RelayCommand]
@@ -133,14 +128,9 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
         [RelayCommand]
         public async Task OpenStudents(CentersModel centerModel)
         {
-            var baseModel = new BaseModel()
-            {
-                ID = centerModel.CenterID.ToString(),
-                NameAr = centerModel.CenterName,
-                NameEn = centerModel.CenterNameEn
-            };
             Settings.CenterId = centerModel.CenterID.ToString();
-            await OpenPushAsyncPage(new StudentsPage(baseModel));
+            string name = App.IsArabic ? centerModel.CenterName : centerModel.CenterNameEn;
+            await OpenPushAsyncPage(new StudentsPage(name));
         }
         #endregion
     }

@@ -6,10 +6,10 @@ namespace WytSky.Mobile.Maui.Skoola.Views.Students;
 public partial class StudentsPage : BaseContentPage
 {
     StudentsVM StudentsVM = new();
-    public StudentsPage(BaseModel baseModel)
+    public StudentsPage(string name)
     {
         InitializeComponent();
-        Title = App.IsArabic ? baseModel.NameAr : baseModel.NameEn;
+        Title = name;
         BindingContext = StudentsVM;
     }
 

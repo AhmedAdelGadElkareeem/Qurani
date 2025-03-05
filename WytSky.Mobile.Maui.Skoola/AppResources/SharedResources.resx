@@ -1178,4 +1178,7 @@ Successfully Changed</value>
   <data name="StudyGroupEn" xml:space="preserve">
     <value>Study group english</value>
   </data>
+  <data name="Complexes" xml:space="preserve">
+    <value>Complexes</value>
+  </data>
 </root>
