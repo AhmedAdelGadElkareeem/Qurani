@@ -12,9 +12,15 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
     public partial class StaffVM : BaseViewModel
     {
         [ObservableProperty] public ObservableCollection<StaffModel> staff = new ObservableCollection<StaffModel>();
+        [ObservableProperty] public ObservableCollection<StaffTypeModel> staffTypes = new ObservableCollection<StaffTypeModel>();
         [ObservableProperty] public string firstName;
         [ObservableProperty] public string lastName;
         [ObservableProperty] public string staffName;
+        [ObservableProperty] public string userName;
+        [ObservableProperty] public string password;
+        [ObservableProperty] public string mobile;
+        [ObservableProperty] public string email;
+        [ObservableProperty] public StaffTypeModel selectedStaffType;
 
         #region Methods
         public async Task GetStaff()
@@ -22,7 +28,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
             try
             {
                 IsRunning = true;
-                Staff = await APIs.ServiceStaff.GetStaff();
+                Staff = await APIs.ServiceStaff.GetCenterStaff();
             }
             catch (Exception ex)
             {
@@ -32,6 +38,11 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
             {
                 IsRunning = false;
             }
+        }
+
+        partial void OnSelectedStaffTypeChanged(StaffTypeModel value)
+        {
+            SelectedStaffType = value;
         }
         #endregion
 
@@ -61,7 +72,15 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
                 {
                     { "FirstName", FirstName },
                     { "LastNme", LastName },
+                    { "FullName", $"{FirstName} {LastName}"},
                     { "CenterID" , Settings.CenterId },
+                    { "StaffTypeName" , SelectedStaffType},
+                    { "UserName" , UserName },
+                    { "Password", Password},
+                    { "Mobile" , Mobile}, 
+                    { "Email" , Email}, 
+                    { "IsActive" , true}, 
+
                 };
 
                 var result = await APIs.ServiceStaff.AddStaff(formData);
@@ -85,5 +104,6 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
                 HidePopup();
             }
         }
+      
     }
 }

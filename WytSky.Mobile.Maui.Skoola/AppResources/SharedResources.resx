@@ -1181,4 +1181,7 @@ Successfully Changed</value>
   <data name="Complexes" xml:space="preserve">
     <value>Complexes</value>
   </data>
+  <data name="Text_StaffTypes" xml:space="preserve">
+    <value>Staff Type</value>
+  </data>
 </root>

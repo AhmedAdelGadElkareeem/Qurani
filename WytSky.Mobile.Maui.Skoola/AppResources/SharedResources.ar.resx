@@ -993,6 +993,9 @@
   <data name="Text_AppUpdate" xml:space="preserve">
     <value>تحديثات التطبيق</value>
   </data>
+  <data name="Text_Arabic" xml:space="preserve">
+    <value>العربية</value>
+  </data>
   <data name="Text_BiometricId" xml:space="preserve">
     <value>بصمة الهوية</value>
   </data>
@@ -1010,6 +1013,12 @@
   </data>
   <data name="Text_EditProfile" xml:space="preserve">
     <value>تعديل الملف الشخصي</value>
+  </data>
+  <data name="Text_EnglishUK" xml:space="preserve">
+    <value>الانجليزية</value>
+  </data>
+  <data name="Text_EnglishUS" xml:space="preserve">
+    <value>الانجليزية</value>
   </data>
   <data name="Text_FaceId" xml:space="preserve">
     <value>بصمة الوجه</value>
@@ -1169,5 +1178,8 @@
   </data>
   <data name="Complexes" xml:space="preserve">
     <value>المجمعات</value>
+  </data>
+  <data name="Text_StaffTypes" xml:space="preserve">
+    <value>نوع المحفظ</value>
   </data>
 </root>

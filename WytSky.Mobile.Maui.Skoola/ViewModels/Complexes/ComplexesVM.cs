@@ -113,7 +113,7 @@ public partial class ComplexesVM : BaseViewModel
             var popup = new AddComplex();
             await GetCountries();
             if (Countries.Count > 0)
-                await GetRegions(Countries[0].CountryID.ToString());
+            await GetRegions(Countries[0].CountryID.ToString());
             popup.BindingContext = this;
             ShowPopup(popup);
         }
