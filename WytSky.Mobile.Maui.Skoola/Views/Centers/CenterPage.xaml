@@ -13,18 +13,21 @@
                 ItemsSource="{Binding Centers}"
                 VerticalOptions="FillAndExpand">
                 <CollectionView.ItemsLayout>
-                    <LinearItemsLayout ItemSpacing="15" Orientation="Vertical" />
+                    <LinearItemsLayout ItemSpacing="15"
+                                       Orientation="Vertical"/>
                 </CollectionView.ItemsLayout>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Border
                             Padding="5"
-                            HeightRequest="140"
+                            HeightRequest="180"
                             StrokeShape="RoundRectangle 5">
                             <Border.Background>
                                 <LinearGradientBrush EndPoint="0,1">
-                                    <GradientStop Offset="0.1" Color="{StaticResource PrimaryColor}" />
-                                    <GradientStop Offset="1.0" Color="{StaticResource Blue}" />
+                                    <GradientStop Offset="0.1"
+                                                  Color="{StaticResource PrimaryColor}"/>
+                                    <GradientStop Offset="1.0"
+                                                  Color="{StaticResource Blue}"/>
                                 </LinearGradientBrush>
                             </Border.Background>
                             <VerticalStackLayout>
@@ -32,64 +35,74 @@
                                     HorizontalOptions="CenterAndExpand"
                                     Style="{StaticResource BoldLabelFont16}"
                                     Text="{Binding Name}"
-                                    TextColor="{StaticResource White}" />
+                                    TextColor="{StaticResource White}"/>
                                 <Label
                                     HorizontalOptions="CenterAndExpand"
                                     Style="{StaticResource BoldLabelFont14}"
                                     Text="{Binding City}"
-                                    TextColor="{StaticResource White}" />
+                                    TextColor="{StaticResource White}"/>
                                 <Label
                                     HorizontalOptions="CenterAndExpand"
                                     Style="{StaticResource BoldLabelFont14}"
                                     Text="{Binding Address}"
-                                    TextColor="{StaticResource White}" />
+                                    TextColor="{StaticResource White}"/>
                                 <Label
                                     HorizontalOptions="CenterAndExpand"
                                     Style="{StaticResource BoldLabelFont14}"
                                     Text="{Binding Phone}"
-                                    TextColor="{StaticResource White}" />
+                                    TextColor="{StaticResource White}"/>
                                 <Label
                                     HorizontalOptions="CenterAndExpand"
                                     Style="{StaticResource BoldLabelFont14}"
                                     Text="{Binding Email}"
-                                    TextColor="{StaticResource White}" />
+                                    TextColor="{StaticResource White}"/>
                                 <Label
                                     HorizontalOptions="CenterAndExpand"
                                     Style="{StaticResource BoldLabelFont14}"
                                     Text="{Binding City}"
-                                    TextColor="{StaticResource White}" />
+                                    TextColor="{StaticResource White}"/>
 
-                                <Grid ColumnDefinitions="auto,auto,auto">
+                                <Grid ColumnDefinitions="*,*,*"
+                                      ColumnSpacing="5">
                                     <Button
+                                        BackgroundColor="{StaticResource White}"
+                                        TextColor="{StaticResource PrimaryColor}"
                                         Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.OpenStudyGroupsCommand}"
                                         CommandParameter="{Binding .}"
-                                        Text="{x:Static resource:SharedResources.StudyGroups}" />
+                                        Text="{x:Static resource:SharedResources.StudyGroups}"/>
                                     <Button
                                         Grid.Column="1"
+                                        BackgroundColor="{StaticResource White}"
+                                        TextColor="{StaticResource PrimaryColor}"
                                         Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.OpenStaffsCommand}"
                                         CommandParameter="{Binding .}"
-                                        Text="{x:Static resource:SharedResources.Staffs}" />
+                                        Text="{x:Static resource:SharedResources.Staffs}"/>
                                     <Button
                                         Grid.Column="2"
+                                        BackgroundColor="{StaticResource White}"
+                                        TextColor="{StaticResource PrimaryColor}"
                                         Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.OpenStudentsCommand}"
                                         CommandParameter="{Binding .}"
-                                        Text="{x:Static resource:SharedResources.Students}" />
+                                        Text="{x:Static resource:SharedResources.Students}"/>
                                 </Grid>
                             </VerticalStackLayout>
                             <Border.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.SelectCenterCommand}" CommandParameter="{Binding .}" />
+                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.SelectCenterCommand}"
+                                                      CommandParameter="{Binding .}"/>
                             </Border.GestureRecognizers>
                         </Border>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
                 <CollectionView.EmptyView>
-                    <customControls:EmptyView />
+                    <customControls:EmptyView/>
                 </CollectionView.EmptyView>
             </CollectionView>
-            <Button Command="{Binding OpenAddCenterCommand}" Style="{StaticResource AddButton}" />
+            <Button Command="{Binding OpenAddCenterCommand}"
+                    Style="{StaticResource AddButton}"/>
         </Grid>
 
-        <ActivityIndicator IsRunning="{Binding IsRunning}" IsVisible="{Binding IsRunning}" />
+        <ActivityIndicator IsRunning="{Binding IsRunning}"
+                           IsVisible="{Binding IsRunning}"/>
 
     </Grid>
 </base:BaseContentPage>
