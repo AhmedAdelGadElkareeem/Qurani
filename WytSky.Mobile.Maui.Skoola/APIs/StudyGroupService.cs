@@ -19,7 +19,6 @@ public class StudyGroupService
             {
                 {"_datatype", "json"},
                 {"_jsonarray", "1"},
-                {"ComplexID", Settings.ComplexId},
             };
 
             if (!string.IsNullOrEmpty(Settings.StaffId))
