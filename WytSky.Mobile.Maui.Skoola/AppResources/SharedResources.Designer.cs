@@ -2081,6 +2081,15 @@ namespace WytSky.Mobile.Maui.Skoola.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Mobile.
+        /// </summary>
+        public static string Text_Mobile {
+            get {
+                return ResourceManager.GetString("Text_Mobile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Most Popular.
         /// </summary>
         public static string Text_MostPopular {
@@ -2550,6 +2559,15 @@ namespace WytSky.Mobile.Maui.Skoola.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Qualification.
+        /// </summary>
+        public static string Text_Qualification {
+            get {
+                return ResourceManager.GetString("Text_Qualification", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Questions.
         /// </summary>
         public static string Text_Questions {
@@ -2928,6 +2946,15 @@ namespace WytSky.Mobile.Maui.Skoola.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Specialization.
+        /// </summary>
+        public static string Text_Specialization {
+            get {
+                return ResourceManager.GetString("Text_Specialization", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Special Offers.
         /// </summary>
         public static string Text_SpecialOffers {
@@ -3176,6 +3203,15 @@ namespace WytSky.Mobile.Maui.Skoola.AppResources {
         public static string Text_UploadYourPhotoProfile {
             get {
                 return ResourceManager.GetString("Text_UploadYourPhotoProfile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User Name.
+        /// </summary>
+        public static string Text_UserName {
+            get {
+                return ResourceManager.GetString("Text_UserName", resourceCulture);
             }
         }
         

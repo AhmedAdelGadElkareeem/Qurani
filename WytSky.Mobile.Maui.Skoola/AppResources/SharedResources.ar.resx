@@ -1179,6 +1179,9 @@
   <data name="Complexes" xml:space="preserve">
     <value>المجمعات</value>
   </data>
+  <data name="Text_StaffTypes" xml:space="preserve">
+    <value>انواع المعلمين</value>
+  </data>
   <data name="Centers" xml:space="preserve">
     <value>المساجد</value>
   </data>
@@ -1216,9 +1219,6 @@
   <data name="Shehada" xml:space="preserve">
     <value> أشهد أن لا إله إلا الله وأن محمدا رسول الله</value>
   </data>
-  <data name="Text_StaffTypes" xml:space="preserve">
-    <value>انواع المعلمين</value>
-  </data>
   <data name="FromDate" xml:space="preserve">
     <value>من</value>
   </data>
@@ -1227,5 +1227,17 @@
   </data>
   <data name="Teachers" xml:space="preserve">
     <value>المعلمين</value>
+  </data>
+  <data name="Text_UserName" xml:space="preserve">
+    <value>اسم المستخدم</value>
+  </data>
+  <data name="Text_Mobile" xml:space="preserve">
+    <value>رقم الموبايل</value>
+  </data>
+  <data name="Text_Qualification" xml:space="preserve">
+    <value>المؤهل</value>
+  </data>
+  <data name="Text_Specialization" xml:space="preserve">
+    <value>التخصص</value>
   </data>
 </root>

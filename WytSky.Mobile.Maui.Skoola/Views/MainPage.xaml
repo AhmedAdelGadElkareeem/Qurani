@@ -21,7 +21,7 @@
             <customControl:HomeCard
                 Grid.Row="0"
                 Grid.Column="0"
-                BackColor="{StaticResource PrimaryColor}"
+                BackColor="{StaticResource Green}"
                 Command="{Binding OpenPagesCommand}"
                 CommandParameter="Tawhed"
                 HeightRequest="130"

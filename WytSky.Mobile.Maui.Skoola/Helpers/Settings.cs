@@ -38,11 +38,22 @@ public class Settings
         get { return Preferences.Get("IsAdminKey", false); }
         set { Preferences.Set("IsAdminKey", value); }
     }
-    public static bool Supervisor
+    public static bool IsSupervisor
     {
         get { return Preferences.Get("IsSupervisorKey", false); }
         set { Preferences.Set("IsSupervisorKey", value); }
     }
+    public static bool IsTeacher
+    {
+        get { return Preferences.Get("IsTeacherKey", false); }
+        set { Preferences.Set("IsSupervisorKey", value); }
+    }
+    public static bool IsUsers
+    {
+        get { return Preferences.Get("IsSupervisorKey", false); }
+        set { Preferences.Set("IsSupervisorKey", value); }
+    }
+    
 
     //public static string Language
     //{
@@ -204,32 +215,6 @@ public class Settings
         {
             string listValue = System.Text.Json.JsonSerializer.Serialize(value);
             Preferences.Set("FavoritesItemsKey", listValue);
-        }
-    }
-    public static System.Collections.ObjectModel.ObservableCollection<StItem> CartItems
-    {
-        get
-        {
-            try
-            {
-                string value = Preferences.Get("CartItemsKey", string.Empty);
-                System.Collections.ObjectModel.ObservableCollection<StItem> myList;
-                if (string.IsNullOrEmpty(value))
-                    myList = new System.Collections.ObjectModel.ObservableCollection<StItem>();
-                else
-                    myList = System.Text.Json.JsonSerializer.Deserialize<System.Collections.ObjectModel.ObservableCollection<StItem>>(value);
-                return myList;
-            }
-            catch (System.Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine(string.Format(" Error : {0} - {1} ", ex.Message, ex.InnerException != null ? ex.InnerException.FullMessage() : ""));
-                return new System.Collections.ObjectModel.ObservableCollection<StItem>();
-            }
-        }
-        set
-        {
-            string listValue = System.Text.Json.JsonSerializer.Serialize(value);
-            Preferences.Set("CartItemsKey", listValue);
         }
     }
     public static StClient Client

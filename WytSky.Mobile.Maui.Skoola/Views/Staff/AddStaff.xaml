@@ -11,7 +11,7 @@
             Margin="20,10"
             Padding="10"
             BackgroundColor="White"
-            HeightRequest="200"
+            HeightRequest="600"
             VerticalOptions="CenterAndExpand">
             <VerticalStackLayout>
                 <Entry
@@ -23,6 +23,33 @@
                     BackgroundColor="White"
                     Placeholder="{x:Static res:SharedResources.Text_LastName}"
                     Text="{Binding LastName, Mode=TwoWay}"
+                    TextColor="Black" />
+                <Picker
+                    Title="{x:Static res:SharedResources.Centers}"
+                    ItemDisplayBinding="{Binding CenterName}"
+                    ItemsSource="{Binding Centers}"
+                    SelectedItem="{Binding SelectedCenter, Mode=TwoWay}"
+                    TextColor="{StaticResource Black}"
+                    TitleColor="{StaticResource Black}" />
+                <Entry
+                    BackgroundColor="White"
+                    Placeholder="{x:Static res:SharedResources.Text_Mobile}"
+                    Text="{Binding Mobile, Mode=TwoWay}"
+                    TextColor="Black" />
+                <Entry
+                    BackgroundColor="White"
+                    Placeholder="{x:Static res:SharedResources.Text_UserName}"
+                    Text="{Binding UserName, Mode=TwoWay}"
+                    TextColor="Black" />
+                <Entry
+                    BackgroundColor="White"
+                    Placeholder="{x:Static res:SharedResources.Text_Password}"
+                    Text="{Binding Password, Mode=TwoWay}"
+                    TextColor="Black" />
+                <Entry
+                    BackgroundColor="White"
+                    Placeholder="{x:Static res:SharedResources.Text_Email}"
+                    Text="{Binding Email, Mode=TwoWay}"
                     TextColor="Black" />
 
                 <Picker

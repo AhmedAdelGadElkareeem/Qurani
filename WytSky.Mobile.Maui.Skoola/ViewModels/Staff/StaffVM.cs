@@ -13,7 +13,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
     public partial class StaffVM : BaseViewModel
     {
         [ObservableProperty] public ObservableCollection<StaffModel> staff = new ObservableCollection<StaffModel>();
-        [ObservableProperty] public ObservableCollection<StaffTypeModel> staffTypes = new ObservableCollection<StaffTypeModel>();
+        [ObservableProperty] private ObservableCollection<CentersModel> centers;
         [ObservableProperty] public string firstName;
         [ObservableProperty] public string lastName;
         [ObservableProperty] public string staffName;
@@ -22,8 +22,24 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
         [ObservableProperty] public string mobile;
         [ObservableProperty] public string email;
         [ObservableProperty] public StaffTypeModel selectedStaffType;
+        [ObservableProperty] public CentersModel selectedCenter;
+
 
         #region Methods
+
+        public async Task GetCenters()
+        {
+            try
+            {
+                IsRunning = true;
+                Centers = await APIs.ServiceCenter.GetCenter();
+                IsRunning = false;
+            }
+            catch (Exception ex)
+            {
+                ExtensionLogMethods.LogExtension(ex, "", "CenterVM", "GetCenters");
+            }
+        }
         public async Task GetStaff()
         {
             try
@@ -57,6 +73,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
         [RelayCommand]
         public void OpenAddStaff()
         {
+           
             var popup = new AddStaff();
             popup.BindingContext = this;
             ShowPopup(popup);
@@ -74,8 +91,9 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
                     { "FirstName", FirstName },
                     { "LastNme", LastName },
                     { "FullName", $"{FirstName} {LastName}"},
-                    { "CenterID" , Settings.CenterId },
-                    { "StaffTypeName" , SelectedStaffType},
+                    { "CenterID" , SelectedCenter.CenterID },
+                    { "CenterName" , SelectedCenter.CenterName },
+                    { "StaffTypeName" , SelectedStaffType.TypeName },
                     { "UserName" , UserName },
                     { "Password", Password},
                     { "Mobile" , Mobile}, 

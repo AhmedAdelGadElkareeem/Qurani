@@ -1181,6 +1181,9 @@ Successfully Changed</value>
   <data name="Complexes" xml:space="preserve">
     <value>Complexes</value>
   </data>
+  <data name="Text_StaffTypes" xml:space="preserve">
+    <value>Teachers Types</value>
+  </data>
   <data name="Centers" xml:space="preserve">
     <value>Centers</value>
   </data>
@@ -1214,9 +1217,6 @@ Successfully Changed</value>
   <data name="Shehada" xml:space="preserve">
     <value>I bear witness that there is no god but God and that Muhammad is the Messenger of God</value>
   </data>
-  <data name="Text_StaffTypes" xml:space="preserve">
-    <value>Teachers Types</value>
-  </data>
   <data name="FromDate" xml:space="preserve">
     <value>From Date</value>
   </data>
@@ -1225,5 +1225,17 @@ Successfully Changed</value>
   </data>
   <data name="Teachers" xml:space="preserve">
     <value>Teachers</value>
+  </data>
+  <data name="Text_UserName" xml:space="preserve">
+    <value>User Name</value>
+  </data>
+  <data name="Text_Mobile" xml:space="preserve">
+    <value>Mobile</value>
+  </data>
+  <data name="Text_Qualification" xml:space="preserve">
+    <value>Qualification</value>
+  </data>
+  <data name="Text_Specialization" xml:space="preserve">
+    <value>Specialization</value>
   </data>
 </root>

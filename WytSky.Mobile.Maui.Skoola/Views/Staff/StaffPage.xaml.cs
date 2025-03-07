@@ -17,6 +17,8 @@ public partial class StaffPage : BaseContentPage
     {
         base.OnAppearing();
         await StaffVM.GetStaff();
+        await StaffVM.GetCenters();
+        await StaffVM.GetStaffType();
 
     }
 
