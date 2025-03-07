@@ -50,6 +50,9 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
         ObservableCollection<RegionModel> regions;
         #endregion
 
+          [ObservableProperty]
+        ObservableCollection<StaffTypeModel> staffTypes;
+
 
         #region Constractor
         public BaseViewModel()
@@ -338,5 +341,10 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
         }
 
         #endregion
+        
+        public async Task GetStaffType()
+        {
+            StaffTypes = await APIs.ServiceStaff.GetStaffType();
+        }
     }
 }

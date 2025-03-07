@@ -1214,4 +1214,7 @@ Successfully Changed</value>
   <data name="Shehada" xml:space="preserve">
     <value>I bear witness that there is no god but God and that Muhammad is the Messenger of God</value>
   </data>
+  <data name="Text_StaffTypes" xml:space="preserve">
+    <value>Staff Type</value>
+  </data>
 </root>

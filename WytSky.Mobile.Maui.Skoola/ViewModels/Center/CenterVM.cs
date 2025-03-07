@@ -84,7 +84,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
                     { "City" ,CityName },
                     { "Phone" ,Phone },
                     { "Email" ,Email },
-                    { "Email" ,Notes },
+                    { "Notes" ,Notes },
                 };
 
                 var result = await APIs.ServiceCenter.AddCenter(formData);

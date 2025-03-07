@@ -6,13 +6,13 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:pages="clr-namespace:Mopups.Pages;assembly=Mopups"
     xmlns:res="clr-namespace:WytSky.Mobile.Maui.Skoola.AppResources">
-    <Grid Padding="15" VerticalOptions="End">
-        <Frame
+    <ScrollView Padding="15">
+        <Border
             Margin="20,10"
             Padding="10"
             BackgroundColor="White"
-            CornerRadius="20"
-            HeightRequest="300">
+            HeightRequest="200"
+            VerticalOptions="CenterAndExpand">
             <VerticalStackLayout>
                 <Entry
                     BackgroundColor="White"
@@ -25,12 +25,21 @@
                     Text="{Binding LastName, Mode=TwoWay}"
                     TextColor="Black" />
 
+                <Picker
+                    Title="{x:Static res:SharedResources.Text_StaffTypes}"
+                    ItemDisplayBinding="{Binding TypeName}"
+                    ItemsSource="{Binding StaffTypes}"
+                    SelectedItem="{Binding SelectedStaffType, Mode=TwoWay}"
+                    TextColor="{StaticResource Black}"
+                    TitleColor="{StaticResource Black}" />
+
+
                 <Button
                     Command="{Binding AddStaffCommand}"
                     Style="{StaticResource BaseButton}"
                     Text="{x:Static res:SharedResources.Text_Save}" />
 
             </VerticalStackLayout>
-        </Frame>
-    </Grid>
+        </Border>
+    </ScrollView>
 </pages:PopupPage>

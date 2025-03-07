@@ -7,12 +7,11 @@
     xmlns:pages="clr-namespace:Mopups.Pages;assembly=Mopups"
     xmlns:res="clr-namespace:WytSky.Mobile.Maui.Skoola.AppResources">
     <ScrollView>
-        <Frame
+        <Border
             Margin="20,10"
             Padding="10"
             BackgroundColor="White"
-            CornerRadius="20"
-            HeightRequest="300"
+            HeightRequest="400"
             VerticalOptions="CenterAndExpand">
             <VerticalStackLayout>
                 <Entry
@@ -53,7 +52,6 @@
                     Style="{StaticResource BaseButton}"
                     Text="{x:Static res:SharedResources.Text_Save}" />
             </VerticalStackLayout>
-        </Frame>
+        </Border>
     </ScrollView>
-
 </pages:PopupPage>
