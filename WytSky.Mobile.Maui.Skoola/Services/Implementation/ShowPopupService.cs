@@ -24,7 +24,7 @@ namespace WytSky.Mobile.Maui.Skoola.Services.Implementation
 
         public async Task<IDisposable> Show(PopupPage popupPage)
         {
-            await navigation.PushAsync(popupPage, true);
+            await App.Current.MainPage.Navigation.PushModalAsync(popupPage);  //navigation.PushAsync(popupPage, true);
             return this;
         }
     }

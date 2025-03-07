@@ -9,10 +9,10 @@
     Title="{x:Static resources:SharedResources.PrayerontheProphet}">
     <Grid RowDefinitions="*">
         <Grid RowDefinitions="auto,*" VerticalOptions="FillAndExpand">
-            <customControls:CustomHeader
+            <!--<customControls:CustomHeader
                 HasBack="True"
                 HasTitle="True"
-                PageTitle="{x:Static resources:SharedResources.PrayerontheProphet}" />
+                PageTitle="{x:Static resources:SharedResources.PrayerontheProphet}" />-->
             <Grid Grid.Row="1" RowDefinitions="auto,*">
                 <Frame
                     Padding="20"

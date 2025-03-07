@@ -205,6 +205,9 @@
 	  <MauiXaml Update="CustomControl\CreditCardView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="CustomControl\DatePickerFromTo.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="CustomControl\HomeCard.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

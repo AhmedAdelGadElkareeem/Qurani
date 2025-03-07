@@ -38,6 +38,11 @@ public class Settings
         get { return Preferences.Get("IsAdminKey", false); }
         set { Preferences.Set("IsAdminKey", value); }
     }
+    public static bool Supervisor
+    {
+        get { return Preferences.Get("IsSupervisorKey", false); }
+        set { Preferences.Set("IsSupervisorKey", value); }
+    }
 
     //public static string Language
     //{

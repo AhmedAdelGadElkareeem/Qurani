@@ -187,6 +187,15 @@ namespace WytSky.Mobile.Maui.Skoola.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to From Date.
+        /// </summary>
+        public static string FromDate {
+            get {
+                return ResourceManager.GetString("FromDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Home.
         /// </summary>
         public static string Home {
@@ -273,7 +282,7 @@ namespace WytSky.Mobile.Maui.Skoola.AppResources {
         /// </summary>
         public static string Msg_Error {
             get {
-                return ResourceManager.GetString("Msg_NotValidEmail", resourceCulture);
+                return ResourceManager.GetString("Msg_Error", resourceCulture);
             }
         }
         
@@ -282,7 +291,7 @@ namespace WytSky.Mobile.Maui.Skoola.AppResources {
         /// </summary>
         public static string Msg_NoData {
             get {
-                return ResourceManager.GetString("Msg_NotValidMessage", resourceCulture);
+                return ResourceManager.GetString("Msg_NoData", resourceCulture);
             }
         }
         
@@ -300,7 +309,7 @@ namespace WytSky.Mobile.Maui.Skoola.AppResources {
         /// </summary>
         public static string Msg_NoInternetConnection {
             get {
-                return ResourceManager.GetString("Msg_NotValidName", resourceCulture);
+                return ResourceManager.GetString("Msg_NoInternetConnection", resourceCulture);
             }
         }
         
@@ -600,6 +609,15 @@ namespace WytSky.Mobile.Maui.Skoola.AppResources {
         public static string TawhedPage {
             get {
                 return ResourceManager.GetString("TawhedPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Teachers.
+        /// </summary>
+        public static string Teachers {
+            get {
+                return ResourceManager.GetString("Teachers", resourceCulture);
             }
         }
         
@@ -905,7 +923,7 @@ namespace WytSky.Mobile.Maui.Skoola.AppResources {
         /// </summary>
         public static string Text_Camera {
             get {
-                return ResourceManager.GetString("Text_CartItemsSavedLocally", resourceCulture);
+                return ResourceManager.GetString("Text_Camera", resourceCulture);
             }
         }
         
@@ -1076,7 +1094,7 @@ namespace WytSky.Mobile.Maui.Skoola.AppResources {
         /// </summary>
         public static string Text_Choose {
             get {
-                return ResourceManager.GetString("Text_ConfirmPassword", resourceCulture);
+                return ResourceManager.GetString("Text_Choose", resourceCulture);
             }
         }
         
@@ -1085,7 +1103,7 @@ namespace WytSky.Mobile.Maui.Skoola.AppResources {
         /// </summary>
         public static string Text_ChooseService {
             get {
-                return ResourceManager.GetString("Text_Congrats", resourceCulture);
+                return ResourceManager.GetString("Text_ChooseService", resourceCulture);
             }
         }
         
@@ -1518,7 +1536,7 @@ namespace WytSky.Mobile.Maui.Skoola.AppResources {
         /// </summary>
         public static string Text_EnterYourEmail {
             get {
-                return ResourceManager.GetString("Text_FaceId", resourceCulture);
+                return ResourceManager.GetString("Text_EnterYourEmail", resourceCulture);
             }
         }
         
@@ -1527,7 +1545,7 @@ namespace WytSky.Mobile.Maui.Skoola.AppResources {
         /// </summary>
         public static string Text_EnterYourName {
             get {
-                return ResourceManager.GetString("Text_Faq", resourceCulture);
+                return ResourceManager.GetString("Text_EnterYourName", resourceCulture);
             }
         }
         
@@ -1536,7 +1554,7 @@ namespace WytSky.Mobile.Maui.Skoola.AppResources {
         /// </summary>
         public static string Text_EnterYourPassword {
             get {
-                return ResourceManager.GetString("Text_Favorites", resourceCulture);
+                return ResourceManager.GetString("Text_EnterYourPassword", resourceCulture);
             }
         }
         
@@ -1545,7 +1563,7 @@ namespace WytSky.Mobile.Maui.Skoola.AppResources {
         /// </summary>
         public static string Text_EnterYourPhone {
             get {
-                return ResourceManager.GetString("Text_Featured", resourceCulture);
+                return ResourceManager.GetString("Text_EnterYourPhone", resourceCulture);
             }
         }
         
@@ -1932,7 +1950,7 @@ namespace WytSky.Mobile.Maui.Skoola.AppResources {
         /// </summary>
         public static string Text_Items {
             get {
-                return ResourceManager.GetString("Text_LastName", resourceCulture);
+                return ResourceManager.GetString("Text_Items", resourceCulture);
             }
         }
         
@@ -2919,6 +2937,15 @@ namespace WytSky.Mobile.Maui.Skoola.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Teachers Types.
+        /// </summary>
+        public static string Text_StaffTypes {
+            get {
+                return ResourceManager.GetString("Text_StaffTypes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Status.
         /// </summary>
         public static string Text_Status {
@@ -3157,7 +3184,7 @@ namespace WytSky.Mobile.Maui.Skoola.AppResources {
         /// </summary>
         public static string Text_UserType {
             get {
-                return ResourceManager.GetString("Text_UploadYourPhotoProfile", resourceCulture);
+                return ResourceManager.GetString("Text_UserType", resourceCulture);
             }
         }
         
@@ -3320,6 +3347,15 @@ namespace WytSky.Mobile.Maui.Skoola.AppResources {
         public static string Text_YourLocation {
             get {
                 return ResourceManager.GetString("Text_YourLocation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To Date.
+        /// </summary>
+        public static string ToDate {
+            get {
+                return ResourceManager.GetString("ToDate", resourceCulture);
             }
         }
         

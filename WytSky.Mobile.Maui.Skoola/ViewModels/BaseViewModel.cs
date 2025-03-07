@@ -14,6 +14,7 @@ using WytSky.Mobile.Maui.Skoola.Views.Centers;
 using WytSky.Mobile.Maui.Skoola.Views.Complexes;
 using WytSky.Mobile.Maui.Skoola.Views.Zekr;
 using WytSky.Mobile.Maui.Skoola.Views.Tawhed;
+using WytSky.Mobile.Maui.Skoola.APIs;
 
 namespace WytSky.Mobile.Maui.Skoola.ViewModels
 {
@@ -45,6 +46,19 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
 
         [ObservableProperty]
         ObservableCollection<CountryModel> countries;
+
+        [ObservableProperty]
+        ObservableCollection<StudyGroupModel> studyGroups;
+
+        //[ObservableProperty]
+        //ObservableCollection<SubjectModel> subjects;
+
+        [ObservableProperty]
+        ObservableCollection<ComplexModel> complexes;
+
+        [ObservableProperty]
+        ObservableCollection<StaffModel> teachers;
+        
 
         [ObservableProperty]
         ObservableCollection<RegionModel> regions;
@@ -208,6 +222,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
             if (confirm)
             {
                 App.Logout();
+                Settings.IsLogedin = false;
             }
         }
         public async Task OpenPushAsyncPage(Page page)
@@ -224,6 +239,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
         public void ShowPopup(PopupPage popup)
         {
             MopupService.Instance.PushAsync(popup);
+            //App.Current.MainPage.Navigation.PushModalAsync(popup);
         }
         public void HidePopup()
         {
@@ -262,83 +278,57 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
             Countries = await APIs.ServiceCountriesRegions.GetCountries();
             await GetRegions(Countries[0].CountryID.Value.ToString());
         }
+        public async Task GetStudyGroups()
+        {
+            StudyGroups = await APIs.StudyGroupService.GetStudyGroups();
+            await GetRegions(StudyGroups[0].GroupID.ToString());
+        }
         public async Task GetRegions(string countryId)
         {
             Regions = await APIs.ServiceCountriesRegions.GetRegions(countryId);
         }
 
+        public async Task GetTeachers()
+        {
+            Teachers = await APIs.ServiceStaff.GetStaff();
+        }
+
+        public async Task GetComplexes()
+        {
+            Complexes = await APIs.ServiceCatgeory.GetComplexs();
+        }
+
+
         [RelayCommand]
-        private async Task OpenComplexes()
+        private async Task OpenPages(string pageName)
         {
             try
             {
-                IsRunning = true;
-                await App.Current.MainPage.Navigation.PushModalAsync(new ComplexesPage());
+                if (pageName == "Complexes")
+                {
+                    await App.Current.MainPage.Navigation.PushAsync(new ComplexesPage());
+                }
+                else if (pageName == "Mosques")
+                {
+                    await App.Current.MainPage.Navigation.PushAsync(new CenterPage());
+                }
+                else if (pageName == "Zekr")
+                {
+                    await App.Current.MainPage.Navigation.PushAsync(new ZekrPage());
+                }
+                else if (pageName == "Tawhed")
+                {
+                    await App.Current.MainPage.Navigation.PushAsync(new TawhedPage());
+                }
+
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                ExtensionLogMethods.LogExtension(ex, null, "BaseViewModel", "OpenComplexes");
-            }
-            finally
-            {
-                IsRunning = false;
+                string er = e.Message;
             }
         }
 
-        [RelayCommand]
-        private async Task OpenCenters()
-        {
-            try
-            {
-                IsRunning = true;
-
-                await App.Current.MainPage.Navigation.PushModalAsync(new CenterPage());
-            }
-            catch (Exception ex)
-            {
-                ExtensionLogMethods.LogExtension(ex, null, "BaseViewModel", "OpenCenters");
-            }
-            finally
-            {
-                IsRunning = false;
-            }
-        }
-        [RelayCommand]
-        private async Task OpenTawhed()
-        {
-            try
-            {
-                IsRunning = true;
-
-                await App.Current.MainPage.Navigation.PushModalAsync(new TawhedPage());
-            }
-            catch (Exception ex)
-            {
-                ExtensionLogMethods.LogExtension(ex, null, "BaseViewModel", "OpenTawhed");
-            }
-            finally
-            {
-                IsRunning = false;
-            }
-        }
-        [RelayCommand]
-        private async Task OpenZekr()
-        {
-            try
-            {
-                IsRunning = true;
-
-                await App.Current.MainPage.Navigation.PushModalAsync(new ZekrPage());
-            }
-            catch (Exception ex)
-            {
-                ExtensionLogMethods.LogExtension(ex, null, "BaseViewModel", "OpenZekr");
-            }
-            finally
-            {
-                IsRunning = false;
-            }
-        }
+    
 
         #endregion
         

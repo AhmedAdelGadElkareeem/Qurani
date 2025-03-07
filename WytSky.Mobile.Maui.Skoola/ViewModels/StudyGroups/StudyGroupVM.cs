@@ -1,4 +1,5 @@
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using WytSky.Mobile.Maui.Skoola.APIs;
@@ -10,7 +11,7 @@ using WytSky.Mobile.Maui.Skoola.Views.StudyGroups;
 
 namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudyGroups;
 
-public partial class StudyGroupVM : BaseViewModel
+public partial class StudyGroupVM : CenterVM
 {
     [ObservableProperty]
     public ObservableCollection<StudyGroupModel> studyGroups;
@@ -19,6 +20,31 @@ public partial class StudyGroupVM : BaseViewModel
     // add study group popup
     [ObservableProperty] public string studyGroupName;
     [ObservableProperty] public string studyGroupNameEn;
+
+    [ObservableProperty] public ComplexModel selectedComplex;
+    [ObservableProperty] public CentersModel selectedCenter;
+    [ObservableProperty] public StaffModel selectedTeacher;
+
+    [ObservableProperty] public int? centerID;
+    [ObservableProperty] public int? teacherID;
+    //[ObservableProperty] public int? subjectID;
+    [ObservableProperty] public string? subjectName;
+
+    [ObservableProperty] public DateTime? startDate = DateTime.Now;
+    [ObservableProperty] public DateTime? endDate = DateTime.Now;
+    [ObservableProperty] public object? notes;
+    [ObservableProperty] public int? studentCount;
+    [ObservableProperty] public string? location;
+
+    //[ObservableProperty] public string schedule;
+    //[ObservableProperty] public bool? isActive;
+    //[ObservableProperty] public object? studyGroupStudentList;
+    //[ObservableProperty] public object? schedule1;
+    //[ObservableProperty] public object? studyGroupSessions;
+
+    //[ObservableProperty] public int? groupID;
+    //[ObservableProperty] public string? centerName;
+
 
     public async Task GetStudyGroupsByStaffIdOrCenterId()
     {
@@ -43,8 +69,11 @@ public partial class StudyGroupVM : BaseViewModel
     }
 
     [RelayCommand]
-    private void OpenAddStudyGroup()
+    private async Task OpenAddStudyGroup()
     {
+        await GetTeachers();
+        await GetComplexes();
+        await GetCenters();
         var popup = new AddStudyGroup();
         popup.BindingContext = this;
         ShowPopup(popup);
@@ -55,11 +84,29 @@ public partial class StudyGroupVM : BaseViewModel
     {
         try
         {
+            if (SelectedComplex.ComplexID == null)
+            {
+                Toast.ShowToastError("Error", "Select Complex");
+            }
+            if (SelectedCenter.CenterID == null)
+            {
+                Toast.ShowToastError("Error", "Select Center");
+            }
+            if (SelectedTeacher.StaffID == null)
+            {
+                Toast.ShowToastError("Error", "Select Teacher");
+            }
             var formData = new Dictionary<string, object>()
             {
                 { "GroupName", StudyGroupName },
                 { "GroupNameEn", StudyGroupNameEn },
-                { "TeacherID", Settings.StaffId },
+                { "ComplexID", SelectedComplex.ComplexID  },
+                { "CenterID",SelectedCenter.CenterID},
+                { "TeacherID", SelectedTeacher.StaffID},
+                { "SubjectName", SubjectName},
+                { "Notes", Notes},
+                { "StudentCount", StudentCount},
+                { "Location", Location},
             };
 
             var addedStudyGroup = await StudyGroupService.AddStudyGroup(formData);

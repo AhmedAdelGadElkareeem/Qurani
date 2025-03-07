@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="WytSky.Mobile.Maui.Skoola.CustomControl.DatePickerFromTo"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Name="_root">
+    <Grid
+        BindingContext="{x:Reference _root}"
+        HorizontalOptions="CenterAndExpand"
+        VerticalOptions="CenterAndExpand">
+        <VerticalStackLayout>
+            <!--  Displaying the selected date range  -->
+            <Label
+                FontSize="16"
+                HorizontalOptions="FillAndExpand"
+                Style="{StaticResource BaseLabel}"
+                Text="{Binding DateRangeValue}"
+                TextColor="{StaticResource Green}">
+                <Label.GestureRecognizers>
+                    <!--  Tap gesture to show the FromDate picker  -->
+                    <TapGestureRecognizer Tapped="SelectFromDate" />
+                </Label.GestureRecognizers>
+            </Label>
+
+            <!--  From Date Picker  -->
+            <DatePicker
+                x:Name="fromDatePicker"
+                Date="{Binding FromDate}"
+                DateSelected="FromDateSelected"
+                IsVisible="false" />
+
+            <!--  To Date Picker  -->
+            <DatePicker
+                x:Name="toDatePicker"
+                Date="{Binding ToDate}"
+                DateSelected="ToDateSelected"
+                IsVisible="false" />
+        </VerticalStackLayout>
+    </Grid>
+</ContentView>

@@ -13,10 +13,10 @@
     Title="{x:Static resource:SharedResources.Complexes}">
     <Grid RowDefinitions="*">
         <Grid RowDefinitions="auto,*" VerticalOptions="FillAndExpand">
-            <customControls:CustomHeader
+            <!--<customControls:CustomHeader
                 HasBack="True"
                 HasTitle="True"
-                PageTitle="{x:Static resource:SharedResources.Complexes}" />
+                PageTitle="{x:Static resource:SharedResources.Complexes}" />-->
             <Grid Grid.Row="1">
                 <CollectionView Margin="15,10,15,0" ItemsSource="{Binding Complexes}">
                     <CollectionView.ItemsLayout>

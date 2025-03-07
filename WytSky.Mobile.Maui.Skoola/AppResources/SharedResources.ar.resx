@@ -1216,4 +1216,16 @@
   <data name="Shehada" xml:space="preserve">
     <value> أشهد أن لا إله إلا الله وأن محمدا رسول الله</value>
   </data>
+  <data name="Text_StaffTypes" xml:space="preserve">
+    <value>انواع المعلمين</value>
+  </data>
+  <data name="FromDate" xml:space="preserve">
+    <value>من</value>
+  </data>
+  <data name="ToDate" xml:space="preserve">
+    <value>إلي </value>
+  </data>
+  <data name="Teachers" xml:space="preserve">
+    <value>المعلمين</value>
+  </data>
 </root>

@@ -22,7 +22,8 @@
                 Grid.Row="0"
                 Grid.Column="0"
                 BackColor="{StaticResource PrimaryColor}"
-                Command="{Binding OpenTawhedCommand}"
+                Command="{Binding OpenPagesCommand}"
+                CommandParameter="Tawhed"
                 HeightRequest="130"
                 TextLable="{x:Static resources:SharedResources.Tawhed}"
                 WidthRequest="180" />
@@ -30,7 +31,8 @@
                 Grid.Row="0"
                 Grid.Column="1"
                 BackColor="Green"
-                Command="{Binding OpenZekrCommand}"
+                Command="{Binding OpenPagesCommand}"
+                CommandParameter="Zekr"
                 HeightRequest="130"
                 TextLable="{x:Static resources:SharedResources.PrayerontheProphet}"
                 WidthRequest="180" />
@@ -38,7 +40,8 @@
                 Grid.Row="1"
                 Grid.Column="0"
                 BackColor="Green"
-                Command="{Binding OpenComplexesCommand}"
+                Command="{Binding OpenPagesCommand}"
+                CommandParameter="Complexes"
                 HeightRequest="130"
                 TextLable="{x:Static resources:SharedResources.Complexes}"
                 WidthRequest="180" />
@@ -46,7 +49,8 @@
                 Grid.Row="1"
                 Grid.Column="1"
                 BackColor="Green"
-                Command="{Binding OpenCentersCommand}"
+                Command="{Binding OpenPagesCommand}"
+                CommandParameter="Mosques"
                 HeightRequest="130"
                 TextLable="{x:Static resources:SharedResources.AllMosques}"
                 WidthRequest="180" />
