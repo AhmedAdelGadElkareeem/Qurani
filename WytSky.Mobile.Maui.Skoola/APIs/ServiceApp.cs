@@ -35,7 +35,7 @@ namespace WytSky.Mobile.Maui.Skoola.APIs
                 var result = await Services.RequestProvider.Current.GetDataNoLoding<TempletData<T>>(CONTROLR, pageNane, filter, Enums.AuthorizationType.UserNamePassword);
                 if (result != null && result.IsPassed)
                 {
-                    return result.Data.ItemData;
+                    return result.Data.itemData;
                 }
                 else
                 {
@@ -84,7 +84,7 @@ namespace WytSky.Mobile.Maui.Skoola.APIs
                 var result = await Services.RequestProvider.Current.GetData<TempletData<T>>(CONTROLR, pageNane, filter, Enums.AuthorizationType.UserNamePassword, isLoading);
                 if (result != null && result.IsPassed)
                 {
-                    return result.Data.ItemData;
+                    return result.Data.itemData;
                 }
                 else
                 {
@@ -115,7 +115,7 @@ namespace WytSky.Mobile.Maui.Skoola.APIs
                 var result = await Services.RequestProvider.Current.GetData<Models.TempletData<Dtos.CatgeoryDto>>(CONTROLR, "DaitCatgeoryItems", dictionary, Enums.AuthorizationType.UserNamePassword);
                 if (result != null && result.IsPassed)
                 {
-                    return result.Data.ItemData;
+                    return result.Data.itemData;
                 }
                 else
                 {
@@ -143,7 +143,7 @@ namespace WytSky.Mobile.Maui.Skoola.APIs
                 var result = await Services.RequestProvider.Current.GetData<TempletData<ItemDto>>(CONTROLR, "daititems", dictionary, Enums.AuthorizationType.UserNamePassword);
                 if (result != null && result.IsPassed)
                 {
-                    return result.Data.ItemData;
+                    return result.Data.itemData;
                 }
                 else
                 {

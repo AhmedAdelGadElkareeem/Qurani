@@ -130,6 +130,22 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.User
                         Settings.SocialID = "";
                         var s = await AspUserRoleService.GetUserRoles();
                         Settings.UserId = s.FirstOrDefault().UserID;
+                        //Settings.UserId = s.Where(_=> _.UserName == Settings.UserName).FirstOrDefault().UserID;
+
+                        if (s != null)
+                        {
+                            Settings.IsAdmin = s.Any(u =>
+                                string.Equals(u.AspNetRolesName, "admin", StringComparison.OrdinalIgnoreCase));
+                            Settings.IsTeacher = s.Any(u =>
+                                string.Equals(u.AspNetRolesName, "Teacher", StringComparison.OrdinalIgnoreCase));
+                            Settings.IsSupervisor = s.Any(u =>
+                                string.Equals(u.AspNetRolesName, "Supervisor", StringComparison.OrdinalIgnoreCase));
+                            Settings.IsUsers = s.Any(u =>
+                                string.Equals(u.AspNetRolesName, "Users", StringComparison.OrdinalIgnoreCase));
+                            //Settings.IsOffline = s.Any(u =>
+                            //    string.Equals(u.AspNetRolesName, "Offline", StringComparison.OrdinalIgnoreCase));
+                        }
+                            
                         //OpenMainPage();
                         // After successful login, set MainPage to AppShell if not already set
                         if (!(Application.Current.MainPage is AppShell))

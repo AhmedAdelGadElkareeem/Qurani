@@ -80,7 +80,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
                     { "SupervisorID" ,Settings.UserId },
                     { "isActive" ,true },
                     { "Address", Address},
-                    { "ComplexRegionName" ,DitrictName },
+                    //{ "ComplexRegionName" ,DitrictName },
                     { "City" ,CityName },
                     { "Phone" ,Phone },
                     { "Email" ,Email },

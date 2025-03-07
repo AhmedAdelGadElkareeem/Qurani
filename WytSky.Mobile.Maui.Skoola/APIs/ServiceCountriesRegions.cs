@@ -22,7 +22,7 @@ namespace WytSky.Mobile.Maui.Skoola.APIs
                 var result = await Services.RequestProvider.Current.GetData<TempletData<CountryModel>>(BASE, "countries", dictionary, Enums.AuthorizationType.UserNamePassword);
                 if (result != null && result.IsPassed)
                 {
-                    return result.Data.ItemData;
+                    return result.Data.itemData;
                 }
                 else
                 {
@@ -39,7 +39,7 @@ namespace WytSky.Mobile.Maui.Skoola.APIs
         }
 
         // https://qr.saskw.net/appservices/regions?_datatype=json&_jsonarray=1
-        public static async Task<ObservableCollection<RegionModel>> GetRegions(string countryId)
+        public static async Task<ObservableCollection<RegionModel>> GetRegions(int countryId)
         {
             try
             {
@@ -47,12 +47,12 @@ namespace WytSky.Mobile.Maui.Skoola.APIs
                 {
                       {"_datatype", "json"},
                       {"_jsonarray", "1"},
-                      {"CountryID", countryId},
+                      {"CountryID", countryId.ToString()},
                 };
                 var result = await Services.RequestProvider.Current.GetData<TempletData<RegionModel>>(BASE, "regions", dictionary, Enums.AuthorizationType.UserNamePassword);
                 if (result != null && result.IsPassed)
                 {
-                    return result.Data.ItemData;
+                    return result.Data.itemData;
                 }
                 else
                 {

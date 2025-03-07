@@ -276,14 +276,14 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
         public async Task GetCountries()
         {
             Countries = await APIs.ServiceCountriesRegions.GetCountries();
-            await GetRegions(Countries[0].CountryID.Value.ToString());
+            await GetRegions(Countries[0].CountryID.Value);
         }
         public async Task GetStudyGroups()
         {
             StudyGroups = await APIs.StudyGroupService.GetStudyGroups();
-            await GetRegions(StudyGroups[0].GroupID.ToString());
+            await GetRegions(StudyGroups[0].GroupID.Value);
         }
-        public async Task GetRegions(string countryId)
+        public async Task GetRegions(int countryId)
         {
             Regions = await APIs.ServiceCountriesRegions.GetRegions(countryId);
         }

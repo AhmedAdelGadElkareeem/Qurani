@@ -3,7 +3,7 @@ using WytSky.Mobile.Maui.Skoola.Dtos;
 
 namespace WytSky.Mobile.Maui.Skoola.Helpers;
 
-public class Settings
+public class    Settings
 {
 
     #region Setting Constants
@@ -53,7 +53,12 @@ public class Settings
         get { return Preferences.Get("IsSupervisorKey", false); }
         set { Preferences.Set("IsSupervisorKey", value); }
     }
-    
+
+    public static bool IsOffline
+    {
+        get { return Preferences.Get("IsOfflineKey", false); }
+        set { Preferences.Set("IsOfflineKey", value); }
+    }
 
     //public static string Language
     //{

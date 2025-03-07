@@ -35,7 +35,7 @@ namespace WytSky.Mobile.Maui.Skoola.APIs
                 var result = await Services.RequestProvider.Current.GetData<Models.TempletData<Dtos.AspNetUser>>(BASE, CONTROLR, filter, Enums.AuthorizationType.UserNamePassword);
                 if (result != null && result.IsPassed)
                 {
-                    return result.Data.ItemData;
+                    return result.Data.itemData;
                 }
                 else
                 {

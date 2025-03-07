@@ -1,4 +1,5 @@
-﻿using WytSky.Mobile.Maui.Skoola.Helpers;
+﻿using WytSky.Mobile.Maui.Skoola.APIs;
+using WytSky.Mobile.Maui.Skoola.Helpers;
 using WytSky.Mobile.Maui.Skoola.Services.Implementation;
 using WytSky.Mobile.Maui.Skoola.Utilities;
 using WytSky.Mobile.Maui.Skoola.Views.Complexes;
@@ -25,6 +26,7 @@ namespace WytSky.Mobile.Maui.Skoola
                 Application.Current.UserAppTheme = AppTheme.Light;
                 ScreenHeight = (int)DeviceDisplay.Current.MainDisplayInfo.Height;
                 ScreenWidth = (int)DeviceDisplay.Current.MainDisplayInfo.Width;
+                //Settings.UserId =  AspUserRoleService.GetUserRoles().Result.Select(_=> _.UserID).ToString();
                 IsArabic = Settings.Language == "ar";
                 AppSettings.SetAppLanguage(Settings.Language);
 
