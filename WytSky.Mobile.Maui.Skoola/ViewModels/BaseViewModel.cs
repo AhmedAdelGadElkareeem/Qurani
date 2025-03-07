@@ -61,7 +61,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
         
 
         [ObservableProperty]
-        ObservableCollection<RegionModel> regions;
+        ObservableCollection<RegionModel> regions = new ObservableCollection<RegionModel>();
         #endregion
 
 
@@ -276,14 +276,14 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
         public async Task GetCountries()
         {
             Countries = await APIs.ServiceCountriesRegions.GetCountries();
-            await GetRegions(Countries[0].CountryID.Value);
+            //await GetRegions(Countries[0].CountryID.ToString());
         }
         public async Task GetStudyGroups()
         {
             StudyGroups = await APIs.StudyGroupService.GetStudyGroups();
-            await GetRegions(StudyGroups[0].GroupID.Value);
+            await GetRegions(StudyGroups[0].GroupID.ToString());
         }
-        public async Task GetRegions(int countryId)
+        public async Task GetRegions(string countryId)
         {
             Regions = await APIs.ServiceCountriesRegions.GetRegions(countryId);
         }
