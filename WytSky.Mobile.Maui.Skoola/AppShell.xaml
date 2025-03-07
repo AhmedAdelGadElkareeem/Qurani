@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Shell
+    x:Class="WytSky.Mobile.Maui.Skoola.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:Centers="clr-namespace:WytSky.Mobile.Maui.Skoola.Views.Centers"
+    xmlns:Complexes="clr-namespace:WytSky.Mobile.Maui.Skoola.Views.Complexes"
+    xmlns:MainPage="clr-namespace:WytSky.Mobile.Maui.Skoola.Views"
+    xmlns:Staff="clr-namespace:WytSky.Mobile.Maui.Skoola.Views.Staff"
+    xmlns:Students="clr-namespace:WytSky.Mobile.Maui.Skoola.Views.Students"
+    xmlns:StudyGroups="clr-namespace:WytSky.Mobile.Maui.Skoola.Views.StudyGroups"
+    xmlns:customControl="clr-namespace:WytSky.Mobile.Maui.Skoola.CustomControl"
+    xmlns:resources="clr-namespace:WytSky.Mobile.Maui.Skoola.AppResources"
+    Title="AppShell"
+    Shell.BackgroundColor="{StaticResource PrimaryColor}"
+    Shell.FlyoutBehavior="Flyout"
+    Shell.FlyoutWidth="255"
+    Shell.ForegroundColor="White"
+    Shell.NavBarIsVisible="True"
+    Shell.TitleColor="White">
+
+    <Shell.ItemTemplate>
+        <DataTemplate>
+            <Grid
+                BackgroundColor="{StaticResource White}"
+                ColumnDefinitions="auto,auto"
+                FlowDirection="{Binding FlowDirection}"
+                RowDefinitions="auto"
+                RowSpacing="10">
+                <HorizontalStackLayout Margin="0,10,0,0" Padding="2">
+                    <Image
+                        Grid.Column="0"
+                        Margin="13,0,0,0"
+                        HeightRequest="30"
+                        Source="{Binding FlyoutIcon}"
+                        WidthRequest="25" />
+                    <Label
+                        Grid.RowSpan="2"
+                        Grid.Column="1"
+                        Margin="0,0,0,5"
+                        Padding="15,0,15,0"
+                        FontAttributes="Bold"
+                        HorizontalOptions="StartAndExpand"
+                        HorizontalTextAlignment="Center"
+                        Text="{Binding Title}"
+                        VerticalOptions="Center" />
+                </HorizontalStackLayout>
+            </Grid>
+        </DataTemplate>
+    </Shell.ItemTemplate>
+
+    <Shell.MenuItemTemplate>
+        <DataTemplate>
+            <Grid BackgroundColor="{StaticResource White}" FlowDirection="{Binding FlowDirection}">
+                <HorizontalStackLayout Margin="0,9,0,0" Padding="2">
+                    <Image
+                        Grid.Column="0"
+                        Margin="13,0,0,0"
+                        HeightRequest="30"
+                        Source="{Binding FlyoutIcon}"
+                        WidthRequest="25" />
+                    <Label
+                        Grid.RowSpan="2"
+                        Grid.Column="1"
+                        Margin="0,0,0,5"
+                        Padding="15,0,15,0"
+                        FontAttributes="Bold"
+                        HorizontalOptions="StartAndExpand"
+                        HorizontalTextAlignment="Center"
+                        Text="{Binding Title}"
+                        VerticalOptions="Center" />
+                </HorizontalStackLayout>
+            </Grid>
+        </DataTemplate>
+    </Shell.MenuItemTemplate>
+
+    <Shell.FlyoutHeader>
+        <VerticalStackLayout>
+
+            <Grid ColumnDefinitions="*,Auto,*" RowDefinitions="80,Auto">
+                <Frame
+                    Grid.RowSpan="2"
+                    Grid.Column="1"
+                    Margin="0"
+                    Padding="0"
+                    BorderColor="Transparent"
+                    HeightRequest="120"
+                    HorizontalOptions="Center"
+                    IsClippedToBounds="True"
+                    WidthRequest="250">
+
+                    <Image
+                        Aspect="AspectFill"
+                        HeightRequest="100"
+                        HorizontalOptions="Center"
+                        Source="read.png"
+                        VerticalOptions="Center"
+                        WidthRequest="100" />
+                </Frame>
+            </Grid>
+            <Frame
+                Grid.Row="0"
+                Margin="10"
+                Padding="10"
+                BorderColor="Transparent"
+                CornerRadius="20">
+                <Label
+                    x:Name="_header"
+                    FontAttributes="Bold"
+                    HorizontalOptions="Center"
+                    Text="Header"
+                    TextColor="Gray"
+                    VerticalOptions="Center" />
+            </Frame>
+
+        </VerticalStackLayout>
+
+    </Shell.FlyoutHeader>
+
+
+    <FlyoutItem Title="MainPage" FlyoutDisplayOptions="AsMultipleItems">
+        <ShellContent
+            Title="MainPage"
+            ContentTemplate="{DataTemplate MainPage:MainPage}"
+            Icon="home.png"
+            Route="MainPage" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Complexes" FlyoutDisplayOptions="AsMultipleItems">
+        <ShellContent
+            Title="{x:Static resources:SharedResources.Complexes}"
+            ContentTemplate="{DataTemplate Complexes:ComplexesPage}"
+            Icon="complexes.png"
+            Route="ComplexesPage" />
+    </FlyoutItem>
+
+    <!--<FlyoutItem Title="Centers" FlyoutDisplayOptions="AsMultipleItems">
+        <ShellContent
+            Title="{x:Static resources:SharedResources.Centers}"
+            ContentTemplate="{DataTemplate Centers:CenterPage}"
+            Icon="mosque.png"
+            Route="CenterPage" />
+    </FlyoutItem>-->
+
+    <MenuItem
+        Command="{Binding ChangeLanguageCommand}"
+        CommandParameter="{Binding CurrentLang}"
+        IconImageSource="language_icon.png"
+        Text="{Binding CurrentLang, Converter={StaticResource LanguageTextConverter}}" />
+
+    <MenuItem
+        Command="{Binding LogoutCommand}"
+        IconImageSource="exit.png"
+        Text="{x:Static resources:SharedResources.Text_LogOut}" />
+
+    <Shell.FlyoutFooter>
+        <StackLayout BackgroundColor="{StaticResource PrimaryColor}" HeightRequest="70">
+            <Frame
+                Margin="10"
+                Padding="10"
+                BackgroundColor="{StaticResource PrimaryColor}"
+                BorderColor="Transparent"
+                CornerRadius="20">
+                <Label
+                    FontSize="16"
+                    HorizontalOptions="CenterAndExpand"
+                    TextColor="{StaticResource PrimaryColor}"
+                    VerticalOptions="Center">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Version" />
+                            <Span x:Name="spanAppVersion" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </Frame>
+        </StackLayout>
+    </Shell.FlyoutFooter>
+</Shell>

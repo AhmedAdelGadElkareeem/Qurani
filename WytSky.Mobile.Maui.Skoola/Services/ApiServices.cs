@@ -28,6 +28,29 @@ namespace WytSky.Mobile.Maui.Skoola.Services
             BaseAddress = new Uri(BaseAddress),
         };
 
+        public HttpClient Client { get; set; } = new HttpClient() // new CustomHttpClientHandler()
+        {
+            Timeout = TimeSpan.FromMinutes(1),
+            BaseAddress = new Uri(Settings.URL ?? ""),
+        };
+
+        private void SetAuthorization(AuthorizationType Authorization = 0)
+        {
+            Client.DefaultRequestHeaders.Accept.Clear();
+            Client.DefaultRequestHeaders.Authorization = null;
+            Client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            if (Authorization == AuthorizationType.nun )
+            {
+                Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Settings.AuthoToken);
+            }
+            else if (Authorization == AuthorizationType.UserNamePassword)
+            {
+                var byteArray = Encoding.ASCII.GetBytes($"{Settings.UserName}:{Settings.Password}");
+                Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(byteArray));
+            }
+        }
+
+
         #region PostDataWithBaseUrl<T, T1>(T1 data, string control, string action, Dictionary<string, string> d,string BaseUrl, Enums.AuthorizationType Authorization = 0)
         public async Task<Models.ResultApi<T>> PostDataWithBaseUrl<T, T1>(T1 data, string control, string action, Dictionary<string, string> d, string BaseUrl, string apiAddress, Enums.AuthorizationType Authorization = 0)
         {

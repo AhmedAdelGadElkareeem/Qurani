@@ -93,13 +93,13 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.User
                     new UserTypeModel(){Name = SharedResources.Text_Teatcher ,Id = 3},
                 };
 
-#if DEBUG // set test values
-                UserName.Value = "Test User 6";
-                Email.Value = "test6@gmail.com";
-                Phone.Value = "01087654982";
-                Password.Value = "01087654982Ss@";
-                ConfirmPassword.Value = "01087654982Ss@";
-#endif
+//#if DEBUG // set test values
+//                UserName.Value = "Test User 6";
+//                Email.Value = "test6@gmail.com";
+//                Phone.Value = "01087654982";
+//                Password.Value = "01087654982Ss@";
+//                ConfirmPassword.Value = "01087654982Ss@";
+//#endif
             }
             catch (Exception ex)
             {
@@ -127,7 +127,12 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.User
                         Settings.Password = Password.Value;
                         Settings.AuthoToken = res.access_token;
                         Settings.SocialID = "";
-                        OpenMainPage();
+                        //OpenMainPage();
+                        // After successful login, set MainPage to AppShell if not already set
+                        if (!(Application.Current.MainPage is AppShell))
+                        {
+                            Application.Current.MainPage = new AppShell();
+                        }
                     }
                     else
                     {

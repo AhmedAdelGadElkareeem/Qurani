@@ -9,6 +9,10 @@ public class Settings
     #region Setting Constants
 
     private const string SettingsKey = "settingsKey";
+    private const string LanguageKey = "Language_Key";
+    private const string UserNameKey = "UserName_Key";
+
+
     private static readonly string SettingsDefault = string.Empty;
 
     #endregion
@@ -34,11 +38,30 @@ public class Settings
         get { return Preferences.Get("IsAdminKey", false); }
         set { Preferences.Set("IsAdminKey", value); }
     }
+
+    //public static string Language
+    //{
+    //    get { return Preferences.Get("LanguageKey", System.Threading.Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName == "ar" ? "ar" : "en"); }
+    //    set { Preferences.Set("LanguageKey", value); }
+    //}
+
+    #region Language
     public static string Language
     {
-        get { return Preferences.Get("LanguageKey", System.Threading.Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName == "ar" ? "ar" : "en"); }
-        set { Preferences.Set("LanguageKey", value); }
+        get => Preferences.Get(LanguageKey, "ar");
+        set => Preferences.Set(LanguageKey, value);
     }
+    #endregion
+
+    #region UserName
+
+    public static string UserName
+    {
+        get => Preferences.Get(UserNameKey, "");
+        set => Preferences.Set(UserNameKey, value);
+    }
+
+    #endregion
     public static long ClientId
     {
         get { return Preferences.Get("CustomerIdKey", long.MinValue); }
@@ -67,11 +90,11 @@ public class Settings
         set { Preferences.Set("RememberMeKey", value); }
     }
     
-    public static string UserName
-    {
-        get { return Preferences.Get("UserNameKey", string.Empty); }
-        set { Preferences.Set("UserNameKey", value); }
-    }
+    //public static string UserName
+    //{
+    //    get { return Preferences.Get("UserNameKey", string.Empty); }
+    //    set { Preferences.Set("UserNameKey", value); }
+    //}
     public static string ClientEmail
     {
         get { return Preferences.Get("ClientEmailKey", string.Empty); }
@@ -263,7 +286,8 @@ public class Settings
             var page = (NavigationPage)((Views.Public.MenuPage)((NavigationPage)App.Current.MainPage).CurrentPage).Detail;
             page.Title = "";
             page.CurrentPage.Title = "";*/
-            App.Current.MainPage = new MainPage();
+            //App.Current.MainPage = new MainPage();
+            App.OpenMainPage();
         }
         catch (Exception ex)
         {

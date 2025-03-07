@@ -2,6 +2,7 @@
 using CommunityToolkit.Maui.Behaviors;
 using CommunityToolkit.Mvvm.Messaging;
 using System.Windows.Input;
+using WytSky.Mobile.Maui.Skoola.AppResources;
 using WytSky.Mobile.Maui.Skoola.Helpers;
 using WytSky.Mobile.Maui.Skoola.Views;
 
@@ -13,8 +14,123 @@ public partial class CustomHeader : ContentView
     public CustomHeader()
     {
         InitializeComponent();
-        FlowDirection = Settings.Language == "ar" ? FlowDirection.RightToLeft : FlowDirection.LeftToRight;
+        //FlowDirection = Settings.Language == "ar" ? FlowDirection.RightToLeft : FlowDirection.LeftToRight;
+        try
+        {
+            InitializeComponent();
+            if (Settings.Language == "ar")
+            {
+                FlowDirection = FlowDirection.RightToLeft;
+                pageTitle.Margin = new Thickness(0, 0, 40, 0);
+            }
+            else
+            {
+                FlowDirection = FlowDirection.LeftToRight;
+                pageTitle.Margin = new Thickness(40, 0, 0, 0);
+            }
+        }
+        catch (Exception ex)
+        {
+            ExtensionLogMethods.LogExtension(ex, null, "", "");
+        }
     }
+
+
+
+
+    #region PageTitle
+    public static readonly BindableProperty PageTitleProperty =
+            BindableProperty.Create(nameof(PageTitle),
+            typeof(string), typeof(CustomHeader), "", BindingMode.TwoWay);
+    public string PageTitle
+    {
+        get => (string)GetValue(PageTitleProperty);
+        set => SetValue(PageTitleProperty, value);
+    }
+    #endregion
+
+    #region PageTitleColor
+    public static readonly BindableProperty PageTitleColorProperty =
+            BindableProperty.Create(nameof(PageTitleColor),
+            typeof(Color), typeof(CustomHeader), Colors.White, BindingMode.TwoWay);
+    public Color PageTitleColor
+    {
+        get => (Color)GetValue(PageTitleColorProperty);
+        set => SetValue(PageTitleColorProperty, value);
+    }
+    #endregion
+
+    #region HasTitle
+    public static readonly BindableProperty HasTitleProperty =
+        BindableProperty.Create(nameof(HasTitle),
+        typeof(bool), typeof(CustomHeader), false,
+        BindingMode.TwoWay);
+    public bool HasTitle
+    {
+        get => (bool)GetValue(HasTitleProperty);
+        set => SetValue(HasTitleProperty, value);
+    }
+    #endregion
+
+    #region HasBack
+    public static readonly BindableProperty HasBackProperty =
+        BindableProperty.Create(nameof(HasBack),
+        typeof(bool), typeof(CustomHeader), false,
+        BindingMode.TwoWay);
+    public bool HasBack
+    {
+        get => (bool)GetValue(HasBackProperty);
+        set => SetValue(HasBackProperty, value);
+    }
+    #endregion
+
+    #region HasLogout
+    public static readonly BindableProperty HasLogoutProperty =
+        BindableProperty.Create(nameof(HasLogout),
+        typeof(bool), typeof(CustomHeader), false,
+        BindingMode.TwoWay);
+    public bool HasLogout
+    {
+        get => (bool)GetValue(HasLogoutProperty);
+        set => SetValue(HasLogoutProperty, value);
+    }
+    #endregion
+
+    private void GoBack(object sender, TappedEventArgs e)
+    {
+        try
+        {
+
+            App.Current.MainPage.Navigation.PopModalAsync();
+
+        }
+        catch (Exception ex)
+        {
+            ExtensionLogMethods.LogExtension(ex, null, "", "");
+        }
+    }
+    private async void Logout(object sender, TappedEventArgs e)
+    {
+        try
+        {
+            var confirm = await App.Current.MainPage.DisplayAlert(SharedResources.Text_LogOut,
+                                                                          SharedResources.Text_LogOut,
+                                                                          SharedResources.Text_Yes,
+                                                                          SharedResources.Text_No);
+            if (confirm)
+            {
+                App.Logout();
+            }
+
+        }
+        catch (Exception ex)
+        {
+            ExtensionLogMethods.LogExtension(ex, null, "", "");
+        }
+
+    }
+
+
 
     #region IsSearchVisible
     public static readonly BindableProperty IsSearchVisibleProperty =
@@ -98,19 +214,19 @@ public partial class CustomHeader : ContentView
         WeakReferenceMessenger.Default.Send("OpenMenu");
     }
 
-    private void GoBack(object sender, TappedEventArgs e)
-    {
-        NavigateToPage.ClosePage();
-    }
+    //private void GoBack(object sender, TappedEventArgs e)
+    //{
+    //    NavigateToPage.ClosePage();
+    //}
 
-    private void GridClicked(object sender, TappedEventArgs e)
-    {
-        gridImage.Source = "red_grid";
-        listImage.Source = "list";
-    }
-    private void ListClicked(object sender, TappedEventArgs e)
-    {
-        gridImage.Source = "grid";
-        listImage.Source = "red_list";
-    }
+    //private void GridClicked(object sender, TappedEventArgs e)
+    //{
+    //    gridImage.Source = "red_grid";
+    //    listImage.Source = "list";
+    //}
+    //private void ListClicked(object sender, TappedEventArgs e)
+    //{
+    //    gridImage.Source = "grid";
+    //    listImage.Source = "red_list";
+    //}
 }

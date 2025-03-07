@@ -1181,4 +1181,37 @@ Successfully Changed</value>
   <data name="Complexes" xml:space="preserve">
     <value>Complexes</value>
   </data>
+  <data name="Centers" xml:space="preserve">
+    <value>Centers</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="Tawhed" xml:space="preserve">
+    <value>Tawhed</value>
+  </data>
+  <data name="PrayerontheProphet" xml:space="preserve">
+    <value>Prayer on the Prophet</value>
+  </data>
+  <data name="AllMosques" xml:space="preserve">
+    <value>All Mosques</value>
+  </data>
+  <data name="TawhedPage" xml:space="preserve">
+    <value>Tawhed Page</value>
+  </data>
+  <data name="NoGodExceptAllah" xml:space="preserve">
+    <value>NoGodExceptAllah</value>
+  </data>
+  <data name="ZekrPage" xml:space="preserve">
+    <value>Zekr Page</value>
+  </data>
+  <data name="PrayonourmasterMohammad" xml:space="preserve">
+    <value>Pray on our master Mohammad</value>
+  </data>
+  <data name="AbrahamicPray" xml:space="preserve">
+    <value>Abrahamic Pray</value>
+  </data>
+  <data name="Shehada" xml:space="preserve">
+    <value>I bear witness that there is no god but God and that Muhammad is the Messenger of God</value>
+  </data>
 </root>

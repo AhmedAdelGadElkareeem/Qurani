@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<base:BaseContentPage
+    x:Class="WytSky.Mobile.Maui.Skoola.Views.Tawhed.TawhedPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:base="clr-namespace:WytSky.Mobile.Maui.Skoola.Views"
+    xmlns:customControls="clr-namespace:WytSky.Mobile.Maui.Skoola.CustomControl"
+    xmlns:resources="clr-namespace:WytSky.Mobile.Maui.Skoola.AppResources"
+    Title="{x:Static resources:SharedResources.Tawhed}">
+    <Grid RowDefinitions="*">
+        <Grid RowDefinitions="auto,*" VerticalOptions="FillAndExpand">
+            <customControls:CustomHeader
+                HasBack="True"
+                HasTitle="True"
+                PageTitle="{x:Static resources:SharedResources.Tawhed}" />
+            <Grid Grid.Row="1" RowDefinitions="auto,*">
+                <Frame
+                    Padding="20"
+                    BackgroundColor="#00274D"
+                    BorderColor="gold"
+                    CornerRadius="20"
+                    HasShadow="True">
+                    <Label
+                        FontFamily="ManropeBold"
+                        FontSize="32"
+                        HorizontalOptions="Center"
+                        Text="{Static resources:SharedResources.TawhedPage}"
+                        TextColor="gold"
+                        VerticalOptions="StartAndExpand" />
+                </Frame>
+                <Frame
+                    Grid.Row="1"
+                    Padding="20"
+                    BackgroundColor="#00274D"
+                    BorderColor="gold"
+                    CornerRadius="20"
+                    HasShadow="True">
+                    <Grid RowDefinitions="auto,*,*">
+                        <!--  Arabic Calligraphy for Tawheed  -->
+                        <Label
+                            FontFamily="ManropeBold"
+                            FontSize="32"
+                            HorizontalOptions="Center"
+                            Text="{Static resources:SharedResources.NoGodExceptAllah}"
+                            TextColor="gold"
+                            VerticalOptions="StartAndExpand" />
+
+                        <Label
+                            Grid.Row="1"
+                            FontFamily="ManropeBold"
+                            FontSize="32"
+                            HorizontalOptions="CenterAndExpand"
+                            HorizontalTextAlignment="Center"
+                            Text="{Static resources:SharedResources.Shehada}"
+                            TextColor="gold"
+                            VerticalOptions="CenterAndExpand" />
+                        <!--  Counter Button  -->
+                        <Button
+                            x:Name="CounterBtn"
+                            Grid.Row="2"
+                            Padding="10"
+                            BackgroundColor="#004d00"
+                            Clicked="OnCounterClicked"
+                            CornerRadius="10"
+                            FontSize="18"
+                            Text="0"
+                            TextColor="white"
+                            VerticalOptions="EndAndExpand" />
+                    </Grid>
+                </Frame>
+            </Grid>
+        </Grid>
+        <ActivityIndicator IsRunning="{Binding IsRunning}" IsVisible="{Binding IsRunning}" />
+    </Grid>
+</base:BaseContentPage>

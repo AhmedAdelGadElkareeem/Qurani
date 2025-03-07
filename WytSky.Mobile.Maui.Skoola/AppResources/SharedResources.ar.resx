@@ -993,6 +993,9 @@
   <data name="Text_AppUpdate" xml:space="preserve">
     <value>تحديثات التطبيق</value>
   </data>
+  <data name="Text_Arabic" xml:space="preserve">
+    <value>عربي</value>
+  </data>
   <data name="Text_BiometricId" xml:space="preserve">
     <value>بصمة الهوية</value>
   </data>
@@ -1010,6 +1013,12 @@
   </data>
   <data name="Text_EditProfile" xml:space="preserve">
     <value>تعديل الملف الشخصي</value>
+  </data>
+  <data name="Text_EnglishUK" xml:space="preserve">
+    <value>انجليزي</value>
+  </data>
+  <data name="Text_EnglishUS" xml:space="preserve">
+    <value>انجليزي</value>
   </data>
   <data name="Text_FaceId" xml:space="preserve">
     <value>بصمة الوجه</value>
@@ -1169,5 +1178,42 @@
   </data>
   <data name="Complexes" xml:space="preserve">
     <value>المجمعات</value>
+  </data>
+  <data name="Centers" xml:space="preserve">
+    <value>المساجد</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>الرئيسية</value>
+  </data>
+  <data name="Tawhed" xml:space="preserve">
+    <value>التـوحـيد</value>
+  </data>
+  <data name="PrayerontheProphet" xml:space="preserve">
+    <value>الصلاة علي النبي</value>
+  </data>
+  <data name="AllMosques" xml:space="preserve">
+    <value>جمـيع المسـاجد</value>
+  </data>
+  <data name="TawhedPage" xml:space="preserve">
+    <value>صفحــة التـوحـيـد</value>
+  </data>
+  <data name="NoGodExceptAllah" xml:space="preserve">
+    <value>لا إلـه إلا اللـه</value>
+  </data>
+  <data name="ZekrPage" xml:space="preserve">
+    <value>صفحـة الـذكـر</value>
+  </data>
+  <data name="PrayonourmasterMohammad" xml:space="preserve">
+    <value>صل علي سيدنا محمد ﷺ</value>
+  </data>
+  <data name="AbrahamicPray" xml:space="preserve">
+    <value>اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ، وَعَلَى آلِ مُحَمَّدٍ، كَمَا صَلَّيْتَ عَلَى إِبْرَاهِيمَ،
+وَعَلَى آلِ إِبْرَاهِيمَ، إِنَّكَ حَمِيدٌ
+مَجِيدٌ، اللَّهُمَ بَارِك عَلَى مُحَمَّدٍ،
+وَعَلَى آلِ مُحَمَّدٍ، كَمَا بَارَكْتَ عَلَى إِبْرَاهِيمَ، وَعَلَى آلِ إِبْرَاهِيمَ، إِنَّكَ
+حَمِيدٌ مَجِيدٌ</value>
+  </data>
+  <data name="Shehada" xml:space="preserve">
+    <value> أشهد أن لا إله إلا الله وأن محمدا رسول الله</value>
   </data>
 </root>

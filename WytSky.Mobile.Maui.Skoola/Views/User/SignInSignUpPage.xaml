@@ -22,14 +22,10 @@
                         x:Name="stackLayoutLogin"
                         Margin="0,20,0,0"
                         VerticalOptions="CenterAndExpand">
-                        <customControls:ValidationEntry
-                            EntryValidatableObject="{Binding UserName}"
-                            Placeholder="johndoe@example.com"
-                            TextLabel="{x:Static resource:SharedResources.Text_Email}" />
+                        <customControls:ValidationEntry EntryValidatableObject="{Binding UserName}" TextLabel="{x:Static resource:SharedResources.Text_Email}" />
                         <customControls:ValidationEntry
                             EntryValidatableObject="{Binding Password}"
                             HasPasswordImage="True"
-                            Placeholder="**************************"
                             TextLabel="{x:Static resource:SharedResources.Text_Password}" />
 
                         <VerticalStackLayout Margin="10,20,10,0" IsVisible="false">

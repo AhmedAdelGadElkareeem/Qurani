@@ -58,7 +58,7 @@
 
 	<ItemGroup>
 		<!-- App Icon -->
-    <MauiIcon Include="Resources\AppIcon\appicon.svg" Color="#FFFFFF" ForegroundScale="0.68"/>
+    <MauiIcon Include="Resources\AppIcon\appicon.svg" Color="#FFFFFF" ForegroundScale="0.68" />
     
     <!-- Splash Screen -->
 		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#FFFFFF" />
@@ -132,7 +132,6 @@
 	  <None Remove="Resources\Images\search.svg" />
 	  <None Remove="Resources\Images\security.svg" />
 	  <None Remove="Resources\Images\send_message.png" />
-	  <None Remove="Resources\Images\student.svg" />
 	  <None Remove="Resources\Images\test_image.svg" />
 	  <None Remove="Resources\Images\test_image2.svg" />
 	  <None Remove="Resources\Images\test_skip_1.svg" />
@@ -200,7 +199,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="AppShell.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="CustomControl\CreditCardView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="CustomControl\HomeCard.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="CustomControl\LogoView.xaml">
@@ -215,13 +220,16 @@
 	  <MauiXaml Update="CustomControl\ViewAll.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="MainPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
 	  <MauiXaml Update="Template\CourseTemplate.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\MainPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\Staff\AddStaff.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Tawhed\TawhedPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\User\ChangePasswordPage.xaml">
@@ -236,6 +244,9 @@
 	  </MauiXaml>
 	  <MauiXaml Update="Views\Staff\StaffPage.xaml">
 	    <SubType>Designer</SubType>
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Zekr\ZekrPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

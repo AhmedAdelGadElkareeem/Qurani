@@ -1,4 +1,5 @@
-﻿using WytSky.Mobile.Maui.Skoola.Models;
+﻿using System.Numerics;
+using WytSky.Mobile.Maui.Skoola.Models;
 using WytSky.Mobile.Maui.Skoola.ViewModels;
 
 namespace WytSky.Mobile.Maui.Skoola.Views.Centers;
@@ -12,6 +13,11 @@ public partial class CenterPage : BaseContentPage
         InitializeComponent();
         CenterVM = new CenterVM();
         Title = complex.ComplexName;
+        BindingContext = CenterVM;
+    }
+    public CenterPage()
+    {
+        CenterVM = new CenterVM();
         BindingContext = CenterVM;
     }
     

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<base:BaseContentPage
+    x:Class="WytSky.Mobile.Maui.Skoola.Views.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:base="clr-namespace:WytSky.Mobile.Maui.Skoola.Views"
+    xmlns:customControl="clr-namespace:WytSky.Mobile.Maui.Skoola.CustomControl"
+    xmlns:resources="clr-namespace:WytSky.Mobile.Maui.Skoola.AppResources"
+    Title="{x:Static resources:SharedResources.Home}">
+    <StackLayout>
+
+        <Grid
+            Margin="5,100,5,5"
+            Padding="0"
+            ColumnDefinitions="auto,auto"
+            ColumnSpacing="5"
+            HorizontalOptions="CenterAndExpand"
+            RowDefinitions="auto,auto"
+            RowSpacing="5"
+            VerticalOptions="Start">
+            <customControl:HomeCard
+                Grid.Row="0"
+                Grid.Column="0"
+                BackColor="{StaticResource PrimaryColor}"
+                Command="{Binding OpenTawhedCommand}"
+                HeightRequest="130"
+                TextLable="{x:Static resources:SharedResources.Tawhed}"
+                WidthRequest="180" />
+            <customControl:HomeCard
+                Grid.Row="0"
+                Grid.Column="1"
+                BackColor="Green"
+                Command="{Binding OpenZekrCommand}"
+                HeightRequest="130"
+                TextLable="{x:Static resources:SharedResources.PrayerontheProphet}"
+                WidthRequest="180" />
+            <customControl:HomeCard
+                Grid.Row="1"
+                Grid.Column="0"
+                BackColor="Green"
+                Command="{Binding OpenComplexesCommand}"
+                HeightRequest="130"
+                TextLable="{x:Static resources:SharedResources.Complexes}"
+                WidthRequest="180" />
+            <customControl:HomeCard
+                Grid.Row="1"
+                Grid.Column="1"
+                BackColor="Green"
+                Command="{Binding OpenCentersCommand}"
+                HeightRequest="130"
+                TextLable="{x:Static resources:SharedResources.AllMosques}"
+                WidthRequest="180" />
+
+        </Grid>
+    </StackLayout>
+</base:BaseContentPage>

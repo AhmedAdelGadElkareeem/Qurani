@@ -44,7 +44,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewPublic
         {
             try
             {
-                SetMune();
+                //SetMune();
                 Name = Settings.ClientName;
                 Email = Settings.ClientEmail;
             }
@@ -56,22 +56,22 @@ namespace WytSky.Mobile.Maui.Skoola.ViewPublic
         #endregion
 
         #region Methods
-        public void SetMune()
-        {
-            try
-            {
-                MenuItems = new ObservableCollection<MenuModelItem>(new[]
-                {
-                        new MenuModelItem { Icon="menu_my_profile",Title = SharedResources.Text_MyProfile , TargetType = typeof(MyProfilePage)},
-                        new MenuModelItem { Icon="menu_language",Title = SharedResources.Text_Language , CommandE = new Command(ChangeLanguage) ,TargetType = null},
-                        new MenuModelItem { Icon="menu_logout",Title = SharedResources.Text_LogOut  , CommandE = new Command(Logout)  , TargetType = null },
-                });
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine(string.Format(" Error : {0} - {1} ", ex.Message, ex.InnerException != null ? ex.InnerException.FullMessage() : ""));
-            }
-        }
+        //public void SetMune()
+        //{
+        //    try
+        //    {
+        //        MenuItems = new ObservableCollection<MenuModelItem>(new[]
+        //        {
+        //                new MenuModelItem { Icon="menu_my_profile",Title = SharedResources.Text_MyProfile , TargetType = typeof(MyProfilePage)},
+        //                new MenuModelItem { Icon="menu_language",Title = SharedResources.Text_Language , CommandE = new Command(ChangeLanguage) ,TargetType = null},
+        //                new MenuModelItem { Icon="menu_logout",Title = SharedResources.Text_LogOut  , CommandE = new Command(Logout)  , TargetType = null },
+        //        });
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        System.Diagnostics.Debug.WriteLine(string.Format(" Error : {0} - {1} ", ex.Message, ex.InnerException != null ? ex.InnerException.FullMessage() : ""));
+        //    }
+        //}
        
         private void CustomerLogin()
         {

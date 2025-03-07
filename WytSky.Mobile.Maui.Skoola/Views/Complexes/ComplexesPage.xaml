@@ -9,11 +9,14 @@
     xmlns:customControls="clr-namespace:WytSky.Mobile.Maui.Skoola.CustomControl"
     xmlns:resource="clr-namespace:WytSky.Mobile.Maui.Skoola.AppResources"
     xmlns:templates="clr-namespace:WytSky.Mobile.Maui.Skoola.Template"
-    Title="{x:Static resource:SharedResources.Complexes}"
-    x:Name="root">
+    x:Name="root"
+    Title="{x:Static resource:SharedResources.Complexes}">
     <Grid RowDefinitions="*">
         <Grid RowDefinitions="auto,*" VerticalOptions="FillAndExpand">
-            <customControls:LogoView />
+            <customControls:CustomHeader
+                HasBack="True"
+                HasTitle="True"
+                PageTitle="{x:Static resource:SharedResources.Complexes}" />
             <Grid Grid.Row="1">
                 <CollectionView Margin="15,10,15,0" ItemsSource="{Binding Complexes}">
                     <CollectionView.ItemsLayout>

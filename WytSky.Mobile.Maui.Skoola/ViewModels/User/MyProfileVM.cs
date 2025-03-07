@@ -104,7 +104,9 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.User
                 SharedResources.Culture = culture;
                 Thread.CurrentThread.CurrentUICulture.NumberFormat = new CultureInfo("en").NumberFormat;
                 Thread.CurrentThread.CurrentUICulture.DateTimeFormat = new CultureInfo("en").DateTimeFormat;
-                App.Current.MainPage = new MainPage();
+                //App.Current.MainPage = new MainPage();
+                App.OpenMainPage();
+
             }
             catch (Exception ex)
             {
@@ -134,7 +136,8 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.User
                 ModeTitle = SharedResources.Text_DarkMode;
             }
 
-            App.Current.MainPage = new MainPage();
+            //App.Current.MainPage = new MainPage();
+            App.OpenMainPage();
         }
 
         [RelayCommand]

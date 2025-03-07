@@ -7,7 +7,70 @@
     xmlns:resource="clr-namespace:WytSky.Mobile.Maui.Skoola.AppResources"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     x:Name="root">
-    <VerticalStackLayout BindingContext="{x:Reference root}">
+
+
+    <Grid
+        BackgroundColor="{StaticResource PrimaryColor}"
+        BindingContext="{x:Reference root}"
+        ColumnDefinitions="auto,*,auto"
+        HeightRequest="60">
+        <Image
+            x:Name="backArrow"
+            Margin="15,0"
+            x:FieldModifier="public"
+            IsVisible="{Binding HasBack}"
+            Source="back_arrow.png"
+            Style="{StaticResource ImageSize20}">
+            <Image.Behaviors>
+                <toolkit:IconTintColorBehavior TintColor="{StaticResource White}" />
+            </Image.Behaviors>
+            <Image.GestureRecognizers>
+                <TapGestureRecognizer Tapped="GoBack" />
+            </Image.GestureRecognizers>
+            <Image.Triggers>
+                <DataTrigger
+                    Binding="{Binding BindingContext.CurrentLang, Source={x:Reference root}}"
+                    TargetType="Image"
+                    Value="ar">
+                    <Setter Property="Rotation" Value="180" />
+                </DataTrigger>
+            </Image.Triggers>
+        </Image>
+
+        <Label
+            x:Name="pageTitle"
+            Grid.Column="1"
+            FontFamily="ManropeBold"
+            HorizontalOptions="CenterAndExpand"
+            IsVisible="{Binding HasTitle}"
+            Style="{StaticResource BoldLabelFont22}"
+            Text="{Binding PageTitle}"
+            TextColor="{Binding PageTitleColor}"
+            VerticalOptions="CenterAndExpand" />
+
+        <Image
+            Grid.Column="2"
+            Margin="10"
+            IsVisible="{Binding HasLogout}"
+            Source="logout"
+            Style="{StaticResource ImageSize20}">
+            <Image.GestureRecognizers>
+                <TapGestureRecognizer Tapped="Logout" />
+            </Image.GestureRecognizers>
+            <Image.Behaviors>
+                <toolkit:IconTintColorBehavior TintColor="{StaticResource White}" />
+            </Image.Behaviors>
+        </Image>
+    </Grid>
+
+
+
+
+
+
+
+
+    <!--<VerticalStackLayout BindingContext="{x:Reference root}">
         <Grid Margin="10,15,10,0" ColumnDefinitions="auto,auto,*,auto">
             <Frame
                 Padding="0"
@@ -144,5 +207,5 @@
                 </Image>
             </Grid>
         </Grid>
-    </VerticalStackLayout>
+    </VerticalStackLayout>-->
 </ContentView>

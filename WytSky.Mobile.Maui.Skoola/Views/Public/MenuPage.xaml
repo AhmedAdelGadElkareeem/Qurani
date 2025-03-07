@@ -4,48 +4,48 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:complex="clr-namespace:WytSky.Mobile.Maui.Skoola.Views.Complexes"
-    IconImageSource="menu_home"
-    BackgroundColor="{StaticResource White}">
-   <Grid Margin="20,0,20,10" RowDefinitions="auto,*">
-          <VerticalStackLayout Margin="10,5" VerticalOptions="CenterAndExpand">
-                        <Label
-                            Style="{StaticResource RegularLabelFont14}"
-                            Text="{Binding Name}"
-                            TextColor="{StaticResource Gray100}" />
-                        <Label
-                            FontAttributes="Bold"
-                            Style="{StaticResource BoldLabelFont16}"
-                            Text="{Binding Email}"
-                            TextColor="{StaticResource Black100}" />
-                    </VerticalStackLayout>
-           <ListView
-                        x:Name="MenuItemsListView"
-                        Grid.Row="1" 
-                        x:FieldModifier="public"
-                        Margin="0,10,0,0"
-                        HasUnevenRows="true"
-                        ItemsSource="{Binding MenuItems}"
-                        SeparatorVisibility="None"
-                        VerticalScrollBarVisibility="Never">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <ViewCell>
-                                    <StackLayout Margin="0,15,0,0" HorizontalOptions="FillAndExpand">
-                                        <StackLayout Orientation="Horizontal">
-                                            <Image
-                                                HeightRequest="30"
-                                                Source="{Binding Icon}"
-                                                VerticalOptions="Center" />
-                                            <Label
-                                                Margin="20,0"
-                                                Style="{StaticResource RegularLabelFont16}"
-                                                Text="{Binding Title}"
-                                                TextColor="{StaticResource Black100}" />
-                                        </StackLayout>
-                                    </StackLayout>
-                                </ViewCell>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-   </Grid>
+    BackgroundColor="{StaticResource White}"
+    IconImageSource="menu_home">
+    <Grid Margin="20,0,20,10" RowDefinitions="auto,*">
+        <VerticalStackLayout Margin="10,5" VerticalOptions="CenterAndExpand">
+            <Label
+                Style="{StaticResource RegularLabelFont14}"
+                Text="{Binding Name}"
+                TextColor="{StaticResource Gray100}" />
+            <Label
+                FontAttributes="Bold"
+                Style="{StaticResource BoldLabelFont16}"
+                Text="{Binding Email}"
+                TextColor="{StaticResource Black100}" />
+        </VerticalStackLayout>
+        <ListView
+            x:Name="MenuItemsListView"
+            Grid.Row="1"
+            Margin="0,10,0,0"
+            x:FieldModifier="public"
+            HasUnevenRows="true"
+            ItemsSource="{Binding MenuItems}"
+            SeparatorVisibility="None"
+            VerticalScrollBarVisibility="Never">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Margin="0,15,0,0" HorizontalOptions="FillAndExpand">
+                            <StackLayout Orientation="Horizontal">
+                                <Image
+                                    HeightRequest="30"
+                                    Source="{Binding Icon}"
+                                    VerticalOptions="Center" />
+                                <Label
+                                    Margin="20,0"
+                                    Style="{StaticResource RegularLabelFont16}"
+                                    Text="{Binding Title}"
+                                    TextColor="{StaticResource Black100}" />
+                            </StackLayout>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
 </ContentPage>
