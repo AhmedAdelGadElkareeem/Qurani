@@ -85,8 +85,8 @@ public class Settings
 
     public static string UserId
     {
-        get { return Preferences.Get("CustomerUserIdKey", string.Empty); }
-        set { Preferences.Set("CustomerUserIdKey", value); }
+        get { return Preferences.Get("UserIdKey", string.Empty); }
+        set { Preferences.Set("UserIdKey", value); }
     }
 
     public static bool RememberMe

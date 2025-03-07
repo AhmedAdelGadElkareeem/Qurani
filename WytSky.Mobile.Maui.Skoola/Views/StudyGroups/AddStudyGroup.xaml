@@ -7,78 +7,76 @@
     xmlns:customControls="clr-namespace:WytSky.Mobile.Maui.Skoola.CustomControl"
     xmlns:pages="clr-namespace:Mopups.Pages;assembly=Mopups"
     xmlns:res="clr-namespace:WytSky.Mobile.Maui.Skoola.AppResources">
-    <ScrollView>
-        <Frame
-            Margin="20,10"
-            Padding="10"
-            BackgroundColor="White"
-            CornerRadius="10"
-            HeightRequest="500">
-            <VerticalStackLayout Margin="5,0">
-                <Entry Placeholder="{x:Static res:SharedResources.StudyGroupAr}" Text="{Binding StudyGroupName}" />
-                <Entry Placeholder="{x:Static res:SharedResources.StudyGroupEn}" Text="{Binding StudyGroupNameEn}" />
-                <Border
-                    Grid.Column="1"
-                    Padding="0"
-                    BackgroundColor="{StaticResource Yellow400Accent}"
-                    StrokeShape="RoundRectangle 5,20,5,0"
-                    StrokeThickness="0">
-                    <Picker
-                        Title="{x:Static res:SharedResources.Complexes}"
-                        ItemDisplayBinding="{Binding ComplexName}"
-                        ItemsSource="{Binding Complexes}"
-                        SelectedItem="{Binding SelectedComplex, Mode=TwoWay}"
-                        TextColor="{StaticResource Black}"
-                        TitleColor="{StaticResource Black}" />
-                </Border>
 
-                <Border
-                    Grid.Column="1"
-                    Padding="0"
-                    BackgroundColor="{StaticResource Yellow400Accent}"
-                    StrokeShape="RoundRectangle 5,20,5,0"
-                    StrokeThickness="0">
-                    <Picker
-                        Title="{x:Static res:SharedResources.Centers}"
-                        ItemDisplayBinding="{Binding CenterName}"
-                        ItemsSource="{Binding Centers}"
-                        SelectedItem="{Binding SelectedCenter, Mode=TwoWay}"
-                        TextColor="{StaticResource Black}"
-                        TitleColor="{StaticResource Black}" />
-                </Border>
-                <Border
-                    Grid.Column="1"
-                    Padding="0"
-                    BackgroundColor="{StaticResource Yellow400Accent}"
-                    StrokeShape="RoundRectangle 5,20,5,0"
-                    StrokeThickness="0">
-                    <Picker
-                        Title="{x:Static res:SharedResources.Teachers}"
-                        ItemDisplayBinding="{Binding FullName}"
-                        ItemsSource="{Binding Teachers}"
-                        SelectedItem="{Binding SelectedTeacher, Mode=TwoWay}"
-                        TextColor="{StaticResource Black}"
-                        TitleColor="{StaticResource Black}" />
-                </Border>
-                <Entry Placeholder="{x:Static res:SharedResources.Text_Subject}" Text="{Binding SubjectName}" />
-                <Entry Placeholder="{x:Static res:SharedResources.Text_Notes}" Text="{Binding Notes}" />
-                <Entry Placeholder="{x:Static res:SharedResources.Text_Discount50}" Text="{Binding StudentCount}" />
-                <Entry Placeholder="{x:Static res:SharedResources.Text_Location}" Text="{Binding Location}" />
+    <Frame
+        Margin="20,10"
+        Padding="10"
+        BackgroundColor="White"
+        CornerRadius="10"
+        HeightRequest="500">
+        <VerticalStackLayout Margin="5,0">
+            <Entry Placeholder="{x:Static res:SharedResources.StudyGroupAr}" Text="{Binding StudyGroupName}" />
+            <Entry Placeholder="{x:Static res:SharedResources.StudyGroupEn}" Text="{Binding StudyGroupNameEn}" />
+            <Border
+                Grid.Column="1"
+                Padding="0"
+                BackgroundColor="{StaticResource Yellow400Accent}"
+                StrokeShape="RoundRectangle 5,20,5,0"
+                StrokeThickness="0">
+                <Picker
+                    Title="{x:Static res:SharedResources.Complexes}"
+                    ItemDisplayBinding="{Binding ComplexName}"
+                    ItemsSource="{Binding Complexes}"
+                    SelectedItem="{Binding SelectedComplex, Mode=TwoWay}"
+                    TextColor="{StaticResource Black}"
+                    TitleColor="{StaticResource Black}" />
+            </Border>
+
+            <Border
+                Grid.Column="1"
+                Padding="0"
+                BackgroundColor="{StaticResource Yellow400Accent}"
+                StrokeShape="RoundRectangle 5,20,5,0"
+                StrokeThickness="0">
+                <Picker
+                    Title="{x:Static res:SharedResources.Centers}"
+                    ItemDisplayBinding="{Binding CenterName}"
+                    ItemsSource="{Binding Centers}"
+                    SelectedItem="{Binding SelectedCenter, Mode=TwoWay}"
+                    TextColor="{StaticResource Black}"
+                    TitleColor="{StaticResource Black}" />
+            </Border>
+            <Border
+                Grid.Column="1"
+                Padding="0"
+                BackgroundColor="{StaticResource Yellow400Accent}"
+                StrokeShape="RoundRectangle 5,20,5,0"
+                StrokeThickness="0">
+                <Picker
+                    Title="{x:Static res:SharedResources.Teachers}"
+                    ItemDisplayBinding="{Binding FullName}"
+                    ItemsSource="{Binding Teachers}"
+                    SelectedItem="{Binding SelectedTeacher, Mode=TwoWay}"
+                    TextColor="{StaticResource Black}"
+                    TitleColor="{StaticResource Black}" />
+            </Border>
+            <Entry Placeholder="{x:Static res:SharedResources.Text_Subject}" Text="{Binding SubjectName}" />
+            <Entry Placeholder="{x:Static res:SharedResources.Text_Notes}" Text="{Binding Notes}" />
+            <Entry Placeholder="{x:Static res:SharedResources.Text_Discount50}" Text="{Binding StudentCount}" />
+            <Entry Placeholder="{x:Static res:SharedResources.Text_Location}" Text="{Binding Location}" />
 
 
-                <customControls:DatePickerFromTo
-                    Margin="5"
-                    DateRangeValue="{Binding DateRangeValue}"
-                    FromDate="{Binding startDate}"
-                    IsVisible="True"
-                    ToDate="{Binding endDate}" />
+            <customControls:DatePickerFromTo
+                Margin="5"
+                DateRangeValue="{Binding DateRangeValue}"
+                FromDate="{Binding startDate}"
+                IsVisible="True"
+                ToDate="{Binding endDate}" />
 
-                <Button
-                    Command="{Binding AddStudyGroupCommand}"
-                    Style="{StaticResource BaseButton}"
-                    Text="{x:Static res:SharedResources.Text_Save}" />
-            </VerticalStackLayout>
-        </Frame>
-    </ScrollView>
-
+            <Button
+                Command="{Binding AddStudyGroupCommand}"
+                Style="{StaticResource BaseButton}"
+                Text="{x:Static res:SharedResources.Text_Save}" />
+        </VerticalStackLayout>
+    </Frame>
 </pages:PopupPage>
