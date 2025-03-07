@@ -6,57 +6,12 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:pages="clr-namespace:Mopups.Pages;assembly=Mopups"
     xmlns:res="clr-namespace:WytSky.Mobile.Maui.Skoola.AppResources">
-    <ScrollView Padding="15">
-        <Border
-            Margin="20,10"
-            Padding="10"
-            BackgroundColor="White"
-            HeightRequest="600"
-            VerticalOptions="CenterAndExpand">
-            <VerticalStackLayout>
-                <Entry
-                    BackgroundColor="White"
-                    Placeholder="{x:Static res:SharedResources.Text_FirstName}"
-                    Text="{Binding FirstName, Mode=TwoWay}"
-                    TextColor="Black" />
-                <Entry
-                    BackgroundColor="White"
-                    Placeholder="{x:Static res:SharedResources.Text_LastName}"
-                    Text="{Binding LastName, Mode=TwoWay}"
-                    TextColor="Black" />
-                <Picker
-                    Title="{x:Static res:SharedResources.Centers}"
-                    ItemDisplayBinding="{Binding CenterName}"
-                    ItemsSource="{Binding Centers}"
-                    SelectedItem="{Binding SelectedCenter, Mode=TwoWay}"
-                    TextColor="{StaticResource Black}"
-                    TitleColor="{StaticResource Black}" />
-                <Entry
-                    BackgroundColor="White"
-                    Placeholder="{x:Static res:SharedResources.Text_Mobile}"
-                    Text="{Binding Mobile, Mode=TwoWay}"
-                    TextColor="Black" />
-                <Entry
-                    BackgroundColor="White"
-                    Placeholder="{x:Static res:SharedResources.Text_UserName}"
-                    Text="{Binding UserName, Mode=TwoWay}"
-                    TextColor="Black" />
-                <Entry
-                    BackgroundColor="White"
-                    Placeholder="{x:Static res:SharedResources.Text_Password}"
-                    Text="{Binding Password, Mode=TwoWay}"
-                    TextColor="Black" />
-                <Entry
-                    BackgroundColor="White"
-                    Placeholder="{x:Static res:SharedResources.Text_Email}"
-                    Text="{Binding Email, Mode=TwoWay}"
-                    TextColor="Black" />
     <Frame
         Margin="20,10"
         Padding="10"
         BackgroundColor="White"
         CornerRadius="10"
-        HeightRequest="200">
+        HeightRequest="600">
         <VerticalStackLayout>
             <Entry
                 BackgroundColor="White"
@@ -68,7 +23,33 @@
                 Placeholder="{x:Static res:SharedResources.Text_LastName}"
                 Text="{Binding LastName, Mode=TwoWay}"
                 TextColor="Black" />
-
+            <Picker
+                Title="{x:Static res:SharedResources.Centers}"
+                ItemDisplayBinding="{Binding CenterName}"
+                ItemsSource="{Binding Centers}"
+                SelectedItem="{Binding SelectedCenter, Mode=TwoWay}"
+                TextColor="{StaticResource Black}"
+                TitleColor="{StaticResource Black}" />
+            <Entry
+                BackgroundColor="White"
+                Placeholder="{x:Static res:SharedResources.Text_Mobile}"
+                Text="{Binding Mobile, Mode=TwoWay}"
+                TextColor="Black" />
+            <Entry
+                BackgroundColor="White"
+                Placeholder="{x:Static res:SharedResources.Text_UserName}"
+                Text="{Binding UserName, Mode=TwoWay}"
+                TextColor="Black" />
+            <Entry
+                BackgroundColor="White"
+                Placeholder="{x:Static res:SharedResources.Text_Password}"
+                Text="{Binding Password, Mode=TwoWay}"
+                TextColor="Black" />
+            <Entry
+                BackgroundColor="White"
+                Placeholder="{x:Static res:SharedResources.Text_Email}"
+                Text="{Binding Email, Mode=TwoWay}"
+                TextColor="Black" />
             <Picker
                 Title="{x:Static res:SharedResources.Text_StaffTypes}"
                 ItemDisplayBinding="{Binding TypeName}"
@@ -76,7 +57,6 @@
                 SelectedItem="{Binding SelectedStaffType, Mode=TwoWay}"
                 TextColor="{StaticResource Black}"
                 TitleColor="{StaticResource Black}" />
-
 
             <Button
                 Command="{Binding AddStaffCommand}"
