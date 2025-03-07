@@ -6,6 +6,7 @@ using WytSky.Mobile.Maui.Skoola.Helpers;
 using WytSky.Mobile.Maui.Skoola.Models;
 using WytSky.Mobile.Maui.Skoola.Views.Staff;
 using WytSky.Mobile.Maui.Skoola.Views.StudyGroups;
+using static Microsoft.Maui.ApplicationModel.Permissions;
 
 namespace WytSky.Mobile.Maui.Skoola.ViewModels
 {
@@ -82,8 +83,24 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
                     { "IsActive" , true}, 
 
                 };
-
                 var result = await APIs.ServiceStaff.AddStaff(formData);
+                var NewUser = await APIs.ServiceAspNetUser.SaveNew(new Dictionary<string, object>()
+                    {
+                        {"Email", Email },
+                        {"UserName", UserName  },
+                        {"PhoneNumber",Mobile },
+                        {"PasswordHash",SecurityHelper.EncodePasswordmosso(Password) },
+                        {"UserTypeID","4" },
+                        {"Confirmed","false" },
+                        {"EmailConfirmed","false" },
+                        {"IsApproved","true" },
+                        {"PhoneNumberConfirmed","false" },
+                        {"LastLoginDate",DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss") },
+                        {"LastActivityDate",DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss") },
+                        {"LastPasswordChangedDate",DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss") },
+                        {"LastLockedOutDate",DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss") },
+                        {"LastLockoutDate",DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss") },
+                    });
                 if (result != null)
                 {
                     Toast.ShowToastSuccess(SharedResources.AddedSuccessfully);
