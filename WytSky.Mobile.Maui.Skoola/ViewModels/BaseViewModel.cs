@@ -52,6 +52,9 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
 
 
         #region Constractor
+          [ObservableProperty]
+        ObservableCollection<StaffTypeModel> staffTypes;
+
         public BaseViewModel()
         {
             Lang = Settings.Language;
@@ -338,5 +341,10 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
         }
 
         #endregion
+        
+        public async Task GetStaffType()
+        {
+            StaffTypes = await APIs.ServiceStaff.GetStaffType();
+        }
     }
 }

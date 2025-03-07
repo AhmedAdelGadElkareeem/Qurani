@@ -6,15 +6,22 @@ using WytSky.Mobile.Maui.Skoola.Helpers;
 using WytSky.Mobile.Maui.Skoola.Models;
 using WytSky.Mobile.Maui.Skoola.Views.Staff;
 using WytSky.Mobile.Maui.Skoola.Views.StudyGroups;
+using static Microsoft.Maui.ApplicationModel.Permissions;
 
 namespace WytSky.Mobile.Maui.Skoola.ViewModels
 {
     public partial class StaffVM : BaseViewModel
     {
         [ObservableProperty] public ObservableCollection<StaffModel> staff = new ObservableCollection<StaffModel>();
+        [ObservableProperty] public ObservableCollection<StaffTypeModel> staffTypes = new ObservableCollection<StaffTypeModel>();
         [ObservableProperty] public string firstName;
         [ObservableProperty] public string lastName;
         [ObservableProperty] public string staffName;
+        [ObservableProperty] public string userName;
+        [ObservableProperty] public string password;
+        [ObservableProperty] public string mobile;
+        [ObservableProperty] public string email;
+        [ObservableProperty] public StaffTypeModel selectedStaffType;
 
         #region Methods
         public async Task GetStaff()
@@ -22,7 +29,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
             try
             {
                 IsRunning = true;
-                Staff = await APIs.ServiceStaff.GetStaff();
+                Staff = await APIs.ServiceStaff.GetCenterStaff();
             }
             catch (Exception ex)
             {
@@ -32,6 +39,11 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
             {
                 IsRunning = false;
             }
+        }
+
+        partial void OnSelectedStaffTypeChanged(StaffTypeModel value)
+        {
+            SelectedStaffType = value;
         }
         #endregion
 
@@ -61,10 +73,34 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
                 {
                     { "FirstName", FirstName },
                     { "LastNme", LastName },
+                    { "FullName", $"{FirstName} {LastName}"},
                     { "CenterID" , Settings.CenterId },
-                };
+                    { "StaffTypeName" , SelectedStaffType},
+                    { "UserName" , UserName },
+                    { "Password", Password},
+                    { "Mobile" , Mobile}, 
+                    { "Email" , Email}, 
+                    { "IsActive" , true}, 
 
+                };
                 var result = await APIs.ServiceStaff.AddStaff(formData);
+                var NewUser = await APIs.ServiceAspNetUser.SaveNew(new Dictionary<string, object>()
+                    {
+                        {"Email", Email },
+                        {"UserName", UserName  },
+                        {"PhoneNumber",Mobile },
+                        {"PasswordHash",SecurityHelper.EncodePasswordmosso(Password) },
+                        {"UserTypeID","4" },
+                        {"Confirmed","false" },
+                        {"EmailConfirmed","false" },
+                        {"IsApproved","true" },
+                        {"PhoneNumberConfirmed","false" },
+                        {"LastLoginDate",DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss") },
+                        {"LastActivityDate",DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss") },
+                        {"LastPasswordChangedDate",DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss") },
+                        {"LastLockedOutDate",DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss") },
+                        {"LastLockoutDate",DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss") },
+                    });
                 if (result != null)
                 {
                     Toast.ShowToastSuccess(SharedResources.AddedSuccessfully);
@@ -85,5 +121,6 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
                 HidePopup();
             }
         }
+      
     }
 }
