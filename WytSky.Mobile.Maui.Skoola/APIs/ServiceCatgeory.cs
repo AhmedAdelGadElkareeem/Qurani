@@ -22,7 +22,7 @@ namespace WytSky.Mobile.Maui.Skoola.APIs
                 var result = await Services.RequestProvider.Current.GetData<TempletData<ComplexModel>>(BASE, "complexes", dictionary, Enums.AuthorizationType.UserNamePassword);
                 if (result != null && result.IsPassed)
                 {
-                    return result.Data.ItemData;
+                    return result.Data.itemData;
                 }
                 else
                 {
@@ -109,7 +109,7 @@ namespace WytSky.Mobile.Maui.Skoola.APIs
                 var result = await Services.RequestProvider.Current.GetData<TempletData<CentersModel>>(BASE, "centers", dictionary, Enums.AuthorizationType.UserNamePassword);
                 if (result != null && result.IsPassed)
                 {
-                    return result.Data.ItemData;
+                    return result.Data.itemData;
                 }
                 else
                 {
@@ -181,7 +181,7 @@ namespace WytSky.Mobile.Maui.Skoola.APIs
                 var result = await Services.RequestProvider.Current.GetData<TempletData<CategoryModel>>(BASE, "maincategory", dictionary, Enums.AuthorizationType.UserNamePassword, isLoading:false);
                 if (result != null && result.IsPassed)
                 {
-                    return result.Data.ItemData;
+                    return result.Data.itemData;
                 }
                 else
                 {
@@ -209,7 +209,7 @@ namespace WytSky.Mobile.Maui.Skoola.APIs
                 var result = await Services.RequestProvider.Current.GetData<TempletData<CategoryModel>>(BASE, "category", dictionary, Enums.AuthorizationType.UserNamePassword);
                 if (result != null && result.IsPassed)
                 {
-                    return result.Data.ItemData;
+                    return result.Data.itemData;
                 }
                 else
                 {

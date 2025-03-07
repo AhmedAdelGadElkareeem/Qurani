@@ -11,6 +11,6 @@ namespace WytSky.Mobile.Maui.Skoola.Models
         public long? PageSize { get; set; }
         public long? PageIndex { get; set; }
         public long? RowCount { get; set; }
-        public ObservableCollection<T> ItemData { get; set; }
+        public ObservableCollection<T> itemData { get; set; }
     }
 }

@@ -22,7 +22,7 @@ namespace WytSky.Mobile.Maui.Skoola.APIs
                 var result = await Services.RequestProvider.Current.GetData<TempletData<CentersModel>>(BASE, "centers", dictionary, Enums.AuthorizationType.UserNamePassword);
                 if (result != null && result.IsPassed)
                 {
-                    return result.Data.ItemData;
+                    return result.Data.itemData;
                 }
                 else
                 {
@@ -49,7 +49,7 @@ namespace WytSky.Mobile.Maui.Skoola.APIs
                 var result = await Services.RequestProvider.Current.GetData<TempletData<CentersModel>>(BASE, "centers", dictionary, Enums.AuthorizationType.UserNamePassword);
                 if (result != null && result.IsPassed)
                 {
-                    return result.Data.ItemData;
+                    return result.Data.itemData;
                 }
                 else
                 {
@@ -77,7 +77,7 @@ namespace WytSky.Mobile.Maui.Skoola.APIs
                     {"_jsonarray","1"},
                 };
 
-                var result = await Services.RequestProvider.Current.PostDataMultipart<CentersModel>(BASE, "Centers", dictionary, formData, Enums.AuthorizationType.UserNamePassword);
+                var result = await Services.RequestProvider.Current.PostDataMultipart<CentersModel>(BASE, "centers", dictionary, formData, Enums.AuthorizationType.UserNamePassword);
                 if (result != null && result.IsPassed)
                 {
                     return result.Data;

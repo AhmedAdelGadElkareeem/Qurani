@@ -79,7 +79,8 @@ public partial class ComplexesVM : BaseViewModel
                 { "ComplexName", ComplexName },
                 { "CountryName", SelectedCountry.CountryName },
                 { "RegionName", SelectedRegion.RegionName },
-                { "SupervisorID", Settings.UserId }
+                { "IsActive", true },
+                //{ "SupervisorID", Settings.UserId }
             };
 
             var result = await APIs.ServiceCatgeory.AddComplex(formData);
@@ -113,7 +114,7 @@ public partial class ComplexesVM : BaseViewModel
             var popup = new AddComplex();
             await GetCountries();
             if (Countries.Count > 0)
-            await GetRegions(Countries[0].CountryID.ToString());
+            //await GetRegions(SelectedCountry.CountryID.Value);
             popup.BindingContext = this;
             ShowPopup(popup);
         }
@@ -140,7 +141,7 @@ public partial class ComplexesVM : BaseViewModel
     async partial void OnSelectedCountryChanged(CountryModel value)
     {
         SelectedCountry = value;
-        await GetRegions(SelectedCountry.CountryID.ToString());
+        await GetRegions(SelectedCountry.CountryID.Value);
     }
     partial void OnSelectedRegionChanged(RegionModel value)
     {
