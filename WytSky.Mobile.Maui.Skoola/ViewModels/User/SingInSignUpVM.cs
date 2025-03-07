@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Threading.Channels;
+using WytSky.Mobile.Maui.Skoola.APIs;
 using WytSky.Mobile.Maui.Skoola.AppResources;
 using WytSky.Mobile.Maui.Skoola.Dtos;
 using WytSky.Mobile.Maui.Skoola.Dtos.Used;
@@ -127,6 +128,8 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.User
                         Settings.Password = Password.Value;
                         Settings.AuthoToken = res.access_token;
                         Settings.SocialID = "";
+                        var s = await AspUserRoleService.GetUserRoles();
+                        Settings.UserId = s.FirstOrDefault().UserID;
                         //OpenMainPage();
                         // After successful login, set MainPage to AppShell if not already set
                         if (!(Application.Current.MainPage is AppShell))

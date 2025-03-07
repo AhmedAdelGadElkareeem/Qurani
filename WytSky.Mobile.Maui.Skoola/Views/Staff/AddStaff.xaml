@@ -51,22 +51,38 @@
                     Placeholder="{x:Static res:SharedResources.Text_Email}"
                     Text="{Binding Email, Mode=TwoWay}"
                     TextColor="Black" />
+    <Frame
+        Margin="20,10"
+        Padding="10"
+        BackgroundColor="White"
+        CornerRadius="10"
+        HeightRequest="200">
+        <VerticalStackLayout>
+            <Entry
+                BackgroundColor="White"
+                Placeholder="{x:Static res:SharedResources.Text_FirstName}"
+                Text="{Binding FirstName, Mode=TwoWay}"
+                TextColor="Black" />
+            <Entry
+                BackgroundColor="White"
+                Placeholder="{x:Static res:SharedResources.Text_LastName}"
+                Text="{Binding LastName, Mode=TwoWay}"
+                TextColor="Black" />
 
-                <Picker
-                    Title="{x:Static res:SharedResources.Text_StaffTypes}"
-                    ItemDisplayBinding="{Binding TypeName}"
-                    ItemsSource="{Binding StaffTypes}"
-                    SelectedItem="{Binding SelectedStaffType, Mode=TwoWay}"
-                    TextColor="{StaticResource Black}"
-                    TitleColor="{StaticResource Black}" />
+            <Picker
+                Title="{x:Static res:SharedResources.Text_StaffTypes}"
+                ItemDisplayBinding="{Binding TypeName}"
+                ItemsSource="{Binding StaffTypes}"
+                SelectedItem="{Binding SelectedStaffType, Mode=TwoWay}"
+                TextColor="{StaticResource Black}"
+                TitleColor="{StaticResource Black}" />
 
 
-                <Button
-                    Command="{Binding AddStaffCommand}"
-                    Style="{StaticResource BaseButton}"
-                    Text="{x:Static res:SharedResources.Text_Save}" />
+            <Button
+                Command="{Binding AddStaffCommand}"
+                Style="{StaticResource BaseButton}"
+                Text="{x:Static res:SharedResources.Text_Save}" />
 
-            </VerticalStackLayout>
-        </Border>
-    </ScrollView>
+        </VerticalStackLayout>
+    </Frame>
 </pages:PopupPage>
