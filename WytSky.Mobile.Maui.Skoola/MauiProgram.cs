@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Maui;
 using FFImageLoading.Maui;
 using Microsoft.Extensions.Logging;
+using Microsoft.Maui.Handlers;
 using Microsoft.Maui.Platform;
 using Mopups.Hosting;
 using SkiaSharp.Views.Maui.Controls.Hosting;
@@ -98,6 +99,35 @@ namespace WytSky.Mobile.Maui.Skoola
                 handler.PlatformView.Background = Colors.Transparent.ToPlatform();
 #endif
                 }
+            });
+        }
+
+        private static void ApplyStyleCustomization()
+        {
+            // Remove the underline from the Entry ...
+
+            PickerHandler.Mapper.AppendToMapping("NoUnderline", (handler, _) =>
+            {
+#if ANDROID
+                // Remove the underline from the Spinner (Picker)
+                handler.PlatformView.Background = null;
+#endif
+            });
+
+            PickerHandler.Mapper.AppendToMapping("SetUpPicker", (handler, _) =>
+            {
+#if ANDROID
+                // Set the background to transparent
+                handler.PlatformView.Background = null;
+#elif IOS || MACCATALYST
+    // Remove border for the UITextField (Picker)
+    if (handler.PlatformView is UIKit.UITextField textField)
+    {
+        textField.BorderStyle = UIKit.UITextBorderStyle.None;
+    }
+#elif WINDOWS
+
+#endif
             });
         }
     }
