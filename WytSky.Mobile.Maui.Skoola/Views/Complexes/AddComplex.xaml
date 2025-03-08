@@ -8,6 +8,66 @@
     xmlns:customControl="clr-namespace:WytSky.Mobile.Maui.Skoola.CustomControl"
     xmlns:pages="clr-namespace:Mopups.Pages;assembly=Mopups"
     xmlns:res="clr-namespace:WytSky.Mobile.Maui.Skoola.AppResources">
+    <!--<Frame
+        Margin="20,10"
+        Padding="10"
+        BackgroundColor="White"
+        CornerRadius="10"
+        HeightRequest="300">
+        <VerticalStackLayout
+            Padding="15"
+            BackgroundColor="White"
+            VerticalOptions="CenterAndExpand">
+
+            <Entry
+                BackgroundColor="White"
+                HorizontalTextAlignment="Center"
+                Placeholder="{x:Static res:SharedResources.ComplexName}"
+                Text="{Binding ComplexName, Mode=TwoWay}"
+                TextColor="Black" />
+
+    -->
+    <!--  Country Dropdown  -->
+    <!--
+            <Button Command="{Binding OpenCountryPopupCommand}" Text="{Binding SelectedCountry.Name, StringFormat='Selected Country: {0}'}" />
+            <CollectionView
+                x:Name="CountryCollectionView"
+                BackgroundColor="White"
+                IsVisible="{Binding IsCountryPopupVisible}"
+                ItemsSource="{Binding Countries}"
+                SelectedItem="{Binding SelectedCountry, Mode=TwoWay}"
+                SelectionMode="Single">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Label Text="{Binding Name}" />
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+    -->
+    <!--  Region Dropdown  -->
+    <!--
+            <Button Command="{Binding OpenRegionPopupCommand}" Text="{Binding SelectedRegion.Name, StringFormat='Selected Region: {0}'}" />
+            <CollectionView
+                x:Name="RegionCollectionView"
+                IsVisible="{Binding IsRegionPopupVisible}"
+                ItemsSource="{Binding Regions}"
+                SelectedItem="{Binding SelectedRegion, Mode=TwoWay}"
+                SelectionMode="Single">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Label Text="{Binding Name}" />
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Button
+                Command="{Binding AddComplexCommand}"
+                Style="{StaticResource BaseButton}"
+                Text="{x:Static res:SharedResources.Text_Save}" />
+        </VerticalStackLayout>
+    </Frame>-->
+
     <Frame
         Margin="20,10"
         Padding="10"
@@ -33,10 +93,13 @@
                 SelectedItem="{Binding SelectedCountry, Mode=TwoWay}"
                 TextColor="{StaticResource Black}"
                 TitleColor="{StaticResource Black}" />
+
+
             <!--<customControl:ClickableItem
                 Title="sss"
                 ItemsSource="{Binding Countries}"
                 SelectedItem="{Binding SelectedCountry}" />-->
+
 
             <Picker
                 Title="{x:Static res:SharedResources.Text_Region}"

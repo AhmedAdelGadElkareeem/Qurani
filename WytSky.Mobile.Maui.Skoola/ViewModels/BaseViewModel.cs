@@ -62,11 +62,14 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
 
         [ObservableProperty]
         ObservableCollection<RegionModel> regions = new ObservableCollection<RegionModel>();
+
+        // Dictionary to cache regions for each country
+        public Dictionary<string, List<RegionModel>> _cachedRegions = new Dictionary<string, List<RegionModel>>();
         #endregion
 
 
         #region Constractor
-          [ObservableProperty]
+        [ObservableProperty]
         ObservableCollection<StaffTypeModel> staffTypes;
 
         public BaseViewModel()
@@ -281,7 +284,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
         public async Task GetStudyGroups()
         {
             StudyGroups = await APIs.StudyGroupService.GetStudyGroups();
-            await GetRegions(StudyGroups[0].GroupID.ToString());
+            //await GetRegions(StudyGroups[0].GroupID.ToString());
         }
         public async Task GetRegions(string countryId)
         {
