@@ -62,7 +62,10 @@
             </Border>
             <Entry Placeholder="{x:Static res:SharedResources.Text_Subject}" Text="{Binding SubjectName}" />
             <Entry Placeholder="{x:Static res:SharedResources.Text_Notes}" Text="{Binding Notes}" />
-            <Entry Placeholder="{x:Static res:SharedResources.Text_Discount50}" Text="{Binding StudentCount}" />
+            <Entry
+                Keyboard="Numeric"
+                Placeholder="{x:Static res:SharedResources.Text_Total}"
+                Text="{Binding StudentCount}" />
             <Entry Placeholder="{x:Static res:SharedResources.Text_Location}" Text="{Binding Location}" />
 
 

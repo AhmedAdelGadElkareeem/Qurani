@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="WytSky.Mobile.Maui.Skoola.Views.StudyGroupStudentList.StudyGroupStudentListPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:base="clr-namespace:WytSky.Mobile.Maui.Skoola.Views"
+    xmlns:behaviors="clr-namespace:WytSky.Mobile.Maui.Skoola.Behaviors"
+    xmlns:customControl="clr-namespace:WytSky.Mobile.Maui.Skoola.CustomControl.Borderless"
+    xmlns:customControls="clr-namespace:WytSky.Mobile.Maui.Skoola.CustomControl"
+    xmlns:resource="clr-namespace:WytSky.Mobile.Maui.Skoola.AppResources"
+    Title="StudyGroupStudentListPage">
+    <Grid RowDefinitions="*">
+        <Grid RowDefinitions="auto,*" VerticalOptions="FillAndExpand">
+            <!--<customControls:CustomHeader
+               HasBack="True"
+               HasTitle="True"
+               PageTitle="{x:Static resource:SharedResources.Complexes}" />-->
+            <Grid Grid.Row="1">
+                <CollectionView Margin="15,10,15,0" ItemsSource="{Binding Complexes}">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout ItemSpacing="15" Orientation="Vertical" />
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Border
+                                Padding="5"
+                                HeightRequest="140"
+                                StrokeShape="RoundRectangle 5">
+                                <Border.Background>
+                                    <LinearGradientBrush EndPoint="0,1">
+                                        <GradientStop Offset="0.1" Color="{StaticResource PrimaryColor}" />
+                                        <GradientStop Offset="1.0" Color="{StaticResource Blue}" />
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                                <VerticalStackLayout>
+                                    <Label
+                                        HorizontalOptions="CenterAndExpand"
+                                        HorizontalTextAlignment="Center"
+                                        Style="{StaticResource BoldLabelFont16}"
+                                        Text="{Binding CountryName}"
+                                        TextColor="{StaticResource White}" />
+                                    <Label
+                                        HorizontalOptions="CenterAndExpand"
+                                        HorizontalTextAlignment="Center"
+                                        Style="{StaticResource BoldLabelFont14}"
+                                        Text="{Binding RegionName}"
+                                        TextColor="{StaticResource White}" />
+                                    <Label
+                                        HorizontalOptions="CenterAndExpand"
+                                        HorizontalTextAlignment="Center"
+                                        Style="{StaticResource BoldLabelFont14}"
+                                        TextColor="{StaticResource White}">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="{x:Static resource:SharedResources.CentersNumber}" />
+                                                <Span Text="{Binding CenterCount}" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <Label
+                                        HorizontalOptions="CenterAndExpand"
+                                        HorizontalTextAlignment="Center"
+                                        Style="{StaticResource BoldLabelFont14}"
+                                        Text="{Binding ComplexName}"
+                                        TextColor="{StaticResource White}" />
+                                    <Label
+                                        HorizontalOptions="CenterAndExpand"
+                                        HorizontalTextAlignment="Center"
+                                        Style="{StaticResource BoldLabelFont14}"
+                                        Text="{Binding SupervisorFullName}"
+                                        TextColor="{StaticResource White}" />
+                                </VerticalStackLayout>
+
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.SelectComplexCommand}" CommandParameter="{Binding .}" />
+                                </Border.GestureRecognizers>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                    <CollectionView.EmptyView>
+                        <customControls:EmptyView />
+                    </CollectionView.EmptyView>
+                </CollectionView>
+                <Button Command="{Binding OpenAddStudyGroupStudentListCommand}" Style="{StaticResource AddButton}" />
+            </Grid>
+        </Grid>
+        <ActivityIndicator IsRunning="{Binding IsRunning}" IsVisible="{Binding IsRunning}" />
+    </Grid>
+</ContentPage>

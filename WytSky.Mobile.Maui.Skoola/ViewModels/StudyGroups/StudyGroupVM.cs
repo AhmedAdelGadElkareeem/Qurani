@@ -8,6 +8,7 @@ using WytSky.Mobile.Maui.Skoola.Helpers;
 using WytSky.Mobile.Maui.Skoola.Models;
 using WytSky.Mobile.Maui.Skoola.Views.Students;
 using WytSky.Mobile.Maui.Skoola.Views.StudyGroups;
+using WytSky.Mobile.Maui.Skoola.Views.StudyGroupStudentList;
 
 namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudyGroups;
 
@@ -36,13 +37,6 @@ public partial class StudyGroupVM : CenterVM
     [ObservableProperty] public int? studentCount;
     [ObservableProperty] public string? location;
 
-    //[ObservableProperty] public string schedule;
-    //[ObservableProperty] public bool? isActive;
-    //[ObservableProperty] public object? studyGroupStudentList;
-    //[ObservableProperty] public object? schedule1;
-    //[ObservableProperty] public object? studyGroupSessions;
-
-    //[ObservableProperty] public int? groupID;
     [ObservableProperty] public string? centerName;
     [ObservableProperty] public string? complexName;
 
@@ -158,6 +152,6 @@ public partial class StudyGroupVM : CenterVM
     {
         string name = App.IsArabic ? studyGroup.GroupName : studyGroup.GroupNameEn;
         Settings.StudyGroupId = studyGroup.GroupID.ToString();
-        await OpenPushAsyncPage(new StudentsPage(name));
+        await OpenPushAsyncPage(new StudyGroupStudentListPage());
     }
 }

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage
+    x:Class="WytSky.Mobile.Maui.Skoola.Views.StudyGroupStudentList.AddStudyGroupStudentList"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:Mopups.Pages;assembly=Mopups"
+    xmlns:res="clr-namespace:WytSky.Mobile.Maui.Skoola.AppResources">
+    <Frame
+        Margin="20,10"
+        Padding="10"
+        BackgroundColor="White"
+        CornerRadius="10"
+        HeightRequest="400">
+        <VerticalStackLayout>
+
+            <Picker
+                Title="{x:Static res:SharedResources.Text_Students}"
+                IsVisible="{Binding IsExsistStudent}"
+                ItemDisplayBinding="{Binding FullName}"
+                ItemsSource="{Binding StudentsList}"
+                SelectedItem="{Binding selectedStudent, Mode=TwoWay}"
+                TextColor="{StaticResource Black}"
+                TitleColor="{StaticResource Black}" />
+
+
+            <Button
+                Command="{Binding AddExsistingStudentCommand}"
+                Style="{StaticResource BaseButton}"
+                Text="{x:Static res:SharedResources.Text_Save}" />
+            <Button
+                Command="{Binding OpenAddStudentCommand}"
+                Style="{StaticResource BaseButton}"
+                Text="{x:Static res:SharedResources.Text_Add}" />
+        </VerticalStackLayout>
+    </Frame>
+</pages:PopupPage>

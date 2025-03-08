@@ -13,7 +13,7 @@ public class StudentStudyGroupList
     // https://qr.saskw.net/appservices/studygroups?_datatype=json&_jsonarray=1
 
     #region Get Study Groups
-    public static async Task<ObservableCollection<StudyGroupModel>> GetStudyGroups()
+    public static async Task<ObservableCollection<StudyGroupModel>> GetStudyGroupStudentList()
     {
         try
         {
@@ -23,9 +23,6 @@ public class StudentStudyGroupList
                 {"_jsonarray", "1"},
             };
 
-            //if (!string.IsNullOrEmpty(Settings.StaffId))
-            //    dictionary.Add("TeacherID", Settings.StaffId);
-            //else  
             dictionary.Add("GroupID", Settings.StudyGroupId);
 
             var result = await Services.RequestProvider.Current.GetData<TempletData<StudyGroupModel>>(BASE, CONTROLR, dictionary, Enums.AuthorizationType.UserNamePassword);
@@ -49,7 +46,7 @@ public class StudentStudyGroupList
     #endregion
 
     #region AddStudyGroup
-    public static async Task<Dtos.ReturnData> AddStudyGroup(Dictionary<string, object> formData)
+    public static async Task<Dtos.ReturnData> AddStudyGroupStudentList(Dictionary<string, object> formData)
     {
         try
         {
