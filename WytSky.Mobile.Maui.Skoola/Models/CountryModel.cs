@@ -11,5 +11,14 @@ namespace WytSky.Mobile.Maui.Skoola.Models
         public int? CountryID { get; set; }
         public bool? IsActive { get; set; }
         public override string ToString() => Name;
+        public override bool Equals(object obj)
+        {
+            return obj is CountryModel model && model.CountryID == CountryID;
+        }
+
+        public override int GetHashCode()
+        {
+            return CountryID.GetHashCode();
+        }
     }
 }

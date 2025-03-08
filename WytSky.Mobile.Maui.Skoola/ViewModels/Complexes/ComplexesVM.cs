@@ -24,11 +24,11 @@ public partial class ComplexesVM : BaseViewModel
     [ObservableProperty]
     public string complexId;
 
-    [ObservableProperty]
-    public CountryModel selectedCountry;
+    //[ObservableProperty]
+    //public CountryModel selectedCountry;
 
-    [ObservableProperty]
-    public RegionModel selectedRegion;
+    //[ObservableProperty]
+    //public RegionModel selectedRegion;
     #endregion
 
     #region Methods
@@ -60,25 +60,25 @@ public partial class ComplexesVM : BaseViewModel
                 return;
             }
 
-            if (string.IsNullOrEmpty(SelectedCountry.CountryName))
-            {
-                Toast.ShowToastError("Error", "Select Country");
-                return;
-            }
+            //if (string.IsNullOrEmpty(SelectedCountry.CountryName))
+            //{
+            //    Toast.ShowToastError("Error", "Select Country");
+            //    return;
+            //}
 
-            if (string.IsNullOrEmpty(SelectedRegion.RegionName))
-            {
-                Toast.ShowToastError("Error", "Selecte Region");
-                return;
-            }
+            //if (string.IsNullOrEmpty(SelectedRegion.RegionName))
+            //{
+            //    Toast.ShowToastError("Error", "Selecte Region");
+            //    return;
+            //}
 
             IsRunning = true;
 
             var formData = new Dictionary<string, object>
             {
                 { "ComplexName", ComplexName },
-                { "CountryName", SelectedCountry.CountryName },
-                { "RegionName", SelectedRegion.RegionName },
+                //{ "CountryName", SelectedCountry.CountryName },
+                //{ "RegionName", SelectedRegion.RegionName },
                 { "IsActive", true },
                 //{ "SupervisorID", Settings.UserId }
             };
@@ -138,14 +138,14 @@ public partial class ComplexesVM : BaseViewModel
         }
     }
 
-    async partial void OnSelectedCountryChanged(CountryModel value)
-    {
-        SelectedCountry = value;
-        await GetRegions(SelectedCountry.CountryID.Value);
-    }
-    partial void OnSelectedRegionChanged(RegionModel value)
-    {
-        SelectedRegion = value;
-    }
+    //async partial void OnSelectedCountryChanged(CountryModel value)
+    //{
+    //    SelectedCountry = value;
+    //    await GetRegions();
+    //}
+    //partial void OnSelectedRegionChanged(RegionModel value)
+    //{
+    //    SelectedRegion = value;
+    //}
     #endregion
 }

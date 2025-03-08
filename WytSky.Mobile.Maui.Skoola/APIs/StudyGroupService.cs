@@ -21,9 +21,9 @@ public class StudyGroupService
                 {"_jsonarray", "1"},
             };
 
-            if (!string.IsNullOrEmpty(Settings.StaffId))
-                dictionary.Add("TeacherID", Settings.StaffId);
-            else  
+            //if (!string.IsNullOrEmpty(Settings.StaffId))
+            //    dictionary.Add("TeacherID", Settings.StaffId);
+            //else  
                 dictionary.Add("CenterID", Settings.CenterId);
             
             var result = await Services.RequestProvider.Current.GetData<TempletData<StudyGroupModel>>(BASE, CONTROLR, dictionary, Enums.AuthorizationType.UserNamePassword);
@@ -61,6 +61,7 @@ public class StudyGroupService
             if (result != null && result.IsPassed)
             {
                 return result.Data;
+
             }
             else
             {

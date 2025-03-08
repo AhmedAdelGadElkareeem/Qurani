@@ -4,8 +4,12 @@
     x:Class="WytSky.Mobile.Maui.Skoola.Views.Students.AddStudentPopup"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:behaviors="clr-namespace:WytSky.Mobile.Maui.Skoola.Behaviors"
+    xmlns:borderless="clr-namespace:WytSky.Mobile.Maui.Skoola.CustomControl.Borderless"
+    xmlns:customControls="clr-namespace:WytSky.Mobile.Maui.Skoola.CustomControl"
     xmlns:pages="clr-namespace:Mopups.Pages;assembly=Mopups"
     xmlns:res="clr-namespace:WytSky.Mobile.Maui.Skoola.AppResources"
+    xmlns:resource="clr-namespace:WytSky.Mobile.Maui.Skoola.AppResources"
     BackgroundColor="Transparent"
     CloseWhenBackgroundIsClicked="True">
     <Frame
@@ -13,9 +17,40 @@
         Padding="10"
         BackgroundColor="White"
         CornerRadius="10"
-        HeightRequest="300">
+        HeightRequest="600">
         <VerticalStackLayout Margin="5,0">
-            <Entry Placeholder="{x:Static res:SharedResources.Text_FullName}" Text="{Binding StudentName}" />
+            <!--<Entry Placeholder="{x:Static res:SharedResources.Text_FullName}" Text="{Binding StudentName}" />-->
+            <Grid Margin="0,10,0,0" ColumnDefinitions="*,*">
+                <customControls:ValidationEntry
+                    Grid.ColumnSpan="2"
+                    EntryValidatableObject="{Binding UserName}"
+                    Placeholder="Alexander"
+                    TextLabel="{x:Static resource:SharedResources.Text_FullName}" />
+                <customControls:ValidationEntry
+                    Grid.Column="1"
+                    IsVisible="False"
+                    Placeholder="Doe"
+                    TextLabel="{x:Static resource:SharedResources.Text_LastName}" />
+            </Grid>
+            <customControls:ValidationEntry
+                EntryValidatableObject="{Binding Email}"
+                Placeholder="johndoe@example.com"
+                TextLabel="{x:Static resource:SharedResources.Text_Email}" />
+            <customControls:ValidationEntry
+                EntryValidatableObject="{Binding Phone}"
+                Placeholder="01054784587"
+                TextLabel="{x:Static resource:SharedResources.Text_Phone}" />
+            <customControls:ValidationEntry
+                EntryValidatableObject="{Binding Password}"
+                HasPasswordImage="True"
+                IsPassword="True"
+                Placeholder="at least 8 charachter"
+                TextLabel="{x:Static resource:SharedResources.Text_Password}" />
+            <customControls:ValidationEntry
+                EntryValidatableObject="{Binding ConfirmPassword}"
+                HasPasswordImage="True"
+                IsPassword="True"
+                TextLabel="{x:Static resource:SharedResources.Text_ConfirmPassword}" />
             <Button
                 Command="{Binding AddStudentCommand}"
                 Style="{StaticResource BaseButton}"

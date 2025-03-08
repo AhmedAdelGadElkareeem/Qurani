@@ -69,6 +69,20 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
           [ObservableProperty]
         ObservableCollection<StaffTypeModel> staffTypes;
 
+        [ObservableProperty] public CentersModel selectedRegion;
+
+        [ObservableProperty]
+        private CountryModel selectedCountry;
+
+        partial void OnSelectedCountryChanged(CountryModel value)
+        {
+            if (value != null)
+            {
+                Task.Run(async () => await GetRegions(value.CountryID));
+            }
+        }
+
+
         public BaseViewModel()
         {
             Lang = Settings.Language;
@@ -276,17 +290,29 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
         public async Task GetCountries()
         {
             Countries = await APIs.ServiceCountriesRegions.GetCountries();
-            await GetRegions(Countries[0].CountryID.Value);
+            //await GetRegions(Countries[0].CountryID.Value);
         }
+
+        private async Task GetRegions(int? countryID)
+        {
+            Regions = await APIs.ServiceCountriesRegions.GetRegions(countryID);
+
+            if (regions != null)
+            {
+                MainThread.BeginInvokeOnMainThread(() =>
+                {
+                    Regions = new ObservableCollection<RegionModel>(regions);
+                });
+            }
+        }
+
+
         public async Task GetStudyGroups()
         {
             StudyGroups = await APIs.StudyGroupService.GetStudyGroups();
-            await GetRegions(StudyGroups[0].GroupID.Value);
+            //await GetRegions(StudyGroups[0].GroupID.Value);
         }
-        public async Task GetRegions(int countryId)
-        {
-            Regions = await APIs.ServiceCountriesRegions.GetRegions(countryId);
-        }
+       
 
         public async Task GetTeachers()
         {
@@ -336,5 +362,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
         {
             StaffTypes = await APIs.ServiceStaff.GetStaffType();
         }
+
+
     }
 }

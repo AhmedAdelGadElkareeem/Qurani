@@ -17,7 +17,7 @@
         <VerticalStackLayout Margin="5,0">
             <Entry Placeholder="{x:Static res:SharedResources.StudyGroupAr}" Text="{Binding StudyGroupName}" />
             <Entry Placeholder="{x:Static res:SharedResources.StudyGroupEn}" Text="{Binding StudyGroupNameEn}" />
-            <Border
+            <!--<Border
                 Grid.Column="1"
                 Padding="0"
                 BackgroundColor="{StaticResource Yellow400Accent}"
@@ -30,9 +30,9 @@
                     SelectedItem="{Binding SelectedComplex, Mode=TwoWay}"
                     TextColor="{StaticResource Black}"
                     TitleColor="{StaticResource Black}" />
-            </Border>
+            </Border>-->
 
-            <Border
+            <!--<Border
                 Grid.Column="1"
                 Padding="0"
                 BackgroundColor="{StaticResource Yellow400Accent}"
@@ -45,7 +45,7 @@
                     SelectedItem="{Binding SelectedCenter, Mode=TwoWay}"
                     TextColor="{StaticResource Black}"
                     TitleColor="{StaticResource Black}" />
-            </Border>
+            </Border>-->
             <Border
                 Grid.Column="1"
                 Padding="0"

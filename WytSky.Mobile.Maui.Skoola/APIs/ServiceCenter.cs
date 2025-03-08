@@ -95,8 +95,28 @@ namespace WytSky.Mobile.Maui.Skoola.APIs
                 return null;
             }
         }
+        public async static Task<CentersModel> GetCenterById(int centerId)
+        {
+            try
+            {
+                var centers = await GetCenters(); // Get all centers first
+                if (centers != null)
+                {
+                    return centers.FirstOrDefault(c => c.CenterID == centerId);
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+                string ExceptionMessage = string.Format(" Error : {0} - {1} ", ex.Message, ex.InnerException != null ? ex.InnerException.FullMessage() : "");
+                System.Diagnostics.Debug.WriteLine(ExceptionMessage);
+                ExtensionLogMethods.LogExtension(ExceptionMessage, "", "ServiceCenter", "GetCenterById");
+                return null;
+            }
+        }
 
-        
+
+
         #endregion
     }
 }

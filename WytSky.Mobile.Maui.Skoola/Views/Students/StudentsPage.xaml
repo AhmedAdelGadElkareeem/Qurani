@@ -24,7 +24,7 @@
                                 <Label
                                     HorizontalOptions="CenterAndExpand"
                                     Style="{StaticResource BoldLabelFont16}"
-                                    Text="{Binding StudentFullName}"
+                                    Text="{Binding FullName}"
                                     TextColor="{StaticResource White}" />
                                 <Border.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.SelectStaffCommand}" CommandParameter="{Binding .}" />

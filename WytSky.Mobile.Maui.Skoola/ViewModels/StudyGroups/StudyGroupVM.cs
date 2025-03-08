@@ -43,7 +43,8 @@ public partial class StudyGroupVM : CenterVM
     //[ObservableProperty] public object? studyGroupSessions;
 
     //[ObservableProperty] public int? groupID;
-    //[ObservableProperty] public string? centerName;
+    [ObservableProperty] public string? centerName;
+    [ObservableProperty] public string? complexName;
 
 
     public async Task GetStudyGroupsByStaffIdOrCenterId()
@@ -67,6 +68,28 @@ public partial class StudyGroupVM : CenterVM
             IsRunning = false;
         }
     }
+    private async void LoadCenterDetails()
+    {
+        if (int.TryParse(Settings.CenterId, out int centerId))
+        {
+            var center = await ServiceCenter.GetCenterById(centerId);
+            if (center != null)
+            {
+                CenterName = center.CenterName;
+                ComplexName = center.ComplexName;
+            }
+            else
+            {
+                CenterName = "Unknown Center";
+                ComplexName = "Unknown Complex";
+            }
+        }
+        else
+        {
+            CenterName = "Invalid Center ID";
+            ComplexName = "Invalid Complex ID";
+        }
+    }
 
     [RelayCommand]
     private async Task OpenAddStudyGroup()
@@ -84,25 +107,29 @@ public partial class StudyGroupVM : CenterVM
     {
         try
         {
-            if (SelectedComplex.ComplexID == null)
-            {
-                Toast.ShowToastError("Error", "Select Complex");
-            }
-            if (SelectedCenter.CenterID == null)
-            {
-                Toast.ShowToastError("Error", "Select Center");
-            }
-            if (SelectedTeacher.StaffID == null)
-            {
-                Toast.ShowToastError("Error", "Select Teacher");
-            }
+            LoadCenterDetails();
+            //if (SelectedComplex.ComplexID == null)
+            //{
+            //    Toast.ShowToastError("Error", "Select Complex");
+            //}
+            //if (SelectedCenter.CenterID == null)
+            //{
+            //    Toast.ShowToastError("Error", "Select Center");
+            //}
+            //if (SelectedTeacher.StaffID == null)
+            //{
+            //    Toast.ShowToastError("Error", "Select Teacher");
+            //}
             var formData = new Dictionary<string, object>()
             {
                 { "GroupName", StudyGroupName },
                 { "GroupNameEn", StudyGroupNameEn },
-                { "ComplexID", SelectedComplex.ComplexID  },
-                { "CenterID",SelectedCenter.CenterID},
+                { "ComplexID", Settings.ComplexId},
+                { "CenterID",Settings.CenterId},
+                { "CenterName",CenterName},
+                { "ComplexName",ComplexName},
                 { "TeacherID", SelectedTeacher.StaffID},
+                { "TeacherFullName", SelectedTeacher.FullName},
                 { "SubjectName", SubjectName},
                 { "Notes", Notes},
                 { "StudentCount", StudentCount},
