@@ -16,7 +16,7 @@
                HasTitle="True"
                PageTitle="{x:Static resource:SharedResources.Complexes}" />-->
             <Grid Grid.Row="1">
-                <CollectionView Margin="15,10,15,0" ItemsSource="{Binding Complexes}">
+                <CollectionView Margin="15,10,15,0" ItemsSource="{Binding StudyGroupStudentsList}">
                     <CollectionView.ItemsLayout>
                         <LinearItemsLayout ItemSpacing="15" Orientation="Vertical" />
                     </CollectionView.ItemsLayout>
@@ -24,7 +24,7 @@
                         <DataTemplate>
                             <Border
                                 Padding="5"
-                                HeightRequest="140"
+                                HeightRequest="50"
                                 StrokeShape="RoundRectangle 5">
                                 <Border.Background>
                                     <LinearGradientBrush EndPoint="0,1">
@@ -37,43 +37,13 @@
                                         HorizontalOptions="CenterAndExpand"
                                         HorizontalTextAlignment="Center"
                                         Style="{StaticResource BoldLabelFont16}"
-                                        Text="{Binding CountryName}"
-                                        TextColor="{StaticResource White}" />
-                                    <Label
-                                        HorizontalOptions="CenterAndExpand"
-                                        HorizontalTextAlignment="Center"
-                                        Style="{StaticResource BoldLabelFont14}"
-                                        Text="{Binding RegionName}"
-                                        TextColor="{StaticResource White}" />
-                                    <Label
-                                        HorizontalOptions="CenterAndExpand"
-                                        HorizontalTextAlignment="Center"
-                                        Style="{StaticResource BoldLabelFont14}"
-                                        TextColor="{StaticResource White}">
-                                        <Label.FormattedText>
-                                            <FormattedString>
-                                                <Span Text="{x:Static resource:SharedResources.CentersNumber}" />
-                                                <Span Text="{Binding CenterCount}" />
-                                            </FormattedString>
-                                        </Label.FormattedText>
-                                    </Label>
-                                    <Label
-                                        HorizontalOptions="CenterAndExpand"
-                                        HorizontalTextAlignment="Center"
-                                        Style="{StaticResource BoldLabelFont14}"
-                                        Text="{Binding ComplexName}"
-                                        TextColor="{StaticResource White}" />
-                                    <Label
-                                        HorizontalOptions="CenterAndExpand"
-                                        HorizontalTextAlignment="Center"
-                                        Style="{StaticResource BoldLabelFont14}"
-                                        Text="{Binding SupervisorFullName}"
+                                        Text="{Binding StudentFullName}"
                                         TextColor="{StaticResource White}" />
                                 </VerticalStackLayout>
 
-                                <Border.GestureRecognizers>
+                                <!--<Border.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.SelectComplexCommand}" CommandParameter="{Binding .}" />
-                                </Border.GestureRecognizers>
+                                </Border.GestureRecognizers>-->
                             </Border>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
@@ -81,8 +51,37 @@
                         <customControls:EmptyView />
                     </CollectionView.EmptyView>
                 </CollectionView>
+                <HorizontalStackLayout />
+                <Grid
+                    ColumnDefinitions="*,*,*"
+                    ColumnSpacing="5"
+                    HeightRequest="50"
+                    VerticalOptions="End">
+                    <Button
+                        BackgroundColor="{StaticResource PrimaryColor}"
+                        Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.OpenStudyGroupsCommand}"
+                        CommandParameter="{Binding .}"
+                        Text="{x:Static resource:SharedResources.StudyGroups}"
+                        TextColor="{StaticResource White}" />
+                    <Button
+                        Grid.Column="1"
+                        BackgroundColor="{StaticResource PrimaryColor}"
+                        Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.OpenStaffsCommand}"
+                        CommandParameter="{Binding .}"
+                        Text="{x:Static resource:SharedResources.Staffs}"
+                        TextColor="{StaticResource White}" />
+                    <Button
+                        Grid.Column="2"
+                        BackgroundColor="{StaticResource PrimaryColor}"
+                        Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.OpenStudentsCommand}"
+                        CommandParameter="{Binding .}"
+                        Text="{x:Static resource:SharedResources.Students}"
+                        TextColor="{StaticResource White}" />
+                </Grid>
+
                 <Button Command="{Binding OpenAddStudyGroupStudentListCommand}" Style="{StaticResource AddButton}" />
             </Grid>
+
         </Grid>
         <ActivityIndicator IsRunning="{Binding IsRunning}" IsVisible="{Binding IsRunning}" />
     </Grid>

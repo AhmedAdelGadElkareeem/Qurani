@@ -11,4 +11,9 @@ public partial class StudyGroupStudentListPage : ContentPage
 		BindingContext = studyGroupStudentListVM;
 
     }
+    protected override void OnAppearing()
+    {
+        studyGroupStudentListVM.GetStudeyGrouStudenList();
+        base.OnAppearing();
+    }
 }

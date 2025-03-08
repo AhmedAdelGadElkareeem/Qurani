@@ -18,7 +18,7 @@
                 IsVisible="{Binding IsExsistStudent}"
                 ItemDisplayBinding="{Binding FullName}"
                 ItemsSource="{Binding StudentsList}"
-                SelectedItem="{Binding selectedStudent, Mode=TwoWay}"
+                SelectedItem="{Binding SelectedStudent, Mode=TwoWay}"
                 TextColor="{StaticResource Black}"
                 TitleColor="{StaticResource Black}" />
 
@@ -29,6 +29,7 @@
                 Text="{x:Static res:SharedResources.Text_Save}" />
             <Button
                 Command="{Binding OpenAddStudentCommand}"
+                IsVisible="{Binding IsNewStudent}"
                 Style="{StaticResource BaseButton}"
                 Text="{x:Static res:SharedResources.Text_Add}" />
         </VerticalStackLayout>

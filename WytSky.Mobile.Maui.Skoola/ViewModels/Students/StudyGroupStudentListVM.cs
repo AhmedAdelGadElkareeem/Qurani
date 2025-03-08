@@ -35,6 +35,13 @@ public partial class StudyGroupStudentListVM : StudentsVM
         StudentsList = await StudentService.GetAllStudents();
         IsRunning = false;
     }
+    public async Task GetStudeyGrouStudenList()
+    {
+        IsRunning = true;
+        StudyGroupStudentsList = await StudentService.GetStudyGroupStudentList();
+        IsRunning = false;
+    }
+
 
 
     [RelayCommand]
@@ -59,7 +66,7 @@ public partial class StudyGroupStudentListVM : StudentsVM
             var result = await StudentStudyGroupList.AddStudyGroupStudentList(formData);
             if (result != null && result.rowsAffected > 0)
             {
-                await StudentStudyGroupList.GetStudyGroupStudentList();
+                await GetStudeyGrouStudenList();
                 Toast.ShowToastError(SharedResources.AddedSuccessfully);
             } 
 
@@ -90,7 +97,7 @@ public partial class StudyGroupStudentListVM : StudentsVM
 
     partial void OnSelectedStudentChanged(StudentModel value )
     {
-        SelectedStudent.StudentID = value.StudentID;
+        SelectedStudent = value;
         IsNewStudent = false;
     }
 
