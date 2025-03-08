@@ -39,7 +39,7 @@ namespace WytSky.Mobile.Maui.Skoola.APIs
         }
 
         // https://qr.saskw.net/appservices/regions?_datatype=json&_jsonarray=1
-        public static async Task<ObservableCollection<RegionModel>> GetRegions(int? countryId)
+        public static async Task<ObservableCollection<RegionModel>> GetRegions(string countryId)
         {
             try
             {

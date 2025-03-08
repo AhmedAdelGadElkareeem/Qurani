@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="WytSky.Mobile.Maui.Skoola.CustomControl.ClickableItem"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Name="Root">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <Style x:Key="FrameStyle" TargetType="Frame">
+                <Setter Property="HeightRequest" Value="45" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+                <Setter Property="Margin" Value="10,5,10,10" />
+                <Setter Property="CornerRadius" Value="30" />
+                <Setter Property="BackgroundColor" Value="{StaticResource White}" />
+                <Setter Property="BorderColor" Value="{StaticResource PageBackgroundSecondaryColor}" />
+                <Setter Property="Padding" Value="2" />
+            </Style>
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <ContentView.Content>
+        <Border
+            x:Name="container"
+            Margin="10"
+            BindingContext="{x:Reference Root}"
+            HorizontalOptions="FillAndExpand"
+            IsEnabled="{Binding IsClickable}"
+            Stroke="{StaticResource SecondaryTextColor}"
+            StrokeShape="RoundRectangle 5"
+            StrokeThickness="1">
+            <Grid Margin="10" ColumnDefinitions="*,auto,auto">
+                <Label
+                    Grid.Column="0"
+                    Margin="20,0"
+                    FontSize="{Binding FontSize}"
+                    HorizontalOptions="FillAndExpand"
+                    LineBreakMode="TailTruncation"
+                    MaxLines="1"
+                    Style="{StaticResource BoldLabel}"
+                    Text="{Binding Text}"
+                    TextColor="{StaticResource GrayTextColor}" />
+                <Label
+                    Grid.Column="1"
+                    IsVisible="{Binding IsRequired}"
+                    Style="{StaticResource RequiredLabelStyle}" />
+                <Image
+                    Grid.Column="2"
+                    Margin="5,0"
+                    HorizontalOptions="EndAndExpand"
+                    Source="down_arrow"
+                    Style="{StaticResource ImageSize20}" />
+            </Grid>
+            <Border.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OpenItemsPopup" />
+            </Border.GestureRecognizers>
+        </Border>
+    </ContentView.Content>
+</ContentView>

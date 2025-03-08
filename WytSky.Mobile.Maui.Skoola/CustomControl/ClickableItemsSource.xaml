@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<mopups:PopupPage
+    x:Class="WytSky.Mobile.Maui.Skoola.CustomControl.ClickableItemsSource"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:mopups="clr-namespace:Mopups.Pages;assembly=Mopups"
+    xmlns:resources="clr-namespace:WytSky.Mobile.Maui.Skoola.AppResources">
+    <Border
+        Padding="5"
+        BackgroundColor="{StaticResource White}"
+        HeightRequest="300"
+        StrokeShape="RoundRectangle 25,25,0,0"
+        VerticalOptions="EndAndExpand">
+        <StackLayout Margin="10">
+            <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+                <Image
+                    HorizontalOptions="Start"
+                    Source="close"
+                    Style="{StaticResource ImageSize20}">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="ClosePopup" />
+                    </Image.GestureRecognizers>
+                </Image>
+                <Label
+                    HorizontalOptions="CenterAndExpand"
+                    Style="{StaticResource RegularLabel}"
+                    Text="{Binding Title}"
+                    TextColor="{StaticResource Black}" />
+                <Label
+                    x:Name="ResetLabel"
+                    FontSize="Small"
+                    HorizontalOptions="End"
+                    HorizontalTextAlignment="End"
+                    IsVisible="{Binding HasReset}"
+                    Text="{x:Static resources:SharedResources.Text_Cancel}"
+                    TextColor="{StaticResource ErrorColor}"
+                    VerticalOptions="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="CancelClicked" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </StackLayout>
+            <Border
+                Margin="10,5,10,10"
+                HeightRequest="40"
+                HorizontalOptions="FillAndExpand"
+                IsVisible="{Binding IsSearchVisible}"
+                Stroke="{StaticResource PrimaryColor}"
+                StrokeShape="RoundRectangle 20"
+                StrokeThickness="1" />
+            <CollectionView
+                Margin="0,10,0,0"
+                HeightRequest="250"
+                ItemsSource="{Binding ItemsSource}"
+                SelectedItem="{Binding SelectedItem}"
+                SelectionChanged="CollectionViewSelectionChanged"
+                SelectionMode="Single">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout ItemSpacing="10" Orientation="Vertical" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.EmptyView />
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout
+                            Margin="0"
+                            Padding="5"
+                            HorizontalOptions="FillAndExpand">
+                            <Label
+                                Margin="5"
+                                HorizontalOptions="FillAndExpand"
+                                HorizontalTextAlignment="Start"
+                                Text="{Binding Name}"
+                                TextColor="{StaticResource Black}" />
+                            <BoxView
+                                Margin="0"
+                                BackgroundColor="WhiteSmoke"
+                                HeightRequest="1"
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="Center" />
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup Name="CommonStates">
+                                    <VisualState Name="Selected">
+                                        <VisualState.Setters>
+                                            <Setter Property="BackgroundColor" Value="Silver" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                    <VisualState Name="Normal" />
+                                    <VisualState Name="Disabled">
+                                        <VisualState.Setters>
+                                            <Setter Property="BackgroundColor" Value="Transparent" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </Border>
+</mopups:PopupPage>

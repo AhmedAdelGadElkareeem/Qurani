@@ -22,10 +22,6 @@
                 Text="{Binding CenterNameEn, Mode=TwoWay}"
                 TextColor="Black" />
             <Entry
-                Placeholder="{x:Static res:SharedResources.DitrictName}"
-                Text="{Binding DitrictName, Mode=TwoWay}"
-                TextColor="Black" />
-            <Entry
                 Placeholder="{x:Static res:SharedResources.Address}"
                 Text="{Binding Address, Mode=TwoWay}"
                 TextColor="Black" />

@@ -24,11 +24,17 @@ public partial class ComplexesVM : BaseViewModel
     [ObservableProperty]
     public string complexId;
 
-    //[ObservableProperty]
-    //public CountryModel selectedCountry;
+    [ObservableProperty]
+    public CountryModel selectedCountry;
 
-    //[ObservableProperty]
-    //public RegionModel selectedRegion;
+    [ObservableProperty]
+    public RegionModel selectedRegion;
+
+    [ObservableProperty]
+    private bool isCountryPopupVisible;
+
+    [ObservableProperty]
+    private bool isRegionPopupVisible;
     #endregion
 
     #region Methods
@@ -60,26 +66,27 @@ public partial class ComplexesVM : BaseViewModel
                 return;
             }
 
-            //if (string.IsNullOrEmpty(SelectedCountry.CountryName))
-            //{
-            //    Toast.ShowToastError("Error", "Select Country");
-            //    return;
-            //}
+            if (string.IsNullOrEmpty(SelectedCountry.CountryName))
+            {
+                Toast.ShowToastError("Error", "Select Country");
+                return;
+            }
 
-            //if (string.IsNullOrEmpty(SelectedRegion.RegionName))
-            //{
-            //    Toast.ShowToastError("Error", "Selecte Region");
-            //    return;
-            //}
+            if (string.IsNullOrEmpty(SelectedRegion.RegionName))
+            {
+                Toast.ShowToastError("Error", "Selecte Region");
+                return;
+            }
 
             IsRunning = true;
 
             var formData = new Dictionary<string, object>
             {
                 { "ComplexName", ComplexName },
-                //{ "CountryName", SelectedCountry.CountryName },
-                //{ "RegionName", SelectedRegion.RegionName },
-                { "IsActive", true },
+                { "CountryID", SelectedCountry.CountryID },
+                { "RegionID", SelectedRegion.RegionID},
+                { "IsActive", true},
+
                 //{ "SupervisorID", Settings.UserId }
             };
 
@@ -114,7 +121,7 @@ public partial class ComplexesVM : BaseViewModel
             var popup = new AddComplex();
             await GetCountries();
             //if (Countries.Count > 0)
-            //await GetRegions(SelectedCountry.CountryID.Value);
+            //await GetRegions(Countries[0].CountryID.ToString());
             popup.BindingContext = this;
             ShowPopup(popup);
         }
@@ -137,15 +144,45 @@ public partial class ComplexesVM : BaseViewModel
             ExtensionLogMethods.LogExtension(ex.Message, "", "ComplexesVM", "SelectComplex");
         }
     }
+    private async Task LoadRegions(string countryId)
+    {
+        if (_cachedRegions.ContainsKey(countryId))
+        {
+            //Regions.Clear();
+            //foreach (var region in _cachedRegions[countryId])
+            //{
+            //    Regions.Add(region);
+            //}
+            return;
+        }
+        var regions = await APIs.ServiceCountriesRegions.GetRegions(countryId);
+        _cachedRegions[countryId] = regions.ToList();
 
-    //async partial void OnSelectedCountryChanged(CountryModel value)
-    //{
-    //    SelectedCountry = value;
-    //    await GetRegions();
-    //}
-    //partial void OnSelectedRegionChanged(RegionModel value)
-    //{
-    //    SelectedRegion = value;
-    //}
+        Regions.Clear();
+        foreach (var region in regions)
+        {
+            Regions.Add(region);
+        }
+    }
+    public void ClearRegionCache()
+    {
+        _cachedRegions.Clear();
+        Regions.Clear();
+    }
+
+    partial void OnSelectedCountryChanged(CountryModel value)
+    {
+        //await GetRegions(SelectedCountry.CountryID.ToString());
+        //SelectedCountry = value;
+        if (value != null)
+        {
+            // Load regions for the selected country
+            LoadRegions(value.CountryID.ToString());
+        }
+    }
+    partial void OnSelectedRegionChanged(RegionModel value)
+    {
+        SelectedRegion = value;
+    }
     #endregion
 }
