@@ -191,6 +191,11 @@ public class    Settings
         get { return Preferences.Get("StudyGroupId", null); }
         set { Preferences.Set("StudyGroupId", value); }
     }
+    public static string ScheduleId
+    {
+        get { return Preferences.Get("ScheduleId", null); }
+        set { Preferences.Set("ScheduleId", value); }
+    }
     public static string StudentId
     {
         get { return Preferences.Get("StudentId", null); }

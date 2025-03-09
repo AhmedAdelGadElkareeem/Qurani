@@ -1,12 +1,67 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="WytSky.Mobile.Maui.Skoola.Views.StudyGroupSessions.StudyGroupSessionsPage"
-             Title="StudyGroupSessionsPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+<ContentPage
+    x:Class="WytSky.Mobile.Maui.Skoola.Views.StudyGroupSessions.StudyGroupSessionsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="StudyGroupSessionsPage">
+    <Grid RowDefinitions="*">
+        <Grid RowDefinitions="auto,*" VerticalOptions="FillAndExpand">
+            <Grid Grid.Row="1">
+                <CollectionView ItemsSource="{Binding Sessions}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame
+                                Margin="5"
+                                Padding="10"
+                                BorderColor="Gray">
+                                <VerticalStackLayout BackgroundColor="White">
+
+                                    <!--<VerticalStackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.SelectScheduleCommand}" CommandParameter="{Binding .}" />
+                                    </VerticalStackLayout.GestureRecognizers>-->
+                                    <Label
+                                        FontAttributes="Bold"
+                                        FontSize="18"
+                                        Text="{Binding GroupTeacherFullName}"
+                                        TextColor="{StaticResource PrimaryColor}" />
+                                    <!--  Day of the Week  -->
+                                    <Label
+                                        FontAttributes="Bold"
+                                        FontSize="18"
+                                        Text="{Binding DayOfWeekName}"
+                                        TextColor="{StaticResource PrimaryColor}" />
+
+                                    <!--  Start & End Time  -->
+                                    <HorizontalStackLayout Spacing="10">
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="14"
+                                            Text="From:"
+                                            TextColor="Black" />
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="15"
+                                            Text="{Binding StartTime, StringFormat='{0:hh\\:mm}'}"
+                                            TextColor="{StaticResource PrimaryColor}" />
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="14"
+                                            Text="To:"
+                                            TextColor="Black" />
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="15"
+                                            Text="{Binding EndTime, StringFormat='{0:hh\\:mm}'}"
+                                            TextColor="{StaticResource PrimaryColor}" />
+                                    </HorizontalStackLayout>
+                                </VerticalStackLayout>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+                <Button Command="{Binding AddSesionCommand}" Style="{StaticResource AddButton}" />
+            </Grid>
+        </Grid>
+        <ActivityIndicator IsRunning="{Binding IsRunning}" IsVisible="{Binding IsRunning}" />
+    </Grid>
 </ContentPage>
