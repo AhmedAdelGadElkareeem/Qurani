@@ -61,7 +61,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
         [ObservableProperty]
         public bool isxsistStudent = false;
         [ObservableProperty]
-        public bool isNewStudent = false;
+        public bool isNewStudent = true;
 
         [ObservableProperty]
         ObservableCollection<CountryModel> countries;
@@ -364,7 +364,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
                 var result = await StudentStudyGroupList.AddStudyGroupStudentList(formData);
                 if (result != null && result.rowsAffected > 0)
                 {
-                    await StudentStudyGroupList.GetStudyGroupStudentList();
+                    await GetStudeyGrouStudenList();
                     Toast.ShowToastError(SharedResources.AddedSuccessfully);
                 }
 
@@ -392,7 +392,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
                 var result = await StudentStudyGroupList.AddStudyGroupStudentList(formData);
                 if (result != null && result.rowsAffected > 0)
                 {
-                    await StudentStudyGroupList.GetStudyGroupStudentList();
+                    await GetStudeyGrouStudenList();
                     Toast.ShowToastError(SharedResources.AddedSuccessfully);
                 }
 

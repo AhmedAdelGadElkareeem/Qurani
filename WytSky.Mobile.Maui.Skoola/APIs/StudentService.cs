@@ -26,7 +26,7 @@ namespace WytSky.Mobile.Maui.Skoola.APIs
 
                 //else  dictionary.Add("GroupID", Settings.CenterId);
 
-                var result = await Services.RequestProvider.Current.GetData<TempletData<StudentModel>>(BASE, "studygroupstudentlist", dictionary, Enums.AuthorizationType.UserNamePassword);
+                var result = await Services.RequestProvider.Current.GetData<TempletData<StudentModel>>(BASE, "students", dictionary, Enums.AuthorizationType.UserNamePassword);
                 if (result != null && result.IsPassed)
                 {
                     return result.Data.itemData;

@@ -29,9 +29,10 @@
                 Text="{x:Static res:SharedResources.Text_Save}" />
             <Button
                 Command="{Binding OpenAddStudentCommand}"
-                IsVisible="{Binding IsNewStudent}"
                 Style="{StaticResource BaseButton}"
                 Text="Add New Student" />
+
+            <!--  IsVisible="{Binding IsNewStudent}"  -->
         </VerticalStackLayout>
     </Frame>
 </pages:PopupPage>

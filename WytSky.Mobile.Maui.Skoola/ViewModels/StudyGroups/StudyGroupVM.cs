@@ -126,7 +126,7 @@ public partial class StudyGroupVM : CenterVM
                 { "TeacherFullName", SelectedTeacher.FullName},
                 { "SubjectName", SubjectName},
                 { "Notes", Notes},
-                { "StudentCount", StudentCount},
+                //{ "StudentCount", StudentCount},
                 { "Location", Location},
             };
 
