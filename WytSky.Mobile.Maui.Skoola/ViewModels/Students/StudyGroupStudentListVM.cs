@@ -20,6 +20,13 @@ public partial class StudyGroupStudentListVM : StudentsVM
         StudentsList = await StudentService.GetAllStudents();
         IsRunning = false;
     }
+    public async Task GetStudeyGrouStudenList()
+    {
+        IsRunning = true;
+        StudyGroupStudentsList = await StudentService.GetStudyGroupStudentList();
+        IsRunning = false;
+    }
+
 
 
     [RelayCommand]

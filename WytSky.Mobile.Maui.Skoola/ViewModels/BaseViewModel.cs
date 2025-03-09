@@ -42,7 +42,12 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
         public bool isEnglish;
 
         [ObservableProperty]
-        public string languageTitle;
+        public string languageTitle; 
+        
+        
+        
+        [ObservableProperty]
+        public string studentID;
 
         [ObservableProperty]
         private ObservableCollection<StudentModel> studentsList;
@@ -63,6 +68,9 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
 
         [ObservableProperty]
         ObservableCollection<StudyGroupModel> studyGroups;
+        
+
+
 
         //[ObservableProperty]
         //ObservableCollection<SubjectModel> subjects;
