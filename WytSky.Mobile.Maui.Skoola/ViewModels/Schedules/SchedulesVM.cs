@@ -25,10 +25,38 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.Schedules
         private string selectedDay; // Selected day from Picker
 
         [ObservableProperty]
-        private DateTime startTime;
+        private DateTime startTime;  // Store as DateTime
 
         [ObservableProperty]
         private DateTime endTime;
+
+        // Store StartTime as string in "HH:mm:ss" format
+        public string StartTimeString
+        {
+            get => StartTime.ToString("HH:mm:ss");
+            set
+            {
+                if (DateTime.TryParse(value, out DateTime parsedTime))
+                {
+                    StartTime = parsedTime;
+                    OnPropertyChanged(nameof(StartTimeString));
+                }
+            }
+        }
+
+        // Store EndTime as string in "HH:mm:ss" format
+        public string EndTimeString
+        {
+            get => EndTime.ToString("HH:mm:ss");
+            set
+            {
+                if (DateTime.TryParse(value, out DateTime parsedTime))
+                {
+                    EndTime = parsedTime;
+                    OnPropertyChanged(nameof(EndTimeString));
+                }
+            }
+        }
 
         public SchedulesVM()
         {
@@ -58,9 +86,10 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.Schedules
 
                 var formData = new Dictionary<string, object>
                 {
-                    { "StartTime", StartTime.ToString() },
-                    { "EndTime", EndTime.ToString() },
-                    { "CreatedDate", DateTime.Now },
+                    { "StartTime", StartTimeString },
+                    { "EndTime", EndTimeString },
+                    { "GroupID", Settings.StudyGroupId },
+                    { "IsActive", true },
                     { "WeekDayNameListDayOfWeekName", SelectedDay },
                     { "DayOfWeekName", SelectedDay },
 

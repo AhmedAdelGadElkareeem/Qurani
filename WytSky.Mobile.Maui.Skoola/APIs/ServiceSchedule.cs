@@ -46,7 +46,6 @@ namespace WytSky.Mobile.Maui.Skoola.APIs
             {
                 Dictionary<string, string> dictionary = new Dictionary<string, string>()
                 {
-                    {"GroupID", Helpers.Settings.StudyGroupId},
                     {"_datatype","json"},
                     {"_jsonarray","1"},
                 };

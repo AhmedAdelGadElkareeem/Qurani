@@ -11,4 +11,10 @@ public partial class SchedulesPage : ContentPage
         BindingContext = SchedulesVM;
 
     }
+
+    protected override async void OnAppearing()
+    {
+        await SchedulesVM.GetSchedules();
+        base.OnAppearing();
+    }
 }
