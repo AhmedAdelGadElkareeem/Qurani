@@ -45,6 +45,20 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
         public string languageTitle;
 
         [ObservableProperty]
+        private ObservableCollection<StudentModel> studentsList;
+
+        [ObservableProperty]
+        private ObservableCollection<StudyGroupStudentList> studyGroupStudentsList;
+
+        [ObservableProperty]
+        private StudentModel selectedStudent;
+
+        [ObservableProperty]
+        public bool isxsistStudent = false;
+        [ObservableProperty]
+        public bool isNewStudent = false;
+
+        [ObservableProperty]
         ObservableCollection<CountryModel> countries;
 
         [ObservableProperty]
@@ -295,12 +309,10 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
         {
             Teachers = await APIs.ServiceStaff.GetStaff();
         }
-
         public async Task GetComplexes()
         {
             Complexes = await APIs.ServiceCatgeory.GetComplexs();
         }
-
 
         [RelayCommand]
         private async Task OpenPages(string pageName)
@@ -331,10 +343,69 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
             }
         }
 
-    
+        [RelayCommand]
+        public async Task AddExsistingStudent()
+        {
+            try
+            {
+                var formData = new Dictionary<string, object>()
+            {
+                { "StudentID", SelectedStudent.StudentID },
+                { "GroupID", Settings.StudyGroupId },
+            };
+                var result = await StudentStudyGroupList.AddStudyGroupStudentList(formData);
+                if (result != null && result.rowsAffected > 0)
+                {
+                    await StudentStudyGroupList.GetStudyGroupStudentList();
+                    Toast.ShowToastError(SharedResources.AddedSuccessfully);
+                }
 
+            }
+            catch (Exception e)
+            {
+                ExtensionLogMethods.LogExtension(e, "", "StudyGroupStudentListVM", "AddExsistingStudent");
+            }
+            finally
+            {
+                HidePopup();
+            }
+        }
+
+        [RelayCommand]
+        public async Task AddNewStudentStudyGroupList(string StudentId)
+        {
+            try
+            {
+                var formData = new Dictionary<string, object>()
+            {
+                { "StudentID", StudentId },
+                { "GroupID", Settings.StudyGroupId },
+            };
+                var result = await StudentStudyGroupList.AddStudyGroupStudentList(formData);
+                if (result != null && result.rowsAffected > 0)
+                {
+                    await StudentStudyGroupList.GetStudyGroupStudentList();
+                    Toast.ShowToastError(SharedResources.AddedSuccessfully);
+                }
+
+            }
+            catch (Exception e)
+            {
+                ExtensionLogMethods.LogExtension(e, "", "StudyGroupStudentListVM", "AddNewStudentStudyGroupList");
+            }
+            finally
+            {
+                HidePopup();
+            }
+        }
+
+        partial void OnSelectedStudentChanged(StudentModel value)
+        {
+            SelectedStudent.StudentID = value.StudentID;
+            IsNewStudent = false;
+        }
         #endregion
-        
+
         public async Task GetStaffType()
         {
             StaffTypes = await APIs.ServiceStaff.GetStaffType();

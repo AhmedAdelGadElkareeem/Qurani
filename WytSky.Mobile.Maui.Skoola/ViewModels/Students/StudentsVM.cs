@@ -13,6 +13,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.Students
     public partial class StudentsVM : BaseViewModel
     {
         [ObservableProperty] private ObservableCollection<StudentModel> students;
+        [ObservableProperty] private ObservableCollection<StudentModel> lastAddedStudent;
 
         // add student popup
         [ObservableProperty] private string  studentName;
@@ -46,7 +47,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.Students
         }
 
         [RelayCommand]
-        public async Task AddStudent()
+        public async Task AddStudent(string fromStudyGroup)
         {
             try
             {
@@ -120,8 +121,15 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.Students
 
                     if (addedStudent != null && addedStudent.rowsAffected > 0)
                     {
+
                         await GetStudentsByStudyGroupId();
+                        LastAddedStudent =  await StudentService.GetStudents();
+                        if (fromStudyGroup == "fromS")
+                        {
+                            await AddNewStudentStudyGroupList(LastAddedStudent.Select(s=> s.StudentID.ToString()).First());
+                        }
                         Toast.ShowToastError(SharedResources.AddedSuccessfully);
+                        
                     }
                 }
             }

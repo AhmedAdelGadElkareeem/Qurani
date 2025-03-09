@@ -30,7 +30,7 @@
             <Button
                 Command="{Binding OpenAddStudentCommand}"
                 Style="{StaticResource BaseButton}"
-                Text="{x:Static res:SharedResources.Text_Add}" />
+                Text="Add New Student" />
         </VerticalStackLayout>
     </Frame>
 </pages:PopupPage>

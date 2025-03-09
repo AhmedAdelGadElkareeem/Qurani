@@ -53,6 +53,7 @@
                 TextLabel="{x:Static resource:SharedResources.Text_ConfirmPassword}" />
             <Button
                 Command="{Binding AddStudentCommand}"
+                CommandParameter="fromS"
                 Style="{StaticResource BaseButton}"
                 Text="{x:Static res:SharedResources.Text_Save}" />
         </VerticalStackLayout>
