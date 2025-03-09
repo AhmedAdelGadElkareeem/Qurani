@@ -1240,4 +1240,7 @@
   <data name="Text_Specialization" xml:space="preserve">
     <value>التخصص</value>
   </data>
+  <data name="Txt_Schedules" xml:space="preserve">
+    <value>المواعيد</value>
+  </data>
 </root>

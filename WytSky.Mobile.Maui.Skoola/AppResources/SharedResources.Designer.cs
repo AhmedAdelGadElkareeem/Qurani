@@ -3396,6 +3396,15 @@ namespace WytSky.Mobile.Maui.Skoola.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Schedules.
+        /// </summary>
+        public static string Txt_Schedules {
+            get {
+                return ResourceManager.GetString("Txt_Schedules", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Verify Account.
         /// </summary>
         public static string VerifyAccount {

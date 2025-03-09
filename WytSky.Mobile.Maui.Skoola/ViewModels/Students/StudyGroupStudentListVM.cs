@@ -6,8 +6,10 @@ using WytSky.Mobile.Maui.Skoola.APIs;
 using WytSky.Mobile.Maui.Skoola.AppResources;
 using WytSky.Mobile.Maui.Skoola.Helpers;
 using WytSky.Mobile.Maui.Skoola.Models;
+using WytSky.Mobile.Maui.Skoola.Views.Schedules;
 using WytSky.Mobile.Maui.Skoola.Views.Students;
 using WytSky.Mobile.Maui.Skoola.Views.StudyGroupStudentList;
+
 
 namespace WytSky.Mobile.Maui.Skoola.ViewModels.Students;
 
@@ -30,6 +32,16 @@ public partial class StudyGroupStudentListVM : StudentsVM
         popup.BindingContext = this;
         ShowPopup(popup);
     }
+
+     [RelayCommand]
+    private async Task OpenSchedules()
+    {
+
+        await OpenPushAsyncPage(new SchedulesPage());
+
+    }
+
+
 
 
 }

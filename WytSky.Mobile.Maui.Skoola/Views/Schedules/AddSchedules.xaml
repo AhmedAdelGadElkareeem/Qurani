@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<pages:PopupPage
+    x:Class="WytSky.Mobile.Maui.Skoola.Views.Schedules.AddSchedules"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:customContorols="clr-namespace:WytSky.Mobile.Maui.Skoola.CustomControl.Borderless"
+    xmlns:customControl="clr-namespace:WytSky.Mobile.Maui.Skoola.CustomControl"
+    xmlns:pages="clr-namespace:Mopups.Pages;assembly=Mopups"
+    xmlns:res="clr-namespace:WytSky.Mobile.Maui.Skoola.AppResources">
+    <Frame HeightRequest="400">
+
+        <VerticalStackLayout Padding="20" Spacing="10">
+            <!--  Select Day of the Week  -->
+            <Label
+                FontAttributes="Bold"
+                FontSize="16"
+                Text="Select Day:" />
+            <Picker
+                Title="Choose a Day"
+                ItemsSource="{Binding DaysOfWeek}"
+                SelectedItem="{Binding SelectedDay, Mode=TwoWay}" />
+
+            <!--  Select Start Time  -->
+            <Label
+                FontAttributes="Bold"
+                FontSize="16"
+                Text="Start Time:" />
+            <TimePicker Time="{Binding StartTime, Mode=TwoWay}" />
+
+            <!--  Select End Time  -->
+            <Label
+                FontAttributes="Bold"
+                FontSize="16"
+                Text="End Time:" />
+            <TimePicker Time="{Binding EndTime, Mode=TwoWay}" />
+
+            <Button
+                Command="{Binding AddScheduleCommand}"
+                Style="{StaticResource BaseButton}"
+                Text="{x:Static res:SharedResources.Text_Save}" />
+        </VerticalStackLayout>
+
+    </Frame>
+</pages:PopupPage>

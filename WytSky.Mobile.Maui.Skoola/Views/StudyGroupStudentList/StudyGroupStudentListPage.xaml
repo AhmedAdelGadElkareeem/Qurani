@@ -57,18 +57,17 @@
                     ColumnSpacing="5"
                     HeightRequest="50"
                     VerticalOptions="End">
-                    <Button
+                    <!--<Button
                         BackgroundColor="{StaticResource PrimaryColor}"
                         Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.OpenStudyGroupsCommand}"
                         CommandParameter="{Binding .}"
                         Text="{x:Static resource:SharedResources.StudyGroups}"
-                        TextColor="{StaticResource White}" />
+                        TextColor="{StaticResource White}" />-->
                     <Button
                         Grid.Column="1"
                         BackgroundColor="{StaticResource PrimaryColor}"
-                        Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.OpenStaffsCommand}"
-                        CommandParameter="{Binding .}"
-                        Text="{x:Static resource:SharedResources.Staffs}"
+                        Command="{Binding OpenSchedulesCommand}"
+                        Text="{x:Static resource:SharedResources.Txt_Schedules}"
                         TextColor="{StaticResource White}" />
                     <Button
                         Grid.Column="2"
@@ -79,7 +78,7 @@
                         TextColor="{StaticResource White}" />
                 </Grid>
 
-                <Button Command="{Binding OpenAddStudyGroupStudentListCommand}" Style="{StaticResource AddButton}" />
+                <Button Command="{Binding OpenAddSchedulesCommand}" Style="{StaticResource AddButton}" />
             </Grid>
 
         </Grid>

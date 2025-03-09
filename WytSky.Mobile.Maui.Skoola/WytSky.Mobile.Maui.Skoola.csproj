@@ -175,6 +175,9 @@
 	  <Compile Update="Views\Complexes\ComplexesPage.xaml.cs">
 	    <DependentUpon>HomePage.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Views\Schedules\AddSchedules.xaml.cs">
+	    <DependentUpon>AddSchedules.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Views\Staff\AddStaff.xaml.cs">
 	    <DependentUpon>AddStaff.xaml</DependentUpon>
 	  </Compile>
@@ -235,7 +238,16 @@
 	  <MauiXaml Update="Views\MainPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\Schedules\AddSchedules.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Schedules\SchedulesPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\Staff\AddStaff.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\StudyGroupSessions\StudyGroupSessionsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\StudyGroupStudentList\AddStudyGroupStudentList.xaml">

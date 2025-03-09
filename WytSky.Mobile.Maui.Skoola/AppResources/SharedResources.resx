@@ -1238,4 +1238,7 @@ Successfully Changed</value>
   <data name="Text_Specialization" xml:space="preserve">
     <value>Specialization</value>
   </data>
+  <data name="Txt_Schedules" xml:space="preserve">
+    <value>Schedules</value>
+  </data>
 </root>
