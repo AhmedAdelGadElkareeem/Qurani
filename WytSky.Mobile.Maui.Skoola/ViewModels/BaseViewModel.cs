@@ -406,7 +406,12 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
                 HidePopup();
             }
         }
-
+        public async Task GetStudeyGrouStudenList()
+        {
+            IsRunning = true;
+            StudyGroupStudentsList = await StudentService.GetStudyGroupStudentList();
+            IsRunning = false;
+        }
         partial void OnSelectedStudentChanged(StudentModel value)
         {
             SelectedStudent.StudentID = value.StudentID;
