@@ -6,9 +6,12 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WytSky.Mobile.Maui.Skoola.APIs;
 using WytSky.Mobile.Maui.Skoola.AppResources;
 using WytSky.Mobile.Maui.Skoola.Helpers;
 using WytSky.Mobile.Maui.Skoola.Models;
+using WytSky.Mobile.Maui.Skoola.ViewModels.Studentattendance;
+using WytSky.Mobile.Maui.Skoola.ViewModels.Students;
 using WytSky.Mobile.Maui.Skoola.Views.Schedules;
 
 namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudyGroupSession
@@ -16,7 +19,17 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudyGroupSession
     public partial class StudyGroupSessionsVM : BaseViewModel
     {
         #region Propreties
+
+        #region Session 
         [ObservableProperty] private ObservableCollection<SessionModel> sessions;
+
+        [ObservableProperty] private ObservableCollection<StudyGroupStudentList> students;
+
+
+        [ObservableProperty] private int? sessinId;
+
+
+        [ObservableProperty] private bool isStudentVisible = false ;
 
         public ScheduleModel SelectedSchedule { get; }
         public Dictionary<string, object> FormData { get; }
@@ -32,6 +45,15 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudyGroupSession
             SelectedSchedule = schedule;
             FormData = formData;
         }
+        #endregion
+
+        #region Attendance
+
+        [ObservableProperty] private ObservableCollection<AttendanceModel> groupAttendance;
+        [ObservableProperty] public StudentModel selectedStudent; 
+
+
+        #endregion
 
 
         #endregion
@@ -39,22 +61,25 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudyGroupSession
 
         #region Commands
 
+        #region Session 
+
         [RelayCommand]
-        public async Task AddSesion()
+        public async Task AddSesion(SessionModel session)
         {
             try
             {
 
                 IsRunning = true;
 
-               
 
+               if (session != null) SessinId = session.SessionID;
                 var result = await APIs.SessionService.AddStudyGroupSession(FormData);
                 if (result != null)
                 {
                     HidePopup();
                     Toast.ShowToastSuccess(SharedResources.AddedSuccessfully);
                     await GetSessions();
+                    IsStudentVisible = true;
                 }
                 else
                 {
@@ -63,7 +88,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudyGroupSession
             }
             catch (Exception ex)
             {
-                ExtensionLogMethods.LogExtension(ex, "", "CenterVM", "AddComplex");
+                ExtensionLogMethods.LogExtension(ex, "", "StudyGroupSessionsVM", "AddSesion");
                 Toast.ShowToastError("Error", "An unexpected error occurred");
             }
             finally
@@ -79,6 +104,52 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudyGroupSession
             popup.BindingContext = this;
             ShowPopup(popup);
         }
+        #endregion
+
+        #region Attendance
+        [RelayCommand]
+        public async Task AddStudentAttendance(StudyGroupStudentList studentModel) 
+        {
+            try
+            {
+                IsRunning = true;
+
+                var formData = new Dictionary<string, object>
+                {
+                    { "GroupID", Settings.StudyGroupId },
+                    { "CenterID", Settings.CenterId },
+                    { "StudentID", studentModel.StudentID},
+                    { "ComplexID" , Settings.ComplexId},
+                    { "SessionDayOfWeekName" , SelectedSchedule.DayOfWeekName },
+                    { "TimeIn" , DateTime.Now.ToString("HH:mm:ss") },
+                    { "TimeOut" , SelectedSchedule.EndTime },
+                    { "SessionID" , SessinId},
+
+                  
+
+                };
+                var result = await APIs.ServiceAttendance.AddGroupAttendance(formData);
+
+                if (result != null)
+                {
+                    Toast.ShowToastSuccess(SharedResources.AddedSuccessfully);
+                }
+                else
+                {
+                    Toast.ShowToastError("Error");
+                }
+            }
+            catch (Exception ex)
+            {
+                Toast.ShowToastError("Error", ex.Message);
+            }
+            finally
+            {
+                IsRunning = false;
+            }
+        }
+
+        #endregion
 
         #endregion
 
@@ -90,9 +161,16 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudyGroupSession
             IsRunning = false;
 
         }
+        public async Task GetAllStudents()
+        {
+            IsRunning = true;
+            Students = await StudentService.GetStudyGroupStudentList();
+            IsRunning = false;
+        }
+
         #endregion
 
-     
+
 
     }
 }

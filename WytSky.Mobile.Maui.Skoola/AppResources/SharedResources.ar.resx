@@ -1243,4 +1243,7 @@
   <data name="Txt_Schedules" xml:space="preserve">
     <value>المواعيد</value>
   </data>
+  <data name="Txt_StartSession" xml:space="preserve">
+    <value>بدأ الجلسه</value>
+  </data>
 </root>

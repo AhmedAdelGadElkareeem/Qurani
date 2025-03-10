@@ -3396,11 +3396,29 @@ namespace WytSky.Mobile.Maui.Skoola.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to attend.
+        /// </summary>
+        public static string Txt_Attendance {
+            get {
+                return ResourceManager.GetString("Txt_Attendance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Schedules.
         /// </summary>
         public static string Txt_Schedules {
             get {
                 return ResourceManager.GetString("Txt_Schedules", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start Session.
+        /// </summary>
+        public static string Txt_StartSession {
+            get {
+                return ResourceManager.GetString("Txt_StartSession", resourceCulture);
             }
         }
         

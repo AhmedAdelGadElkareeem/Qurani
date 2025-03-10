@@ -1241,4 +1241,10 @@ Successfully Changed</value>
   <data name="Txt_Schedules" xml:space="preserve">
     <value>Schedules</value>
   </data>
+  <data name="Txt_StartSession" xml:space="preserve">
+    <value>Start Session</value>
+  </data>
+  <data name="Txt_Attendance" xml:space="preserve">
+    <value>attend</value>
+  </data>
 </root>

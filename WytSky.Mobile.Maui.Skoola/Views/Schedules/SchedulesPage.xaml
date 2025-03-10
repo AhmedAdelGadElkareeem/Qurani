@@ -2,6 +2,10 @@
     x:Class="WytSky.Mobile.Maui.Skoola.Views.Schedules.SchedulesPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:behaviors="clr-namespace:WytSky.Mobile.Maui.Skoola.Behaviors"
+    xmlns:customControl="clr-namespace:WytSky.Mobile.Maui.Skoola.CustomControl.Borderless"
+    xmlns:customControls="clr-namespace:WytSky.Mobile.Maui.Skoola.CustomControl"
+    xmlns:resource="clr-namespace:WytSky.Mobile.Maui.Skoola.AppResources"
     Title="SchedulesPage">
     <Grid RowDefinitions="*">
         <Grid RowDefinitions="auto,*" VerticalOptions="FillAndExpand">
@@ -13,43 +17,54 @@
                                 Margin="5"
                                 Padding="10"
                                 BorderColor="Gray">
-                                <VerticalStackLayout BackgroundColor="White">
+                                <Grid ColumnDefinitions="* ,auto">
+                                    <VerticalStackLayout BackgroundColor="White">
 
-                                    <VerticalStackLayout.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.SelectScheduleCommand}" CommandParameter="{Binding .}" />
-                                    </VerticalStackLayout.GestureRecognizers>
+                                        <VerticalStackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.SelectScheduleCommand}" CommandParameter="{Binding .}" />
+                                        </VerticalStackLayout.GestureRecognizers>
 
-                                    <!--  Day of the Week  -->
-                                    <Label
-                                        FontAttributes="Bold"
-                                        FontSize="18"
-                                        Text="{Binding DayOfWeekName}"
-                                        TextColor="{StaticResource PrimaryColor}" />
-
-                                    <!--  Start & End Time  -->
-                                    <HorizontalStackLayout Spacing="10">
+                                        <!--  Day of the Week  -->
                                         <Label
                                             FontAttributes="Bold"
-                                            FontSize="14"
-                                            Text="From:"
-                                            TextColor="Black" />
-                                        <Label
-                                            FontAttributes="Bold"
-                                            FontSize="15"
-                                            Text="{Binding StartTime, StringFormat='{0:hh\\:mm}'}"
+                                            FontSize="18"
+                                            Text="{Binding DayOfWeekName}"
                                             TextColor="{StaticResource PrimaryColor}" />
-                                        <Label
-                                            FontAttributes="Bold"
-                                            FontSize="14"
-                                            Text="To:"
-                                            TextColor="Black" />
-                                        <Label
-                                            FontAttributes="Bold"
-                                            FontSize="15"
-                                            Text="{Binding EndTime, StringFormat='{0:hh\\:mm}'}"
-                                            TextColor="{StaticResource PrimaryColor}" />
-                                    </HorizontalStackLayout>
-                                </VerticalStackLayout>
+
+                                        <!--  Start & End Time  -->
+                                        <HorizontalStackLayout Spacing="10">
+                                            <Label
+                                                FontAttributes="Bold"
+                                                FontSize="14"
+                                                Text="From:"
+                                                TextColor="Black" />
+                                            <Label
+                                                FontAttributes="Bold"
+                                                FontSize="15"
+                                                Text="{Binding StartTime, StringFormat='{0:hh\\:mm}'}"
+                                                TextColor="{StaticResource PrimaryColor}" />
+                                            <Label
+                                                FontAttributes="Bold"
+                                                FontSize="14"
+                                                Text="To:"
+                                                TextColor="Black" />
+                                            <Label
+                                                FontAttributes="Bold"
+                                                FontSize="15"
+                                                Text="{Binding EndTime, StringFormat='{0:hh\\:mm}'}"
+                                                TextColor="{StaticResource PrimaryColor}" />
+                                        </HorizontalStackLayout>
+                                    </VerticalStackLayout>
+                                    <Border Grid.Column="1">
+                                        <Button
+                                            Grid.Column="2"
+                                            BackgroundColor="{StaticResource PrimaryColor}"
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.SelectScheduleCommand}"
+                                            CommandParameter="{Binding .}"
+                                            Text="{x:Static resource:SharedResources.Txt_StartSession}"
+                                            TextColor="{StaticResource White}" />
+                                    </Border>
+                                </Grid>
                             </Frame>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>

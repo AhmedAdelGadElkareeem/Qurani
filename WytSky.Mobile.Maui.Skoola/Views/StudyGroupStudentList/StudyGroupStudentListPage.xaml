@@ -78,7 +78,7 @@
                         TextColor="{StaticResource White}" />
                 </Grid>
 
-                <Button Command="{Binding OpenAddSchedulesCommand}" Style="{StaticResource AddButton}" />
+                <Button Command="{Binding OpenAddStudyGroupStudentListCommand}" Style="{StaticResource AddButton}" />
             </Grid>
 
         </Grid>

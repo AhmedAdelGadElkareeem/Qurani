@@ -301,4 +301,8 @@
 	<ItemGroup>
 	  <AndroidNativeLibrary Remove="C:\Users\pv12646\.nuget\packages\videolan.libvlc.android\3.5.3\build\android-armv7\libc++_shared.so" />
 	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="ViewModels\Attendance\" />
+	</ItemGroup>
 </Project>
