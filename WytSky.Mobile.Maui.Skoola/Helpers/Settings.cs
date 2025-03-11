@@ -200,6 +200,11 @@ public class    Settings
     {
         get { return Preferences.Get("StudentId", null); }
         set { Preferences.Set("StudentId", value); }
+    } 
+    public static string SessionId
+    {
+        get { return Preferences.Get("SessionId", null); }
+        set { Preferences.Set("SessionId", value); }
     }
     public static System.Collections.ObjectModel.ObservableCollection<StItem> FavoriteItems
     {

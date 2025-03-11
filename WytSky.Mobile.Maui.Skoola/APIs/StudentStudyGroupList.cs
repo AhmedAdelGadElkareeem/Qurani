@@ -55,6 +55,7 @@ public class StudentStudyGroupList
                 {"_datatype","json"},
                 {"_jsonarray","1"},
             };
+            dictionary.Add("GroupID", Settings.StudyGroupId);
 
             var result = await Services.RequestProvider.Current.PostDataMultipart<Dtos.ReturnData>(BASE, CONTROLR, dictionary, formData, Enums.AuthorizationType.UserNamePassword);
             if (result != null && result.IsPassed)

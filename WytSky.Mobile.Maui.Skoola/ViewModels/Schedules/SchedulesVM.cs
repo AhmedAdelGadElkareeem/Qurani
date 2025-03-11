@@ -159,14 +159,14 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.Schedules
             }
 
             var formData = new Dictionary<string, object>
-    {
-        { "StartTime", StartTimeString },
-        { "EndTime", EndTimeString },
-        { "GroupID", Settings.StudyGroupId },
-        { "IsActive", true },
-        { "WeekDayNameListDayOfWeekName", SelectedDay },
-        { "DayOfWeekName", SelectedDay }
-    };
+            {
+                { "StartTime", StartTimeString },
+                { "EndTime", EndTimeString },
+                { "GroupID", Settings.StudyGroupId },
+                { "IsActive", true },
+                { "WeekDayNameListDayOfWeekName", SelectedDay },
+                { "DayOfWeekName", SelectedDay }
+            };
 
             var viewModel = new StudyGroupSessionsVM(schedule, formData);
             var nextPage = new StudyGroupSessionsPage(viewModel);

@@ -50,7 +50,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudyGroupSession
         #region Attendance
 
         [ObservableProperty] private ObservableCollection<AttendanceModel> groupAttendance;
-        [ObservableProperty] public StudentModel selectedStudent; 
+        [ObservableProperty] public StudentModel selectedStudent;
 
 
         #endregion
@@ -72,7 +72,12 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudyGroupSession
                 IsRunning = true;
 
 
-               if (session != null) SessinId = session.SessionID;
+                if (session != null) 
+                {
+                    SessinId = session.SessionID; 
+                    Settings.SessionId = SessinId.ToString();
+                }
+
                 var result = await APIs.SessionService.AddStudyGroupSession(FormData);
                 if (result != null)
                 {
@@ -108,7 +113,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudyGroupSession
 
         #region Attendance
         [RelayCommand]
-        public async Task AddStudentAttendance(StudyGroupStudentList studentModel) 
+        public async Task AddStudentAttendance(StudyGroupStudentList StudyGroupStudentModel) 
         {
             try
             {
@@ -118,7 +123,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudyGroupSession
                 {
                     { "GroupID", Settings.StudyGroupId },
                     { "CenterID", Settings.CenterId },
-                    { "StudentID", studentModel.StudentID},
+                    { "StudentID", StudyGroupStudentModel.StudentID},
                     { "ComplexID" , Settings.ComplexId},
                     { "SessionDayOfWeekName" , SelectedSchedule.DayOfWeekName },
                     { "TimeIn" , DateTime.Now.ToString("HH:mm:ss") },
