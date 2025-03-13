@@ -303,7 +303,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
         }
         public async Task GetStudyGroups()
         {
-            StudyGroups = await APIs.StudyGroupService.GetStudyGroups();
+            StudyGroups = await APIs.StudyGroupService.GetStudyGroupsByCenterId();
             //await GetRegions(StudyGroups[0].GroupID.ToString());
         }
         public async Task GetRegions(string countryId)

@@ -16,10 +16,18 @@ public partial class StudyGroupVM : CenterVM
 {
     [ObservableProperty]
     public ObservableCollection<StudyGroupModel> studyGroups;
+    [ObservableProperty]
+    public ObservableCollection<StudyGroupModel> teacherStudyGroups = new ObservableCollection<StudyGroupModel>();
     [ObservableProperty] private ObservableCollection<StudyGroupModel> filteredStudyGroups 
                             = new ObservableCollection<StudyGroupModel>();
+    [ObservableProperty]
+    private ObservableCollection<StudyGroupModel> filteredTeacherStudyGroups
+                        = new ObservableCollection<StudyGroupModel>();
+
     [ObservableProperty] private string searchText;
     [ObservableProperty] public bool addVisibility;
+
+    [ObservableProperty] public bool fromCenter;
 
     // add study group popup
     [ObservableProperty] public string studyGroupName;
@@ -49,8 +57,12 @@ public partial class StudyGroupVM : CenterVM
         try
         {
             IsRunning = true;
-            StudyGroups = await StudyGroupService.GetStudyGroups();
+            StudyGroups = await StudyGroupService.GetStudyGroupsByCenterId();
             FilteredStudyGroups = new ObservableCollection<StudyGroupModel>(StudyGroups);
+
+            TeacherStudyGroups = await StudyGroupService.GetStudyGroupsByTeacherId(TeacherID.Value);
+            FilteredTeacherStudyGroups = new ObservableCollection<StudyGroupModel>(TeacherStudyGroups);
+            
             ComplexNamee = StudyGroups.Select(_ => _.ComplexName).FirstOrDefault();
             ComplexRegionName = StudyGroups.Select(_ => _.ComplexRegionName).FirstOrDefault();
             CenterName = StudyGroups.Select(_ => _.CenterName).FirstOrDefault();
@@ -95,14 +107,14 @@ public partial class StudyGroupVM : CenterVM
     {
         try
         {
-            if (!string.IsNullOrEmpty(value) || value.Length == 0)
+            if (!string.IsNullOrEmpty(value) || value.Length > 0)
             {   
                 FilteredStudyGroups =
                     new ObservableCollection<StudyGroupModel>(StudyGroups.Where(x => x.Name.ToLower().Contains(value)).ToList());
             }
             else
             {
-                StudyGroups = FilteredStudyGroups;
+                FilteredStudyGroups = StudyGroups;
             }
         }
         catch (Exception ex)

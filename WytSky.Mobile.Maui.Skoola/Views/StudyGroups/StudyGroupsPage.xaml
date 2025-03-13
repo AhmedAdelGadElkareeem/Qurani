@@ -21,23 +21,29 @@
                 StrokeShape="RoundRectangle 0,0,70,70"
                 StrokeThickness=".5"
                 VerticalOptions="Start">
-                <VerticalStackLayout Margin="0" Padding="0">
+                <Grid
+                    Margin="0"
+                    Padding="0"
+                    RowDefinitions="auto,auto,auto,*">
                     <Label
                         HorizontalOptions="CenterAndExpand"
                         Style="{StaticResource BoldLabelFont18}"
                         Text="{Binding ComplexNamee}"
                         TextColor="{StaticResource DarkBlue}" />
                     <Label
+                        Grid.Row="1"
                         HorizontalOptions="CenterAndExpand"
                         Style="{StaticResource BoldLabelFont16}"
                         Text="{Binding ComplexRegionName}"
                         TextColor="{StaticResource DarkBlue}" />
                     <Label
+                        Grid.Row="2"
                         HorizontalOptions="CenterAndExpand"
                         Style="{StaticResource BoldLabelFont16}"
                         Text="{Binding CenterName}"
                         TextColor="{StaticResource DarkBlue}" />
                     <Border
+                        Grid.Row="3"
                         Margin="30,0,30,0"
                         Padding="0"
                         HeightRequest="40"
@@ -85,7 +91,7 @@
                             </Button>
                         </Grid>
                     </Border>
-                </VerticalStackLayout>
+                </Grid>
             </Border>
             <Grid Grid.Row="1">
                 <CollectionView Margin="15,10,15,0" ItemsSource="{Binding FilteredStudyGroups}">

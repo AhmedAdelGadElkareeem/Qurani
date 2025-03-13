@@ -16,10 +16,7 @@
             <CollectionView ItemsSource="{Binding Sessions}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Frame
-                            Margin="5"
-                            Padding="10"
-                            BorderColor="Gray">
+                        <Border Margin="5" Padding="10">
                             <Grid ColumnDefinitions="*,auto">
                                 <VerticalStackLayout BackgroundColor="White">
                                     <Label
@@ -66,7 +63,7 @@
                                     Text="{x:Static resource:SharedResources.Txt_StartSession}"
                                     TextColor="{StaticResource Black}" />
                             </Grid>
-                        </Frame>
+                        </Border>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>

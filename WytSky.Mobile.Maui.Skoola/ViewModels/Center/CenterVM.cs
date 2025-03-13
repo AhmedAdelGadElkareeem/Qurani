@@ -59,14 +59,14 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
         {
             try
             {
-                if (!string.IsNullOrEmpty(value))
+                if (!string.IsNullOrEmpty(value) || value.Length > 0)
                 {
                     FilteredCenters =
                         new ObservableCollection<CentersModel>(Centers.Where(x => x.CenterName.ToLower().Contains(value)).ToList());
                 }
                 else
                 {
-                    Centers = FilteredCenters;
+                    FilteredCenters =   Centers;
                 }
             }
             catch (Exception ex)
@@ -153,8 +153,8 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
         public async Task OpenStudyGroups(CentersModel centerModel)
         {
             Settings.CenterId = centerModel.CenterID.ToString();
-            string name = App.IsArabic ? centerModel.CenterName : centerModel.CenterNameEn;
-            await OpenPushAsyncPage(new StudyGroupsPage(name));
+            //string name = App.IsArabic ? centerModel.CenterName : centerModel.CenterNameEn;
+            await OpenPushAsyncPage(new StudyGroupsPage());
         }
 
         [RelayCommand]

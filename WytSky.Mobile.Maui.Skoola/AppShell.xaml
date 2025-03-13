@@ -18,7 +18,19 @@
     Shell.ForegroundColor="{StaticResource DarkBlue}"
     Shell.NavBarIsVisible="True"
     Shell.TitleColor="DarkBlue"
-    Shell.TitleView="{StaticResource BoldLabelFont20}">
+    Shell.TitleView="{StaticResource Title22}">
+
+    <!--  Shell.TitleView="{StaticResource BoldLabelFont20}"  -->
+    <!--<Shell.TitleView>
+        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+            <Label
+                HorizontalOptions="CenterAndExpand"
+                Style="{StaticResource Title22}"
+                Text="{Binding Title}"
+                TextColor="Black"
+                VerticalOptions="Center" />
+        </Grid>
+    </Shell.TitleView>-->
 
     <Shell.ItemTemplate>
         <DataTemplate>
@@ -117,7 +129,6 @@
         </VerticalStackLayout>
 
     </Shell.FlyoutHeader>
-
 
     <FlyoutItem Title="MainPage" FlyoutDisplayOptions="AsMultipleItems">
         <ShellContent

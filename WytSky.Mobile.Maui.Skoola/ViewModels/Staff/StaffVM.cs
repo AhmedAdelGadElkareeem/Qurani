@@ -77,7 +77,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
                 }
                 else
                 {
-                    Staff = FilteredStaff;
+                    FilteredStaff = Staff;
                 }
             }
             catch (Exception ex)
@@ -91,7 +91,8 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
         public async Task SelectStaff(StaffModel staff)
         {
             Settings.StaffId = staff.StaffID.ToString();
-            await OpenPushAsyncPage(new StudyGroupsPage(staff.FullName));
+
+            await OpenPushAsyncPage(new StudyGroupsPage(staff.StaffID.Value));
         }
 
         [RelayCommand]
@@ -127,7 +128,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
                 };
                 var result = await APIs.ServiceStaff.AddStaff(formData);
 
-                var exsistStudyGroups = await APIs.StudyGroupService.GetStudyGroups();
+                var exsistStudyGroups = await APIs.StudyGroupService.GetStudyGroupsByCenterId();
 
                 if (result != null)
                 {

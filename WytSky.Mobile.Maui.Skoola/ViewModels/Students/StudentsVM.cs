@@ -54,7 +54,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.Students
                 }
                 else
                 {
-                    Students = FilteredStudents;
+                    FilteredStudents = Students;
                 }
             }
             catch (Exception ex)

@@ -86,14 +86,14 @@ public partial class ComplexesVM : BaseViewModel
     {
         try
         {
-            if (!string.IsNullOrEmpty(value))
+            if (!string.IsNullOrEmpty(value) || value.Length > 0)
             {
                 FilteredComplexes =
                     new ObservableCollection<ComplexModel>(Complexes.Where(x => x.ComplexName.ToLower().Contains(value)).ToList());
             }
             else
             {
-                Complexes = FilteredComplexes;
+                FilteredComplexes = Complexes;
             }
 
         }

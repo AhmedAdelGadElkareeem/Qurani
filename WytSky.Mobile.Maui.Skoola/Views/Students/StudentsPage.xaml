@@ -21,23 +21,25 @@
                 StrokeShape="RoundRectangle 0,0,70,70"
                 StrokeThickness=".5"
                 VerticalOptions="Start">
-                <VerticalStackLayout Margin="0" Padding="0">
+                <Grid
+                    Margin="0"
+                    Padding="0"
+                    RowDefinitions="auto,auto,*">
                     <Label
                         HorizontalOptions="CenterAndExpand"
                         Style="{StaticResource BoldLabelFont18}"
                         Text="{Binding ComplexNamee}"
                         TextColor="{StaticResource DarkBlue}" />
                     <Label
+                        Grid.Row="1"
                         HorizontalOptions="CenterAndExpand"
                         Style="{StaticResource BoldLabelFont16}"
                         Text="{Binding StudentCenterName}"
                         TextColor="{StaticResource DarkBlue}" />
-                    <Label
-                        HorizontalOptions="CenterAndExpand"
-                        Style="{StaticResource BoldLabelFont16}"
-                        Text="{Binding GroupName}"
-                        TextColor="{StaticResource DarkBlue}" />
+
+
                     <Border
+                        Grid.Row="2"
                         Margin="30,0,30,0"
                         Padding="0"
                         HeightRequest="40"
@@ -85,7 +87,7 @@
                             </Button>
                         </Grid>
                     </Border>
-                </VerticalStackLayout>
+                </Grid>
             </Border>
 
             <Grid Grid.Row="1">

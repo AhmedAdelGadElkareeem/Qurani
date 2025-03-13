@@ -13,39 +13,10 @@
         Padding="10"
         BackgroundColor="White"
         CornerRadius="10"
-        HeightRequest="500">
+        HeightRequest="350">
         <VerticalStackLayout Margin="5,0">
             <Entry Placeholder="{x:Static res:SharedResources.StudyGroupAr}" Text="{Binding StudyGroupName}" />
             <Entry Placeholder="{x:Static res:SharedResources.StudyGroupEn}" Text="{Binding StudyGroupNameEn}" />
-            <!--<Border
-                Grid.Column="1"
-                Padding="0"
-                BackgroundColor="{StaticResource Yellow400Accent}"
-                StrokeShape="RoundRectangle 5,20,5,0"
-                StrokeThickness="0">
-                <Picker
-                    Title="{x:Static res:SharedResources.Complexes}"
-                    ItemDisplayBinding="{Binding ComplexName}"
-                    ItemsSource="{Binding Complexes}"
-                    SelectedItem="{Binding SelectedComplex, Mode=TwoWay}"
-                    TextColor="{StaticResource Black}"
-                    TitleColor="{StaticResource Black}" />
-            </Border>-->
-
-            <!--<Border
-                Grid.Column="1"
-                Padding="0"
-                BackgroundColor="{StaticResource Yellow400Accent}"
-                StrokeShape="RoundRectangle 5,20,5,0"
-                StrokeThickness="0">
-                <Picker
-                    Title="{x:Static res:SharedResources.Centers}"
-                    ItemDisplayBinding="{Binding CenterName}"
-                    ItemsSource="{Binding Centers}"
-                    SelectedItem="{Binding SelectedCenter, Mode=TwoWay}"
-                    TextColor="{StaticResource Black}"
-                    TitleColor="{StaticResource Black}" />
-            </Border>-->
             <Border
                 Grid.Column="1"
                 Padding="0"
@@ -62,10 +33,6 @@
             </Border>
             <Entry Placeholder="{x:Static res:SharedResources.Text_Subject}" Text="{Binding SubjectName}" />
             <Entry Placeholder="{x:Static res:SharedResources.Text_Notes}" Text="{Binding Notes}" />
-            <!--<Entry
-                Keyboard="Numeric"
-                Placeholder="{x:Static res:SharedResources.Text_Total}"
-                Text="{Binding StudentCount}" />-->
             <Entry Placeholder="{x:Static res:SharedResources.Text_Location}" Text="{Binding Location}" />
 
 

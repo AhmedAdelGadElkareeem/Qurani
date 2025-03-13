@@ -55,6 +55,13 @@
         TargetType="Label">
         <Setter Property="FontSize" Value="20" />
     </Style>
+    <Style x:Key="Title22" TargetType="Label">
+        <Setter Property="FontSize" Value="Title" />
+        <Setter Property="Margin" Value="0,0,60,0" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="FontFamily" Value="ManropeBold" />
+
+    </Style>
     <!--#endregion-->
 
     <!--#region Regular Labels-->
@@ -182,12 +189,13 @@
 
     <!--#region Buttons-->
     <Style x:Key="BaseButton" TargetType="Button">
-        <Setter Property="TextColor" Value="{StaticResource White}" />
+        <Setter Property="TextColor" Value="{StaticResource DarkBlue}" />
         <Setter Property="BackgroundColor" Value="{StaticResource PrimaryColor}" />
-        <Setter Property="FontSize" Value="17" />
+        <Setter Property="FontSize" Value="Medium" />
         <Setter Property="HeightRequest" Value="45" />
         <Setter Property="CornerRadius" Value="10" />
         <Setter Property="Margin" Value="10" />
+        <Setter Property="FontAttributes" Value="Bold" />
         <Setter Property="FontFamily" Value="ManropeBold" />
     </Style>
 
