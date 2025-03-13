@@ -185,6 +185,7 @@
                 </CollectionView>
                 <Button Command="{Binding OpenAddCenterCommand}" Style="{StaticResource AddButton}" />
             </Grid>
+
         </Grid>
 
         <ActivityIndicator IsRunning="{Binding IsRunning}" IsVisible="{Binding IsRunning}" />
