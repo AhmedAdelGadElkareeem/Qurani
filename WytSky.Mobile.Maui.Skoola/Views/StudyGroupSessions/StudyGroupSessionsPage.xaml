@@ -26,33 +26,33 @@
                                         FontAttributes="Bold"
                                         FontSize="18"
                                         Text="{Binding GroupTeacherFullName}"
-                                        TextColor="{StaticResource PrimaryColor}" />
+                                        TextColor="{StaticResource Black}" />
                                     <Label
                                         FontAttributes="Bold"
                                         FontSize="18"
                                         Text="{Binding DayOfWeekName}"
-                                        TextColor="{StaticResource PrimaryColor}" />
+                                        TextColor="{StaticResource Black}" />
                                     <HorizontalStackLayout Spacing="10">
                                         <Label
                                             FontAttributes="Bold"
                                             FontSize="14"
-                                            Text="From:"
+                                            Text="{x:Static resource:SharedResources.FromDate}"
                                             TextColor="Black" />
                                         <Label
                                             FontAttributes="Bold"
                                             FontSize="15"
                                             Text="{Binding StartTime, StringFormat='{0:hh\\:mm}'}"
-                                            TextColor="{StaticResource PrimaryColor}" />
+                                            TextColor="{StaticResource Black}" />
                                         <Label
                                             FontAttributes="Bold"
                                             FontSize="14"
-                                            Text="To:"
+                                            Text="{x:Static resource:SharedResources.ToDate}"
                                             TextColor="Black" />
                                         <Label
                                             FontAttributes="Bold"
                                             FontSize="15"
                                             Text="{Binding EndTime, StringFormat='{0:hh\\:mm}'}"
-                                            TextColor="{StaticResource PrimaryColor}" />
+                                            TextColor="{StaticResource Black}" />
                                     </HorizontalStackLayout>
                                 </VerticalStackLayout>
                                 <Button
@@ -64,7 +64,7 @@
                                     FontSize="16"
                                     HorizontalOptions="End"
                                     Text="{x:Static resource:SharedResources.Txt_StartSession}"
-                                    TextColor="{StaticResource White}" />
+                                    TextColor="{StaticResource Black}" />
                             </Grid>
                         </Frame>
                     </DataTemplate>
@@ -125,8 +125,8 @@
             FontSize="16"
             HeightRequest="50"
             HorizontalOptions="Fill"
-            Text="{x:Static resource:SharedResources.Txt_Attendance}"
-            TextColor="{StaticResource White}" />
+            Text="{x:Static resource:SharedResources.Add_Evaluation}"
+            TextColor="{StaticResource Black}" />
 
         <!--  Loading Indicator  -->
         <ActivityIndicator

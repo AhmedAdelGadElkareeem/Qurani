@@ -79,6 +79,15 @@ namespace WytSky.Mobile.Maui.Skoola.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add Student Evaluation.
+        /// </summary>
+        public static string Add_Evaluation {
+            get {
+                return ResourceManager.GetString("Add_Evaluation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add Complex.
         /// </summary>
         public static string AddComplex {
@@ -3536,6 +3545,24 @@ namespace WytSky.Mobile.Maui.Skoola.AppResources {
         public static string VerifyAccount {
             get {
                 return ResourceManager.GetString("VerifyAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View Student Attendance Page.
+        /// </summary>
+        public static string View_attendancePage {
+            get {
+                return ResourceManager.GetString("View_attendancePage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View Evaluation Page.
+        /// </summary>
+        public static string View_EvaluationPage {
+            get {
+                return ResourceManager.GetString("View_EvaluationPage", resourceCulture);
             }
         }
         

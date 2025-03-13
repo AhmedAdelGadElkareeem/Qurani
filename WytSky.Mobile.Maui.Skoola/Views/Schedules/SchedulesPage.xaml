@@ -29,30 +29,30 @@
                                             FontAttributes="Bold"
                                             FontSize="18"
                                             Text="{Binding DayOfWeekName}"
-                                            TextColor="{StaticResource PrimaryColor}" />
+                                            TextColor="{StaticResource Black}" />
 
                                         <!--  Start & End Time  -->
                                         <HorizontalStackLayout Spacing="10">
                                             <Label
                                                 FontAttributes="Bold"
                                                 FontSize="14"
-                                                Text="From:"
+                                                Text="{x:Static resource:SharedResources.FromDate}"
                                                 TextColor="Black" />
                                             <Label
                                                 FontAttributes="Bold"
                                                 FontSize="15"
                                                 Text="{Binding StartTime, StringFormat='{0:hh\\:mm}'}"
-                                                TextColor="{StaticResource PrimaryColor}" />
+                                                TextColor="{StaticResource Black}" />
                                             <Label
                                                 FontAttributes="Bold"
                                                 FontSize="14"
-                                                Text="To:"
+                                                Text="{x:Static resource:SharedResources.ToDate}"
                                                 TextColor="Black" />
                                             <Label
                                                 FontAttributes="Bold"
                                                 FontSize="15"
                                                 Text="{Binding EndTime, StringFormat='{0:hh\\:mm}'}"
-                                                TextColor="{StaticResource PrimaryColor}" />
+                                                TextColor="{StaticResource Black}" />
                                         </HorizontalStackLayout>
                                     </VerticalStackLayout>
                                     <Border Grid.Column="1">
@@ -62,7 +62,7 @@
                                             Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.SelectScheduleCommand}"
                                             CommandParameter="{Binding .}"
                                             Text="{x:Static resource:SharedResources.Txt_StartSession}"
-                                            TextColor="{StaticResource White}" />
+                                            TextColor="{StaticResource Black}" />
                                     </Border>
                                 </Grid>
                             </Frame>

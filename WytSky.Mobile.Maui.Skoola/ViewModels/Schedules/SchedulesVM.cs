@@ -38,14 +38,23 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.Schedules
 
         public SchedulesVM()
         {
-            DaysOfWeek = new ObservableCollection<string>
-               {
-                   "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
-               };
-
-            SelectedDay = DaysOfWeek[0];
-            StartTime = new TimeSpan(9, 0, 0);  // 9:00 AM
-            EndTime = new TimeSpan(17, 0, 0);   // 5:00 PM
+            if (App.IsArabic)
+            {
+                DaysOfWeek = new ObservableCollection<string>
+                {
+                    "الأحد", "الإثنين", "الثلاثاء", "الأربعاء", "الخميس", "الجمعة", "السبت"
+                };
+            }
+            else
+            {
+                DaysOfWeek = new ObservableCollection<string>
+                {
+                    "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
+                };
+                SelectedDay = DaysOfWeek[0];
+                StartTime = new TimeSpan(9, 0, 0);  // 9:00 AM
+                EndTime = new TimeSpan(17, 0, 0);   // 5:00 PM
+            }
         }
 
         [RelayCommand]

@@ -1246,9 +1246,8 @@
   <data name="Txt_StartSession" xml:space="preserve">
     <value>بدأ الجلسه</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="Txt_Attendance" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="Txt_Attendance" xml:space="preserve">
+    <value>حضور</value>
   </data>
   <data name="AddComplex" xml:space="preserve">
     <value>إضافة مجمـع</value>
@@ -1268,9 +1267,6 @@
   <data name="StudyGroupCount" xml:space="preserve">
     <value>عدد الحلقات</value>
   </data>
-  <data name="Txt_Attendance" xml:space="preserve">
-    <value>حضور</value>
-  </data>
   <data name="txt_attendanceevulate" xml:space="preserve">
     <value>تقييم الحضور</value>
   </data>
@@ -1288,5 +1284,14 @@
   </data>
   <data name="Txt_Notes" xml:space="preserve">
     <value>الملاحظات</value>
+  </data>
+  <data name="View_attendancePage" xml:space="preserve">
+    <value>عرض حضور الطلاب</value>
+  </data>
+  <data name="Add_Evaluation" xml:space="preserve">
+    <value>إضافة تقييم للطلاب</value>
+  </data>
+  <data name="View_EvaluationPage" xml:space="preserve">
+    <value>عرض تقييمات الطلاب</value>
   </data>
 </root>

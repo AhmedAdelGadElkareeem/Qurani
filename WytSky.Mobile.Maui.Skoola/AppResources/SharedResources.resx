@@ -1283,4 +1283,13 @@ Successfully Changed</value>
   <data name="Txt_Notes" xml:space="preserve">
     <value>Note</value>
   </data>
+  <data name="View_attendancePage" xml:space="preserve">
+    <value>View Student Attendance Page</value>
+  </data>
+  <data name="Add_Evaluation" xml:space="preserve">
+    <value>Add Student Evaluation</value>
+  </data>
+  <data name="View_EvaluationPage" xml:space="preserve">
+    <value>View Evaluation Page</value>
+  </data>
 </root>
