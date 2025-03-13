@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<color name="colorPrimary">#007AFF</color>
+	<color name="colorPrimary">#d4e3ab</color>
 	<!-- Change to your desired color -->
-	<color name="colorPrimaryDark">#0066CC</color>
+	<color name="colorPrimaryDark">#d4e3ab</color>
 	<!-- Darker shade for the status bar -->
-	<color name="colorAccent">#007AFF</color>
+	<color name="colorAccent">#d4e3ab</color>
 	<!-- Accent color for buttons, highlights, etc. -->
 </resources>

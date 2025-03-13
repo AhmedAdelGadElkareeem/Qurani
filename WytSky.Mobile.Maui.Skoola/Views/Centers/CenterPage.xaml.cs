@@ -12,7 +12,7 @@ public partial class CenterPage : BaseContentPage
     {
         InitializeComponent();
         CenterVM = new CenterVM();
-        Title = complex.ComplexName;
+        //Title = complex.ComplexName;
         BindingContext = CenterVM;
     }
     public CenterPage()

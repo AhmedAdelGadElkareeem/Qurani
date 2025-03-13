@@ -15,9 +15,10 @@
     Shell.BackgroundColor="{StaticResource PrimaryColor}"
     Shell.FlyoutBehavior="Flyout"
     Shell.FlyoutWidth="255"
-    Shell.ForegroundColor="White"
+    Shell.ForegroundColor="{StaticResource DarkBlue}"
     Shell.NavBarIsVisible="True"
-    Shell.TitleColor="White">
+    Shell.TitleColor="DarkBlue"
+    Shell.TitleView="{StaticResource BoldLabelFont20}">
 
     <Shell.ItemTemplate>
         <DataTemplate>

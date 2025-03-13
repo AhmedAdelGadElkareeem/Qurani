@@ -13,7 +13,7 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 
 		<!-- Display name -->
-		<ApplicationTitle>Skoola</ApplicationTitle>
+		<ApplicationTitle>Quraani</ApplicationTitle>
 
 		<!-- App Identifier -->
 		<ApplicationId>com.wytsky.Skoola</ApplicationId>
@@ -36,23 +36,23 @@
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net9.0-android33.0|AnyCPU'">
-	  <ApplicationTitle>Skoola</ApplicationTitle>
+	  <ApplicationTitle>Quraani</ApplicationTitle>
 	  <ApplicationId>com.wytsky.Skoola</ApplicationId>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net9.0-ios|AnyCPU'">
-	  <ApplicationTitle>Skoola</ApplicationTitle>
+	  <ApplicationTitle>Quraani</ApplicationTitle>
 	  <ApplicationId>com.wytsky.Skoola</ApplicationId>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net9.0-android33.0|AnyCPU'">
-	  <ApplicationTitle>Skoola</ApplicationTitle>
+	  <ApplicationTitle>Quraani</ApplicationTitle>
 	  <ApplicationId>com.wytsky.Skoola</ApplicationId>
 	  <AndroidPackageFormat>apk</AndroidPackageFormat>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net9.0-ios|AnyCPU'">
-	  <ApplicationTitle>Skoola</ApplicationTitle>
+	  <ApplicationTitle>Quraani</ApplicationTitle>
 	  <ApplicationId>com.wytsky.Skoola</ApplicationId>
 	</PropertyGroup>
 

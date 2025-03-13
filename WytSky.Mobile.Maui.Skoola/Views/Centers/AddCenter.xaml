@@ -11,34 +11,56 @@
         Padding="10"
         BackgroundColor="White"
         CornerRadius="10"
-        HeightRequest="400">
-        <VerticalStackLayout>
+        HeightRequest="450">
+        <VerticalStackLayout
+            Padding="15"
+            BackgroundColor="White"
+            Spacing="3"
+            VerticalOptions="CenterAndExpand">
+            <Label
+                HorizontalOptions="CenterAndExpand"
+                HorizontalTextAlignment="Center"
+                Style="{StaticResource BoldLabelFont18}"
+                Text="{x:Static res:SharedResources.AddMosque}"
+                VerticalOptions="StartAndExpand" />
+            <Label
+                HorizontalOptions="CenterAndExpand"
+                HorizontalTextAlignment="Center"
+                Style="{StaticResource RegularLabelFont16}"
+                Text="{x:Static res:SharedResources.AfterAddMosque}" />
             <Entry
+                HorizontalTextAlignment="Center"
                 Placeholder="{x:Static res:SharedResources.CenterNameAr}"
                 Text="{Binding CenterName, Mode=TwoWay}"
                 TextColor="Black" />
             <Entry
+                HorizontalTextAlignment="Center"
                 Placeholder="{x:Static res:SharedResources.CenterNameEn}"
                 Text="{Binding CenterNameEn, Mode=TwoWay}"
                 TextColor="Black" />
             <Entry
+                HorizontalTextAlignment="Center"
                 Placeholder="{x:Static res:SharedResources.Address}"
                 Text="{Binding Address, Mode=TwoWay}"
                 TextColor="Black" />
             <Entry
+                HorizontalTextAlignment="Center"
                 Placeholder="{x:Static res:SharedResources.City}"
                 Text="{Binding CityName, Mode=TwoWay}"
                 TextColor="Black" />
             <Entry
+                HorizontalTextAlignment="Center"
                 Keyboard="Telephone"
                 Placeholder="{x:Static res:SharedResources.Text_Phone}"
                 Text="{Binding Phone, Mode=TwoWay}"
                 TextColor="Black" />
             <Entry
+                HorizontalTextAlignment="Center"
                 Placeholder="{x:Static res:SharedResources.Text_Email}"
                 Text="{Binding Email, Mode=TwoWay}"
                 TextColor="Black" />
             <Editor
+                HorizontalTextAlignment="Center"
                 Placeholder="{x:Static res:SharedResources.Text_Notes}"
                 Text="{Binding Notes, Mode=TwoWay}"
                 TextColor="Black" />

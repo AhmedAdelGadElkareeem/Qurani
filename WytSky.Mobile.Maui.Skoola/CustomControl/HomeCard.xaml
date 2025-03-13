@@ -25,6 +25,7 @@
                 HeightRequest="{Binding HeightRequest}"
                 HorizontalOptions="Center"
                 Text="{Binding TextLable}"
+                TextColor="{Binding TextColor}"
                 VerticalOptions="Center"
                 WidthRequest="{Binding WidthRequest}" />
             <!--  Text="{x:Static resources:SharedResources.theism}"  -->

@@ -10,10 +10,12 @@ using static Microsoft.Maui.ApplicationModel.Permissions;
 
 namespace WytSky.Mobile.Maui.Skoola.ViewModels
 {
-    public partial class StaffVM : BaseViewModel
+    public partial class StaffVM : CenterVM
     {
         [ObservableProperty] public ObservableCollection<StaffModel> staff = new ObservableCollection<StaffModel>();
+        [ObservableProperty] private ObservableCollection<StaffModel> filteredStaff = new ObservableCollection<StaffModel>();
         [ObservableProperty] private ObservableCollection<CentersModel> centers;
+        [ObservableProperty] private string searchText;
         [ObservableProperty] public string firstName;
         [ObservableProperty] public string lastName;
         [ObservableProperty] public string staffName;
@@ -26,13 +28,15 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
 
 
         #region Methods
-
         public async Task GetCenters()
         {
             try
             {
                 IsRunning = true;
                 Centers = await APIs.ServiceCenter.GetCenter();
+                ComplexNamee = Centers.Select(_ => _.ComplexName).FirstOrDefault();
+                ComplexRegionName = Centers.Select(_ => _.ComplexRegionName).FirstOrDefault();
+                ComplexRegionCountryName = Centers.Select(_ => _.ComplexRegionCountryName).FirstOrDefault();
                 IsRunning = false;
             }
             catch (Exception ex)
@@ -46,6 +50,8 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
             {
                 IsRunning = true;
                 Staff = await APIs.ServiceStaff.GetCenterStaff();
+                FilteredStaff= new ObservableCollection<StaffModel>(Staff);
+
             }
             catch (Exception ex)
             {
@@ -56,10 +62,28 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
                 IsRunning = false;
             }
         }
-
         partial void OnSelectedStaffTypeChanged(StaffTypeModel value)
         {
             SelectedStaffType = value;
+        }
+        partial void OnSearchTextChanging(string value)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(value))
+                {
+                    FilteredStaff=
+                        new ObservableCollection<StaffModel>(Staff.Where(x => x.FullName.ToLower().Contains(value)).ToList());
+                }
+                else
+                {
+                    Staff = FilteredStaff;
+                }
+            }
+            catch (Exception ex)
+            {
+                ExtensionLogMethods.LogExtension(ex, "", "StaffVM", "OnSearchTextChanging");
+            }
         }
         #endregion
 
