@@ -13,27 +13,55 @@
         Padding="10"
         BackgroundColor="White"
         CornerRadius="10"
-        HeightRequest="350">
+        HeightRequest="440">
         <VerticalStackLayout Margin="5,0">
-            <Entry Placeholder="{x:Static res:SharedResources.StudyGroupAr}" Text="{Binding StudyGroupName}" />
-            <Entry Placeholder="{x:Static res:SharedResources.StudyGroupEn}" Text="{Binding StudyGroupNameEn}" />
+            <Label
+                HorizontalOptions="CenterAndExpand"
+                HorizontalTextAlignment="Center"
+                Style="{StaticResource BoldLabelFont18}"
+                Text="{x:Static res:SharedResources.AddStudyGruops}"
+                VerticalOptions="StartAndExpand" />
+            <Label
+                HorizontalOptions="CenterAndExpand"
+                HorizontalTextAlignment="Center"
+                Style="{StaticResource RegularLabelFont16}"
+                Text="{x:Static res:SharedResources.AfterAddStudyGruops}" />
+            <Entry
+                HorizontalOptions="CenterAndExpand"
+                Placeholder="{x:Static res:SharedResources.StudyGroupAr}"
+                Text="{Binding StudyGroupName}" />
+            <Entry
+                HorizontalOptions="CenterAndExpand"
+                Placeholder="{x:Static res:SharedResources.StudyGroupEn}"
+                Text="{Binding StudyGroupNameEn}" />
             <Border
                 Grid.Column="1"
                 Padding="0"
                 BackgroundColor="{StaticResource Yellow400Accent}"
+                HorizontalOptions="Center"
                 StrokeShape="RoundRectangle 5,20,5,0"
                 StrokeThickness="0">
                 <Picker
                     Title="{x:Static res:SharedResources.Teachers}"
+                    HorizontalOptions="CenterAndExpand"
                     ItemDisplayBinding="{Binding FullName}"
                     ItemsSource="{Binding Teachers}"
                     SelectedItem="{Binding SelectedTeacher, Mode=TwoWay}"
                     TextColor="{StaticResource Black}"
                     TitleColor="{StaticResource Black}" />
             </Border>
-            <Entry Placeholder="{x:Static res:SharedResources.Text_Subject}" Text="{Binding SubjectName}" />
-            <Entry Placeholder="{x:Static res:SharedResources.Text_Notes}" Text="{Binding Notes}" />
-            <Entry Placeholder="{x:Static res:SharedResources.Text_Location}" Text="{Binding Location}" />
+            <Entry
+                HorizontalOptions="CenterAndExpand"
+                Placeholder="{x:Static res:SharedResources.Text_Subject}"
+                Text="{Binding SubjectName}" />
+            <Entry
+                HorizontalOptions="CenterAndExpand"
+                Placeholder="{x:Static res:SharedResources.Text_Notes}"
+                Text="{Binding Notes}" />
+            <Entry
+                HorizontalOptions="CenterAndExpand"
+                Placeholder="{x:Static res:SharedResources.Text_Location}"
+                Text="{Binding Location}" />
 
 
             <customControls:DatePickerFromTo

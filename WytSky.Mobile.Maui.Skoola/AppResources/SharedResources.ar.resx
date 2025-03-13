@@ -1294,7 +1294,10 @@
   <data name="View_EvaluationPage" xml:space="preserve">
     <value>عرض تقييمات الطلاب</value>
   </data>
-  <data name="StudyGroupStudentList" xml:space="preserve">
-    <value>طلاب الحلقة</value>
+  <data name="AddStudyGruops" xml:space="preserve">
+    <value>إضافة حلقة</value>
+  </data>
+  <data name="AfterAddStudyGruops" xml:space="preserve">
+    <value>بعد إضافة حلقة يمكنك إضافة مواعيد للحلقة</value>
   </data>
 </root>

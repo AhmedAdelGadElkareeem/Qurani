@@ -124,6 +124,15 @@ namespace WytSky.Mobile.Maui.Skoola.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add Study Group.
+        /// </summary>
+        public static string AddStudyGruops {
+            get {
+                return ResourceManager.GetString("AddStudyGruops", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to After adding the complex, you can add the complex rings.
         /// </summary>
         public static string AfterAddComplex {
@@ -138,6 +147,15 @@ namespace WytSky.Mobile.Maui.Skoola.AppResources {
         public static string AfterAddMosque {
             get {
                 return ResourceManager.GetString("AfterAddMosque", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to After add Studygroups you can add scedules .
+        /// </summary>
+        public static string AfterAddStudyGruops {
+            get {
+                return ResourceManager.GetString("AfterAddStudyGruops", resourceCulture);
             }
         }
         

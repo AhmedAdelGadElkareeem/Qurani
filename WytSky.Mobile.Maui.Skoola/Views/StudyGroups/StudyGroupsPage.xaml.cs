@@ -17,7 +17,7 @@ public partial class StudyGroupsPage : BaseContentPage
     {
         InitializeComponent();
         BindingContext = studyGroupVM;
-
+        studyGroupVM.FromCenter = true;
     }
     protected async override void OnAppearing()
     {

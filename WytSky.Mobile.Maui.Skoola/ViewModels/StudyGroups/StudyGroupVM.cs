@@ -111,9 +111,12 @@ public partial class StudyGroupVM : CenterVM
             {   
                 FilteredStudyGroups =
                     new ObservableCollection<StudyGroupModel>(StudyGroups.Where(x => x.Name.ToLower().Contains(value)).ToList());
+                FilteredTeacherStudyGroups =
+                    new ObservableCollection<StudyGroupModel>(StudyGroups.Where(x => x.Name.ToLower().Contains(value)).ToList());
             }
             else
             {
+                FilteredTeacherStudyGroups = TeacherStudyGroups;
                 FilteredStudyGroups = StudyGroups;
             }
         }
@@ -166,7 +169,6 @@ public partial class StudyGroupVM : CenterVM
                 { "TeacherFullName", SelectedTeacher.FullName},
                 { "SubjectName", SubjectName},
                 { "Notes", Notes},
-                //{ "StudentCount", StudentCount},
                 { "Location", Location},
             };
 

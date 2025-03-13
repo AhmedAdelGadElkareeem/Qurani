@@ -1295,4 +1295,10 @@ Successfully Changed</value>
   <data name="StudyGroupStudentList" xml:space="preserve">
     <value>Studt Group List</value>
   </data>
+  <data name="AddStudyGruops" xml:space="preserve">
+    <value>Add Study Group</value>
+  </data>
+  <data name="AfterAddStudyGruops" xml:space="preserve">
+    <value>After add Studygroups you can add scedules </value>
+  </data>
 </root>
