@@ -13,6 +13,7 @@ using WytSky.Mobile.Maui.Skoola.Models;
 using WytSky.Mobile.Maui.Skoola.ViewModels.Studentattendance;
 using WytSky.Mobile.Maui.Skoola.ViewModels.Students;
 using WytSky.Mobile.Maui.Skoola.Views.Schedules;
+using WytSky.Mobile.Maui.Skoola.Views.StudentEvaluation;
 
 namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudyGroupSession
 {
@@ -108,6 +109,13 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudyGroupSession
             var popup = new AddSchedules();
             popup.BindingContext = this;
             ShowPopup(popup);
+        }
+
+        [RelayCommand]
+        public async Task OpenEvaluationPage() 
+        {
+            await OpenPushAsyncPage(new AddStudentEvaluationPage(SelectedSchedule , FormData));
+
         }
         #endregion
 

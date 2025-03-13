@@ -9,7 +9,7 @@
     xmlns:resource="clr-namespace:WytSky.Mobile.Maui.Skoola.AppResources"
     Title="StudyGroupSessionsPage">
 
-    <Grid RowDefinitions="Auto, Auto, Auto, *">
+    <Grid RowDefinitions="Auto, Auto, Auto, *, Auto">
 
         <!--  Sessions CollectionView  -->
         <Grid Grid.Row="1">
@@ -72,66 +72,6 @@
             </CollectionView>
         </Grid>
 
-        <!--  Attendance Count Boxes  -->
-        <!--
-        <Grid Grid.Row="2" Padding="10">
-            <Grid ColumnDefinitions="*,*,*" ColumnSpacing="10">
-                <Frame
-                    Padding="10"
-                    BackgroundColor="{StaticResource PrimaryColor}"
-                    CornerRadius="10">
-                    <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
-                        <Label
-                            FontAttributes="Bold"
-                            FontSize="14"
-                            Text="Total Students"
-                            TextColor="White" />
-                        <Label
-                            FontAttributes="Bold"
-                            FontSize="18"
-                            Text="{Binding TotalStudents}"
-                            TextColor="White" />
-                    </VerticalStackLayout>
-                </Frame>
-
-                <Frame
-                    Padding="10"
-                    BackgroundColor="Green"
-                    CornerRadius="10">
-                    <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
-                        <Label
-                            FontAttributes="Bold"
-                            FontSize="14"
-                            Text="Attendance"
-                            TextColor="White" />
-                        <Label
-                            FontAttributes="Bold"
-                            FontSize="18"
-                            Text="{Binding AttendanceCount}"
-                            TextColor="White" />
-                    </VerticalStackLayout>
-                </Frame>
-
-                <Frame
-                    Padding="10"
-                    BackgroundColor="Red"
-                    CornerRadius="10">
-                    <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
-                        <Label
-                            FontAttributes="Bold"
-                            FontSize="14"
-                            Text="Absences"
-                            TextColor="White" />
-                        <Label
-                            FontAttributes="Bold"
-                            FontSize="18"
-                            Text="{Binding AbsenceCount}"
-                            TextColor="White" />
-                    </VerticalStackLayout>
-                </Frame>
-            </Grid>
-        </Grid>-->
-
         <!--  Students CollectionView  -->
         <Grid Grid.Row="3" IsVisible="{Binding IsStudentVisible}">
             <CollectionView Margin="15,10,15,0" ItemsSource="{Binding Students}">
@@ -174,6 +114,19 @@
                 </CollectionView.EmptyView>
             </CollectionView>
         </Grid>
+
+        <!--  Attendance Button at the Bottom  -->
+        <Button
+            Grid.Row="4"
+            Margin="20"
+            BackgroundColor="{StaticResource PrimaryColor}"
+            Command="{Binding OpenEvaluationPageCommand}"
+            FontAttributes="Bold"
+            FontSize="16"
+            HeightRequest="50"
+            HorizontalOptions="Fill"
+            Text="{x:Static resource:SharedResources.Txt_Attendance}"
+            TextColor="{StaticResource White}" />
 
         <!--  Loading Indicator  -->
         <ActivityIndicator

@@ -1247,4 +1247,22 @@ Successfully Changed</value>
   <data name="Txt_Attendance" xml:space="preserve">
     <value>attend</value>
   </data>
+  <data name="txt_attendanceevulate" xml:space="preserve">
+    <value>Attendance Evaluate</value>
+  </data>
+  <data name="Txt_Tajweed_Evaluate" xml:space="preserve">
+    <value>Tajweed Evaluate</value>
+  </data>
+  <data name="Txt_Memorization_Evaluate" xml:space="preserve">
+    <value> Memorization Evaluation </value>
+  </data>
+  <data name="Txt_Understanding_Evaluate" xml:space="preserve">
+    <value>Understanding Evaluation</value>
+  </data>
+  <data name="Txt_Behavior_Evaluation" xml:space="preserve">
+    <value>Behavior Evaluation</value>
+  </data>
+  <data name="Txt_Notes" xml:space="preserve">
+    <value>Note</value>
+  </data>
 </root>

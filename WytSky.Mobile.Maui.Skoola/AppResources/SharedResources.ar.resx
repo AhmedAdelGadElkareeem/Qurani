@@ -1246,4 +1246,25 @@
   <data name="Txt_StartSession" xml:space="preserve">
     <value>بدأ الجلسه</value>
   </data>
+  <data name="Txt_Attendance" xml:space="preserve">
+    <value>حضور</value>
+  </data>
+  <data name="txt_attendanceevulate" xml:space="preserve">
+    <value>تقييم الحضور</value>
+  </data>
+  <data name="Txt_Tajweed_Evaluate" xml:space="preserve">
+    <value>تقييم التجويد</value>
+  </data>
+  <data name="Txt_Memorization_Evaluate" xml:space="preserve">
+    <value>تقييم الحفظ </value>
+  </data>
+  <data name="Txt_Understanding_Evaluate" xml:space="preserve">
+    <value>تقييم الفهم </value>
+  </data>
+  <data name="Txt_Behavior_Evaluation" xml:space="preserve">
+    <value>تقييم السلوك</value>
+  </data>
+  <data name="Txt_Notes" xml:space="preserve">
+    <value>الملاحظات</value>
+  </data>
 </root>

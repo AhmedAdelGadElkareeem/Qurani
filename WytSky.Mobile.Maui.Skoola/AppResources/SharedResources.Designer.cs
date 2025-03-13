@@ -3405,6 +3405,42 @@ namespace WytSky.Mobile.Maui.Skoola.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Attendance Evaluate.
+        /// </summary>
+        public static string txt_attendanceevulate {
+            get {
+                return ResourceManager.GetString("txt_attendanceevulate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Behavior Evaluation.
+        /// </summary>
+        public static string Txt_Behavior_Evaluation {
+            get {
+                return ResourceManager.GetString("Txt_Behavior_Evaluation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  Memorization Evaluation .
+        /// </summary>
+        public static string Txt_Memorization_Evaluate {
+            get {
+                return ResourceManager.GetString("Txt_Memorization_Evaluate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Note.
+        /// </summary>
+        public static string Txt_Notes {
+            get {
+                return ResourceManager.GetString("Txt_Notes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Schedules.
         /// </summary>
         public static string Txt_Schedules {
@@ -3419,6 +3455,24 @@ namespace WytSky.Mobile.Maui.Skoola.AppResources {
         public static string Txt_StartSession {
             get {
                 return ResourceManager.GetString("Txt_StartSession", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tajweed Evaluate.
+        /// </summary>
+        public static string Txt_Tajweed_Evaluate {
+            get {
+                return ResourceManager.GetString("Txt_Tajweed_Evaluate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Understanding Evaluation.
+        /// </summary>
+        public static string Txt_Understanding_Evaluate {
+            get {
+                return ResourceManager.GetString("Txt_Understanding_Evaluate", resourceCulture);
             }
         }
         

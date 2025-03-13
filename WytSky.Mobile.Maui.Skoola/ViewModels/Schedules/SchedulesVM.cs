@@ -27,50 +27,25 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.Schedules
         private string selectedDay; // Selected day from Picker
 
         [ObservableProperty]
-        private DateTime startTime;  // Store as DateTime
+        private TimeSpan startTime;
 
         [ObservableProperty]
-        private DateTime endTime;
+        private TimeSpan endTime;
+
 
         // Store StartTime as string in "HH:mm:ss" format
-        public string StartTimeString
-        {
-            get => StartTime.ToString("HH:mm:ss");
-            set
-            {
-                if (DateTime.TryParse(value, out DateTime parsedTime))
-                {
-                    StartTime = parsedTime;
-                    OnPropertyChanged(nameof(StartTimeString));
-                }
-            }
-        }
 
-        // Store EndTime as string in "HH:mm:ss" format
-        public string EndTimeString
-        {
-            get => EndTime.ToString("HH:mm:ss");
-            set
-            {
-                if (DateTime.TryParse(value, out DateTime parsedTime))
-                {
-                    EndTime = parsedTime;
-                    OnPropertyChanged(nameof(EndTimeString));
-                }
-            }
-        }
 
         public SchedulesVM()
         {
             DaysOfWeek = new ObservableCollection<string>
-        {
-            "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
-        };
+               {
+                   "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
+               };
 
-            // Default values
-            SelectedDay = DaysOfWeek[0]; // Default to first day
-            StartTime = DateTime.Today.AddHours(9); // Default Start Time (9 AM)
-            EndTime = DateTime.Today.AddHours(17); // Default End Time (5 PM)
+            SelectedDay = DaysOfWeek[0];
+            StartTime = new TimeSpan(9, 0, 0);  // 9:00 AM
+            EndTime = new TimeSpan(17, 0, 0);   // 5:00 PM
         }
 
         [RelayCommand]
@@ -87,9 +62,9 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.Schedules
                 IsRunning = true;
 
                 var formData = new Dictionary<string, object>
-                {
-                    { "StartTime", StartTimeString },
-                    { "EndTime", EndTimeString },
+                {               
+                    { "StartTime", StartTime.ToString(@"hh\:mm\:ss") },
+                    { "EndTime", EndTime.ToString(@"hh\:mm\:ss") },
                     { "GroupID", Settings.StudyGroupId },
                     { "IsActive", true },
                     { "WeekDayNameListDayOfWeekName", SelectedDay },
@@ -160,8 +135,8 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.Schedules
 
             var formData = new Dictionary<string, object>
             {
-                { "StartTime", StartTimeString },
-                { "EndTime", EndTimeString },
+                { "StartTime", StartTime.ToString(@"hh\:mm\:ss") },
+                { "EndTime", EndTime.ToString(@"hh\:mm\:ss") },
                 { "GroupID", Settings.StudyGroupId },
                 { "IsActive", true },
                 { "WeekDayNameListDayOfWeekName", SelectedDay },

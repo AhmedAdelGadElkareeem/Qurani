@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="WytSky.Mobile.Maui.Skoola.Views.StudentEvaluation.AddStudentEvaluationPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:customControls="clr-namespace:WytSky.Mobile.Maui.Skoola.CustomControl"
+    xmlns:resource="clr-namespace:WytSky.Mobile.Maui.Skoola.AppResources"
+    Title="Add Student Evaluation">
+
+    <Grid Padding="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!--  Scrollable List  -->
+        <ScrollView Grid.Row="0">
+            <VerticalStackLayout Spacing="10">
+                <!--  List of Students  -->
+                <CollectionView ItemsSource="{Binding StudentGroup}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame
+                                Margin="10,5"
+                                Padding="15"
+                                BorderColor="LightGray"
+                                CornerRadius="10"
+                                HasShadow="True">
+                                <VerticalStackLayout Spacing="10">
+
+                                    <!--  Student Name  -->
+                                    <Label
+                                        FontAttributes="Bold"
+                                        FontSize="18"
+                                        Text="{Binding StudentFullName}" />
+
+                                    <!--  Evaluation Inputs  -->
+                                    <VerticalStackLayout Spacing="8">
+                                        <Entry
+                                            Keyboard="Numeric"
+                                            Placeholder="{x:Static resource:SharedResources.Txt_Tajweed_Evaluate}"
+                                            Text="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.TajweedScore}" />
+                                        <Entry
+                                            Keyboard="Numeric"
+                                            Placeholder="{x:Static resource:SharedResources.Txt_Memorization_Evaluate}"
+                                            Text="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.MemorizationScore}" />
+                                        <Entry
+                                            Keyboard="Numeric"
+                                            Placeholder="{x:Static resource:SharedResources.Txt_Understanding_Evaluate}"
+                                            Text="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.UnderstandingScore}" />
+                                        <Entry
+                                            Keyboard="Numeric"
+                                            Placeholder="{x:Static resource:SharedResources.Txt_Behavior_Evaluation}"
+                                            Text="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.BehaviorScore}" />
+                                        <Entry
+                                            Keyboard="Numeric"
+                                            Placeholder="{x:Static resource:SharedResources.txt_attendanceevulate}"
+                                            Text="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.AttendanceScore}" />
+                                        <Editor
+                                            AutoSize="TextChanges"
+                                            BackgroundColor="White"
+                                            HeightRequest="80"
+                                            Placeholder="{x:Static resource:SharedResources.Text_Notes}"
+                                            Text="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.Note}" />
+                                    </VerticalStackLayout>
+
+                                    <!--  Submit Button  -->
+                                    <Button
+                                        Margin="0,10,0,0"
+                                        BackgroundColor="Blue"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.AddStudentEvualationCommand}"
+                                        CommandParameter="{Binding}"
+                                        CornerRadius="8"
+                                        HeightRequest="50"
+                                        Text="{x:Static resource:SharedResources.Text_Add}"
+                                        TextColor="White" />
+                                </VerticalStackLayout>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!--  Navigation Button  -->
+        <Grid Grid.Row="1" Padding="10">
+            <Button
+                BackgroundColor="Blue"
+                Command="{Binding OpenStudyEvuluationPageCommand}"
+                CornerRadius="8"
+                FontSize="18"
+                HeightRequest="50"
+                Text="عرض حضور الطلاب"
+                TextColor="White" />
+        </Grid>
+    </Grid>
+</ContentPage>

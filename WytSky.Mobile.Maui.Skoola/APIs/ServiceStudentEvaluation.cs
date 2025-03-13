@@ -40,7 +40,7 @@ namespace WytSky.Mobile.Maui.Skoola.APIs
                 return null;
             }
         }
-        public async static Task<StudentEvaluationModel> AddSrudentEvulation(Dictionary<string, object> formData)
+        public async static Task<StudentEvaluationModel> AddStudentEvulation(Dictionary<string, object> formData)
         {
             try
             {

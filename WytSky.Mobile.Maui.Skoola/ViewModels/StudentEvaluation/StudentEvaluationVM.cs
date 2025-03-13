@@ -2,13 +2,16 @@
 using CommunityToolkit.Mvvm.Input;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WytSky.Mobile.Maui.Skoola.APIs;
 using WytSky.Mobile.Maui.Skoola.AppResources;
 using WytSky.Mobile.Maui.Skoola.Helpers;
 using WytSky.Mobile.Maui.Skoola.Models;
 using WytSky.Mobile.Maui.Skoola.ViewModels.StudyGroupSession;
+using WytSky.Mobile.Maui.Skoola.Views.StudentEvaluation;
 
 namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudentEvaluation
 {
@@ -17,6 +20,11 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudentEvaluation
 
 
         #region Propreties
+
+
+        [ObservableProperty] private ObservableCollection<StudyGroupStudentList> studentGroup;
+
+
 
         [ObservableProperty] private double? tajweedScore;
         [ObservableProperty] private double? memorizationScore;
@@ -33,30 +41,37 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudentEvaluation
         #region Commands
 
         [RelayCommand]
-        public async Task AddStudentEvualation(StudyGroupStudentList studentModel)
+        public async Task AddStudentEvualation(StudyGroupStudentList student)
         {
             try
             {
+                if (student == null)
+                {
+                    Toast.ShowToastError("No student selected.");
+                    return;
+                }
+
                 IsRunning = true;
 
                 var formData = new Dictionary<string, object>
-            {
-                { "GroupID", Settings.StudyGroupId },
-                { "CenterID", Settings.CenterId },
-                { "StudentID", studentModel.StudentID},
-                { "ComplexID" , Settings.ComplexId},
-                { "SessionDayOfWeekName" , SelectedSchedule.DayOfWeekName },
-                { "EvaluationDate" , DateTime.Now.ToString("HH:mm:ss") },
-                { "SessionID" , Settings.SessionId},
-                { "AttendanceScore" , AttendanceScore},
-                { "BehaviorScore" , BehaviorScore},
-                { "UnderstandingScore" , UnderstandingScore},
-                { "TajweedScore" , TajweedScore},
-                { "MemorizationScore" , MemorizationScore},
-                { "Notes" , Note},
+                {
+                    { "GroupID", Settings.StudyGroupId },
+                    { "CenterID", Settings.CenterId },
+                    { "StudentID", student.StudentID },  // Use student from parameter
+                    { "ComplexID", Settings.ComplexId },
+                    { "SessionDayOfWeekName", SelectedSchedule.DayOfWeekName },
+                    { "EvaluationDate", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") },
+                    { "SessionID", Settings.SessionId },
+                    { "AttendanceScore", AttendanceScore },
+                    { "BehaviorScore", BehaviorScore },
+                    { "UnderstandingScore", UnderstandingScore },
+                    { "TajweedScore", TajweedScore },
+                    { "MemorizationScore", MemorizationScore },
+                    { "EvaluationType", "1" },
+                    { "Notes", Note },
+                };
 
-            };
-                var result = await APIs.ServiceStudentEvaluation.AddSrudentEvulation(formData);
+                var result = await APIs.ServiceStudentEvaluation.AddStudentEvulation(formData);
 
                 if (result != null)
                 {
@@ -64,7 +79,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudentEvaluation
                 }
                 else
                 {
-                    Toast.ShowToastError("Error");
+                    Toast.ShowToastError("Failed to submit evaluation.");
                 }
             }
             catch (Exception ex)
@@ -76,7 +91,24 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudentEvaluation
                 IsRunning = false;
             }
         }
+
+
+        [RelayCommand]
+        public async Task OpenStudyEvuluationPage()
+        {
+            await OpenPushAsyncPage(new StudentEvaluationPage());
+
+        }
         #endregion
+
+        public async Task GetStudents()
+        {
+            IsRunning = true;
+            StudentGroup = await StudentService.GetStudyGroupStudentList();
+            IsRunning = false;
+        }
+
+       
 
     }
 }
