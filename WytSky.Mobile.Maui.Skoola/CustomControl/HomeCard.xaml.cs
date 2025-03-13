@@ -71,6 +71,19 @@ public partial class HomeCard : ContentView
 
     #endregion
 
+    #region TextColor
+    public static readonly BindableProperty TextColorProperty =
+    BindableProperty.Create(nameof(TextColor),
+    typeof(Color), typeof(HomeCard), Colors.Black,
+    BindingMode.TwoWay);
+    public Color TextColor
+    {
+        get => (Color)GetValue(TextColorProperty);
+        set => SetValue(TextColorProperty, value);
+    }
+
+    #endregion
+
     #region FontSize
     public static readonly BindableProperty FontSizeProperty =
     BindableProperty.Create(nameof(FontSize),

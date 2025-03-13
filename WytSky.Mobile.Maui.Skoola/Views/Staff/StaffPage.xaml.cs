@@ -10,7 +10,7 @@ public partial class StaffPage : BaseContentPage
     {
         InitializeComponent();
         BindingContext = StaffVM;
-        Title = App.IsArabic ? centerIdModel.CenterName : centerIdModel.CenterNameEn;
+        //Title = App.IsArabic ? centerIdModel.CenterName : centerIdModel.CenterNameEn;
     }
 
     protected async override void OnAppearing()

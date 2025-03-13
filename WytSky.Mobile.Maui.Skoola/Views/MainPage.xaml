@@ -21,10 +21,11 @@
             <customControl:HomeCard
                 Grid.Row="0"
                 Grid.Column="0"
-                BackColor="{StaticResource Green}"
+                BackColor="Green"
                 Command="{Binding OpenPagesCommand}"
                 CommandParameter="Tawhed"
                 HeightRequest="130"
+                TextColor="{StaticResource White}"
                 TextLable="{x:Static resources:SharedResources.Tawhed}"
                 WidthRequest="180" />
             <customControl:HomeCard
@@ -34,24 +35,27 @@
                 Command="{Binding OpenPagesCommand}"
                 CommandParameter="Zekr"
                 HeightRequest="130"
+                TextColor="White"
                 TextLable="{x:Static resources:SharedResources.PrayerontheProphet}"
                 WidthRequest="180" />
             <customControl:HomeCard
                 Grid.Row="1"
                 Grid.Column="0"
-                BackColor="Green"
+                BackColor="{StaticResource DarkBlue}"
                 Command="{Binding OpenPagesCommand}"
                 CommandParameter="Complexes"
                 HeightRequest="130"
+                TextColor="White"
                 TextLable="{x:Static resources:SharedResources.Complexes}"
                 WidthRequest="180" />
             <customControl:HomeCard
                 Grid.Row="1"
                 Grid.Column="1"
-                BackColor="Green"
+                BackColor="Gold"
                 Command="{Binding OpenPagesCommand}"
                 CommandParameter="Mosques"
                 HeightRequest="130"
+                TextColor="{StaticResource DarkBlue}"
                 TextLable="{x:Static resources:SharedResources.AllMosques}"
                 WidthRequest="180" />
 

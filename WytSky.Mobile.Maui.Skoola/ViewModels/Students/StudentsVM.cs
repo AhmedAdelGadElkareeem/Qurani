@@ -13,8 +13,10 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.Students
     public partial class StudentsVM : BaseViewModel
     {
         [ObservableProperty] private ObservableCollection<StudentModel> students;
-        [ObservableProperty] private ObservableCollection<StudentModel> lastAddedStudent;
+        [ObservableProperty] private ObservableCollection<StudentModel> filteredStudents = new ObservableCollection<StudentModel>();
 
+        [ObservableProperty] private ObservableCollection<StudentModel> lastAddedStudent;
+        [ObservableProperty] private string searchText;
         // add student popup
         [ObservableProperty] private string  studentName;
         #region Register Values
@@ -35,7 +37,27 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.Students
         {
             IsRunning = true;
             Students = await StudentService.GetStudents();
+            FilteredStudents = new ObservableCollection<StudentModel>(Students);
             IsRunning = false;
+        }
+        partial void OnSearchTextChanging(string value)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(value))
+                {
+                    FilteredStudents =
+                        new ObservableCollection<StudentModel>(Students.Where(x => x.FullName.ToLower().Contains(value)).ToList());
+                }
+                else
+                {
+                    Students = FilteredStudents;
+                }
+            }
+            catch (Exception ex)
+            {
+                ExtensionLogMethods.LogExtension(ex, "", "StaffVM", "OnSearchTextChanging");
+            }
         }
 
         [RelayCommand]

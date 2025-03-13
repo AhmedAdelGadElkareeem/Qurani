@@ -9,57 +9,138 @@
     xmlns:customControls="clr-namespace:WytSky.Mobile.Maui.Skoola.CustomControl"
     xmlns:resource="clr-namespace:WytSky.Mobile.Maui.Skoola.AppResources"
     xmlns:templates="clr-namespace:WytSky.Mobile.Maui.Skoola.Template"
-    x:Name="root">
-    <Grid VerticalOptions="FillAndExpand">
-        <Grid VerticalOptions="FillAndExpand">
-            <CollectionView Margin="15,10,15,0" ItemsSource="{Binding Staff}">
-                <CollectionView.ItemsLayout>
-                    <LinearItemsLayout ItemSpacing="15" Orientation="Vertical" />
-                </CollectionView.ItemsLayout>
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Border
-                            Padding="5"
-                            HeightRequest="100"
-                            StrokeShape="RoundRectangle 5">
-                            <Border.Background>
-                                <LinearGradientBrush EndPoint="0,1">
-                                    <GradientStop Offset="0.1" Color="{StaticResource PrimaryColor}" />
-                                    <GradientStop Offset="1.0" Color="{StaticResource Blue}" />
-                                </LinearGradientBrush>
-                            </Border.Background>
-                            <VerticalStackLayout>
-                                <Label
-                                    HorizontalOptions="CenterAndExpand"
-                                    HorizontalTextAlignment="Center"
-                                    Style="{StaticResource BoldLabelFont16}"
-                                    Text="{Binding FullName}"
-                                    TextColor="{StaticResource White}" />
-                                <Label
-                                    HorizontalOptions="CenterAndExpand"
-                                    HorizontalTextAlignment="Center"
-                                    Style="{StaticResource BoldLabelFont14}"
-                                    Text="{Binding StaffTypeName}"
-                                    TextColor="{StaticResource White}" />
-                                <Label
-                                    HorizontalOptions="CenterAndExpand"
-                                    HorizontalTextAlignment="Center"
-                                    Style="{StaticResource BoldLabelFont14}"
-                                    Text="{Binding Address}"
-                                    TextColor="{StaticResource White}" />
-                            </VerticalStackLayout>
-                            <Border.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.SelectStaffCommand}" CommandParameter="{Binding .}" />
-                            </Border.GestureRecognizers>
-                        </Border>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-                <CollectionView.EmptyView>
-                    <customControls:EmptyView />
-                </CollectionView.EmptyView>
-            </CollectionView>
-            <Button Command="{Binding OpenAddStaffCommand}" Style="{StaticResource AddButton}" />
+    x:Name="root"
+    Title="{x:Static resource:SharedResources.Staffs}">
+    <Grid RowDefinitions="*">
+        <Grid RowDefinitions="auto,*" VerticalOptions="FillAndExpand">
+
+            <Border
+                Padding="0"
+                BackgroundColor="{StaticResource PrimaryColor}"
+                HeightRequest="130"
+                HorizontalOptions="FillAndExpand"
+                Stroke="{StaticResource PrimaryColor}"
+                StrokeShape="RoundRectangle 0,0,70,70"
+                StrokeThickness=".5"
+                VerticalOptions="Start">
+                <VerticalStackLayout Margin="0" Padding="0">
+                    <Label
+                        HorizontalOptions="CenterAndExpand"
+                        Style="{StaticResource BoldLabelFont18}"
+                        Text="{Binding ComplexNamee}"
+                        TextColor="{StaticResource DarkBlue}" />
+                    <Label
+                        HorizontalOptions="CenterAndExpand"
+                        Style="{StaticResource BoldLabelFont16}"
+                        Text="{Binding ComplexRegionName}"
+                        TextColor="{StaticResource DarkBlue}" />
+                    <Label
+                        HorizontalOptions="CenterAndExpand"
+                        Style="{StaticResource BoldLabelFont16}"
+                        Text="{Binding ComplexRegionCountryName}"
+                        TextColor="{StaticResource DarkBlue}" />
+                    <Border
+                        Margin="30,0,30,0"
+                        Padding="0"
+                        HeightRequest="40"
+                        HorizontalOptions="FillAndExpand"
+                        Stroke="{StaticResource Gray400}"
+                        StrokeShape="RoundRectangle 20,20,20,20"
+                        StrokeThickness=".5"
+                        VerticalOptions="End">
+                        <Border.Background>
+                            <LinearGradientBrush EndPoint="0,1">
+                                <GradientStop Offset="0.1" Color="WhiteSmoke" />
+                                <GradientStop Offset="1.0" Color="White" />
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <Grid Margin="0" Padding="0">
+                            <!--  Entry for Search Text  -->
+                            <customControl:BorderlessEntry
+                                Margin="15,0"
+                                FontFamily="AhlanWorldArbfonts"
+                                Placeholder="{x:Static resource:SharedResources.SearchByName}"
+                                PlaceholderColor="{StaticResource DarkBlue}"
+                                Style="{StaticResource BoldLabelFont16}"
+                                Text="{Binding SearchText}"
+                                TextColor="{StaticResource Black}" />
+
+                            <!--  Clear Icon Button (Left Side)  -->
+                            <Button
+                                BackgroundColor="Transparent"
+                                Command="{Binding ClearTextCommand}"
+                                HorizontalOptions="Start"
+                                IsVisible="{Binding SearchText, Converter={StaticResource StringToBoolConverter}}"
+                                VerticalOptions="Center">
+                                <!--<Button.ImageSource>
+                                <FileImageSource File="clearfilter.png" />
+                                </Button.ImageSource>-->
+                            </Button>
+                            <Button
+                                BackgroundColor="Transparent"
+                                Command="{Binding SearchCommand}"
+                                HorizontalOptions="End"
+                                VerticalOptions="Center">
+                                <Button.ImageSource>
+                                    <FileImageSource File="searchicon.png" />
+                                </Button.ImageSource>
+                            </Button>
+                        </Grid>
+                    </Border>
+                </VerticalStackLayout>
+            </Border>
+
+            <Grid Grid.Row="1">
+                <CollectionView Margin="15,10,15,0" ItemsSource="{Binding FilteredStaff}">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout ItemSpacing="15" Orientation="Vertical" />
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Border
+                                Padding="5"
+                                HeightRequest="100"
+                                StrokeShape="RoundRectangle 5">
+                                <Border.Background>
+                                    <LinearGradientBrush EndPoint="0,1">
+                                        <GradientStop Offset="0.1" Color="{StaticResource PrimaryColor}" />
+                                        <GradientStop Offset="1.0" Color="{StaticResource LightGreen}" />
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                                <VerticalStackLayout>
+                                    <Label
+                                        HorizontalOptions="CenterAndExpand"
+                                        HorizontalTextAlignment="Center"
+                                        Style="{StaticResource BoldLabelFont16}"
+                                        Text="{Binding FullName}"
+                                        TextColor="{StaticResource DarkBlue}" />
+                                    <Label
+                                        HorizontalOptions="CenterAndExpand"
+                                        HorizontalTextAlignment="Center"
+                                        Style="{StaticResource BoldLabelFont14}"
+                                        Text="{Binding StaffTypeName}"
+                                        TextColor="{StaticResource DarkBlue}" />
+                                    <Label
+                                        HorizontalOptions="CenterAndExpand"
+                                        HorizontalTextAlignment="Center"
+                                        Style="{StaticResource BoldLabelFont14}"
+                                        Text="{Binding Address}"
+                                        TextColor="{StaticResource DarkBlue}" />
+                                </VerticalStackLayout>
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.SelectStaffCommand}" CommandParameter="{Binding .}" />
+                                </Border.GestureRecognizers>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                    <CollectionView.EmptyView>
+                        <customControls:EmptyView />
+                    </CollectionView.EmptyView>
+                </CollectionView>
+                <Button Command="{Binding OpenAddStaffCommand}" Style="{StaticResource AddButton}" />
+            </Grid>
         </Grid>
         <ActivityIndicator IsRunning="{Binding IsRunning}" IsVisible="{Binding IsRunning}" />
+
     </Grid>
 </base:BaseContentPage>

@@ -17,6 +17,8 @@ public partial class ComplexesVM : BaseViewModel
     #region Properties
     [ObservableProperty]
     public ObservableCollection<ComplexModel> complexes = new ObservableCollection<ComplexModel>();
+    [ObservableProperty]
+    private ObservableCollection<ComplexModel> filteredComplexes = new ObservableCollection<ComplexModel>();
 
     [ObservableProperty]
     public string complexName;
@@ -29,6 +31,9 @@ public partial class ComplexesVM : BaseViewModel
 
     [ObservableProperty]
     public RegionModel selectedRegion;
+
+    [ObservableProperty]
+    private string searchText;
 
     [ObservableProperty]
     private bool isCountryPopupVisible;
@@ -44,12 +49,53 @@ public partial class ComplexesVM : BaseViewModel
         {
             IsRunning = true;
             Complexes = await APIs.ServiceCatgeory.GetComplexs();
+            FilteredComplexes = new ObservableCollection<ComplexModel>(Complexes);
             IsRunning = false;
         }
         catch (Exception ex)
         {
             ExtensionLogMethods.LogExtension(ex, "", "ComplexesVM", "GetParentCategories");
         }
+    }
+    private async Task LoadRegions(string countryId)
+    {
+        if (_cachedRegions.ContainsKey(countryId))
+        {
+            //Regions.Clear();
+            //foreach (var region in _cachedRegions[countryId])
+            //{
+            //    Regions.Add(region);
+            //}
+            return;
+        }
+        var regions = await APIs.ServiceCountriesRegions.GetRegions(countryId);
+        _cachedRegions[countryId] = regions.ToList();
+
+        Regions.Clear();
+        foreach (var region in regions)
+        {
+            Regions.Add(region);
+        }
+    }
+    public void ClearRegionCache()
+    {
+        _cachedRegions.Clear();
+        Regions.Clear();
+    }
+
+    partial void OnSelectedCountryChanged(CountryModel value)
+    {
+        //await GetRegions(SelectedCountry.CountryID.ToString());
+        //SelectedCountry = value;
+        if (value != null)
+        {
+            // Load regions for the selected country
+            LoadRegions(value.CountryID.ToString());
+        }
+    }
+    partial void OnSelectedRegionChanged(RegionModel value)
+    {
+        SelectedRegion = value;
     }
     #endregion
 
@@ -144,45 +190,66 @@ public partial class ComplexesVM : BaseViewModel
             ExtensionLogMethods.LogExtension(ex.Message, "", "ComplexesVM", "SelectComplex");
         }
     }
-    private async Task LoadRegions(string countryId)
-    {
-        if (_cachedRegions.ContainsKey(countryId))
-        {
-            //Regions.Clear();
-            //foreach (var region in _cachedRegions[countryId])
-            //{
-            //    Regions.Add(region);
-            //}
-            return;
-        }
-        var regions = await APIs.ServiceCountriesRegions.GetRegions(countryId);
-        _cachedRegions[countryId] = regions.ToList();
 
-        Regions.Clear();
-        foreach (var region in regions)
-        {
-            Regions.Add(region);
-        }
-    }
-    public void ClearRegionCache()
+    [RelayCommand]
+    private void ClearText()
     {
-        _cachedRegions.Clear();
-        Regions.Clear();
+        SearchText = string.Empty;
     }
 
-    partial void OnSelectedCountryChanged(CountryModel value)
+    [RelayCommand(CanExecute = nameof(CanExecute))]
+    private async Task Search()
     {
-        //await GetRegions(SelectedCountry.CountryID.ToString());
-        //SelectedCountry = value;
-        if (value != null)
+        try
         {
-            // Load regions for the selected country
-            LoadRegions(value.CountryID.ToString());
+            IsRunning = true;
+            if (SearchText == null)
+                return;
+            // Filter the complexes based on SearchText
+            if (string.IsNullOrWhiteSpace(SearchText))
+            {
+                // If SearchText is empty, show all complexes
+                FilteredComplexes = new ObservableCollection<ComplexModel>(Complexes);
+            }
+            else
+            {
+                // Filter complexes that contain the SearchText (case-insensitive)
+                var filtered = Complexes
+                    .Where(c => c.ComplexName.Contains(SearchText, StringComparison.OrdinalIgnoreCase))
+                    .ToList();
+
+                FilteredComplexes = new ObservableCollection<ComplexModel>(filtered);
+            }
+        }
+        catch (Exception ex)
+        {
+            ExtensionLogMethods.LogExtension(ex, "", "AllVisitVM", "Search");
+        }
+        finally
+        {
+            IsRunning = false;
         }
     }
-    partial void OnSelectedRegionChanged(RegionModel value)
+
+    partial void OnSearchTextChanging(string value)
     {
-        SelectedRegion = value;
+        try
+        {
+            if (!string.IsNullOrEmpty(value))
+            {
+                FilteredComplexes = 
+                    new ObservableCollection<ComplexModel>(Complexes.Where(x => x.ComplexName.ToLower().Contains(value)).ToList());
+            }
+            else
+            {
+                Complexes = FilteredComplexes;
+            }
+
+        }
+        catch (Exception ex)
+        {
+            ExtensionLogMethods.LogExtension(ex, "", "AddVisitVM", "OnSearchTextChanging");
+        }
     }
     #endregion
 }

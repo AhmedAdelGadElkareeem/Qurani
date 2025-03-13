@@ -1246,4 +1246,26 @@
   <data name="Txt_StartSession" xml:space="preserve">
     <value>بدأ الجلسه</value>
   </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Txt_Attendance" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="AddComplex" xml:space="preserve">
+    <value>إضافة مجمـع</value>
+  </data>
+  <data name="AddMosque" xml:space="preserve">
+    <value>إضافة مسجـد</value>
+  </data>
+  <data name="AfterAddComplex" xml:space="preserve">
+    <value>بعد اضافة المجمع المجمع يمكنك اضافة حلقات المجمع</value>
+  </data>
+  <data name="AfterAddMosque" xml:space="preserve">
+    <value>بعد اضافة المسجد يمكنك اضافة حلقات المسجد</value>
+  </data>
+  <data name="SearchByName" xml:space="preserve">
+    <value>بحث بالاسم</value>
+  </data>
+  <data name="StudyGroupCount" xml:space="preserve">
+    <value>عدد الحلقات</value>
+  </data>
 </root>

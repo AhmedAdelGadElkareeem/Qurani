@@ -42,10 +42,8 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
         public bool isEnglish;
 
         [ObservableProperty]
-        public string languageTitle; 
-        
-        
-        
+        public string languageTitle;
+
         [ObservableProperty]
         public string studentID;
 

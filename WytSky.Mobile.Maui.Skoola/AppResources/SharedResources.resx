@@ -1247,4 +1247,22 @@ Successfully Changed</value>
   <data name="Txt_Attendance" xml:space="preserve">
     <value>attend</value>
   </data>
+  <data name="AddComplex" xml:space="preserve">
+    <value>Add Complex</value>
+  </data>
+  <data name="AddMosque" xml:space="preserve">
+    <value>Add Mosque</value>
+  </data>
+  <data name="AfterAddComplex" xml:space="preserve">
+    <value>After adding the complex, you can add the complex rings</value>
+  </data>
+  <data name="AfterAddMosque" xml:space="preserve">
+    <value>After adding the mosque, you can add the mosque episodes</value>
+  </data>
+  <data name="SearchByName" xml:space="preserve">
+    <value>Search by name</value>
+  </data>
+  <data name="StudyGroupCount" xml:space="preserve">
+    <value>Study group count</value>
+  </data>
 </root>

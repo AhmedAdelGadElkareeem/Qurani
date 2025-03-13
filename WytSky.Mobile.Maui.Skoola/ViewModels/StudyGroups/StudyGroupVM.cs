@@ -16,6 +16,9 @@ public partial class StudyGroupVM : CenterVM
 {
     [ObservableProperty]
     public ObservableCollection<StudyGroupModel> studyGroups;
+    [ObservableProperty] private ObservableCollection<StudyGroupModel> filteredStudyGroups 
+                            = new ObservableCollection<StudyGroupModel>();
+    [ObservableProperty] private string searchText;
     [ObservableProperty] public bool addVisibility;
 
     // add study group popup
@@ -40,13 +43,15 @@ public partial class StudyGroupVM : CenterVM
     [ObservableProperty] public string? centerName;
     [ObservableProperty] public string? complexName;
 
-
+    #region Methods
     public async Task GetStudyGroupsByStaffIdOrCenterId()
     {
         try
         {
             IsRunning = true;
             StudyGroups = await StudyGroupService.GetStudyGroups();
+            FilteredStudyGroups = new ObservableCollection<StudyGroupModel>(StudyGroups);
+
 
             var roles = await AspUserRoleService.GetUserRoles();
             if (roles != null)
@@ -84,7 +89,28 @@ public partial class StudyGroupVM : CenterVM
             ComplexName = "Invalid Complex ID";
         }
     }
+    partial void OnSearchTextChanging(string value)
+    {
+        try
+        {
+            if (!string.IsNullOrEmpty(value))
+            {   
+                FilteredStudyGroups =
+                    new ObservableCollection<StudyGroupModel>(StudyGroups.Where(x => x.Name.ToLower().Contains(value)).ToList());
+            }
+            else
+            {
+                Centers = FilteredCenters;
+            }
+        }
+        catch (Exception ex)
+        {
+            ExtensionLogMethods.LogExtension(ex, "", "CenterVM", "OnSearchTextChanging");
+        }
+    }
+    #endregion
 
+    #region Commands
     [RelayCommand]
     private async Task OpenAddStudyGroup()
     {
@@ -154,4 +180,5 @@ public partial class StudyGroupVM : CenterVM
         Settings.StudyGroupId = studyGroup.GroupID.ToString();
         await OpenPushAsyncPage(new StudyGroupStudentListPage());
     }
+    #endregion
 }

@@ -79,6 +79,15 @@ namespace WytSky.Mobile.Maui.Skoola.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add Complex.
+        /// </summary>
+        public static string AddComplex {
+            get {
+                return ResourceManager.GetString("AddComplex", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Added Successfully.
         /// </summary>
         public static string AddedSuccessfully {
@@ -88,11 +97,38 @@ namespace WytSky.Mobile.Maui.Skoola.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add Mosque.
+        /// </summary>
+        public static string AddMosque {
+            get {
+                return ResourceManager.GetString("AddMosque", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Kuwait - Salmiya - St. Salem Al Mubarak - Ganja Pulse.
         /// </summary>
         public static string Address {
             get {
                 return ResourceManager.GetString("Address", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to After adding the complex, you can add the complex rings.
+        /// </summary>
+        public static string AfterAddComplex {
+            get {
+                return ResourceManager.GetString("AfterAddComplex", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to After adding the mosque, you can add the mosque episodes.
+        /// </summary>
+        public static string AfterAddMosque {
+            get {
+                return ResourceManager.GetString("AfterAddMosque", resourceCulture);
             }
         }
         
@@ -541,6 +577,15 @@ namespace WytSky.Mobile.Maui.Skoola.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Search by name.
+        /// </summary>
+        public static string SearchByName {
+            get {
+                return ResourceManager.GetString("SearchByName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to I bear witness that there is no god but God and that Muhammad is the Messenger of God.
         /// </summary>
         public static string Shehada {
@@ -573,6 +618,15 @@ namespace WytSky.Mobile.Maui.Skoola.AppResources {
         public static string StudyGroupAr {
             get {
                 return ResourceManager.GetString("StudyGroupAr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Study group count.
+        /// </summary>
+        public static string StudyGroupCount {
+            get {
+                return ResourceManager.GetString("StudyGroupCount", resourceCulture);
             }
         }
         
