@@ -11,7 +11,7 @@
     xmlns:templates="clr-namespace:WytSky.Mobile.Maui.Skoola.Template"
     x:Name="root"
     Title="{x:Static resource:SharedResources.Complexes}">
-    
+
     <Grid RowDefinitions="*">
 
         <Grid RowDefinitions="auto,*" VerticalOptions="FillAndExpand">
@@ -77,7 +77,7 @@
                     </Grid>
                 </Border>
             </Border>
-            
+
             <Grid Grid.Row="1">
                 <CollectionView Margin="15,10,15,0" ItemsSource="{Binding FilteredComplexes}">
                     <CollectionView.ItemsLayout>

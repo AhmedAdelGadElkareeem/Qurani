@@ -1292,4 +1292,7 @@ Successfully Changed</value>
   <data name="View_EvaluationPage" xml:space="preserve">
     <value>View Evaluation Page</value>
   </data>
+  <data name="StudyGroupStudentList" xml:space="preserve">
+    <value>Studt Group List</value>
+  </data>
 </root>

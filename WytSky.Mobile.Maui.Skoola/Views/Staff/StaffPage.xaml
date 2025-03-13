@@ -37,7 +37,7 @@
                     <Label
                         HorizontalOptions="CenterAndExpand"
                         Style="{StaticResource BoldLabelFont16}"
-                        Text="{Binding ComplexRegionCountryName}"
+                        Text="{Binding CenterName}"
                         TextColor="{StaticResource DarkBlue}" />
                     <Border
                         Margin="30,0,30,0"

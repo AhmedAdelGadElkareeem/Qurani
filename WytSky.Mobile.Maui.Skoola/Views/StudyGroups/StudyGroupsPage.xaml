@@ -8,7 +8,7 @@
     xmlns:customControl="clr-namespace:WytSky.Mobile.Maui.Skoola.CustomControl.Borderless"
     xmlns:customControls="clr-namespace:WytSky.Mobile.Maui.Skoola.CustomControl"
     xmlns:resource="clr-namespace:WytSky.Mobile.Maui.Skoola.AppResources"
-    Title="Study Group"
+    Title="{x:Static resource:SharedResources.StudyGroups}"
     BackgroundColor="{StaticResource Gray100}">
     <Grid RowDefinitions="*">
         <Grid RowDefinitions="auto,*" VerticalOptions="FillAndExpand">
@@ -35,7 +35,7 @@
                     <Label
                         HorizontalOptions="CenterAndExpand"
                         Style="{StaticResource BoldLabelFont16}"
-                        Text="{Binding ComplexRegionCountryName}"
+                        Text="{Binding CenterName}"
                         TextColor="{StaticResource DarkBlue}" />
                     <Border
                         Margin="30,0,30,0"

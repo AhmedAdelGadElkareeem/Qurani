@@ -8,7 +8,7 @@
     xmlns:customControl="clr-namespace:WytSky.Mobile.Maui.Skoola.CustomControl.Borderless"
     xmlns:customControls="clr-namespace:WytSky.Mobile.Maui.Skoola.CustomControl"
     xmlns:resource="clr-namespace:WytSky.Mobile.Maui.Skoola.AppResources"
-    Title="StudyGroupStudentListPage">
+    Title="{x:Static resource:SharedResources.StudyGroupStudentList}">
     <Grid RowDefinitions="*">
         <Grid RowDefinitions="auto,*" VerticalOptions="FillAndExpand">
             <!--<customControls:CustomHeader
@@ -29,7 +29,7 @@
                                 <Border.Background>
                                     <LinearGradientBrush EndPoint="0,1">
                                         <GradientStop Offset="0.1" Color="{StaticResource PrimaryColor}" />
-                                        <GradientStop Offset="1.0" Color="{StaticResource Blue}" />
+                                        <GradientStop Offset="1.0" Color="{StaticResource LightGreen}" />
                                     </LinearGradientBrush>
                                 </Border.Background>
                                 <VerticalStackLayout>
@@ -38,7 +38,7 @@
                                         HorizontalTextAlignment="Center"
                                         Style="{StaticResource BoldLabelFont16}"
                                         Text="{Binding StudentFullName}"
-                                        TextColor="{StaticResource White}" />
+                                        TextColor="{StaticResource DarkBlue}" />
                                 </VerticalStackLayout>
 
                                 <!--<Border.GestureRecognizers>
@@ -67,15 +67,17 @@
                         Grid.Column="1"
                         BackgroundColor="{StaticResource PrimaryColor}"
                         Command="{Binding OpenSchedulesCommand}"
+                        FontAttributes="Bold"
                         Text="{x:Static resource:SharedResources.Txt_Schedules}"
-                        TextColor="{StaticResource White}" />
+                        TextColor="{StaticResource DarkBlue}" />
                     <Button
                         Grid.Column="2"
                         BackgroundColor="{StaticResource PrimaryColor}"
                         Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.OpenStudentsCommand}"
                         CommandParameter="{Binding .}"
+                        FontAttributes="Bold"
                         Text="{x:Static resource:SharedResources.Students}"
-                        TextColor="{StaticResource White}" />
+                        TextColor="{StaticResource DarkBlue}" />
                 </Grid>
 
                 <Button Command="{Binding OpenAddStudyGroupStudentListCommand}" Style="{StaticResource AddButton}" />

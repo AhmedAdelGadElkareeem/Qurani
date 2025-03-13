@@ -51,7 +51,9 @@ public partial class StudyGroupVM : CenterVM
             IsRunning = true;
             StudyGroups = await StudyGroupService.GetStudyGroups();
             FilteredStudyGroups = new ObservableCollection<StudyGroupModel>(StudyGroups);
-
+            ComplexNamee = StudyGroups.Select(_ => _.ComplexName).FirstOrDefault();
+            ComplexRegionName = StudyGroups.Select(_ => _.ComplexRegionName).FirstOrDefault();
+            CenterName = StudyGroups.Select(_ => _.CenterName).FirstOrDefault();
 
             var roles = await AspUserRoleService.GetUserRoles();
             if (roles != null)
@@ -93,14 +95,14 @@ public partial class StudyGroupVM : CenterVM
     {
         try
         {
-            if (!string.IsNullOrEmpty(value))
+            if (!string.IsNullOrEmpty(value) || value.Length == 0)
             {   
                 FilteredStudyGroups =
                     new ObservableCollection<StudyGroupModel>(StudyGroups.Where(x => x.Name.ToLower().Contains(value)).ToList());
             }
             else
             {
-                Centers = FilteredCenters;
+                StudyGroups = FilteredStudyGroups;
             }
         }
         catch (Exception ex)

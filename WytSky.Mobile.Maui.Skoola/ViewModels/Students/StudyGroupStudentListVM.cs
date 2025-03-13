@@ -23,7 +23,6 @@ public partial class StudyGroupStudentListVM : StudentsVM
         IsRunning = false;
     }
 
-
     [RelayCommand]
     private async Task OpenAddStudyGroupStudentList()
     {

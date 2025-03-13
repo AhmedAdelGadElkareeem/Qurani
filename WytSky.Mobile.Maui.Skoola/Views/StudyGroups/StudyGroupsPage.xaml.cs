@@ -9,7 +9,7 @@ public partial class StudyGroupsPage : BaseContentPage
     public StudyGroupsPage(string name)
     {
         InitializeComponent();
-        Title = name;
+        //Title = name;
         BindingContext = studyGroupVM;
     }
 

@@ -36,7 +36,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
                 Centers = await APIs.ServiceCenter.GetCenter();
                 ComplexNamee = Centers.Select(_ => _.ComplexName).FirstOrDefault();
                 ComplexRegionName = Centers.Select(_ => _.ComplexRegionName).FirstOrDefault();
-                ComplexRegionCountryName = Centers.Select(_ => _.ComplexRegionCountryName).FirstOrDefault();
+                CenterName = Centers.Select(_ => _.CenterName).FirstOrDefault();
                 IsRunning = false;
             }
             catch (Exception ex)

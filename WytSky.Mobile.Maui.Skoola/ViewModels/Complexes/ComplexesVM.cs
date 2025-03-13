@@ -82,7 +82,26 @@ public partial class ComplexesVM : BaseViewModel
         _cachedRegions.Clear();
         Regions.Clear();
     }
+    partial void OnSearchTextChanging(string value)
+    {
+        try
+        {
+            if (!string.IsNullOrEmpty(value))
+            {
+                FilteredComplexes =
+                    new ObservableCollection<ComplexModel>(Complexes.Where(x => x.ComplexName.ToLower().Contains(value)).ToList());
+            }
+            else
+            {
+                Complexes = FilteredComplexes;
+            }
 
+        }
+        catch (Exception ex)
+        {
+            ExtensionLogMethods.LogExtension(ex, "", "AddVisitVM", "OnSearchTextChanging");
+        }
+    }
     partial void OnSelectedCountryChanged(CountryModel value)
     {
         //await GetRegions(SelectedCountry.CountryID.ToString());
@@ -231,25 +250,5 @@ public partial class ComplexesVM : BaseViewModel
         }
     }
 
-    partial void OnSearchTextChanging(string value)
-    {
-        try
-        {
-            if (!string.IsNullOrEmpty(value))
-            {
-                FilteredComplexes = 
-                    new ObservableCollection<ComplexModel>(Complexes.Where(x => x.ComplexName.ToLower().Contains(value)).ToList());
-            }
-            else
-            {
-                Complexes = FilteredComplexes;
-            }
-
-        }
-        catch (Exception ex)
-        {
-            ExtensionLogMethods.LogExtension(ex, "", "AddVisitVM", "OnSearchTextChanging");
-        }
-    }
     #endregion
 }

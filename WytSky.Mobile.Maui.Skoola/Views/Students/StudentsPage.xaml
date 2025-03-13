@@ -7,10 +7,11 @@
     xmlns:customControl="clr-namespace:WytSky.Mobile.Maui.Skoola.CustomControl.Borderless"
     xmlns:customControls="clr-namespace:WytSky.Mobile.Maui.Skoola.CustomControl"
     xmlns:res="clr-namespace:WytSky.Mobile.Maui.Skoola.AppResources"
-    Title="Students Page"
+    Title="{x:Static res:SharedResources.Students}"
     BackgroundColor="{StaticResource Gray100}">
     <Grid RowDefinitions="*">
         <Grid RowDefinitions="auto,*" VerticalOptions="FillAndExpand">
+
             <Border
                 Padding="0"
                 BackgroundColor="{StaticResource PrimaryColor}"
@@ -29,12 +30,12 @@
                     <Label
                         HorizontalOptions="CenterAndExpand"
                         Style="{StaticResource BoldLabelFont16}"
-                        Text="{Binding ComplexRegionName}"
+                        Text="{Binding StudentCenterName}"
                         TextColor="{StaticResource DarkBlue}" />
                     <Label
                         HorizontalOptions="CenterAndExpand"
                         Style="{StaticResource BoldLabelFont16}"
-                        Text="{Binding ComplexRegionCountryName}"
+                        Text="{Binding GroupName}"
                         TextColor="{StaticResource DarkBlue}" />
                     <Border
                         Margin="30,0,30,0"
@@ -70,8 +71,8 @@
                                 IsVisible="{Binding SearchText, Converter={StaticResource StringToBoolConverter}}"
                                 VerticalOptions="Center">
                                 <!--<Button.ImageSource>
-                        <FileImageSource File="clearfilter.png" />
-                        </Button.ImageSource>-->
+                                <FileImageSource File="clearfilter.png" />
+                                </Button.ImageSource>-->
                             </Button>
                             <Button
                                 BackgroundColor="Transparent"
@@ -86,6 +87,7 @@
                     </Border>
                 </VerticalStackLayout>
             </Border>
+
             <Grid Grid.Row="1">
                 <CollectionView Margin="15,10,15,0" ItemsSource="{Binding FilteredStudents}">
                     <CollectionView.ItemsLayout>

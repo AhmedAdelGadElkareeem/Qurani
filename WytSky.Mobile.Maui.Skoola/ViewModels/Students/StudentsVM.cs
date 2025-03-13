@@ -7,10 +7,11 @@ using WytSky.Mobile.Maui.Skoola.APIs;
 using WytSky.Mobile.Maui.Skoola.Models;
 using WytSky.Mobile.Maui.Skoola.Views.Students;
 using WytSky.Mobile.Maui.Skoola.Validations;
+using WytSky.Mobile.Maui.Skoola.ViewModels.StudyGroups;
 
 namespace WytSky.Mobile.Maui.Skoola.ViewModels.Students
 {
-    public partial class StudentsVM : BaseViewModel
+    public partial class StudentsVM : StudyGroupVM
     {
         [ObservableProperty] private ObservableCollection<StudentModel> students;
         [ObservableProperty] private ObservableCollection<StudentModel> filteredStudents = new ObservableCollection<StudentModel>();
@@ -38,6 +39,8 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.Students
             IsRunning = true;
             Students = await StudentService.GetStudents();
             FilteredStudents = new ObservableCollection<StudentModel>(Students);
+            ComplexNamee = Students.Select(_ => _.ComplexName).FirstOrDefault();
+            GroupName = Students.Select(_ => _.GroupName).FirstOrDefault();
             IsRunning = false;
         }
         partial void OnSearchTextChanging(string value)

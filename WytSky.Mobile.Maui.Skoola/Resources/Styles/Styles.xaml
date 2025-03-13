@@ -240,7 +240,7 @@
     <Style TargetType="ActivityIndicator">
         <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
         <Setter Property="VerticalOptions" Value="CenterAndExpand" />
-        <Setter Property="Color" Value="{StaticResource PrimaryColor}" />
+        <Setter Property="Color" Value="Gold" />
     </Style>
     <Style x:Key="FrameNext" TargetType="Frame">
         <Setter Property="HorizontalOptions" Value="CenterAndExpand" />

@@ -658,6 +658,15 @@ namespace WytSky.Mobile.Maui.Skoola.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Studt Group List.
+        /// </summary>
+        public static string StudyGroupStudentList {
+            get {
+                return ResourceManager.GetString("StudyGroupStudentList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tawhed.
         /// </summary>
         public static string Tawhed {

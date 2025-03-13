@@ -9,8 +9,10 @@ public partial class StudentsPage : BaseContentPage
     public StudentsPage(string name)
     {
         InitializeComponent();
-        Title = name;
+        //Title = name;
         BindingContext = StudentsVM;
+        StudentsVM.StudentCenterName = name ;
+
     }
 
     protected async override void OnAppearing()

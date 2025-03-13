@@ -5,6 +5,7 @@
     <Color x:Key="PrimaryColor">#d4e3ab</Color>
     <Color x:Key="DarkBlue">#00274D</Color>
     <Color x:Key="Sky">#abdbe3</Color>
+    <Color x:Key="Olive">#949f78</Color>
     <Color x:Key="Black">#191D23</Color>
     <Color x:Key="Blue">#386BB4</Color>
     <Color x:Key="Black100">#353535</Color>

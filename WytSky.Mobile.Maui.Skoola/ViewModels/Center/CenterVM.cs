@@ -14,9 +14,8 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
     public partial class CenterVM : BaseViewModel
     {
         [ObservableProperty] private ObservableCollection<CentersModel> centers;
-        [ObservableProperty]private ObservableCollection<CentersModel> filteredCenters= new ObservableCollection<CentersModel>();
-        [ObservableProperty]private string searchText;
-        [ObservableProperty] private string centerName;
+        [ObservableProperty] private ObservableCollection<CentersModel> filteredCenters= new ObservableCollection<CentersModel>();
+        [ObservableProperty] private string searchText;
         [ObservableProperty] private string centerNameEn;
         [ObservableProperty] private string address;
         [ObservableProperty] private string ditrictName;
@@ -27,6 +26,10 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
         [ObservableProperty] public string complexRegionName;
         [ObservableProperty] public string complexNamee;
         [ObservableProperty] public string complexRegionCountryName;
+        [ObservableProperty] public string centerName;
+        [ObservableProperty] public string studentCenterName;
+        [ObservableProperty] public string groupName;
+
 
 
         #region Methods
@@ -166,6 +169,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
         {
             Settings.CenterId = centerModel.CenterID.ToString();
             string name = App.IsArabic ? centerModel.CenterName : centerModel.CenterNameEn;
+            //StudentCenterName =  App.IsArabic ? centerModel.CenterName : centerModel.CenterNameEn;
             await OpenPushAsyncPage(new StudentsPage(name));
         }
         [RelayCommand(CanExecute = nameof(CanExecute))]
