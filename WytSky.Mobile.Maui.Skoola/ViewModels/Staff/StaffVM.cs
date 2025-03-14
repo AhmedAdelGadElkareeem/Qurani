@@ -87,13 +87,12 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
         }
         #endregion
 
-        [RelayCommand]
-        public async Task SelectStaff(StaffModel staff)
-        {
-            Settings.StaffId = staff.StaffID.ToString();
-
-            await OpenPushAsyncPage(new StudyGroupsPage(staff.StaffID.Value));
-        }
+        //[RelayCommand]
+        //public async Task SelectStaff(StaffModel staff)
+        //{
+        //    Settings.StaffId = staff.StaffID.ToString();
+        //    await OpenPushAsyncPage(new StudyGroupsPage(staff.StaffID.ToString()));
+        //}
 
         [RelayCommand]
         public void OpenAddStaff()

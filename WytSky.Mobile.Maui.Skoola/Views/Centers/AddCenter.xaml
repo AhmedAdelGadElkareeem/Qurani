@@ -28,6 +28,17 @@
                 HorizontalTextAlignment="Center"
                 Style="{StaticResource RegularLabelFont16}"
                 Text="{x:Static res:SharedResources.AfterAddMosque}" />
+            <Label
+                HorizontalOptions="CenterAndExpand"
+                HorizontalTextAlignment="Center"
+                Style="{StaticResource BoldLabelFont18}"
+                Text="{Binding ComplexName}"
+                VerticalOptions="StartAndExpand" />
+            <Label
+                HorizontalOptions="CenterAndExpand"
+                HorizontalTextAlignment="Center"
+                Style="{StaticResource RegularLabelFont16}"
+                Text="{Binding CenterName}" />
             <Entry
                 HorizontalTextAlignment="Center"
                 Placeholder="{x:Static res:SharedResources.CenterNameAr}"

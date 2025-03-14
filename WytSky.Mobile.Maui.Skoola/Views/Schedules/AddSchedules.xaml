@@ -33,7 +33,7 @@
                 FontAttributes="Bold"
                 FontSize="16"
                 Text="End Time:" />
-            <TimePicker Time="{Binding EndTime, Mode=TwoWay}" />
+            <TimePicker TextColor="{StaticResource DarkBlue}" Time="{Binding EndTime, Mode=TwoWay}" />
 
             <Button
                 Command="{Binding AddScheduleCommand}"

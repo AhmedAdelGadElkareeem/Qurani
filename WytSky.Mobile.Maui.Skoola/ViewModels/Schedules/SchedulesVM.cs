@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WytSky.Mobile.Maui.Skoola.APIs;
 using WytSky.Mobile.Maui.Skoola.AppResources;
 using WytSky.Mobile.Maui.Skoola.Helpers;
 using WytSky.Mobile.Maui.Skoola.Models;
@@ -19,6 +20,8 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.Schedules
     {
 
         [ObservableProperty] private ObservableCollection<ScheduleModel> schedules;
+        [ObservableProperty] private ObservableCollection<ScheduleModel> schedule;
+        //[ObservableProperty] private ScheduleModel schedule;
 
         [ObservableProperty]
         private ObservableCollection<string> daysOfWeek;
@@ -152,7 +155,8 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.Schedules
                 { "DayOfWeekName", SelectedDay }
             };
 
-            var viewModel = new StudyGroupSessionsVM(schedule, formData);
+            Schedule = await ServiceSchedule.GetScheduleById(schedule.ScheduleID.ToString());
+            var viewModel = new StudyGroupSessionsVM(Schedule.FirstOrDefault(), formData);
             var nextPage = new StudyGroupSessionsPage(viewModel);
 
             await OpenPushAsyncPage(nextPage);

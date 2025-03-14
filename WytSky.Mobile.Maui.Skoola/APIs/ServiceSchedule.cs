@@ -68,6 +68,37 @@ namespace WytSky.Mobile.Maui.Skoola.APIs
                 return null;
             }
         }
+        public async static Task<ObservableCollection<ScheduleModel>> GetScheduleById(string id)
+        {
+            try
+            {
+                var dictionary = new Dictionary<string, string>()
+                {
+                      {"_datatype", "json"},
+                      {"_jsonarray", "1"},
+                      {"ScheduleID", id},
+
+                };
+
+
+                var result = await Services.RequestProvider.Current.GetData<TempletData<ScheduleModel>>(BASE, "Schedule", dictionary, Enums.AuthorizationType.UserNamePassword);
+                if (result != null && result.IsPassed)
+                {
+                    return result.Data.itemData;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                string ExceptionMseeage = string.Format(" Error : {0} - {1} ", ex.Message, ex.InnerException != null ? ex.InnerException.FullMessage() : "");
+                System.Diagnostics.Debug.WriteLine(ExceptionMseeage);
+                ExtensionLogMethods.LogExtension(ExceptionMseeage, "", "ServiceCatgeory", "GetParentCategories");
+                return null;
+            }
+        }
 
     }
 }

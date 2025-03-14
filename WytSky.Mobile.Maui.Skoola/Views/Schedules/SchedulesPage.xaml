@@ -20,9 +20,9 @@
                                 <Grid ColumnDefinitions="* ,auto">
                                     <VerticalStackLayout BackgroundColor="White">
 
-                                        <VerticalStackLayout.GestureRecognizers>
+                                        <!--<VerticalStackLayout.GestureRecognizers>
                                             <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.SelectScheduleCommand}" CommandParameter="{Binding .}" />
-                                        </VerticalStackLayout.GestureRecognizers>
+                                        </VerticalStackLayout.GestureRecognizers>-->
 
                                         <!--  Day of the Week  -->
                                         <Label
@@ -55,15 +55,16 @@
                                                 TextColor="{StaticResource Black}" />
                                         </HorizontalStackLayout>
                                     </VerticalStackLayout>
-                                    <Border Grid.Column="1">
-                                        <Button
-                                            Grid.Column="2"
-                                            BackgroundColor="{StaticResource PrimaryColor}"
-                                            Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.SelectScheduleCommand}"
-                                            CommandParameter="{Binding .}"
-                                            Text="{x:Static resource:SharedResources.Txt_StartSession}"
-                                            TextColor="{StaticResource Black}" />
-                                    </Border>
+
+                                    <Button
+                                        Grid.Column="1"
+                                        BackgroundColor="{StaticResource PrimaryColor}"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.SelectScheduleCommand}"
+                                        CommandParameter="{Binding .}"
+                                        FontAttributes="Bold"
+                                        Style="{StaticResource BaseButton}"
+                                        Text="{x:Static resource:SharedResources.Txt_StartSession}" />
+
                                 </Grid>
                             </Frame>
                         </DataTemplate>

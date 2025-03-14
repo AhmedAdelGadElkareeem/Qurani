@@ -38,7 +38,7 @@ public partial class StudyGroupVM : CenterVM
     [ObservableProperty] public StaffModel selectedTeacher;
 
     [ObservableProperty] public int? centerID;
-    [ObservableProperty] public int? teacherID;
+    [ObservableProperty] public string? teacherID;
     //[ObservableProperty] public int? subjectID;
     [ObservableProperty] public string? subjectName;
 
@@ -57,15 +57,29 @@ public partial class StudyGroupVM : CenterVM
         try
         {
             IsRunning = true;
-            StudyGroups = await StudyGroupService.GetStudyGroupsByCenterId();
-            FilteredStudyGroups = new ObservableCollection<StudyGroupModel>(StudyGroups);
-
-            TeacherStudyGroups = await StudyGroupService.GetStudyGroupsByTeacherId(TeacherID.Value);
-            FilteredTeacherStudyGroups = new ObservableCollection<StudyGroupModel>(TeacherStudyGroups);
             
-            ComplexNamee = StudyGroups.Select(_ => _.ComplexName).FirstOrDefault();
-            ComplexRegionName = StudyGroups.Select(_ => _.ComplexRegionName).FirstOrDefault();
-            CenterName = StudyGroups.Select(_ => _.CenterName).FirstOrDefault();
+            if (TeacherID != null)
+            {
+                StudyGroups = await StudyGroupService.GetStudyGroupsByTeacherId(TeacherID.ToString());
+                FilteredStudyGroups = new ObservableCollection<StudyGroupModel>(StudyGroups);
+                if(FilteredStudyGroups.Count > 0)
+                {
+                    ComplexNamee = StudyGroups.Select(_ => _.ComplexName).FirstOrDefault();
+                    ComplexRegionName = StudyGroups.Select(_ => _.ComplexRegionName).FirstOrDefault();
+                    CenterName = StudyGroups.Select(_ => _.CenterName).FirstOrDefault();
+                }
+
+            }
+            else
+            {
+                StudyGroups = await StudyGroupService.GetStudyGroupsByCenterId();
+                FilteredStudyGroups = new ObservableCollection<StudyGroupModel>(StudyGroups);
+                ComplexNamee = StudyGroups.Select(_ => _.ComplexName).FirstOrDefault();
+                //== null ? ComplexName = TeacherStudyGroups.Select(_ => _.ComplexName).FirstOrDefault() : "";
+                ComplexRegionName = StudyGroups.Select(_ => _.ComplexRegionName).FirstOrDefault();
+                CenterName = StudyGroups.Select(_ => _.CenterName).FirstOrDefault();
+            }
+            
 
             var roles = await AspUserRoleService.GetUserRoles();
             if (roles != null)
@@ -74,7 +88,7 @@ public partial class StudyGroupVM : CenterVM
         }
         catch (Exception e)
         {
-            string er = e.Message;
+            ExtensionLogMethods.LogExtension(e, "", "StudyGroupVM", "GetStudyGroupsByStaffIdOrCenterId");
         }
         finally
         {

@@ -44,7 +44,7 @@ public class StudyGroupService
             return null;
         }
     }
-    public static async Task<ObservableCollection<StudyGroupModel>> GetStudyGroupsByTeacherId(int id)
+    public static async Task<ObservableCollection<StudyGroupModel>> GetStudyGroupsByTeacherId(string id)
     {
         try
         {

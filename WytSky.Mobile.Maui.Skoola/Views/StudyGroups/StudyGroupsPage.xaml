@@ -13,6 +13,7 @@
     BackgroundColor="{StaticResource Gray100}">
     <Grid RowDefinitions="*">
         <Grid RowDefinitions="auto,*" VerticalOptions="FillAndExpand">
+
             <Border
                 Padding="0"
                 BackgroundColor="{StaticResource PrimaryColor}"
@@ -94,66 +95,10 @@
                     </Border>
                 </Grid>
             </Border>
-            <Grid Grid.Row="1">
-                <CollectionView
-                    Margin="15,10,15,0"
-                    IsVisible="{Binding FromCenter}"
-                    ItemsSource="{Binding TeacherStudyGroups}">
-                    <CollectionView.ItemsLayout>
-                        <LinearItemsLayout ItemSpacing="10" Orientation="Vertical" />
-                    </CollectionView.ItemsLayout>
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate>
-                            <ContentView>
-                                <Border Padding="5" StrokeShape="RoundRectangle 5">
-                                    <Border.Background>
-                                        <LinearGradientBrush EndPoint="0,1">
-                                            <GradientStop Offset="0.1" Color="{StaticResource PrimaryColor}" />
-                                            <GradientStop Offset="1.0" Color="{StaticResource LightGreen}" />
-                                        </LinearGradientBrush>
-                                    </Border.Background>
-                                    <VerticalStackLayout>
 
-                                        <Label
-                                            HorizontalOptions="CenterAndExpand"
-                                            Style="{StaticResource BoldLabelFont16}"
-                                            Text="{Binding Name}"
-                                            TextColor="{StaticResource DarkBlue}" />
-                                        <Label
-                                            HorizontalOptions="CenterAndExpand"
-                                            Style="{StaticResource BoldLabelFont16}"
-                                            Text="{Binding SubjectName}"
-                                            TextColor="{StaticResource DarkBlue}" />
-                                        <Label
-                                            HorizontalOptions="CenterAndExpand"
-                                            HorizontalTextAlignment="Center"
-                                            Style="{StaticResource BoldLabelFont18}"
-                                            TextColor="{StaticResource DarkBlue}">
-                                            <Label.FormattedText>
-                                                <FormattedString>
-                                                    <Span Text="{x:Static resource:SharedResources.Students}" />
-                                                    <Span Text=" : " />
-                                                    <Span Text="{Binding StudentCount}" />
-                                                </FormattedString>
-                                            </Label.FormattedText>
-                                        </Label>
-                                    </VerticalStackLayout>
+            <Grid Grid.Row="1" RowDefinitions="*">
 
-                                    <Border.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.SelectStudyGroupCommand}" CommandParameter="{Binding .}" />
-                                    </Border.GestureRecognizers>
-                                </Border>
-                            </ContentView>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                    <!--<CollectionView.EmptyView>
-                        <customControls:EmptyView />
-                    </CollectionView.EmptyView>-->
-                </CollectionView>
-                <CollectionView
-                    Margin="15,10,15,0"
-                    IsVisible="{Binding FromCenter}"
-                    ItemsSource="{Binding FilteredStudyGroups}">
+                <CollectionView Margin="15,10,15,0" ItemsSource="{Binding FilteredStudyGroups}">
                     <CollectionView.ItemsLayout>
                         <LinearItemsLayout ItemSpacing="10" Orientation="Vertical" />
                     </CollectionView.ItemsLayout>
@@ -205,9 +150,10 @@
                         <customControls:EmptyView />
                     </CollectionView.EmptyView>
                 </CollectionView>
+
                 <Button
                     Command="{Binding OpenAddStudyGroupCommand}"
-                    
+                    IsVisible="{Binding AddVisibility}"
                     Style="{StaticResource AddButton}" />
             </Grid>
         </Grid>

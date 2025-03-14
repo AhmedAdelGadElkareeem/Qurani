@@ -15,16 +15,19 @@
         <VerticalStackLayout>
             <Entry
                 BackgroundColor="White"
+                HorizontalTextAlignment="Center"
                 Placeholder="{x:Static res:SharedResources.Text_FirstName}"
                 Text="{Binding FirstName, Mode=TwoWay}"
                 TextColor="Black" />
             <Entry
                 BackgroundColor="White"
+                HorizontalTextAlignment="Center"
                 Placeholder="{x:Static res:SharedResources.Text_LastName}"
                 Text="{Binding LastName, Mode=TwoWay}"
                 TextColor="Black" />
             <Picker
                 Title="{x:Static res:SharedResources.Centers}"
+                HorizontalTextAlignment="Center"
                 ItemDisplayBinding="{Binding CenterName}"
                 ItemsSource="{Binding Centers}"
                 SelectedItem="{Binding SelectedCenter, Mode=TwoWay}"
@@ -32,26 +35,32 @@
                 TitleColor="{StaticResource Black}" />
             <Entry
                 BackgroundColor="White"
+                HorizontalTextAlignment="Center"
+                Keyboard="Numeric"
                 Placeholder="{x:Static res:SharedResources.Text_Mobile}"
                 Text="{Binding Mobile, Mode=TwoWay}"
                 TextColor="Black" />
             <Entry
                 BackgroundColor="White"
+                HorizontalTextAlignment="Center"
                 Placeholder="{x:Static res:SharedResources.Text_UserName}"
                 Text="{Binding UserName, Mode=TwoWay}"
                 TextColor="Black" />
             <Entry
                 BackgroundColor="White"
+                HorizontalTextAlignment="Center"
                 Placeholder="{x:Static res:SharedResources.Text_Password}"
                 Text="{Binding Password, Mode=TwoWay}"
                 TextColor="Black" />
             <Entry
                 BackgroundColor="White"
+                HorizontalTextAlignment="Center"
                 Placeholder="{x:Static res:SharedResources.Text_Email}"
                 Text="{Binding Email, Mode=TwoWay}"
                 TextColor="Black" />
             <Picker
                 Title="{x:Static res:SharedResources.Text_StaffTypes}"
+                HorizontalTextAlignment="Center"
                 ItemDisplayBinding="{Binding TypeName}"
                 ItemsSource="{Binding StaffTypes}"
                 SelectedItem="{Binding SelectedStaffType, Mode=TwoWay}"
