@@ -604,6 +604,15 @@ namespace WytSky.Mobile.Maui.Skoola.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Episode dates.
+        /// </summary>
+        public static string SchedulesPage {
+            get {
+                return ResourceManager.GetString("SchedulesPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Search by name.
         /// </summary>
         public static string SearchByName {
@@ -676,7 +685,7 @@ namespace WytSky.Mobile.Maui.Skoola.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Studt Group List.
+        ///   Looks up a localized string similar to Study Group List.
         /// </summary>
         public static string StudyGroupStudentList {
             get {

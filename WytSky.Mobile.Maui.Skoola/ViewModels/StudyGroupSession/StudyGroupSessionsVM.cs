@@ -43,7 +43,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudyGroupSession
             if (formData == null)
                 throw new ArgumentNullException(nameof(formData), "FormData cannot be null");
 
-            SelectedSchedule = schedule;
+            SelectedSchedule = schedule ;
             FormData = formData;
         }
         #endregion

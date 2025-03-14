@@ -20,7 +20,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.Schedules
     {
 
         [ObservableProperty] private ObservableCollection<ScheduleModel> schedules;
-        [ObservableProperty] private ObservableCollection<ScheduleModel> schedule;
+        [ObservableProperty] private ScheduleModel schedule;
         //[ObservableProperty] private ScheduleModel schedule;
 
         [ObservableProperty]
@@ -155,8 +155,9 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.Schedules
                 { "DayOfWeekName", SelectedDay }
             };
 
-            Schedule = await ServiceSchedule.GetScheduleById(schedule.ScheduleID.ToString());
-            var viewModel = new StudyGroupSessionsVM(Schedule.FirstOrDefault(), formData);
+            Schedules = await ServiceSchedule.GetScheduleById();
+            Schedule = Schedules.Where(_=> _.ScheduleID == schedule.ScheduleID).FirstOrDefault() ;
+            var viewModel = new StudyGroupSessionsVM(Schedule, formData);
             var nextPage = new StudyGroupSessionsPage(viewModel);
 
             await OpenPushAsyncPage(nextPage);

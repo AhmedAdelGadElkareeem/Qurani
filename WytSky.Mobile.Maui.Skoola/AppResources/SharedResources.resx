@@ -1293,12 +1293,15 @@ Successfully Changed</value>
     <value>View Evaluation Page</value>
   </data>
   <data name="StudyGroupStudentList" xml:space="preserve">
-    <value>Studt Group List</value>
+    <value>Study Group List</value>
   </data>
   <data name="AddStudyGruops" xml:space="preserve">
     <value>Add Study Group</value>
   </data>
   <data name="AfterAddStudyGruops" xml:space="preserve">
     <value>After add Studygroups you can add scedules </value>
+  </data>
+  <data name="SchedulesPage" xml:space="preserve">
+    <value>Episode dates</value>
   </data>
 </root>

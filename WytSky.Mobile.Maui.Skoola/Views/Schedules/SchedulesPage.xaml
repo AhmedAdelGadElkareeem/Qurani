@@ -6,7 +6,7 @@
     xmlns:customControl="clr-namespace:WytSky.Mobile.Maui.Skoola.CustomControl.Borderless"
     xmlns:customControls="clr-namespace:WytSky.Mobile.Maui.Skoola.CustomControl"
     xmlns:resource="clr-namespace:WytSky.Mobile.Maui.Skoola.AppResources"
-    Title="SchedulesPage">
+    Title="{x:Static resource:SharedResources.SchedulesPage}">
     <Grid RowDefinitions="*">
         <Grid RowDefinitions="auto,*" VerticalOptions="FillAndExpand">
             <Grid Grid.Row="1">

@@ -68,7 +68,7 @@ namespace WytSky.Mobile.Maui.Skoola.APIs
                 return null;
             }
         }
-        public async static Task<ObservableCollection<ScheduleModel>> GetScheduleById(string id)
+        public async static Task<ObservableCollection<ScheduleModel>> GetScheduleById()
         {
             try
             {
@@ -76,7 +76,7 @@ namespace WytSky.Mobile.Maui.Skoola.APIs
                 {
                       {"_datatype", "json"},
                       {"_jsonarray", "1"},
-                      {"ScheduleID", id},
+                      //{"ScheduleID", id},
 
                 };
 
