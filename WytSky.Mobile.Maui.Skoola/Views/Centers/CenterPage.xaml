@@ -107,7 +107,7 @@
                         <DataTemplate>
                             <Border
                                 Padding="5"
-                                HeightRequest="170"
+                                HeightRequest="200"
                                 StrokeShape="RoundRectangle 5">
                                 <Border.Background>
                                     <LinearGradientBrush EndPoint="0,1">

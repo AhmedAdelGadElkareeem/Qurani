@@ -33,7 +33,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudentEvaluation
         [ObservableProperty] private double? attendanceScore;
         [ObservableProperty] private string? note;
 
-        public StudentEvaluationVM(ScheduleModel schedule, Dictionary<string, object> formData) : base(schedule, formData)
+        public StudentEvaluationVM(ScheduleModel schedule) : base(schedule)
         {
         }
         #endregion

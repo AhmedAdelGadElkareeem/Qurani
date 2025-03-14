@@ -10,8 +10,15 @@
         Padding="10"
         BackgroundColor="White"
         CornerRadius="10"
-        HeightRequest="400">
+        HeightRequest="250">
         <VerticalStackLayout>
+
+            <Label
+                HorizontalOptions="CenterAndExpand"
+                HorizontalTextAlignment="Center"
+                Style="{StaticResource BoldLabelFont18}"
+                Text="إضافة طلاب للحلقة"
+                VerticalOptions="StartAndExpand" />
 
             <Picker
                 Title="{x:Static res:SharedResources.Text_Students}"

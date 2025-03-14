@@ -8,10 +8,9 @@
     {
         private readonly StudentEvaluationVM _studentEvaluationsVM;
 
-        public AddStudentEvaluationPage(ScheduleModel schedule, Dictionary<string, object> formData)
+        public AddStudentEvaluationPage(ScheduleModel schedule)
         {
             InitializeComponent();
-            _studentEvaluationsVM = new StudentEvaluationVM(schedule, formData);
             BindingContext = _studentEvaluationsVM;
         }
 

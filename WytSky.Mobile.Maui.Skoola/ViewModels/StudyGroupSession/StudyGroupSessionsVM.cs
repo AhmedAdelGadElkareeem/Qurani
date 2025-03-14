@@ -33,18 +33,15 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudyGroupSession
         [ObservableProperty] private bool isStudentVisible = false ;
 
         public ScheduleModel SelectedSchedule { get; }
-        public Dictionary<string, object> FormData { get; }
 
-        public StudyGroupSessionsVM(ScheduleModel schedule, Dictionary<string, object> formData)
+        public StudyGroupSessionsVM(ScheduleModel schedule)
         {
             if (schedule == null)
                 throw new ArgumentNullException(nameof(schedule), "ScheduleModel cannot be null");
 
-            if (formData == null)
-                throw new ArgumentNullException(nameof(formData), "FormData cannot be null");
+            
 
             SelectedSchedule = schedule ;
-            FormData = formData;
         }
         #endregion
 
@@ -78,8 +75,22 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudyGroupSession
                     SessinId = session.SessionID; 
                     Settings.SessionId = SessinId.ToString();
                 }
+                var formData = new Dictionary<string, object>
+                {
+                 
+                    { "SessionDate", SelectedSchedule.CreatedDate},
+                    { "ComplexID" , Settings.ComplexId},
+                    { "DayOfWeekName" , SelectedSchedule.DayOfWeekName },
+                    { "TimeIn" , DateTime.Now.ToString("HH:mm:ss") },
+                    { "StartTime" , SelectedSchedule.StartTime },
+                    { "EndTime" , SelectedSchedule.EndTime },
+                    { "GroupID" , Settings.StudyGroupId},
+                    { "ScheduleID" , SelectedSchedule.ScheduleID},
 
-                var result = await APIs.SessionService.AddStudyGroupSession(FormData);
+
+
+                };
+                var result = await APIs.SessionService.AddStudyGroupSession(formData);
                 if (result != null)
                 {
                     HidePopup();
@@ -114,7 +125,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudyGroupSession
         [RelayCommand]
         public async Task OpenEvaluationPage() 
         {
-            await OpenPushAsyncPage(new AddStudentEvaluationPage(SelectedSchedule , FormData));
+            await OpenPushAsyncPage(new AddStudentEvaluationPage(SelectedSchedule ));
 
         }
         #endregion

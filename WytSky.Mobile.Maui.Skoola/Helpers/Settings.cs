@@ -104,6 +104,7 @@ public class    Settings
         get { return Preferences.Get("UserIdKey", string.Empty); }
         set { Preferences.Set("UserIdKey", value); }
     }
+  
 
     public static bool RememberMe
     {

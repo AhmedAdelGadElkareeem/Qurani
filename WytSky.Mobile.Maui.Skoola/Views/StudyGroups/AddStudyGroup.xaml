@@ -13,7 +13,7 @@
         Padding="10"
         BackgroundColor="White"
         CornerRadius="10"
-        HeightRequest="440">
+        HeightRequest="400">
         <VerticalStackLayout Margin="5,0">
             <Label
                 HorizontalOptions="CenterAndExpand"

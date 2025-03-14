@@ -145,19 +145,32 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.Schedules
                 return;
             }
 
-            var formData = new Dictionary<string, object>
-            {
-                { "StartTime", StartTime.ToString(@"hh\:mm\:ss") },
-                { "EndTime", EndTime.ToString(@"hh\:mm\:ss") },
-                { "GroupID", Settings.StudyGroupId },
-                { "IsActive", true },
-                { "WeekDayNameListDayOfWeekName", SelectedDay },
-                { "DayOfWeekName", SelectedDay }
-            };
-
             Schedules = await ServiceSchedule.GetScheduleById();
             Schedule = Schedules.Where(_=> _.ScheduleID == schedule.ScheduleID).FirstOrDefault() ;
-            var viewModel = new StudyGroupSessionsVM(Schedule, formData);
+            var formData = new Dictionary<string, object>
+                {
+
+                    { "SessionDate", Schedule.CreatedDate.HasValue ? Schedule.CreatedDate.Value.ToString("yyyy-MM-ddTHH:mm:ss.fff") : null } ,
+                    { "DayOfWeekName" , Schedule.DayOfWeekName },
+                    { "StartTime" , Schedule.StartTime },
+                    { "EndTime" , Schedule.EndTime },
+                    { "GroupID" , Settings.StudyGroupId},
+                    { "ScheduleID" , Schedule.ScheduleID},
+
+
+
+                };
+            var result = await APIs.SessionService.AddStudyGroupSession(formData);
+            if (result != null)
+            {
+                Toast.ShowToastSuccess(SharedResources.AddedSuccessfully);
+            }
+            else
+            {
+                Toast.ShowToastError("");
+            }
+            Settings.ScheduleId = Schedule.ScheduleID.ToString();
+            var viewModel = new StudyGroupSessionsVM(Schedule);
             var nextPage = new StudyGroupSessionsPage(viewModel);
 
             await OpenPushAsyncPage(nextPage);
