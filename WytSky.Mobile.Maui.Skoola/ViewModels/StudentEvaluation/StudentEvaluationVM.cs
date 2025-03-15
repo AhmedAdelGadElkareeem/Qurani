@@ -17,8 +17,6 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudentEvaluation
 {
     public partial class StudentEvaluationVM : StudyGroupSessionsVM
     {
-
-
         #region Propreties
         [ObservableProperty] private ObservableCollection<StudyGroupStudentList> studentGroup;
         [ObservableProperty] private double? tajweedScore;
@@ -28,13 +26,9 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudentEvaluation
         [ObservableProperty] private double? attendanceScore;
         [ObservableProperty] private string? note;
 
-        //public StudentEvaluationVM(ScheduleModel schedule) : base(schedule)
-        //{
-        //}
         #endregion
 
         #region Commands
-
         [RelayCommand]
         public async Task AddStudentEvualation(StudyGroupStudentList student)
         {
@@ -45,7 +39,6 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudentEvaluation
                     Toast.ShowToastError("No student selected.");
                     return;
                 }
-
                 IsRunning = true;
 
                 var formData = new Dictionary<string, object>

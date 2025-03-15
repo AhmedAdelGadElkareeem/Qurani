@@ -350,34 +350,6 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
         }
 
         [RelayCommand]
-        public async Task AddExsistingStudent()
-        {
-            try
-            {
-                var formData = new Dictionary<string, object>()
-            {
-                { "StudentID", SelectedStudent.StudentID },
-                { "GroupID", Settings.StudyGroupId },
-            };
-                var result = await StudentStudyGroupList.AddStudyGroupStudentList(formData);
-                if (result != null && result.rowsAffected > 0)
-                {
-                    await GetStudeyGrouStudenList();
-                    Toast.ShowToastError(SharedResources.AddedSuccessfully);
-                }
-
-            }
-            catch (Exception e)
-            {
-                ExtensionLogMethods.LogExtension(e, "", "StudyGroupStudentListVM", "AddExsistingStudent");
-            }
-            finally
-            {
-                HidePopup();
-            }
-        }
-
-        [RelayCommand]
         public async Task AddNewStudentStudyGroupList(string StudentId)
         {
             try

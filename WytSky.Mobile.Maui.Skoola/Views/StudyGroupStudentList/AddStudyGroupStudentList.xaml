@@ -24,7 +24,7 @@
                 Title="{x:Static res:SharedResources.Text_Students}"
                 IsVisible="{Binding IsExsistStudent}"
                 ItemDisplayBinding="{Binding FullName}"
-                ItemsSource="{Binding StudentsList}"
+                ItemsSource="{Binding StudentList}"
                 SelectedItem="{Binding SelectedStudent, Mode=TwoWay}"
                 TextColor="{StaticResource Black}"
                 TitleColor="{StaticResource Black}" />

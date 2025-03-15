@@ -118,11 +118,19 @@
                                             HorizontalOptions="CenterAndExpand"
                                             Style="{StaticResource BoldLabelFont16}"
                                             Text="{Binding Name}"
-                                            TextColor="{StaticResource DarkBlue}" />
+                                            TextColor="{StaticResource DarkBlue}">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="{x:Static resource:SharedResources.StudyGroupName}" />
+                                                    <Span Text=" : " />
+                                                    <Span Text="{Binding Name}" />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
                                         <Label
                                             HorizontalOptions="CenterAndExpand"
                                             Style="{StaticResource BoldLabelFont16}"
-                                            Text="{Binding SubjectName}"
+                                            Text="{Binding TeacherFullName}"
                                             TextColor="{StaticResource DarkBlue}" />
                                         <Label
                                             HorizontalOptions="CenterAndExpand"

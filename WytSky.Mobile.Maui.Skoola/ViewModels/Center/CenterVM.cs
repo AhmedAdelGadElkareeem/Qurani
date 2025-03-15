@@ -43,10 +43,10 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
                 IsRunning = true;
                 Centers = await APIs.ServiceCenter.GetCenter();
                 FilteredCenters = new ObservableCollection<CentersModel>(Centers);
-                ComplexNamee = Centers.Select(_ => _.ComplexName).FirstOrDefault();
-                ComplexRegionName = Centers.Select(_ => _.ComplexRegionName).FirstOrDefault();
-                ComplexRegionCountryName = Centers.Select(_ => _.ComplexRegionCountryName).FirstOrDefault();
-                CountryName = Centers.Select(_ => _.ComplexRegionCountryName).FirstOrDefault();
+                //ComplexNamee = Centers.Select(_ => _.ComplexName).FirstOrDefault();
+                //ComplexRegionName = Centers.Select(_ => _.ComplexRegionName).FirstOrDefault();
+                //ComplexRegionCountryName = Centers.Select(_ => _.ComplexRegionCountryName).FirstOrDefault();
+                //CountryName = Centers.Select(_ => _.ComplexRegionCountryName).FirstOrDefault();
                 IsRunning = false;
             }
             catch (Exception ex)

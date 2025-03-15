@@ -21,12 +21,14 @@ public partial class StudyGroupStudentListVM : StudyGroupVM
     [ObservableProperty] private ObservableCollection<StudyGroupStudentList> studyGroupStudentList;
     [ObservableProperty] private ObservableCollection<StudyGroupStudentList> filteredStudyGroupStudentList = new ObservableCollection<StudyGroupStudentList>();
     [ObservableProperty] private string searchText;
+    [ObservableProperty] private ObservableCollection<StudentModel> studentList;
+
 
     #endregion
 
 
     #region Methods
-    public async Task GetAllStudents()
+    public async Task GetStudyGroupStudentList()
     {
         IsRunning = true;
         StudyGroupStudentList = await StudentService.GetStudyGroupStudentList();
@@ -65,7 +67,41 @@ public partial class StudyGroupStudentListVM : StudyGroupVM
         ShowPopup(popup);
     }
 
-     [RelayCommand]
+    [RelayCommand]
+    public async Task AddExsistingStudent()
+    {
+        try
+        {
+            var formData = new Dictionary<string, object>()
+            {
+                { "StudentID", SelectedStudent.StudentID },
+                { "GroupID", Settings.StudyGroupId },
+            };
+            var result = await StudentStudyGroupList.AddStudyGroupStudentList(formData);
+            if (result != null && result.rowsAffected > 0)
+            {
+                await GetStudyGroupStudentList();
+                Toast.ShowToastError(SharedResources.AddedSuccessfully);
+            }
+
+        }
+        catch (Exception e)
+        {
+            ExtensionLogMethods.LogExtension(e, "", "StudyGroupStudentListVM", "AddExsistingStudent");
+        }
+        finally
+        {
+            HidePopup();
+        }
+    }
+    public async Task GetAllStudents()
+    {
+        IsRunning = true;
+        StudentList = await StudentService.GetAllStudents();
+        //FilteredStudyGroupStudentList = new ObservableCollection<StudyGroupStudentList>(StudyGroupStudentList);
+        IsRunning = false;
+    }
+    [RelayCommand]
     private async Task OpenSchedules()
     {
         await OpenPushAsyncPage(new SchedulesPage());

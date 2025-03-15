@@ -62,7 +62,8 @@
                     <Button
                         Command="{Binding ResgisterCommand}"
                         Style="{StaticResource SecondaryButton}"
-                        Text="{x:Static resource:SharedResources.Text_CreateAccount}" />
+                        Text="{x:Static resource:SharedResources.Text_CreateAccount}"
+                        TextColor="{StaticResource DarkBlue}" />
 
                     <Label
                         Margin="0,20,0,0"
@@ -71,7 +72,7 @@
                         IsVisible="false"
                         Style="{StaticResource BoldLabelFont16}"
                         Text="{x:Static resource:SharedResources.Text_ContinueAsGuest}"
-                        TextColor="{StaticResource PrimaryColor}">
+                        TextColor="{StaticResource DarkBlue}">
                         <View.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding ContinueAsGuestCommand}" />
                         </View.GestureRecognizers>
@@ -135,7 +136,7 @@
                                     HorizontalTextAlignment="Center"
                                     Style="{StaticResource BoldLabelFont12}"
                                     Text="{x:Static resource:SharedResources.Text_SignInWithApple}"
-                                    TextColor="{StaticResource White}"
+                                    TextColor="{StaticResource DarkBlue}"
                                     VerticalOptions="CenterAndExpand" />
                             </Grid>
                         </Frame>
@@ -202,7 +203,7 @@
                                     HorizontalTextAlignment="Center"
                                     Style="{StaticResource BoldLabelFont12}"
                                     Text="{x:Static resource:SharedResources.Text_SignInWithApple}"
-                                    TextColor="{StaticResource White}"
+                                    TextColor="{StaticResource DarkBlue}"
                                     VerticalOptions="CenterAndExpand" />
                             </Grid>
                         </Frame>

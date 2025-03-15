@@ -4,7 +4,7 @@ namespace WytSky.Mobile.Maui.Skoola.Views.StudentEvaluation;
 
 public partial class StudentEvaluationPage : ContentPage
 {
-	private readonly GetAddStudentEvaluationVM _vm = new();
+	private readonly GetAddStudentEvaluationVM _vm = new GetAddStudentEvaluationVM ();
 	public StudentEvaluationPage()
 	{
 		InitializeComponent();

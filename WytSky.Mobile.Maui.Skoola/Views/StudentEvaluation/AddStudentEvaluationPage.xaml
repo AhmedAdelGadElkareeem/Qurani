@@ -5,7 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:customControls="clr-namespace:WytSky.Mobile.Maui.Skoola.CustomControl"
     xmlns:resource="clr-namespace:WytSky.Mobile.Maui.Skoola.AppResources"
-    Title="Add Student Evaluation">
+    Title="{x:Static resource:SharedResources.AddStudentEvaluation}">
 
     <Grid Padding="15">
         <Grid.RowDefinitions>

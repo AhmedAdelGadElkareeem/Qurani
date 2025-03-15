@@ -22,37 +22,22 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudyGroupSession
     {
         #region Propreties
 
-        #region Session 
         [ObservableProperty] private ObservableCollection<SessionModel> sessions;
 
-        [ObservableProperty] private ObservableCollection<StudyGroupStudentList> students;
-
+        [ObservableProperty] private ObservableCollection<StudyGroupStudentList> students 
+                                     = new ObservableCollection<StudyGroupStudentList>();
+        [ObservableProperty] private ObservableCollection<StudyGroupStudentList> filteredStudents 
+                                     = new ObservableCollection<StudyGroupStudentList>();
+        
+        [ObservableProperty] private string searchText;
         [ObservableProperty] private ScheduleModel sessionSchedule = new ScheduleModel();
-
-
         [ObservableProperty] private int? sessinId;
-
-
         [ObservableProperty] private bool isStudentVisible = false;
 
-
-        //public StudyGroupSessionsVM(ScheduleModel schedule)
-        //{
-        //    if (schedule == null)
-        //        throw new ArgumentNullException(nameof(schedule), "ScheduleModel cannot be null");
-
-        //    SelectedSchedule = schedule;
-        //}
-        #endregion
-
         #region Attendance
-
         [ObservableProperty] private ObservableCollection<AttendanceModel> groupAttendance;
         [ObservableProperty] public StudentModel selectedStudent;
-
-
         #endregion
-
 
         #endregion
 
@@ -182,9 +167,29 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudyGroupSession
         {
             IsRunning = true;
             Students = await StudentService.GetStudyGroupStudentList();
+            FilteredStudents = new ObservableCollection<StudyGroupStudentList>(Students);
+
             IsRunning = false;
         }
-
+        partial void OnSearchTextChanging(string value)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(value) || value.Length > 0)
+                {
+                    FilteredStudents =
+                        new ObservableCollection<StudyGroupStudentList>(Students.Where(x => x.StudentFullName.ToLower().Contains(value)).ToList());
+                }
+                else
+                {
+                    FilteredStudents = Students;
+                }
+            }
+            catch (Exception ex)
+            {
+                ExtensionLogMethods.LogExtension(ex, "", "CenterVM", "OnSearchTextChanging");
+            }
+        }
         #endregion
 
 

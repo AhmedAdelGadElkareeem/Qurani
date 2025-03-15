@@ -14,7 +14,9 @@ public partial class StudyGroupSessionsPage : ContentPage
         InitializeComponent();
         BindingContext = _studyGroupSessionsVM;
         _studyGroupSessionsVM.SessionSchedule = schedule;
-
+        _studyGroupSessionsVM.ComplexNamee = schedule.GroupCenterComplexName;
+        _studyGroupSessionsVM.CenterName = schedule.GroupCenterName;
+        _studyGroupSessionsVM.GroupName = schedule.GroupName;
     }
 
     protected override async void OnAppearing()

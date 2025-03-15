@@ -27,21 +27,22 @@
                     Padding="0"
                     RowDefinitions="auto,auto,auto,*">
                     <Label
+                        Grid.Row="0"
+                        HorizontalOptions="CenterAndExpand"
+                        Style="{StaticResource BoldLabelFont16}"
+                        Text="{Binding CountryName}"
+                        TextColor="{StaticResource DarkBlue}" />
+                    <Label
+                        Grid.Row="1"
                         HorizontalOptions="CenterAndExpand"
                         Style="{StaticResource BoldLabelFont18}"
                         Text="{Binding ComplexNamee}"
                         TextColor="{StaticResource DarkBlue}" />
                     <Label
-                        Grid.Row="1"
-                        HorizontalOptions="CenterAndExpand"
-                        Style="{StaticResource BoldLabelFont16}"
-                        Text="{Binding ComplexRegionName}"
-                        TextColor="{StaticResource DarkBlue}" />
-                    <Label
                         Grid.Row="2"
                         HorizontalOptions="CenterAndExpand"
                         Style="{StaticResource BoldLabelFont16}"
-                        Text="{Binding ComplexRegionCountryName}"
+                        Text="{Binding ComplexRegionName}"
                         TextColor="{StaticResource DarkBlue}" />
                     <Border
                         Grid.Row="3"

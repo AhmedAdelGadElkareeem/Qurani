@@ -6,7 +6,7 @@
 
     public partial class AddStudentEvaluationPage : ContentPage
     {
-        private readonly StudentEvaluationVM _studentEvaluationsVM;
+        private readonly StudentEvaluationVM _studentEvaluationsVM = new StudentEvaluationVM();
 
         public AddStudentEvaluationPage(ScheduleModel schedule)
         {

@@ -42,8 +42,55 @@
                     Style="{StaticResource BoldLabelFont16}"
                     Text="{Binding GroupName}"
                     TextColor="{StaticResource DarkBlue}" />
+                <Border
+                    Grid.Row="4"
+                    Margin="30,0,30,0"
+                    Padding="0"
+                    HeightRequest="40"
+                    HorizontalOptions="FillAndExpand"
+                    Stroke="{StaticResource Gray400}"
+                    StrokeShape="RoundRectangle 20,20,20,20"
+                    StrokeThickness=".5"
+                    VerticalOptions="End">
+                    <Border.Background>
+                        <LinearGradientBrush EndPoint="0,1">
+                            <GradientStop Offset="0.1" Color="WhiteSmoke" />
+                            <GradientStop Offset="1.0" Color="White" />
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <Grid Margin="0" Padding="0">
+                        <!--  Entry for Search Text  -->
+                        <customControl:BorderlessEntry
+                            Margin="15,0"
+                            FontFamily="AhlanWorldArbfonts"
+                            Placeholder="{x:Static resource:SharedResources.SearchByName}"
+                            PlaceholderColor="{StaticResource DarkBlue}"
+                            Style="{StaticResource BoldLabelFont16}"
+                            Text="{Binding SearchText}"
+                            TextColor="{StaticResource Black}" />
 
-
+                        <!--  Clear Icon Button (Left Side)  -->
+                        <Button
+                            BackgroundColor="Transparent"
+                            Command="{Binding ClearTextCommand}"
+                            HorizontalOptions="Start"
+                            IsVisible="{Binding SearchText, Converter={StaticResource StringToBoolConverter}}"
+                            VerticalOptions="Center">
+                            <!--<Button.ImageSource>
+                            <FileImageSource File="clearfilter.png" />
+                            </Button.ImageSource>-->
+                        </Button>
+                        <Button
+                            BackgroundColor="Transparent"
+                            Command="{Binding SearchCommand}"
+                            HorizontalOptions="End"
+                            VerticalOptions="Center">
+                            <Button.ImageSource>
+                                <FileImageSource File="searchicon.png" />
+                            </Button.ImageSource>
+                        </Button>
+                    </Grid>
+                </Border>
             </Grid>
         </Border>
 
@@ -106,7 +153,7 @@
 
         <!--  Students List  -->
         <Grid Grid.Row="2" IsVisible="{Binding IsStudentVisible}">
-            <CollectionView Margin="15,10,15,0" ItemsSource="{Binding Students}">
+            <CollectionView Margin="15,10,15,0" ItemsSource="{Binding FilteredStudents}">
                 <CollectionView.ItemsLayout>
                     <LinearItemsLayout ItemSpacing="15" Orientation="Vertical" />
                 </CollectionView.ItemsLayout>
@@ -127,13 +174,14 @@
                                 <Button
                                     Grid.Column="0"
                                     BackgroundColor="White"
+                                    Clicked="OnAttendanceButtonClicked"
                                     Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.AddStudentAttendanceCommand}"
                                     CommandParameter="{Binding .}"
                                     FontAttributes="Bold"
                                     FontSize="16"
                                     HorizontalOptions="Start"
                                     Text="{x:Static resource:SharedResources.Txt_Attendance}"
-                                    TextColor="{StaticResource PrimaryColor}" />
+                                    TextColor="{StaticResource DarkBlue}" />
                             </Grid>
                         </Border>
                     </DataTemplate>

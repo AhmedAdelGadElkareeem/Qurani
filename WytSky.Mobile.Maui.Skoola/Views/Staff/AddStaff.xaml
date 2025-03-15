@@ -13,6 +13,29 @@
         CornerRadius="10"
         HeightRequest="400">
         <VerticalStackLayout>
+            <StackLayout
+                BackgroundColor="WhiteSmoke"
+                Spacing="3"
+                VerticalOptions="FillAndExpand">
+
+                <Label
+                    HorizontalOptions="CenterAndExpand"
+                    HorizontalTextAlignment="Center"
+                    Style="{StaticResource BoldLabelFont18}"
+                    Text="{Binding ComplexNamee}"
+                    VerticalOptions="StartAndExpand" />
+                <Label
+                    HorizontalOptions="CenterAndExpand"
+                    HorizontalTextAlignment="Center"
+                    Style="{StaticResource RegularLabelFont18}"
+                    Text="{Binding ComplexRegionName}" />
+                <Label
+                    HorizontalOptions="CenterAndExpand"
+                    HorizontalTextAlignment="Center"
+                    Style="{StaticResource BoldLabelFont18}"
+                    Text="{Binding ComplexRegionCountryName}"
+                    VerticalOptions="StartAndExpand" />
+            </StackLayout>
             <Entry
                 BackgroundColor="White"
                 HorizontalTextAlignment="Center"

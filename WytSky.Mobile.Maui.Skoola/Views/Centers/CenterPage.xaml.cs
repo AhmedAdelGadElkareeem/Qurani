@@ -6,7 +6,7 @@ namespace WytSky.Mobile.Maui.Skoola.Views.Centers;
 
 public partial class CenterPage : BaseContentPage
 {
-    private CenterVM CenterVM;
+    private CenterVM CenterVM ;
 
     public CenterPage(ComplexModel complex)
     {
@@ -14,6 +14,9 @@ public partial class CenterPage : BaseContentPage
         CenterVM = new CenterVM();
         //Title = complex.ComplexName;
         BindingContext = CenterVM;
+        CenterVM.CountryName = complex.CountryName;
+        CenterVM.ComplexNamee = complex.ComplexName;
+        CenterVM.ComplexRegionName = complex.RegionName;
     }
     public CenterPage()
     {

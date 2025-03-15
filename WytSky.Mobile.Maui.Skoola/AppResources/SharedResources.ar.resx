@@ -1315,4 +1315,13 @@
   <data name="AddStudents" xml:space="preserve">
     <value>إضافة طلاب</value>
   </data>
+  <data name="StudyGroupName" xml:space="preserve">
+    <value>اسم الحلقة</value>
+  </data>
+  <data name="AddStudentEvaluation" xml:space="preserve">
+    <value>إضافة تقييم للطلاب</value>
+  </data>
+  <data name="StudentEvaluations" xml:space="preserve">
+    <value>تقييمات الطلاب</value>
+  </data>
 </root>

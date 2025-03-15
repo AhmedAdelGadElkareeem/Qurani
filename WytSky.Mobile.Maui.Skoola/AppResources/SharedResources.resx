@@ -1313,4 +1313,13 @@ Successfully Changed</value>
   <data name="AddStudents" xml:space="preserve">
     <value>Add Students</value>
   </data>
+  <data name="StudyGroupName" xml:space="preserve">
+    <value>Group name</value>
+  </data>
+  <data name="AddStudentEvaluation" xml:space="preserve">
+    <value>Add student evaluation</value>
+  </data>
+  <data name="StudentEvaluations" xml:space="preserve">
+    <value>Student evaluations</value>
+  </data>
 </root>

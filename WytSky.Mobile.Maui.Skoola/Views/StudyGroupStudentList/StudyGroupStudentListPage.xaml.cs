@@ -20,7 +20,7 @@ public partial class StudyGroupStudentListPage : ContentPage
     }
     protected override void OnAppearing()
     {
-        studyGroupStudentListVM.GetStudeyGrouStudenList();
+        studyGroupStudentListVM.GetStudyGroupStudentList();
         studyGroupStudentListVM.GetAllStudents();
         base.OnAppearing();
     }

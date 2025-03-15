@@ -10,6 +10,10 @@ public partial class StaffPage : BaseContentPage
     {
         InitializeComponent();
         BindingContext = StaffVM;
+        StaffVM.CountryName = centerIdModel.ComplexRegionCountryName;
+        StaffVM.ComplexNamee = centerIdModel.ComplexName;
+        StaffVM.CenterName = centerIdModel.CenterName;
+        StaffVM.ComplexRegionName = centerIdModel.ComplexRegionName;
         //Title = App.IsArabic ? centerIdModel.CenterName : centerIdModel.CenterNameEn;
     }
 
