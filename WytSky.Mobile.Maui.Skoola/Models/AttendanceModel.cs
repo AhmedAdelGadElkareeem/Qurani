@@ -22,7 +22,7 @@ namespace WytSky.Mobile.Maui.Skoola.Models
         public string? GroupTeacherFirstName { get; set; }
         public string? GroupSubjectName { get; set; }
         public DateTime? AttendanceDate { get; set; }
-        public object? Status { get; set; }
+        public int? Status { get; set; }
         public string? TimeIn { get; set; }
         public string? TimeOut { get; set; }
         public string? Notes { get; set; }

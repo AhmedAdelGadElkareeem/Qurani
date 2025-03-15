@@ -122,19 +122,18 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudyGroupSession
                     { "CenterID", Settings.CenterId },
                     { "StudentID", StudyGroupStudentModel.StudentID},
                     { "ComplexID" , Settings.ComplexId},
+                    { "Status" , false},
                     { "SessionDayOfWeekName" , SessionSchedule.DayOfWeekName },
                     { "TimeIn" , DateTime.Now.ToString("HH:mm:ss") },
                     { "TimeOut" , SessionSchedule.EndTime },
                     { "SessionID" , SessinId},
-
-
-
                 };
                 var result = await APIs.ServiceAttendance.AddGroupAttendance(formData);
 
                 if (result != null)
                 {
                     Toast.ShowToastSuccess(SharedResources.AddedSuccessfully);
+                    await GetAllStudents();
                 }
                 else
                 {
