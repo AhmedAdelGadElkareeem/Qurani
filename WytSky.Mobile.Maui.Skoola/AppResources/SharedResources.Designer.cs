@@ -70,6 +70,15 @@ namespace WytSky.Mobile.Maui.Skoola.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Absent Students.
+        /// </summary>
+        public static string AbsentStudents {
+            get {
+                return ResourceManager.GetString("AbsentStudents", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Account Created Successfully.
         /// </summary>
         public static string AccountCreatedSuccessfully {
@@ -183,6 +192,24 @@ namespace WytSky.Mobile.Maui.Skoola.AppResources {
         public static string AllMosques {
             get {
                 return ResourceManager.GetString("AllMosques", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All Students.
+        /// </summary>
+        public static string AllStudents {
+            get {
+                return ResourceManager.GetString("AllStudents", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Available Students.
+        /// </summary>
+        public static string AvailableStudents {
+            get {
+                return ResourceManager.GetString("AvailableStudents", resourceCulture);
             }
         }
         

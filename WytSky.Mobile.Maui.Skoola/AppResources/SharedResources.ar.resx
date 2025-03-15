@@ -1324,4 +1324,13 @@
   <data name="StudentEvaluations" xml:space="preserve">
     <value>تقييمات الطلاب</value>
   </data>
+  <data name="AvailableStudents" xml:space="preserve">
+    <value>الحاضرين</value>
+  </data>
+  <data name="AbsentStudents" xml:space="preserve">
+    <value>الغائبين</value>
+  </data>
+  <data name="AllStudents" xml:space="preserve">
+    <value>الكل</value>
+  </data>
 </root>
