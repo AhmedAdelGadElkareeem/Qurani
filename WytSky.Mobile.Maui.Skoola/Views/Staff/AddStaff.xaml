@@ -11,7 +11,7 @@
         Padding="10"
         BackgroundColor="White"
         CornerRadius="10"
-        HeightRequest="400">
+        HeightRequest="470">
         <VerticalStackLayout>
             <StackLayout
                 BackgroundColor="WhiteSmoke"
