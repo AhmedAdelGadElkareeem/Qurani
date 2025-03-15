@@ -176,8 +176,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.Schedules
             Schedules = await ServiceSchedule.GetScheduleById();
             SelectedSchedule = Schedules.Where(_ => _.ScheduleID == schedule.ScheduleID).FirstOrDefault();
             Settings.ScheduleId = SelectedSchedule.ScheduleID.ToString();
-            ScheduleModel model = SelectedSchedule;
-            await OpenPushAsyncPage(new StudyGroupSessionsPage(model));
+            await OpenPushAsyncPage(new StudyGroupSessionsPage(SelectedSchedule));
         }
         #endregion
 

@@ -27,6 +27,8 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudyGroupSession
 
         [ObservableProperty] private ObservableCollection<StudyGroupStudentList> students;
 
+        [ObservableProperty] private ScheduleModel sessionSchedule = new ScheduleModel();
+
 
         [ObservableProperty] private int? sessinId;
 
@@ -60,18 +62,18 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudyGroupSession
         #region Session 
 
         [RelayCommand]
-        public async Task StartSesion(SessionModel session)
+        public async Task StartSesion()
         {
             try
             {
 
                 IsRunning = true;
 
-                if (session != null)
+                if (Sessions.Count > 1)
                 {
-                    SessinId = session.SessionID;
+                    SessinId = Sessions[0].SessionID;
                     Settings.SessionId = SessinId.ToString();
-                    IsStudentVisible = true;
+                    Toast.ShowToastError(SharedResources.Msg_SessionExpired);
 
                 }
                 else
@@ -79,12 +81,12 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudyGroupSession
                     var formData = new Dictionary<string, object>
                     {
 
-                        { "SessionDate", Schedule.CreatedDate.HasValue ? Schedule.CreatedDate.Value.ToString("yyyy-MM-ddTHH:mm:ss.fff") : null } ,
-                        { "DayOfWeekName" , Schedule.DayOfWeekName },
-                        { "StartTime" , Schedule.StartTime },
-                        { "EndTime" , Schedule.EndTime },
-                        { "GroupID" , Settings.StudyGroupId},
-                        { "ScheduleID" , Schedule.ScheduleID},
+                         { "SessionDate", SessionSchedule.CreatedDate?.ToString("yyyy-MM-ddTHH:mm:ss.fff") ?? string.Empty },
+                         { "DayOfWeekName" , SessionSchedule.DayOfWeekName ?? string.Empty },
+                         { "StartTime" , SessionSchedule.StartTime?.ToString() ?? string.Empty },
+                         { "EndTime" , SessionSchedule.EndTime?.ToString() ?? string.Empty },
+                         { "GroupID" , Settings.StudyGroupId },
+                         { "ScheduleID" , SessionSchedule.ScheduleID }
                     };
 
                     var result = await APIs.SessionService.AddStudyGroupSession(formData);
@@ -98,7 +100,10 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudyGroupSession
                         Toast.ShowToastError("");
                     }
                 }
-                
+
+                IsStudentVisible = true;
+                await GetSessions();
+
             }
             catch (Exception ex)
             {
@@ -132,9 +137,9 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudyGroupSession
                     { "CenterID", Settings.CenterId },
                     { "StudentID", StudyGroupStudentModel.StudentID},
                     { "ComplexID" , Settings.ComplexId},
-                    { "SessionDayOfWeekName" , SelectedSchedule.DayOfWeekName },
+                    { "SessionDayOfWeekName" , SessionSchedule.DayOfWeekName },
                     { "TimeIn" , DateTime.Now.ToString("HH:mm:ss") },
-                    { "TimeOut" , SelectedSchedule.EndTime },
+                    { "TimeOut" , SessionSchedule.EndTime },
                     { "SessionID" , SessinId},
 
 

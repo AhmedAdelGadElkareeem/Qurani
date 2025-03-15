@@ -6,14 +6,14 @@ namespace WytSky.Mobile.Maui.Skoola.Views.StudyGroupSessions;
 
 public partial class StudyGroupSessionsPage : ContentPage
 {
-    private readonly StudyGroupSessionsVM _studyGroupSessionsVM;
+    private readonly StudyGroupSessionsVM _studyGroupSessionsVM = new StudyGroupSessionsVM();
     private readonly Dictionary<Button, bool> _buttonStates = new(); // Dictionary to track button states
 
     public StudyGroupSessionsPage(ScheduleModel schedule)
 	{
         InitializeComponent();
         BindingContext = _studyGroupSessionsVM;
-        _studyGroupSessionsVM.SelectedSchedule = schedule;
+        _studyGroupSessionsVM.SessionSchedule = schedule;
 
     }
 
@@ -23,7 +23,7 @@ public partial class StudyGroupSessionsPage : ContentPage
 
         if (_studyGroupSessionsVM != null)
         {
-            //await _studyGroupSessionsVM.GetSessions();
+            await _studyGroupSessionsVM.GetSessions();
             await _studyGroupSessionsVM.GetAllStudents();
         }
         else
