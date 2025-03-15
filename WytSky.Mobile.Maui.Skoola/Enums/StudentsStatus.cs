@@ -1,8 +1,9 @@
 ﻿
 namespace WytSky.Mobile.Maui.Skoola.Enums;
 
-public enum UserStatus
+public enum StudentsStatus
 {
     Available = 1,
     Absent = 2,
+    All = 3,
 }

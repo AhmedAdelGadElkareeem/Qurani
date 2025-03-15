@@ -1322,4 +1322,13 @@ Successfully Changed</value>
   <data name="StudentEvaluations" xml:space="preserve">
     <value>Student evaluations</value>
   </data>
+  <data name="AvailableStudents" xml:space="preserve">
+    <value>Available Students</value>
+  </data>
+  <data name="AbsentStudents" xml:space="preserve">
+    <value>Absent Students</value>
+  </data>
+  <data name="AllStudents" xml:space="preserve">
+    <value>All Students</value>
+  </data>
 </root>

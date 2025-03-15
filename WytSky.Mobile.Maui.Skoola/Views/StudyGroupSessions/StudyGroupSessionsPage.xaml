@@ -151,9 +151,51 @@
             </Border>
         </Grid>
 
+
         <!--  Students List  -->
-        <Grid Grid.Row="2" IsVisible="{Binding IsStudentVisible}">
-            <CollectionView Margin="15,10,15,0" ItemsSource="{Binding FilteredStudents}">
+        <Grid
+            Grid.Row="2"
+            IsVisible="{Binding IsStudentVisible}"
+            RowDefinitions="auto, *">
+            <Grid Grid.Row="0">
+                <Grid
+                    Grid.Row="1"
+                    Margin="0,10,0,5"
+                    ColumnDefinitions="auto,auto,auto"
+                    ColumnSpacing="10"
+                    HorizontalOptions="CenterAndExpand">
+
+                    <customControls:StudentAttendanceFilter
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        BackColor="Green"
+                        CommanParamter="Available"
+                        Command="{Binding FetchStudentsCommand}"
+                        TextCount="{Binding AvailableCount}"
+                        TextLable="{x:Static resource:SharedResources.AvailableStudents}" />
+                    <customControls:StudentAttendanceFilter
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        BackColor="{StaticResource TracksColor}"
+                        CommanParamter="All"
+                        Command="{Binding FetchStudentsCommand}"
+                        TextCount="{Binding All}"
+                        TextLable="{x:Static resource:SharedResources.AllStudents}" />
+                    <customControls:StudentAttendanceFilter
+                        Grid.Row="0"
+                        Grid.Column="2"
+                        BackColor="Red"
+                        CommanParamter="Absent"
+                        Command="{Binding FetchStudentsCommand}"
+                        TextCount="{Binding AbsentCount}"
+                        TextLable="{x:Static resource:SharedResources.AbsentStudents}" />
+
+                </Grid>
+            </Grid>
+            <CollectionView
+                Grid.Row="1"
+                Margin="15,10,15,0"
+                ItemsSource="{Binding FilteredStudents}">
                 <CollectionView.ItemsLayout>
                     <LinearItemsLayout ItemSpacing="15" Orientation="Vertical" />
                 </CollectionView.ItemsLayout>

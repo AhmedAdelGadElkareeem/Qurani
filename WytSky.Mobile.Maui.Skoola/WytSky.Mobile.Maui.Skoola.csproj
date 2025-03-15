@@ -229,6 +229,9 @@
 	  <MauiXaml Update="CustomControl\ProfileCard.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="CustomControl\StudentAttendanceFilter.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="CustomControl\ViewAll.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
