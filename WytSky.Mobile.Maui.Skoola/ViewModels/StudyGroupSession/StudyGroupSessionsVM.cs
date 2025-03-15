@@ -33,15 +33,14 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudyGroupSession
 
         [ObservableProperty] private bool isStudentVisible = false;
 
-        [ObservableProperty] public ScheduleModel selectedSchedule = new ScheduleModel();
 
-        public StudyGroupSessionsVM(ScheduleModel schedule)
-        {
-            if (schedule == null)
-                throw new ArgumentNullException(nameof(schedule), "ScheduleModel cannot be null");
+        //public StudyGroupSessionsVM(ScheduleModel schedule)
+        //{
+        //    if (schedule == null)
+        //        throw new ArgumentNullException(nameof(schedule), "ScheduleModel cannot be null");
 
-            SelectedSchedule = schedule;
-        }
+        //    SelectedSchedule = schedule;
+        //}
         #endregion
 
         #region Attendance

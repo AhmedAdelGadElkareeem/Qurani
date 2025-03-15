@@ -22,22 +22,18 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.Schedules
         #region Properties
         [ObservableProperty] private ObservableCollection<ScheduleModel> schedules;
         [ObservableProperty] private ScheduleModel schedule = new ScheduleModel();
-        [ObservableProperty]
-        private ObservableCollection<ScheduleModel> filteredSchedules = new ObservableCollection<ScheduleModel>();
+        [ObservableProperty] private ObservableCollection<ScheduleModel> filteredSchedules = new ObservableCollection<ScheduleModel>();
 
-        [ObservableProperty]
-        private ObservableCollection<string> daysOfWeek;
+        [ObservableProperty] private ObservableCollection<string> daysOfWeek;
         [ObservableProperty] private string searchText;
 
+        [ObservableProperty] public ScheduleModel selectedSchedule = new ScheduleModel();
 
-        [ObservableProperty]
-        private string selectedDay; // Selected day from Picker
+        [ObservableProperty] private string selectedDay; // Selected day from Picker
 
-        [ObservableProperty]
-        private TimeSpan startTime;
+        [ObservableProperty] private TimeSpan startTime;
 
-        [ObservableProperty]
-        private TimeSpan endTime;
+        [ObservableProperty] private TimeSpan endTime;
         #endregion
 
         // Store StartTime as string in "HH:mm:ss" format
@@ -178,9 +174,10 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.Schedules
             }
 
             Schedules = await ServiceSchedule.GetScheduleById();
-            Schedule = Schedules.Where(_ => _.ScheduleID == schedule.ScheduleID).FirstOrDefault();
-            Settings.ScheduleId = Schedule.ScheduleID.ToString();
-            await OpenPushAsyncPage(new StudyGroupSessionsPage(Schedule));
+            SelectedSchedule = Schedules.Where(_ => _.ScheduleID == schedule.ScheduleID).FirstOrDefault();
+            Settings.ScheduleId = SelectedSchedule.ScheduleID.ToString();
+            ScheduleModel model = SelectedSchedule;
+            await OpenPushAsyncPage(new StudyGroupSessionsPage(model));
         }
         #endregion
 
