@@ -124,6 +124,15 @@ namespace WytSky.Mobile.Maui.Skoola.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add Students.
+        /// </summary>
+        public static string AddStudents {
+            get {
+                return ResourceManager.GetString("AddStudents", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add Study Group.
         /// </summary>
         public static string AddStudyGruops {
@@ -681,6 +690,15 @@ namespace WytSky.Mobile.Maui.Skoola.AppResources {
         public static string StudyGroups {
             get {
                 return ResourceManager.GetString("StudyGroups", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Study Group Session.
+        /// </summary>
+        public static string StudyGroupSessions {
+            get {
+                return ResourceManager.GetString("StudyGroupSessions", resourceCulture);
             }
         }
         
@@ -3536,6 +3554,15 @@ namespace WytSky.Mobile.Maui.Skoola.AppResources {
         public static string Txt_Notes {
             get {
                 return ResourceManager.GetString("Txt_Notes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open Session.
+        /// </summary>
+        public static string Txt_OpenSession {
+            get {
+                return ResourceManager.GetString("Txt_OpenSession", resourceCulture);
             }
         }
         

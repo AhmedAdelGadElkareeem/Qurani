@@ -9,20 +9,101 @@
     Title="{x:Static resource:SharedResources.SchedulesPage}">
     <Grid RowDefinitions="*">
         <Grid RowDefinitions="auto,*" VerticalOptions="FillAndExpand">
+            <Border
+                Padding="0"
+                BackgroundColor="{StaticResource PrimaryColor}"
+                HeightRequest="130"
+                HorizontalOptions="FillAndExpand"
+                Stroke="{StaticResource PrimaryColor}"
+                StrokeShape="RoundRectangle 0,0,70,70"
+                StrokeThickness=".5"
+                VerticalOptions="Start">
+                <Grid
+                    Margin="0"
+                    Padding="0"
+                    RowDefinitions="auto,auto,auto,*">
+                    <Label
+                        HorizontalOptions="CenterAndExpand"
+                        Style="{StaticResource BoldLabelFont18}"
+                        Text="{Binding ComplexNamee}"
+                        TextColor="{StaticResource DarkBlue}" />
+                    <Label
+                        Grid.Row="1"
+                        HorizontalOptions="CenterAndExpand"
+                        Style="{StaticResource BoldLabelFont16}"
+                        Text="{Binding CenterName}"
+                        TextColor="{StaticResource DarkBlue}" />
+                    <Label
+                        Grid.Row="2"
+                        HorizontalOptions="CenterAndExpand"
+                        Style="{StaticResource BoldLabelFont16}"
+                        Text="{Binding GroupName}"
+                        TextColor="{StaticResource DarkBlue}" />
+                    <Border
+                        Grid.Row="4"
+                        Margin="30,0,30,0"
+                        Padding="0"
+                        HeightRequest="40"
+                        HorizontalOptions="FillAndExpand"
+                        Stroke="{StaticResource Gray400}"
+                        StrokeShape="RoundRectangle 20,20,20,20"
+                        StrokeThickness=".5"
+                        VerticalOptions="End">
+                        <Border.Background>
+                            <LinearGradientBrush EndPoint="0,1">
+                                <GradientStop Offset="0.1" Color="WhiteSmoke" />
+                                <GradientStop Offset="1.0" Color="White" />
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <Grid Margin="0" Padding="0">
+                            <!--  Entry for Search Text  -->
+                            <customControl:BorderlessEntry
+                                Margin="15,0"
+                                FontFamily="AhlanWorldArbfonts"
+                                Placeholder="{x:Static resource:SharedResources.SearchByName}"
+                                PlaceholderColor="{StaticResource DarkBlue}"
+                                Style="{StaticResource BoldLabelFont16}"
+                                Text="{Binding SearchText}"
+                                TextColor="{StaticResource Black}" />
+
+                            <!--  Clear Icon Button (Left Side)  -->
+                            <Button
+                                BackgroundColor="Transparent"
+                                Command="{Binding ClearTextCommand}"
+                                HorizontalOptions="Start"
+                                IsVisible="{Binding SearchText, Converter={StaticResource StringToBoolConverter}}"
+                                VerticalOptions="Center">
+                                <!--<Button.ImageSource>
+                                <FileImageSource File="clearfilter.png" />
+                                </Button.ImageSource>-->
+                            </Button>
+                            <Button
+                                BackgroundColor="Transparent"
+                                Command="{Binding SearchCommand}"
+                                HorizontalOptions="End"
+                                VerticalOptions="Center">
+                                <Button.ImageSource>
+                                    <FileImageSource File="searchicon.png" />
+                                </Button.ImageSource>
+                            </Button>
+                        </Grid>
+                    </Border>
+                </Grid>
+            </Border>
+
             <Grid Grid.Row="1">
-                <CollectionView ItemsSource="{Binding Schedules}">
+                <CollectionView ItemsSource="{Binding FilteredSchedules}">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <Frame
-                                Margin="5"
+                            <Border
+                                Margin="10,10"
                                 Padding="10"
-                                BorderColor="Gray">
+                                HorizontalOptions="FillAndExpand"
+                                Stroke="{StaticResource PrimaryColor}"
+                                StrokeShape="RoundRectangle 20,20,20,20"
+                                StrokeThickness=".5">
                                 <Grid ColumnDefinitions="* ,auto">
                                     <VerticalStackLayout BackgroundColor="White">
-
-                                        <!--<VerticalStackLayout.GestureRecognizers>
-                                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.SelectScheduleCommand}" CommandParameter="{Binding .}" />
-                                        </VerticalStackLayout.GestureRecognizers>-->
 
                                         <!--  Day of the Week  -->
                                         <Label
@@ -63,10 +144,10 @@
                                         CommandParameter="{Binding .}"
                                         FontAttributes="Bold"
                                         Style="{StaticResource BaseButton}"
-                                        Text="{x:Static resource:SharedResources.Txt_StartSession}" />
+                                        Text="{x:Static resource:SharedResources.Txt_OpenSession}" />
 
                                 </Grid>
-                            </Frame>
+                            </Border>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>

@@ -1304,4 +1304,13 @@ Successfully Changed</value>
   <data name="SchedulesPage" xml:space="preserve">
     <value>Episode dates</value>
   </data>
+  <data name="Txt_OpenSession" xml:space="preserve">
+    <value>Open Session</value>
+  </data>
+  <data name="StudyGroupSessions" xml:space="preserve">
+    <value>Study Group Session</value>
+  </data>
+  <data name="AddStudents" xml:space="preserve">
+    <value>Add Students</value>
+  </data>
 </root>

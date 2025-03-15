@@ -20,12 +20,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudentEvaluation
 
 
         #region Propreties
-
-
         [ObservableProperty] private ObservableCollection<StudyGroupStudentList> studentGroup;
-
-
-
         [ObservableProperty] private double? tajweedScore;
         [ObservableProperty] private double? memorizationScore;
         [ObservableProperty] private double? understandingScore;

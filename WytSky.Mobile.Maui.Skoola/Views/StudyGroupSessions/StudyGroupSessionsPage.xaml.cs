@@ -1,4 +1,5 @@
 using WytSky.Mobile.Maui.Skoola.Helpers;
+using WytSky.Mobile.Maui.Skoola.Models;
 using WytSky.Mobile.Maui.Skoola.ViewModels.StudyGroupSession;
 
 namespace WytSky.Mobile.Maui.Skoola.Views.StudyGroupSessions;
@@ -8,11 +9,11 @@ public partial class StudyGroupSessionsPage : ContentPage
     private readonly StudyGroupSessionsVM _studyGroupSessionsVM;
     private readonly Dictionary<Button, bool> _buttonStates = new(); // Dictionary to track button states
 
-    public StudyGroupSessionsPage(StudyGroupSessionsVM viewModel)
+    public StudyGroupSessionsPage(ScheduleModel schedule)
 	{
         InitializeComponent();
-        _studyGroupSessionsVM = viewModel ?? throw new ArgumentNullException(nameof(viewModel));
         BindingContext = _studyGroupSessionsVM;
+        _studyGroupSessionsVM.SelectedSchedule = schedule;
 
     }
 
@@ -22,7 +23,7 @@ public partial class StudyGroupSessionsPage : ContentPage
 
         if (_studyGroupSessionsVM != null)
         {
-            await _studyGroupSessionsVM.GetSessions();
+            //await _studyGroupSessionsVM.GetSessions();
             await _studyGroupSessionsVM.GetAllStudents();
         }
         else

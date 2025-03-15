@@ -6,18 +6,17 @@ using WytSky.Mobile.Maui.Skoola.APIs;
 using WytSky.Mobile.Maui.Skoola.AppResources;
 using WytSky.Mobile.Maui.Skoola.Helpers;
 using WytSky.Mobile.Maui.Skoola.Models;
+using WytSky.Mobile.Maui.Skoola.ViewModels.Students;
 using WytSky.Mobile.Maui.Skoola.Views.Students;
 using WytSky.Mobile.Maui.Skoola.Views.StudyGroups;
 using WytSky.Mobile.Maui.Skoola.Views.StudyGroupStudentList;
 
 namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudyGroups;
 
-public partial class StudyGroupVM : CenterVM
+public partial class StudyGroupVM : StudentsVM
 {
     [ObservableProperty]
     public ObservableCollection<StudyGroupModel> studyGroups;
-    [ObservableProperty]
-    public ObservableCollection<StudyGroupModel> teacherStudyGroups = new ObservableCollection<StudyGroupModel>();
     [ObservableProperty] private ObservableCollection<StudyGroupModel> filteredStudyGroups 
                             = new ObservableCollection<StudyGroupModel>();
     [ObservableProperty]
@@ -62,22 +61,22 @@ public partial class StudyGroupVM : CenterVM
             {
                 StudyGroups = await StudyGroupService.GetStudyGroupsByTeacherId(TeacherID.ToString());
                 FilteredStudyGroups = new ObservableCollection<StudyGroupModel>(StudyGroups);
-                if(FilteredStudyGroups.Count > 0)
-                {
-                    ComplexNamee = StudyGroups.Select(_ => _.ComplexName).FirstOrDefault();
-                    ComplexRegionName = StudyGroups.Select(_ => _.ComplexRegionName).FirstOrDefault();
-                    CenterName = StudyGroups.Select(_ => _.CenterName).FirstOrDefault();
-                }
+                //if(FilteredStudyGroups.Count > 0)
+                //{
+                //    ComplexNamee = StudyGroups.Select(_ => _.ComplexName).FirstOrDefault();
+                //    ComplexRegionName = StudyGroups.Select(_ => _.ComplexRegionName).FirstOrDefault();
+                //    CenterName = StudyGroups.Select(_ => _.CenterName).FirstOrDefault();
+                //}
 
             }
             else
             {
                 StudyGroups = await StudyGroupService.GetStudyGroupsByCenterId();
                 FilteredStudyGroups = new ObservableCollection<StudyGroupModel>(StudyGroups);
-                ComplexNamee = StudyGroups.Select(_ => _.ComplexName).FirstOrDefault();
-                //== null ? ComplexName = TeacherStudyGroups.Select(_ => _.ComplexName).FirstOrDefault() : "";
-                ComplexRegionName = StudyGroups.Select(_ => _.ComplexRegionName).FirstOrDefault();
-                CenterName = StudyGroups.Select(_ => _.CenterName).FirstOrDefault();
+                //ComplexNamee = StudyGroups.Select(_ => _.ComplexName).FirstOrDefault();
+                ////== null ? ComplexName = TeacherStudyGroups.Select(_ => _.ComplexName).FirstOrDefault() : "";
+                //ComplexRegionName = StudyGroups.Select(_ => _.ComplexRegionName).FirstOrDefault();
+                //CenterName = StudyGroups.Select(_ => _.CenterName).FirstOrDefault();
             }
             
 
@@ -130,7 +129,7 @@ public partial class StudyGroupVM : CenterVM
             }
             else
             {
-                FilteredTeacherStudyGroups = TeacherStudyGroups;
+                FilteredTeacherStudyGroups = StudyGroups;
                 FilteredStudyGroups = StudyGroups;
             }
         }
@@ -208,7 +207,7 @@ public partial class StudyGroupVM : CenterVM
     {
         string name = App.IsArabic ? studyGroup.GroupName : studyGroup.GroupNameEn;
         Settings.StudyGroupId = studyGroup.GroupID.ToString();
-        await OpenPushAsyncPage(new StudyGroupStudentListPage());
+        await OpenPushAsyncPage(new StudyGroupStudentListPage(studyGroup));
     }
     #endregion
 }

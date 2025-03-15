@@ -38,6 +38,7 @@
                 TextLabel="{x:Static resource:SharedResources.Text_Email}" />
             <customControls:ValidationEntry
                 EntryValidatableObject="{Binding Phone}"
+                KeyboardType="Numeric"
                 Placeholder="01054784587"
                 TextLabel="{x:Static resource:SharedResources.Text_Phone}" />
             <customControls:ValidationEntry

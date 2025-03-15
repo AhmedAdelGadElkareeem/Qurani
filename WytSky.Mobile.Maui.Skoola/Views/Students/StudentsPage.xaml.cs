@@ -6,12 +6,15 @@ namespace WytSky.Mobile.Maui.Skoola.Views.Students;
 public partial class StudentsPage : BaseContentPage
 {
     StudentsVM StudentsVM = new();
-    public StudentsPage(string name)
+    public StudentsPage(CentersModel model)
     {
         InitializeComponent();
         //Title = name;
         BindingContext = StudentsVM;
-        StudentsVM.StudentCenterName = name ;
+        StudentsVM.CountryName = model.ComplexRegionCountryName;
+        StudentsVM.ComplexNamee = model.ComplexName;
+        StudentsVM.CenterName = model.CenterName;
+        StudentsVM.ComplexRegionName = model.ComplexRegionName;
 
     }
 

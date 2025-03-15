@@ -10,21 +10,25 @@ using WytSky.Mobile.Maui.Skoola.APIs;
 using WytSky.Mobile.Maui.Skoola.AppResources;
 using WytSky.Mobile.Maui.Skoola.Helpers;
 using WytSky.Mobile.Maui.Skoola.Models;
+using WytSky.Mobile.Maui.Skoola.ViewModels.Students;
 using WytSky.Mobile.Maui.Skoola.ViewModels.StudyGroupSession;
 using WytSky.Mobile.Maui.Skoola.Views.Schedules;
 using WytSky.Mobile.Maui.Skoola.Views.StudyGroupSessions;
 
 namespace WytSky.Mobile.Maui.Skoola.ViewModels.Schedules
 {
-    public partial class SchedulesVM : BaseViewModel
+    public partial class SchedulesVM : StudyGroupStudentListVM
     {
-
+        #region Properties
         [ObservableProperty] private ObservableCollection<ScheduleModel> schedules;
-        [ObservableProperty] private ScheduleModel schedule;
-        //[ObservableProperty] private ScheduleModel schedule;
+        [ObservableProperty] private ScheduleModel schedule = new ScheduleModel();
+        [ObservableProperty]
+        private ObservableCollection<ScheduleModel> filteredSchedules = new ObservableCollection<ScheduleModel>();
 
         [ObservableProperty]
         private ObservableCollection<string> daysOfWeek;
+        [ObservableProperty] private string searchText;
+
 
         [ObservableProperty]
         private string selectedDay; // Selected day from Picker
@@ -34,11 +38,11 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.Schedules
 
         [ObservableProperty]
         private TimeSpan endTime;
-
+        #endregion
 
         // Store StartTime as string in "HH:mm:ss" format
 
-
+        #region Contractor
         public SchedulesVM()
         {
             if (App.IsArabic)
@@ -59,7 +63,54 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.Schedules
                 EndTime = new TimeSpan(17, 0, 0);   // 5:00 PM
             }
         }
+        #endregion
 
+        #region Methods
+        public async Task GetSchedules()
+        {
+            try
+            {
+                IsRunning = true;
+                Schedules = await APIs.ServiceSchedule.GetScheduleGroup();
+                GroupName = Schedules.Where(_ => _.GroupID == int.Parse(Settings.StudyGroupId)).Select(_ => _.GroupName).FirstOrDefault().ToString();
+                ComplexNamee = Schedules.Select(_ => _.GroupCenterComplexName).FirstOrDefault().ToString();
+                CenterName = Schedules.Select(_ => _.GroupCenterName).FirstOrDefault().ToString();
+                //Schedules = fetchedSchedules ?? new ObservableCollection<ScheduleModel>();
+                FilteredSchedules = new ObservableCollection<ScheduleModel>(Schedules);
+
+            }
+            catch (Exception ex)
+            {
+                ExtensionLogMethods.LogExtension(ex, "", "SchedulesVM", "GetSchedules");
+                Toast.ShowToastError("Error fetching schedules.");
+            }
+            finally
+            {
+                IsRunning = false;
+            }
+        }
+        partial void OnSearchTextChanging(string value)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(value) || value.Length > 0)
+                {
+                    FilteredSchedules =
+                        new ObservableCollection<ScheduleModel>(Schedules.Where(x => x.DayOfWeekName.ToLower().Contains(value)).ToList());
+                }
+                else
+                {
+                    FilteredSchedules = Schedules;
+                }
+            }
+            catch (Exception ex)
+            {
+                ExtensionLogMethods.LogExtension(ex, "", "CenterVM", "OnSearchTextChanging");
+            }
+        }
+        #endregion
+
+        #region Commands
         [RelayCommand]
         public async Task AddSchedule()
         {
@@ -100,8 +151,8 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.Schedules
             }
             catch (Exception ex)
             {
-                ExtensionLogMethods.LogExtension(ex, "", "CenterVM", "AddComplex");
-                Toast.ShowToastError("Error", "An unexpected error occurred");
+                ExtensionLogMethods.LogExtension(ex, "", "SchedulesVM", "AddSchedule");
+                Toast.ShowToastError("Error", "Missed Data");
             }
             finally
             {
@@ -117,25 +168,6 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.Schedules
             ShowPopup(popup);
         }
 
-        public async Task GetSchedules()
-        {
-            try
-            {
-                IsRunning = true;
-                var fetchedSchedules = await APIs.ServiceSchedule.GetScheduleGroup();
-                Schedules = fetchedSchedules ?? new ObservableCollection<ScheduleModel>();
-            }
-            catch (Exception ex)
-            {
-                ExtensionLogMethods.LogExtension(ex, "", "SchedulesVM", "GetSchedules");
-                Toast.ShowToastError("Error fetching schedules.");
-            }
-            finally
-            {
-                IsRunning = false;
-            }
-        }
-
         [RelayCommand]
         private async Task SelectSchedule(ScheduleModel schedule)
         {
@@ -146,37 +178,11 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.Schedules
             }
 
             Schedules = await ServiceSchedule.GetScheduleById();
-            Schedule = Schedules.Where(_=> _.ScheduleID == schedule.ScheduleID).FirstOrDefault() ;
-            var formData = new Dictionary<string, object>
-                {
-
-                    { "SessionDate", Schedule.CreatedDate.HasValue ? Schedule.CreatedDate.Value.ToString("yyyy-MM-ddTHH:mm:ss.fff") : null } ,
-                    { "DayOfWeekName" , Schedule.DayOfWeekName },
-                    { "StartTime" , Schedule.StartTime },
-                    { "EndTime" , Schedule.EndTime },
-                    { "GroupID" , Settings.StudyGroupId},
-                    { "ScheduleID" , Schedule.ScheduleID},
-
-
-
-                };
-            var result = await APIs.SessionService.AddStudyGroupSession(formData);
-            if (result != null)
-            {
-                Toast.ShowToastSuccess(SharedResources.AddedSuccessfully);
-            }
-            else
-            {
-                Toast.ShowToastError("");
-            }
+            Schedule = Schedules.Where(_ => _.ScheduleID == schedule.ScheduleID).FirstOrDefault();
             Settings.ScheduleId = Schedule.ScheduleID.ToString();
-            var viewModel = new StudyGroupSessionsVM(Schedule);
-            var nextPage = new StudyGroupSessionsPage(viewModel);
-
-            await OpenPushAsyncPage(nextPage);
+            await OpenPushAsyncPage(new StudyGroupSessionsPage(Schedule));
         }
-
-
+        #endregion
 
     }
 }

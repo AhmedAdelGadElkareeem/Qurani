@@ -7,70 +7,70 @@
     xmlns:customControls="clr-namespace:WytSky.Mobile.Maui.Skoola.CustomControl"
     xmlns:res="clr-namespace:WytSky.Mobile.Maui.Skoola.AppResources"
     xmlns:resource="clr-namespace:WytSky.Mobile.Maui.Skoola.AppResources"
-    Title="StudyGroupSessionsPage">
+    Title="{x:Static res:SharedResources.StudyGroupSessions}">
 
-    <Grid RowDefinitions="Auto, Auto, Auto, *, Auto">
+    <Grid RowDefinitions="auto,auto,*,*">
 
         <!--  Sessions CollectionView  -->
-        <Grid Grid.Row="1">
-            <CollectionView ItemsSource="{Binding Sessions}">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Border Margin="5" Padding="10">
-                            <Grid ColumnDefinitions="*,auto">
-                                <VerticalStackLayout BackgroundColor="White">
-                                    <Label
-                                        FontAttributes="Bold"
-                                        FontSize="18"
-                                        Text="{Binding GroupTeacherFullName}"
-                                        TextColor="{StaticResource Black}" />
-                                    <Label
-                                        FontAttributes="Bold"
-                                        FontSize="18"
-                                        Text="{Binding DayOfWeekName}"
-                                        TextColor="{StaticResource Black}" />
-                                    <HorizontalStackLayout Spacing="10">
-                                        <Label
-                                            FontAttributes="Bold"
-                                            FontSize="14"
-                                            Text="{x:Static resource:SharedResources.FromDate}"
-                                            TextColor="Black" />
-                                        <Label
-                                            FontAttributes="Bold"
-                                            FontSize="15"
-                                            Text="{Binding StartTime, StringFormat='{0:hh\\:mm}'}"
-                                            TextColor="{StaticResource Black}" />
-                                        <Label
-                                            FontAttributes="Bold"
-                                            FontSize="14"
-                                            Text="{x:Static resource:SharedResources.ToDate}"
-                                            TextColor="Black" />
-                                        <Label
-                                            FontAttributes="Bold"
-                                            FontSize="15"
-                                            Text="{Binding EndTime, StringFormat='{0:hh\\:mm}'}"
-                                            TextColor="{StaticResource Black}" />
-                                    </HorizontalStackLayout>
-                                </VerticalStackLayout>
-                                <Button
-                                    Grid.Column="1"
-                                    BackgroundColor="{StaticResource PrimaryColor}"
-                                    Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.AddSesionCommand}"
-                                    CommandParameter="{Binding .}"
-                                    FontAttributes="Bold"
-                                    FontSize="16"
-                                    HorizontalOptions="End"
-                                    Text="{x:Static resource:SharedResources.Txt_StartSession}"
-                                    TextColor="{StaticResource Black}" />
-                            </Grid>
-                        </Border>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+        <Grid Grid.Row="0">
+            <Border
+                Margin="5"
+                Padding="10"
+                HorizontalOptions="FillAndExpand"
+                Stroke="{StaticResource PrimaryColor}"
+                StrokeShape="RoundRectangle 20,20,20,20"
+                StrokeThickness=".5">
+                <Grid ColumnDefinitions="*,auto">
+                    <VerticalStackLayout BackgroundColor="White">
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="18"
+                            Text="{Binding SelectedSchedule.GroupTeacherFullName}"
+                            TextColor="{StaticResource Black}" />
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="18"
+                            Text="{Binding SelectedSchedule.DayOfWeekName}"
+                            TextColor="{StaticResource Black}" />
+                        <HorizontalStackLayout Spacing="10">
+                            <Label
+                                FontAttributes="Bold"
+                                FontSize="14"
+                                Text="{x:Static resource:SharedResources.FromDate}"
+                                TextColor="Black" />
+                            <Label
+                                FontAttributes="Bold"
+                                FontSize="15"
+                                Text="{Binding SelectedSchedule.StartTime, StringFormat='{0:hh\\:mm}'}"
+                                TextColor="{StaticResource Black}" />
+                            <Label
+                                FontAttributes="Bold"
+                                FontSize="14"
+                                Text="{x:Static resource:SharedResources.ToDate}"
+                                TextColor="Black" />
+                            <Label
+                                FontAttributes="Bold"
+                                FontSize="15"
+                                Text="{Binding SelectedSchedule.EndTime, StringFormat='{0:hh\\:mm}'}"
+                                TextColor="{StaticResource Black}" />
+                        </HorizontalStackLayout>
+                    </VerticalStackLayout>
+                    <Button
+                        Grid.Column="1"
+                        BackgroundColor="{StaticResource PrimaryColor}"
+                        Command="{Binding StartSesionCommand}"
+                        CommandParameter="{Binding .}"
+                        FontAttributes="Bold"
+                        FontSize="16"
+                        HorizontalOptions="End"
+                        Text="{x:Static resource:SharedResources.Txt_StartSession}"
+                        TextColor="{StaticResource Black}" />
+                </Grid>
+            </Border>
         </Grid>
 
         <!--  Students CollectionView  -->
-        <Grid Grid.Row="3" IsVisible="{Binding IsStudentVisible}">
+        <Grid Grid.Row="1" IsVisible="{Binding IsStudentVisible}">
             <CollectionView Margin="15,10,15,0" ItemsSource="{Binding Students}">
                 <CollectionView.ItemsLayout>
                     <LinearItemsLayout ItemSpacing="15" Orientation="Vertical" />
@@ -113,6 +113,7 @@
         </Grid>
 
         <!--  Attendance Button at the Bottom  -->
+
         <Button
             Grid.Row="4"
             Margin="20"
@@ -123,7 +124,8 @@
             HeightRequest="50"
             HorizontalOptions="Fill"
             Text="{x:Static resource:SharedResources.Add_Evaluation}"
-            TextColor="{StaticResource Black}" />
+            TextColor="{StaticResource Black}"
+            VerticalOptions="End" />
 
         <!--  Loading Indicator  -->
         <ActivityIndicator

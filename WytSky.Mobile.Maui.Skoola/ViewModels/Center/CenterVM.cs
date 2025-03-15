@@ -11,7 +11,7 @@ using WytSky.Mobile.Maui.Skoola.Views.StudyGroups;
 
 namespace WytSky.Mobile.Maui.Skoola.ViewModels
 {
-    public partial class CenterVM : BaseViewModel
+    public partial class CenterVM : ComplexesVM
     {
         [ObservableProperty] private ObservableCollection<CentersModel> centers;
         [ObservableProperty] private ObservableCollection<CentersModel> filteredCenters= new ObservableCollection<CentersModel>();
@@ -23,21 +23,19 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
         [ObservableProperty] private string phone;
         [ObservableProperty] private string email;
         [ObservableProperty] private string notes;
-        [ObservableProperty] public string complexRegionName;
+
+        [ObservableProperty] private string countryName;
         [ObservableProperty] public string complexNamee;
+        [ObservableProperty] public string complexRegionName;
         [ObservableProperty] public string complexRegionCountryName;
         [ObservableProperty] public string centerName;
         [ObservableProperty] public string studentCenterName;
         [ObservableProperty] public string groupName;
+        [ObservableProperty] public string teacherFullName;
 
 
 
         #region Methods
-        [RelayCommand]
-        private void ClearText()
-        {
-            SearchText = string.Empty;
-        }
         public async Task GetCenters()
         {
             try
@@ -48,6 +46,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
                 ComplexNamee = Centers.Select(_ => _.ComplexName).FirstOrDefault();
                 ComplexRegionName = Centers.Select(_ => _.ComplexRegionName).FirstOrDefault();
                 ComplexRegionCountryName = Centers.Select(_ => _.ComplexRegionCountryName).FirstOrDefault();
+                CountryName = Centers.Select(_ => _.ComplexRegionCountryName).FirstOrDefault();
                 IsRunning = false;
             }
             catch (Exception ex)
@@ -154,7 +153,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
         {
             Settings.CenterId = centerModel.CenterID.ToString();
             //string name = App.IsArabic ? centerModel.CenterName : centerModel.CenterNameEn;
-            await OpenPushAsyncPage(new StudyGroupsPage());
+            await OpenPushAsyncPage(new StudyGroupsPage(centerModel));
         }
 
         [RelayCommand]
@@ -168,42 +167,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
         public async Task OpenStudents(CentersModel centerModel)
         {
             Settings.CenterId = centerModel.CenterID.ToString();
-            string name = App.IsArabic ? centerModel.CenterName : centerModel.CenterNameEn;
-            //StudentCenterName =  App.IsArabic ? centerModel.CenterName : centerModel.CenterNameEn;
-            await OpenPushAsyncPage(new StudentsPage(name));
-        }
-        [RelayCommand(CanExecute = nameof(CanExecute))]
-        private async Task Search()
-        {
-            try
-            {
-                IsRunning = true;
-                if (SearchText == null)
-                    return;
-                // Filter the complexes based on SearchText
-                if (string.IsNullOrWhiteSpace(SearchText))
-                {
-                    // If SearchText is empty, show all complexes
-                    FilteredCenters = new ObservableCollection<CentersModel>(Centers);
-                }
-                else
-                {
-                    // Filter complexes that contain the SearchText (case-insensitive)
-                    var filtered = Centers
-                        .Where(c => c.CenterName.Contains(SearchText, StringComparison.OrdinalIgnoreCase))
-                        .ToList();
-
-                    FilteredCenters = new ObservableCollection<CentersModel>(filtered);
-                }
-            }
-            catch (Exception ex)
-            {
-                ExtensionLogMethods.LogExtension(ex, "", "AllVisitVM", "Search");
-            }
-            finally
-            {
-                IsRunning = false;
-            }
+            await OpenPushAsyncPage(new StudentsPage(centerModel));
         }
         #endregion
     }

@@ -10,6 +10,7 @@ using WytSky.Mobile.Maui.Skoola.APIs;
 using WytSky.Mobile.Maui.Skoola.AppResources;
 using WytSky.Mobile.Maui.Skoola.Helpers;
 using WytSky.Mobile.Maui.Skoola.Models;
+using WytSky.Mobile.Maui.Skoola.ViewModels.Schedules;
 using WytSky.Mobile.Maui.Skoola.ViewModels.Studentattendance;
 using WytSky.Mobile.Maui.Skoola.ViewModels.Students;
 using WytSky.Mobile.Maui.Skoola.Views.Schedules;
@@ -17,7 +18,7 @@ using WytSky.Mobile.Maui.Skoola.Views.StudentEvaluation;
 
 namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudyGroupSession
 {
-    public partial class StudyGroupSessionsVM : BaseViewModel
+    public partial class StudyGroupSessionsVM : SchedulesVM
     {
         #region Propreties
 
@@ -30,18 +31,16 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudyGroupSession
         [ObservableProperty] private int? sessinId;
 
 
-        [ObservableProperty] private bool isStudentVisible = false ;
+        [ObservableProperty] private bool isStudentVisible = false;
 
-        public ScheduleModel SelectedSchedule { get; }
+        [ObservableProperty] public ScheduleModel selectedSchedule = new ScheduleModel();
 
         public StudyGroupSessionsVM(ScheduleModel schedule)
         {
             if (schedule == null)
                 throw new ArgumentNullException(nameof(schedule), "ScheduleModel cannot be null");
 
-            
-
-            SelectedSchedule = schedule ;
+            SelectedSchedule = schedule;
         }
         #endregion
 
@@ -62,46 +61,45 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudyGroupSession
         #region Session 
 
         [RelayCommand]
-        public async Task AddSesion(SessionModel session)
+        public async Task StartSesion(SessionModel session)
         {
             try
             {
 
                 IsRunning = true;
 
-
-                if (session != null) 
+                if (session != null)
                 {
-                    SessinId = session.SessionID; 
+                    SessinId = session.SessionID;
                     Settings.SessionId = SessinId.ToString();
-                }
-                var formData = new Dictionary<string, object>
-                {
-                 
-                    { "SessionDate", SelectedSchedule.CreatedDate},
-                    { "ComplexID" , Settings.ComplexId},
-                    { "DayOfWeekName" , SelectedSchedule.DayOfWeekName },
-                    { "TimeIn" , DateTime.Now.ToString("HH:mm:ss") },
-                    { "StartTime" , SelectedSchedule.StartTime },
-                    { "EndTime" , SelectedSchedule.EndTime },
-                    { "GroupID" , Settings.StudyGroupId},
-                    { "ScheduleID" , SelectedSchedule.ScheduleID},
-
-
-
-                };
-                var result = await APIs.SessionService.AddStudyGroupSession(formData);
-                if (result != null)
-                {
-                    HidePopup();
-                    Toast.ShowToastSuccess(SharedResources.AddedSuccessfully);
-                    await GetSessions();
                     IsStudentVisible = true;
+
                 }
                 else
                 {
-                    Toast.ShowToastError("");
+                    var formData = new Dictionary<string, object>
+                    {
+
+                        { "SessionDate", Schedule.CreatedDate.HasValue ? Schedule.CreatedDate.Value.ToString("yyyy-MM-ddTHH:mm:ss.fff") : null } ,
+                        { "DayOfWeekName" , Schedule.DayOfWeekName },
+                        { "StartTime" , Schedule.StartTime },
+                        { "EndTime" , Schedule.EndTime },
+                        { "GroupID" , Settings.StudyGroupId},
+                        { "ScheduleID" , Schedule.ScheduleID},
+                    };
+
+                    var result = await APIs.SessionService.AddStudyGroupSession(formData);
+
+                    if (result != null)
+                    {
+                        Toast.ShowToastSuccess(SharedResources.AddedSuccessfully);
+                    }
+                    else
+                    {
+                        Toast.ShowToastError("");
+                    }
                 }
+                
             }
             catch (Exception ex)
             {
@@ -115,24 +113,15 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudyGroupSession
         }
 
         [RelayCommand]
-        public void OpenAddSchedules()
+        public async Task OpenEvaluationPage()
         {
-            var popup = new AddSchedules();
-            popup.BindingContext = this;
-            ShowPopup(popup);
-        }
-
-        [RelayCommand]
-        public async Task OpenEvaluationPage() 
-        {
-            await OpenPushAsyncPage(new AddStudentEvaluationPage(SelectedSchedule ));
-
+            await OpenPushAsyncPage(new AddStudentEvaluationPage(SelectedSchedule));
         }
         #endregion
 
         #region Attendance
         [RelayCommand]
-        public async Task AddStudentAttendance(StudyGroupStudentList StudyGroupStudentModel) 
+        public async Task AddStudentAttendance(StudyGroupStudentList StudyGroupStudentModel)
         {
             try
             {
@@ -149,7 +138,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudyGroupSession
                     { "TimeOut" , SelectedSchedule.EndTime },
                     { "SessionID" , SessinId},
 
-                  
+
 
                 };
                 var result = await APIs.ServiceAttendance.AddGroupAttendance(formData);

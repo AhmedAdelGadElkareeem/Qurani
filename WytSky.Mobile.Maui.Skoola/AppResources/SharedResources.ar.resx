@@ -1306,4 +1306,13 @@
   <data name="SchedulesPage" xml:space="preserve">
     <value>مواعيد الحلقة</value>
   </data>
+  <data name="Txt_OpenSession" xml:space="preserve">
+    <value>عرض الجلسة</value>
+  </data>
+  <data name="StudyGroupSessions" xml:space="preserve">
+    <value>الجلسـة</value>
+  </data>
+  <data name="AddStudents" xml:space="preserve">
+    <value>إضافة طلاب</value>
+  </data>
 </root>

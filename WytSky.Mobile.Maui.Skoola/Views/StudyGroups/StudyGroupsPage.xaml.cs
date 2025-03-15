@@ -6,13 +6,16 @@ namespace WytSky.Mobile.Maui.Skoola.Views.StudyGroups;
 public partial class StudyGroupsPage : BaseContentPage
 {
     StudyGroupVM studyGroupVM = new();
-    public StudyGroupsPage(string? id)
+    public StudyGroupsPage(CentersModel model)
     {
         InitializeComponent();
         BindingContext = studyGroupVM;
-        studyGroupVM.TeacherID = id;
+        //studyGroupVM.TeacherID = id;
         //studyGroupVM.GetCenters();
-        studyGroupVM.FromCenter = false;
+        studyGroupVM.CountryName = model.ComplexRegionCountryName;
+        studyGroupVM.ComplexNamee = model.ComplexName;
+        studyGroupVM.CenterName = model.CenterName;
+        studyGroupVM.ComplexRegionName = model.ComplexRegionName;
     }
     public StudyGroupsPage()
     {
