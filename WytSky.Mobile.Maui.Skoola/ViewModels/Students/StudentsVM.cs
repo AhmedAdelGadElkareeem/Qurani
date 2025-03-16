@@ -34,15 +34,45 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.Students
         [ObservableProperty]
         public string regVerficationCode;
         #endregion
+        //public StudentsVM()
+        //{
+        //     GetStudentsByCenterId();
+        //}
         public async Task GetStudentsByStudyGroupId()
         {
             IsRunning = true;
-            Students = await StudentService.GetStudents();
-            FilteredStudents = new ObservableCollection<StudentModel>(Students);
-            //CountryName = Students.Select(_ => _.CountryName).FirstOrDefault();
-            //ComplexNamee = Students.Select(_ => _.ComplexName).ToString();
-            //CenterName = Students.Select(_ => _.CenterName).ToString();
-            IsRunning = false;
+            try
+            {
+                Students = await StudentService.GetStudents();
+                FilteredStudents = new ObservableCollection<StudentModel>(Students);
+            }
+            catch (Exception ex)
+            {
+                ExtensionLogMethods.LogExtension(ex, "", "StudentsVM", "GetStudentsByStudyGroupId");
+            }
+            finally
+            {
+                IsRunning = false;
+            }
+        }
+        public async Task GetStudentsByCenterId()
+        {
+            IsRunning = true;
+            try
+            {
+                Students = await StudentService.GetStudentsByCenterId();
+                FilteredStudents = new ObservableCollection<StudentModel>(Students);
+            }
+            catch (Exception ex)
+            {
+                ExtensionLogMethods.LogExtension(ex, "", "StudentsVM", "GetStudentsByCenterId");
+
+            }
+            finally 
+            { 
+                IsRunning = false; 
+            }
+            
         }
         partial void OnSearchTextChanging(string value)
         {
@@ -60,16 +90,24 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.Students
             }
             catch (Exception ex)
             {
-                ExtensionLogMethods.LogExtension(ex, "", "StaffVM", "OnSearchTextChanging");
+                ExtensionLogMethods.LogExtension(ex, "", "StudentsVM", "OnSearchTextChanging");
             }
         }
 
         [RelayCommand]
         public void OpenAddStudent()
         {
-            var popup = new AddStudentPopup();
-            popup.BindingContext = this;
-            ShowPopup(popup);
+            try
+            {
+                var popup = new AddStudentPopup();
+                popup.BindingContext = this;
+                ShowPopup(popup);
+            }
+            catch (Exception ex)
+            {
+                ExtensionLogMethods.LogExtension(ex, "", "StaffVM", "OpenAddStudent");
+            }
+
         }
 
         [RelayCommand]
@@ -77,12 +115,9 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.Students
         {
             try
             {
-
                 var userName = UserName.Value.Replace(" ", "");
-
                 if (ChekRegisterData())
                 {
-                  
                     Dictionary<string, string> keys = new Dictionary<string, string>()
                     {
                         { "Email", Email.Value}
@@ -162,7 +197,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.Students
 
             catch (Exception e)
             {
-                string er = e.Message;
+                ExtensionLogMethods.LogExtension(e, "", "StudentsVM", "AddStudent");
             }
             finally
             {

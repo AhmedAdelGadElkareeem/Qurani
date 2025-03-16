@@ -23,7 +23,7 @@ public partial class StudentsPage : BaseContentPage
         try
         {
             base.OnAppearing();
-            await StudentsVM.GetStudentsByStudyGroupId();
+            await StudentsVM.GetStudentsByCenterId();
         }
         catch (Exception ex)
         {

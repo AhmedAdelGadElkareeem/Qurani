@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
+using WytSky.Mobile.Maui.Skoola.APIs;
 using WytSky.Mobile.Maui.Skoola.AppResources;
 using WytSky.Mobile.Maui.Skoola.Helpers;
 using WytSky.Mobile.Maui.Skoola.Models;
@@ -13,6 +14,8 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
 {
     public partial class CenterVM : ComplexesVM
     {
+        //[ObservableProperty] private ObservableCollection<StudentModel> students;
+
         [ObservableProperty] private ObservableCollection<CentersModel> centers;
         [ObservableProperty] private ObservableCollection<CentersModel> filteredCenters= new ObservableCollection<CentersModel>();
         [ObservableProperty] private string searchText;
@@ -43,10 +46,6 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
                 IsRunning = true;
                 Centers = await APIs.ServiceCenter.GetCenter();
                 FilteredCenters = new ObservableCollection<CentersModel>(Centers);
-                //ComplexNamee = Centers.Select(_ => _.ComplexName).FirstOrDefault();
-                //ComplexRegionName = Centers.Select(_ => _.ComplexRegionName).FirstOrDefault();
-                //ComplexRegionCountryName = Centers.Select(_ => _.ComplexRegionCountryName).FirstOrDefault();
-                //CountryName = Centers.Select(_ => _.ComplexRegionCountryName).FirstOrDefault();
                 IsRunning = false;
             }
             catch (Exception ex)
@@ -94,9 +93,16 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
         [RelayCommand]
         public void OpenAddCenter()
         {
-            var popup = new AddCenter();
-            popup.BindingContext = this;
-            ShowPopup(popup);
+            try
+            {
+                var popup = new AddCenter();
+                popup.BindingContext = this;
+                ShowPopup(popup);
+            }
+            catch (Exception ex)
+            {
+                ExtensionLogMethods.LogExtension(ex, "", "CenterVM", "OpenAddCenter");
+            }
         }
 
         [RelayCommand]
@@ -151,23 +157,44 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
         [RelayCommand]
         public async Task OpenStudyGroups(CentersModel centerModel)
         {
-            Settings.CenterId = centerModel.CenterID.ToString();
-            //string name = App.IsArabic ? centerModel.CenterName : centerModel.CenterNameEn;
-            await OpenPushAsyncPage(new StudyGroupsPage(centerModel));
+            try
+            {
+                Settings.CenterId = centerModel.CenterID.ToString();
+                //string name = App.IsArabic ? centerModel.CenterName : centerModel.CenterNameEn;
+                await OpenPushAsyncPage(new StudyGroupsPage(centerModel));
+            }
+            catch (Exception ex)
+            {
+                ExtensionLogMethods.LogExtension(ex, "", "CenterVM", "OpenStudyGroups");
+            }
         }
 
         [RelayCommand]
         public async Task OpenStaffs(CentersModel centerModel)
         {
-            Settings.CenterId = centerModel.CenterID.ToString();
-            await OpenPushAsyncPage(new StaffPage(centerModel));
+            try
+            {
+                Settings.CenterId = centerModel.CenterID.ToString();
+                await OpenPushAsyncPage(new StaffPage(centerModel));
+            }
+            catch (Exception ex)
+            {
+                ExtensionLogMethods.LogExtension(ex, "", "CenterVM", "OpenStaffs");
+            }
         }
 
         [RelayCommand]
         public async Task OpenStudents(CentersModel centerModel)
         {
-            Settings.CenterId = centerModel.CenterID.ToString();
-            await OpenPushAsyncPage(new StudentsPage(centerModel));
+            try
+            {
+                Settings.CenterId = centerModel.CenterID.ToString();
+                await OpenPushAsyncPage(new StudentsPage(centerModel));
+            }
+            catch (Exception ex)
+            {
+                ExtensionLogMethods.LogExtension(ex, "", "CenterVM", "OpenStudents");
+            }
         }
         #endregion
     }

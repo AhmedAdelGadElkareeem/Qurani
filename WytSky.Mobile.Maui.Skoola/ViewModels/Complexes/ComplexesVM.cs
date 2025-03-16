@@ -59,22 +59,30 @@ public partial class ComplexesVM : BaseViewModel
     }
     private async Task LoadRegions(string countryId)
     {
-        if (_cachedRegions.ContainsKey(countryId))
+        try
         {
-            //Regions.Clear();
-            //foreach (var region in _cachedRegions[countryId])
-            //{
-            //    Regions.Add(region);
-            //}
-            return;
-        }
-        var regions = await APIs.ServiceCountriesRegions.GetRegions(countryId);
-        _cachedRegions[countryId] = regions.ToList();
+            if (_cachedRegions.ContainsKey(countryId))
+            {
+                //Regions.Clear();
+                //foreach (var region in _cachedRegions[countryId])
+                //{
+                //    Regions.Add(region);
+                //}
+                return;
+            }
+            var regions = await APIs.ServiceCountriesRegions.GetRegions(countryId);
+            _cachedRegions[countryId] = regions.ToList();
 
-        Regions.Clear();
-        foreach (var region in regions)
+            Regions.Clear();
+            foreach (var region in regions)
+            {
+                Regions.Add(region);
+            }
+        }
+        catch (Exception ex)
         {
-            Regions.Add(region);
+
+            ExtensionLogMethods.LogExtension(ex, "", "ComplexesVM", "LoadRegions");
         }
     }
     public void ClearRegionCache()
@@ -104,12 +112,19 @@ public partial class ComplexesVM : BaseViewModel
     }
     partial void OnSelectedCountryChanged(CountryModel value)
     {
-        //await GetRegions(SelectedCountry.CountryID.ToString());
-        //SelectedCountry = value;
-        if (value != null)
+        try
         {
-            // Load regions for the selected country
-            LoadRegions(value.CountryID.ToString());
+            //await GetRegions(SelectedCountry.CountryID.ToString());
+            //SelectedCountry = value;
+            if (value != null)
+            {
+                // Load regions for the selected country
+                LoadRegions(value.CountryID.ToString());
+            }
+        }
+        catch (Exception ex)
+        {
+            ExtensionLogMethods.LogExtension(ex, "", "ComplexVM", "OnSelectedCountryChanged");
         }
     }
     partial void OnSelectedRegionChanged(RegionModel value)
@@ -192,7 +207,8 @@ public partial class ComplexesVM : BaseViewModel
         }
         catch (Exception ex)
         {
-            string er = ex.Message;
+            ExtensionLogMethods.LogExtension(ex, "", "ComplexVM", "OpenAddComplex");
+
         }
     }
 
