@@ -48,6 +48,9 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
         public string studentID;
 
         [ObservableProperty]
+        public string userName = Settings.UserName;
+
+        [ObservableProperty]
         private ObservableCollection<StudentModel> studentsList;
 
         [ObservableProperty]

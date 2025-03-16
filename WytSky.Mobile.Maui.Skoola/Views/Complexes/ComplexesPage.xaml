@@ -18,65 +18,106 @@
             <Border
                 Padding="0"
                 BackgroundColor="{StaticResource PrimaryColor}"
-                HeightRequest="100"
+                HeightRequest="150"
                 HorizontalOptions="FillAndExpand"
                 Stroke="{StaticResource Gray400}"
                 StrokeShape="RoundRectangle 0,0,70,70"
                 StrokeThickness=".5"
                 VerticalOptions="Start">
-                <Border
-                    Margin="30,30,30,10"
-                    Padding="0"
-                    HeightRequest="50"
-                    HorizontalOptions="FillAndExpand"
-                    Stroke="{StaticResource Gray400}"
-                    StrokeShape="RoundRectangle 20,20,20,20"
-                    StrokeThickness=".5"
-                    VerticalOptions="End">
-                    <Border.Background>
-                        <LinearGradientBrush EndPoint="0,1">
-                            <GradientStop Offset="0.1" Color="WhiteSmoke" />
-                            <GradientStop Offset="1.0" Color="White" />
-                        </LinearGradientBrush>
-                    </Border.Background>
-                    <Grid>
-                        <!--  Entry for Search Text  -->
-                        <customControl:BorderlessEntry
-                            Margin="10,0"
-                            FontFamily="AhlanWorldArbfonts"
-                            Placeholder="{x:Static resource:SharedResources.SearchByName}"
-                            PlaceholderColor="{StaticResource DarkBlue}"
-                            Style="{StaticResource BoldLabelFont16}"
-                            Text="{Binding SearchText}"
-                            TextColor="{StaticResource Black}" />
 
-                        <!--  Clear Icon Button (Left Side)  -->
-                        <Button
-                            BackgroundColor="Transparent"
-                            Command="{Binding ClearTextCommand}"
+                <Grid>
+                    <!--  Centered Content  -->
+                    <Grid
+                        Margin="10,10,10,0"
+                        ColumnDefinitions="auto, *"
+                        HorizontalOptions="Start"
+                        VerticalOptions="Start">
+
+                        <!--  User Image  -->
+                        <Image
+                            Grid.Column="0"
+                            Aspect="AspectFit"
                             HorizontalOptions="Start"
-                            IsVisible="{Binding SearchText, Converter={StaticResource StringToBoolConverter}}"
+                            Source="arabuser"
+                            Style="{StaticResource ImageSize60}" />
+
+                        <!--  Labels beside the Image  -->
+                        <VerticalStackLayout
+                            Grid.Column="1"
+                            Margin="10,0,0,0"
                             VerticalOptions="Center">
-                            <!--<Button.ImageSource>
-                                <FileImageSource File="clearfilter.png" />
-                            </Button.ImageSource>-->
-                        </Button>
-
-
-                        <!--  Search Icon Button  -->
-                        <Button
-                            BackgroundColor="Transparent"
-                            Command="{Binding SearchCommand}"
-                            HorizontalOptions="End"
-                            VerticalOptions="Center">
-                            <Button.ImageSource>
-                                <FileImageSource File="searchicon.png" />
-                            </Button.ImageSource>
-                        </Button>
-
+                            <Label FontAttributes="Bold" TextColor="{StaticResource Black}">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span
+                                            FontFamily="ManropeBold"
+                                            FontSize="16"
+                                            Text="{x:Static resource:SharedResources.Text_Hi}" />
+                                        <Span Text=", " />
+                                        <Span
+                                            FontFamily="ManropeBold"
+                                            FontSize="16"
+                                            Text="{Binding UserName}" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label
+                                Style="{StaticResource RegularLabelFont14}"
+                                Text="{x:Static resource:SharedResources.Text_WelcomeToQurani}"
+                                TextColor="{StaticResource Black}" />
+                        </VerticalStackLayout>
                     </Grid>
-                </Border>
+
+                    <!--  Bottom Search Bar  -->
+                    <Border
+                        Margin="30,30,30,10"
+                        Padding="0"
+                        HeightRequest="50"
+                        HorizontalOptions="FillAndExpand"
+                        Stroke="{StaticResource Gray400}"
+                        StrokeShape="RoundRectangle 20,20,20,20"
+                        StrokeThickness=".5"
+                        VerticalOptions="End">
+                        <Border.Background>
+                            <LinearGradientBrush EndPoint="0,1">
+                                <GradientStop Offset="0.1" Color="WhiteSmoke" />
+                                <GradientStop Offset="1.0" Color="White" />
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <Grid>
+                            <!--  Entry for Search Text  -->
+                            <customControl:BorderlessEntry
+                                Margin="10,0"
+                                FontFamily="AhlanWorldArbfonts"
+                                Placeholder="{x:Static resource:SharedResources.SearchByName}"
+                                PlaceholderColor="{StaticResource DarkBlue}"
+                                Style="{StaticResource BoldLabelFont16}"
+                                Text="{Binding SearchText}"
+                                TextColor="{StaticResource Black}" />
+
+                            <!--  Clear Icon Button (Left Side)  -->
+                            <Button
+                                BackgroundColor="Transparent"
+                                Command="{Binding ClearTextCommand}"
+                                HorizontalOptions="Start"
+                                IsVisible="{Binding SearchText, Converter={StaticResource StringToBoolConverter}}"
+                                VerticalOptions="Center" />
+
+                            <!--  Search Icon Button  -->
+                            <Button
+                                BackgroundColor="Transparent"
+                                Command="{Binding SearchCommand}"
+                                HorizontalOptions="End"
+                                VerticalOptions="Center">
+                                <Button.ImageSource>
+                                    <FileImageSource File="searchicon.png" />
+                                </Button.ImageSource>
+                            </Button>
+                        </Grid>
+                    </Border>
+                </Grid>
             </Border>
+
 
             <Grid Grid.Row="1">
                 <CollectionView Margin="15,10,15,0" ItemsSource="{Binding FilteredComplexes}">

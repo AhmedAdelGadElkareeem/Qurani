@@ -1331,4 +1331,7 @@ Successfully Changed</value>
   <data name="AllStudents" xml:space="preserve">
     <value>All Students</value>
   </data>
+  <data name="Txt_Sessions" xml:space="preserve">
+    <value>Sessions</value>
+  </data>
 </root>

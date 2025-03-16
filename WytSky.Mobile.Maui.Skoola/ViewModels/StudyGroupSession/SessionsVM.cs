@@ -8,27 +8,25 @@ using System.Text;
 using System.Threading.Tasks;
 using WytSky.Mobile.Maui.Skoola.APIs;
 using WytSky.Mobile.Maui.Skoola.AppResources;
-using WytSky.Mobile.Maui.Skoola.Enums;
 using WytSky.Mobile.Maui.Skoola.Helpers;
 using WytSky.Mobile.Maui.Skoola.Models;
 using WytSky.Mobile.Maui.Skoola.ViewModels.Schedules;
-using WytSky.Mobile.Maui.Skoola.ViewModels.Studentattendance;
-using WytSky.Mobile.Maui.Skoola.ViewModels.Students;
-using WytSky.Mobile.Maui.Skoola.Views.Schedules;
 using WytSky.Mobile.Maui.Skoola.Views.StudentEvaluation;
 
 namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudyGroupSession
 {
-    public partial class StudyGroupSessionsVM : SchedulesVM
+    partial class SessionsVM : SchedulesVM
     {
         #region Propreties
 
         [ObservableProperty] private ObservableCollection<SessionModel> sessions;
 
-        [ObservableProperty] private ObservableCollection<StudyGroupStudentList> students 
+        [ObservableProperty]
+        private ObservableCollection<StudyGroupStudentList> students
                                      = new ObservableCollection<StudyGroupStudentList>();
-        [ObservableProperty] private ObservableCollection<StudyGroupStudentList> filteredStudents 
-                                     = new ObservableCollection<StudyGroupStudentList>();
+        [ObservableProperty]
+        private ObservableCollection<SessionModel> filteredsessions
+                                     = new ObservableCollection<SessionModel>();
 
         [ObservableProperty] private string searchText;
         [ObservableProperty] private ScheduleModel sessionSchedule = new ScheduleModel();
@@ -47,8 +45,8 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudyGroupSession
         [ObservableProperty] public int all = 0;
         [ObservableProperty] public int availableCount = 0;
         [ObservableProperty] public int absentCount = 0;
-        //[ObservableProperty]
-        //public ObservableCollection<StudyGroupStudentList> FilteredStudents = new ObservableCollection<StudyGroupStudentList>();
+       [ObservableProperty]
+       public ObservableCollection<StudyGroupStudentList> filteredStudents = new ObservableCollection<StudyGroupStudentList>();
         #endregion
 
         #endregion
@@ -59,7 +57,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudyGroupSession
         #region Session 
 
         [RelayCommand]
-        public async Task StartSesion()
+        public async Task OpenSesion()
         {
             try
             {
@@ -155,48 +153,15 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudyGroupSession
                 IsRunning = false;
             }
         }
+        #endregion
 
-        [RelayCommand]
-        public async Task FetchStudents(Enums.StudentsStatus obj)
-        {
-            try
-            {
-                // Clear the current filtered list
-                FilteredStudents.Clear();
-
-                #endregion
-                // Filter based on the user status using a switch expression
-                IEnumerable<StudyGroupStudentList> filteredStudents = obj switch
-                {
-                StudentsStatus.Available => FilteredStudents.Where(x => x.Status == "true"),
-                //StudentsStatus.All => FilteredStudents.Count(),
-                StudentsStatus.Absent => FilteredStudents.Where(x => x.Status == "false"),
-                StudentsStatus.All => FilteredStudents = Students,
-                _ => FilteredStudents, // If no specific filter, just display all users
-                };
-
-                // Add filtered  to FilteredStudents collection
-                foreach (var student in filteredStudents)
-                {
-                    FilteredStudents.Add(student);
-                }
-            }
-            catch (Exception ex)
-            {
-                ExtensionLogMethods.LogExtension(ex, "", "UserStatusVM", "FetchUsers");
-            }
-            finally
-            {
-                //IsRefreshing = false;
-            }
-        }
         #endregion
 
         #region Methods
         public async Task GetSessions()
         {
             IsRunning = true;
-            Sessions = await APIs.SessionService.GetStudyGroupSessionByScheduleId();
+            Sessions = await APIs.SessionService.GetStudyGroupSessionsByGroupId();
             IsRunning = false;
 
         }
@@ -205,12 +170,12 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudyGroupSession
             IsRunning = true;
             Students = await StudentService.GetStudyGroupStudentList();
             FilteredStudents = new ObservableCollection<StudyGroupStudentList>(Students);
-            if (FilteredStudents != null )
+            if (FilteredStudents != null)
             {
                 FilteredStudents = new ObservableCollection<StudyGroupStudentList>(Students); // Initialize with all data
-                    All = FilteredStudents.Count();
-                    AvailableCount = FilteredStudents.Where(x => x.Status == "true").Count();
-                    AbsentCount = FilteredStudents.Where(x => x.Status == "false").Count();
+                All = FilteredStudents.Count();
+                AvailableCount = FilteredStudents.Where(x => x.Status == "true").Count();
+                AbsentCount = FilteredStudents.Where(x => x.Status == "false").Count();
             }
             else
             {
@@ -238,7 +203,6 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudyGroupSession
             }
         }
         #endregion
-
 
 
     }

@@ -1,18 +1,15 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
-    x:Class="WytSky.Mobile.Maui.Skoola.Views.StudyGroupStudentList.StudyGroupStudentListPage"
+    x:Class="WytSky.Mobile.Maui.Skoola.Views.StudyGroupSessions.SessionsPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:base="clr-namespace:WytSky.Mobile.Maui.Skoola.Views"
     xmlns:behaviors="clr-namespace:WytSky.Mobile.Maui.Skoola.Behaviors"
     xmlns:customControl="clr-namespace:WytSky.Mobile.Maui.Skoola.CustomControl.Borderless"
     xmlns:customControls="clr-namespace:WytSky.Mobile.Maui.Skoola.CustomControl"
     xmlns:resource="clr-namespace:WytSky.Mobile.Maui.Skoola.AppResources"
-    Title="{x:Static resource:SharedResources.StudyGroupStudentList}">
+    Title="{x:Static resource:SharedResources.Txt_Sessions}">
     <Grid RowDefinitions="*">
-
         <Grid RowDefinitions="auto,*" VerticalOptions="FillAndExpand">
-
             <Border
                 Padding="0"
                 BackgroundColor="{StaticResource PrimaryColor}"
@@ -42,12 +39,6 @@
                         HorizontalOptions="CenterAndExpand"
                         Style="{StaticResource BoldLabelFont16}"
                         Text="{Binding GroupName}"
-                        TextColor="{StaticResource DarkBlue}" />
-                    <Label
-                        Grid.Row="3"
-                        HorizontalOptions="CenterAndExpand"
-                        Style="{StaticResource BoldLabelFont16}"
-                        Text="{Binding TeacherFullName}"
                         TextColor="{StaticResource DarkBlue}" />
                     <Border
                         Grid.Row="4"
@@ -84,8 +75,8 @@
                                 IsVisible="{Binding SearchText, Converter={StaticResource StringToBoolConverter}}"
                                 VerticalOptions="Center">
                                 <!--<Button.ImageSource>
-                    <FileImageSource File="clearfilter.png" />
-                    </Button.ImageSource>-->
+                                <FileImageSource File="clearfilter.png" />
+                                </Button.ImageSource>-->
                             </Button>
                             <Button
                                 BackgroundColor="Transparent"
@@ -102,75 +93,67 @@
             </Border>
 
             <Grid Grid.Row="1">
-                <CollectionView Margin="15,10,15,0" ItemsSource="{Binding FilteredStudyGroupStudentList}">
-                    <CollectionView.ItemsLayout>
-                        <LinearItemsLayout ItemSpacing="15" Orientation="Vertical" />
-                    </CollectionView.ItemsLayout>
+                <CollectionView ItemsSource="{Binding FilteredSessions}">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <Border
-                                Padding="5"
-                                HeightRequest="50"
-                                StrokeShape="RoundRectangle 5">
-                                <Border.Background>
-                                    <LinearGradientBrush EndPoint="0,1">
-                                        <GradientStop Offset="0.1" Color="{StaticResource PrimaryColor}" />
-                                        <GradientStop Offset="1.0" Color="{StaticResource LightGreen}" />
-                                    </LinearGradientBrush>
-                                </Border.Background>
-                                <VerticalStackLayout>
-                                    <Label
-                                        HorizontalOptions="CenterAndExpand"
-                                        HorizontalTextAlignment="Center"
-                                        Style="{StaticResource BoldLabelFont16}"
-                                        Text="{Binding StudentFullName}"
-                                        TextColor="{StaticResource DarkBlue}" />
-                                </VerticalStackLayout>
+                                Margin="10,10"
+                                Padding="10"
+                                HorizontalOptions="FillAndExpand"
+                                Stroke="{StaticResource PrimaryColor}"
+                                StrokeShape="RoundRectangle 20,20,20,20"
+                                StrokeThickness=".5">
+                                <Grid ColumnDefinitions="* ,auto">
+                                    <VerticalStackLayout BackgroundColor="White">
 
-                                <!--<Border.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.SelectComplexCommand}" CommandParameter="{Binding .}" />
-                                </Border.GestureRecognizers>-->
+                                        <!--  Day of the Week  -->
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="18"
+                                            Text="{Binding DayOfWeekName}"
+                                            TextColor="{StaticResource Black}" />
+
+                                        <!--  Start & End Time  -->
+                                        <HorizontalStackLayout Spacing="10">
+                                            <Label
+                                                FontAttributes="Bold"
+                                                FontSize="14"
+                                                Text="{x:Static resource:SharedResources.FromDate}"
+                                                TextColor="Black" />
+                                            <Label
+                                                FontAttributes="Bold"
+                                                FontSize="15"
+                                                Text="{Binding StartTime, StringFormat='{0:hh\\:mm}'}"
+                                                TextColor="{StaticResource Black}" />
+                                            <Label
+                                                FontAttributes="Bold"
+                                                FontSize="14"
+                                                Text="{x:Static resource:SharedResources.ToDate}"
+                                                TextColor="Black" />
+                                            <Label
+                                                FontAttributes="Bold"
+                                                FontSize="15"
+                                                Text="{Binding EndTime, StringFormat='{0:hh\\:mm}'}"
+                                                TextColor="{StaticResource Black}" />
+                                        </HorizontalStackLayout>
+                                    </VerticalStackLayout>
+
+                                    <Button
+                                        Grid.Column="1"
+                                        BackgroundColor="{StaticResource PrimaryColor}"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.SelectScheduleCommand}"
+                                        CommandParameter="{Binding .}"
+                                        FontAttributes="Bold"
+                                        Style="{StaticResource BaseButton}"
+                                        Text="{x:Static resource:SharedResources.Txt_OpenSession}" />
+
+                                </Grid>
                             </Border>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
-                    <CollectionView.EmptyView>
-                        <customControls:EmptyView />
-                    </CollectionView.EmptyView>
                 </CollectionView>
-
-                <Grid
-                    Margin="15"
-                    ColumnDefinitions="*,*,*"
-                    ColumnSpacing="5"
-                    HeightRequest="50"
-                    VerticalOptions="End">
-                    <Button
-                        Grid.Column="0"
-                        BackgroundColor="{StaticResource PrimaryColor}"
-                        Command="{Binding OpenSchedulesCommand}"
-                        FontAttributes="Bold"
-                        Text="{x:Static resource:SharedResources.Txt_Schedules}"
-                        TextColor="{StaticResource DarkBlue}" />
-                    <Button
-                        Grid.Column="1"
-                        BackgroundColor="{StaticResource PrimaryColor}"
-                        Command="{Binding OpenAddStudyGroupStudentListCommand}"
-                        CommandParameter="{Binding .}"
-                        FontAttributes="Bold"
-                        Text="{x:Static resource:SharedResources.AddStudents}"
-                        TextColor="{StaticResource DarkBlue}" />
-                    <Button
-                        Grid.Column="1"
-                        BackgroundColor="{StaticResource PrimaryColor}"
-                        Command="{Binding OpenSessionsCommand}"
-                        CommandParameter="{Binding .}"
-                        FontAttributes="Bold"
-                        Text="{x:Static resource:SharedResources.Txt_Sessions}"
-                        TextColor="{StaticResource DarkBlue}" />
-                </Grid>
-
+                <Button Command="{Binding OpenAddSchedulesCommand}" Style="{StaticResource AddButton}" />
             </Grid>
-
         </Grid>
         <ActivityIndicator IsRunning="{Binding IsRunning}" IsVisible="{Binding IsRunning}" />
     </Grid>

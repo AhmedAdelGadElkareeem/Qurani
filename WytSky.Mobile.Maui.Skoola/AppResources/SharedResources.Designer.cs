@@ -3630,6 +3630,15 @@ namespace WytSky.Mobile.Maui.Skoola.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sessions.
+        /// </summary>
+        public static string Txt_Sessions {
+            get {
+                return ResourceManager.GetString("Txt_Sessions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Start Session.
         /// </summary>
         public static string Txt_StartSession {
