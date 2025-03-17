@@ -11,6 +11,7 @@
     <Grid RowDefinitions="*">
         <Grid RowDefinitions="auto,*" VerticalOptions="FillAndExpand">
 
+            <!--  Header  -->
             <Border
                 Padding="0"
                 BackgroundColor="{StaticResource PrimaryColor}"
@@ -92,6 +93,7 @@
                     </Border>
                 </Grid>
             </Border>
+
             <Grid Grid.Row="1" RowDefinitions="auto,*">
 
                 <Border
@@ -113,10 +115,10 @@
                         <CarouselView.ItemTemplate>
                             <DataTemplate>
                                 <Border
-                                    Margin="0,10"
+                                    Margin="5,10"
                                     Padding="10"
                                     Background="{StaticResource White}"
-                                    HorizontalOptions="CenterAndExpand"
+                                    HorizontalOptions="FillAndExpand"
                                     Stroke="{StaticResource PrimaryColor}"
                                     StrokeShape="RoundRectangle 20,20,20,20"
                                     StrokeThickness=".5">
@@ -192,7 +194,7 @@
                                                 CommandParameter="{Binding .}"
                                                 FontAttributes="Bold"
                                                 Style="{StaticResource BaseButton}"
-                                                Text="{x:Static resource:SharedResources.txt_attendanceevulate}" />
+                                                Text="{x:Static resource:SharedResources.evulation}" />
                                         </Grid>
                                     </Grid>
                                 </Border>

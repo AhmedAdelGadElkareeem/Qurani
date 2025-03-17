@@ -1336,4 +1336,7 @@
   <data name="Txt_Sessions" xml:space="preserve">
     <value>الجلسات</value>
   </data>
+  <data name="evulation" xml:space="preserve">
+    <value>التقييم</value>
+  </data>
 </root>

@@ -1334,4 +1334,7 @@ Successfully Changed</value>
   <data name="Txt_Sessions" xml:space="preserve">
     <value>Sessions</value>
   </data>
+  <data name="evulation" xml:space="preserve">
+    <value>Evulations</value>
+  </data>
 </root>

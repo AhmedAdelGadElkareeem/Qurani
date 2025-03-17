@@ -295,6 +295,15 @@ namespace WytSky.Mobile.Maui.Skoola.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Evulations.
+        /// </summary>
+        public static string evulation {
+            get {
+                return ResourceManager.GetString("evulation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to From Date.
         /// </summary>
         public static string FromDate {

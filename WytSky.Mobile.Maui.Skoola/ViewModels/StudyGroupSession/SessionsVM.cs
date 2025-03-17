@@ -101,8 +101,8 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudyGroupSession
             try
             {
                 IsRunning = true;
-                Attendance = await APIs.ServiceAttendance.GetGroupAttendance();
-                FilteredAttendance = new ObservableCollection<AttendanceModel>(Attendance);
+                Evuluations = await APIs.ServiceStudentEvaluation.GetStudentEvulationBySessionId();
+                FilteredEvuluation = new ObservableCollection<StudentEvaluationModel>(Evuluations);
                 IsRunning = false;
             }
             catch (Exception ex)
@@ -120,9 +120,10 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudyGroupSession
         {
             try
             {
+
                 IsRunning = true;
-                Evuluations = await APIs.ServiceStudentEvaluation.GetStudentEvulationBySessionId();
-                FilteredEvuluation = new ObservableCollection<StudentEvaluationModel>(Evuluations);
+                Attendance = await APIs.ServiceAttendance.GetGroupAttendance();
+                FilteredAttendance = new ObservableCollection<AttendanceModel>(Attendance);
                 IsRunning = false;
             }
             catch (Exception ex)

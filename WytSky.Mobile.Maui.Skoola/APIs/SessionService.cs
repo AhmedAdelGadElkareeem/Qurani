@@ -83,7 +83,7 @@ namespace WytSky.Mobile.Maui.Skoola.APIs
                       {"_datatype", "json"},
                       {"_jsonarray", "1"},
                 };
-                if (Settings.ScheduleId != null)
+                //if (Settings.ScheduleId != null)
                     dictionary.Add("GroupID", Settings.StudyGroupId);
 
                 var result = await Services.RequestProvider.Current.GetData<TempletData<SessionModel>>(BASE, "studyGroupSessions", dictionary, Enums.AuthorizationType.UserNamePassword);
