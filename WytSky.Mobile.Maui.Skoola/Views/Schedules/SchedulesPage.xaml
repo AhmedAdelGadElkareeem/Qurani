@@ -71,7 +71,7 @@
                                 BackgroundColor="Transparent"
                                 Command="{Binding ClearTextCommand}"
                                 HorizontalOptions="Start"
-                                IsVisible="{Binding SearchText, Converter={StaticResource StringToBoolConverter}}"
+                                IsVisible="{Binding SearchText}"
                                 VerticalOptions="Center">
                                 <!--<Button.ImageSource>
                                 <FileImageSource File="clearfilter.png" />
@@ -140,7 +140,7 @@
                                     <Button
                                         Grid.Column="1"
                                         BackgroundColor="{StaticResource PrimaryColor}"
-                                        Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.SelectScheduleCommand}"
+                                        Command="{Binding  SelectScheduleCommand}"
                                         CommandParameter="{Binding .}"
                                         FontAttributes="Bold"
                                         Style="{StaticResource BaseButton}"
