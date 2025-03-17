@@ -36,7 +36,7 @@
                     BorderColor="gold"
                     CornerRadius="20"
                     HasShadow="True">
-                    <Grid RowDefinitions="auto,*,*">
+                    <Grid RowDefinitions="auto,*,auto">
                         <!--  Arabic Calligraphy for Tawheed  -->
                         <Label
                             FontFamily="ManropeBold"

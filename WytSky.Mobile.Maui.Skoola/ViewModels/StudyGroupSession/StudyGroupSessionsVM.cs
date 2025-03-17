@@ -187,7 +187,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudyGroupSession
                 FilteredGroupAttendance.Clear();
                 if (obj == StudentsStatus.All)
                 {
-                    FilteredStudents = Students;
+                    FilteredStudents = await StudentService.GetStudyGroupStudentList(); ;
                     AllStudents = true;
                     AvailableStudents = false;
                     AbsentStudents = false;
