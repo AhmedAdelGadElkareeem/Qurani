@@ -96,7 +96,7 @@
                 <CarouselView
                     x:Name="parentCategories"
                     Margin="5,5"
-                    HeightRequest="120"
+                    HeightRequest="180"
                     ItemsSource="{Binding Filteredsessions}"
                     Loop="False">
                     <CarouselView.ItemsLayout>
@@ -107,7 +107,7 @@
                             <Border
                                 Margin="0"
                                 Padding="10"
-                                HorizontalOptions="FillAndExpand"
+                                HorizontalOptions="Fill"
                                 Stroke="{StaticResource PrimaryColor}"
                                 StrokeShape="RoundRectangle 20,20,20,20"
                                 StrokeThickness=".5">
@@ -117,7 +117,7 @@
                                         <Label
                                             FontAttributes="Bold"
                                             FontSize="Medium"
-                                            HorizontalOptions="CenterAndExpand"
+                                            HorizontalOptions="Center"
                                             HorizontalTextAlignment="Center"
                                             Text="{Binding GroupTeacherFullName}"
                                             TextColor="{StaticResource Black}" />
@@ -152,16 +152,30 @@
                                                 Text="{Binding EndTime, StringFormat='{0:hh\\:mm}'}"
                                                 TextColor="{StaticResource Black}" />
                                         </HorizontalStackLayout>
+                                        <Grid
+                                            Margin="15"
+                                            ColumnDefinitions="*,*"
+                                            ColumnSpacing="5"
+                                            HeightRequest="25"
+                                            VerticalOptions="End">
+                                            <Button
+                                                Grid.Column="0"
+                                                BackgroundColor="{StaticResource PrimaryColor}"
+                                                Command="{Binding Source={RelativeSource AncestorType={x:Type CarouselView}}, Path=BindingContext.OpenAttendanceCommand}"
+                                                CommandParameter="{Binding .}"
+                                                FontAttributes="Bold"
+                                                Style="{StaticResource BaseButton}"
+                                                Text="{x:Static resource:SharedResources.Txt_Attendance}" />
+                                            <Button
+                                                Grid.Column="1"
+                                                BackgroundColor="{StaticResource PrimaryColor}"
+                                                Command="{Binding Source={RelativeSource AncestorType={x:Type CarouselView}}, Path=BindingContext.OpenEvuluationCommand}"
+                                                CommandParameter="{Binding .}"
+                                                FontAttributes="Bold"
+                                                Style="{StaticResource BaseButton}"
+                                                Text="{x:Static resource:SharedResources.txt_attendanceevulate}" />
+                                        </Grid>
                                     </VerticalStackLayout>
-
-                                    <Button
-                                        Grid.Column="1"
-                                        BackgroundColor="{StaticResource PrimaryColor}"
-                                        Command="{Binding Source={RelativeSource AncestorType={x:Type CarouselView}}, Path=BindingContext.SelectSessionCommand}"
-                                        CommandParameter="{Binding .}"
-                                        FontAttributes="Bold"
-                                        Style="{StaticResource BaseButton}"
-                                        Text="{x:Static resource:SharedResources.Txt_OpenSession}" />
                                 </Grid>
                             </Border>
                         </DataTemplate>
@@ -171,8 +185,154 @@
                         <customControls:EmptyView />
                     </CarouselView.EmptyView>
                 </CarouselView>
-                <!--  Add Button  -->
-                <Button Command="{Binding OpenAddSchedulesCommand}" Style="{StaticResource AddButton}" />
+            </Grid>
+
+            <Grid Grid.Row="2">
+                <!--  List of Student Evaluations  -->
+                <CollectionView IsVisible="{Binding IsEvulationVisible}" ItemsSource="{Binding FilteredEvuluation}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame
+                                Margin="10,5"
+                                Padding="15"
+                                BorderColor="LightGray"
+                                CornerRadius="10"
+                                HasShadow="True">
+                                <VerticalStackLayout Spacing="10">
+
+                                    <!--  Student Name  -->
+                                    <Label
+                                        FontAttributes="Bold"
+                                        FontSize="18"
+                                        HorizontalOptions="CenterAndExpand"
+                                        Text="{Binding StudentFullName}" />
+
+                                    <!--  Evaluation Scores with Labels in Rows  -->
+                                    <Grid
+                                        ColumnDefinitions="*,*"
+                                        RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto"
+                                        VerticalOptions="Start">
+
+                                        <!--  Tajweed Score  -->
+                                        <Label
+                                            Grid.Row="0"
+                                            Grid.Column="0"
+                                            HorizontalOptions="Start"
+                                            Style="{StaticResource BoldLabelFont16}"
+                                            Text="{x:Static resource:SharedResources.Txt_Tajweed_Evaluate}" />
+                                        <Label
+                                            Grid.Row="0"
+                                            Grid.Column="1"
+                                            HorizontalOptions="End"
+                                            Style="{StaticResource BoldLabelFont16}"
+                                            Text="{Binding TajweedScore}" />
+
+                                        <!--  Memorization Score  -->
+                                        <Label
+                                            Grid.Row="1"
+                                            Grid.Column="0"
+                                            HorizontalOptions="Start"
+                                            Style="{StaticResource BoldLabelFont16}"
+                                            Text="{x:Static resource:SharedResources.Txt_Memorization_Evaluate}" />
+                                        <Label
+                                            Grid.Row="1"
+                                            Grid.Column="1"
+                                            HorizontalOptions="End"
+                                            Style="{StaticResource BoldLabelFont16}"
+                                            Text="{Binding MemorizationScore}" />
+
+                                        <!--  Understanding Score  -->
+                                        <Label
+                                            Grid.Row="2"
+                                            Grid.Column="0"
+                                            HorizontalOptions="Start"
+                                            Style="{StaticResource BoldLabelFont16}"
+                                            Text="{x:Static resource:SharedResources.Txt_Understanding_Evaluate}" />
+                                        <Label
+                                            Grid.Row="2"
+                                            Grid.Column="1"
+                                            HorizontalOptions="End"
+                                            Style="{StaticResource BoldLabelFont16}"
+                                            Text="{Binding UnderstandingScore}" />
+
+                                        <!--  Behavior Score  -->
+                                        <Label
+                                            Grid.Row="3"
+                                            Grid.Column="0"
+                                            HorizontalOptions="Start"
+                                            Style="{StaticResource BoldLabelFont16}"
+                                            Text="{x:Static resource:SharedResources.Txt_Behavior_Evaluation}" />
+                                        <Label
+                                            Grid.Row="3"
+                                            Grid.Column="1"
+                                            HorizontalOptions="End"
+                                            Style="{StaticResource BoldLabelFont16}"
+                                            Text="{Binding BehaviorScore}" />
+
+                                        <!--  Attendance Score  -->
+                                        <Label
+                                            Grid.Row="4"
+                                            Grid.Column="0"
+                                            HorizontalOptions="Start"
+                                            Style="{StaticResource BoldLabelFont16}"
+                                            Text="{x:Static resource:SharedResources.txt_attendanceevulate}" />
+                                        <Label
+                                            Grid.Row="4"
+                                            Grid.Column="1"
+                                            HorizontalOptions="End"
+                                            Style="{StaticResource BoldLabelFont16}"
+                                            Text="{Binding AttendanceScore}" />
+
+                                    </Grid>
+
+                                    <!--  Notes Section  -->
+                                    <VerticalStackLayout Spacing="5">
+                                        <Label
+                                            HorizontalOptions="CenterAndExpand"
+                                            Style="{StaticResource BoldLabelFont16}"
+                                            Text="{x:Static resource:SharedResources.Text_Notes}" />
+                                        <Label
+                                            HorizontalOptions="CenterAndExpand"
+                                            Style="{StaticResource BoldLabelFont16}"
+                                            Text="{Binding Notes}" />
+                                    </VerticalStackLayout>
+
+                                </VerticalStackLayout>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <CollectionView
+                    Grid.Row="1"
+                    Margin="15,10,15,0"
+                    IsVisible="{Binding IsStudentVisible}"
+                    ItemsSource="{Binding FilteredAttendance}">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout ItemSpacing="15" Orientation="Vertical" />
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Border
+                                Padding="5"
+                                Background="{StaticResource PrimaryColor}"
+                                HeightRequest="50"
+                                StrokeShape="RoundRectangle 5">
+                                <Grid ColumnDefinitions="*,Auto">
+                                    <Label
+                                        Grid.Column="1"
+                                        HorizontalOptions="End"
+                                        Style="{StaticResource BoldLabelFont16}"
+                                        Text="{Binding StudentFullName}"
+                                        TextColor="{StaticResource Black}" />
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                    <CollectionView.EmptyView>
+                        <customControls:EmptyView />
+                    </CollectionView.EmptyView>
+                </CollectionView>
             </Grid>
         </Grid>
         <ActivityIndicator IsRunning="{Binding IsRunning}" IsVisible="{Binding IsRunning}" />

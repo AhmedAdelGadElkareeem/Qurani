@@ -40,6 +40,8 @@ namespace WytSky.Mobile.Maui.Skoola.APIs
                 return null;
             }
         }
+
+
         public async static Task<AttendanceModel> AddGroupAttendance(Dictionary<string, object> formData)
         {
             try

@@ -27,11 +27,18 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudyGroupSession
         [ObservableProperty]
         private ObservableCollection<SessionModel> filteredsessions
                                      = new ObservableCollection<SessionModel>();
+        [ObservableProperty]
+        private ObservableCollection<AttendanceModel> filteredAttendance
+                                     = new ObservableCollection<AttendanceModel>();
+        [ObservableProperty]
+        private ObservableCollection<StudentEvaluationModel> filteredEvuluation
+                                     = new ObservableCollection<StudentEvaluationModel>();
 
         [ObservableProperty] private string searchText;
         [ObservableProperty] private ScheduleModel sessionSchedule = new ScheduleModel();
         [ObservableProperty] private int? sessinId;
         [ObservableProperty] private bool isStudentVisible = false;
+        [ObservableProperty] private bool isEvulationVisible = false;
 
 
 
@@ -45,7 +52,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudyGroupSession
         [ObservableProperty] public int all = 0;
         [ObservableProperty] public int availableCount = 0;
         [ObservableProperty] public int absentCount = 0;
-       [ObservableProperty]
+        [ObservableProperty]
        public ObservableCollection<StudyGroupStudentList> filteredStudents = new ObservableCollection<StudyGroupStudentList>();
         #endregion
 
@@ -63,7 +70,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudyGroupSession
             {
                 IsRunning = true;
                
-                    Settings.SessionId = model.SessionID.ToString();
+                Settings.SessionId = model.SessionID.ToString();
                 
                 IsStudentVisible = true;
                 await GetStudentAttendance();
@@ -83,21 +90,36 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudyGroupSession
         private async Task GetStudentEvulation()
         {
             IsRunning = true;
-            Filteredsessions = await APIs.SessionService.GetStudyGroupSessionsByGroupId();
+            FilteredAttendance = await APIs.ServiceAttendance.GetGroupAttendance();
             IsRunning = false;
         }
 
         private async Task GetStudentAttendance()
         {
             IsRunning = true;
-            Filteredsessions = await APIs.SessionService.GetStudyGroupSessionsByGroupId();
+            FilteredEvuluation = await APIs.ServiceStudentEvaluation.GetStudentEvulationBySessionId();
             IsRunning = false;
         }
 
         [RelayCommand]
-        public async Task OpenEvaluationPage()
+        public async Task OpenEvuluation(SessionModel model)
         {
-            await OpenPushAsyncPage(new AddStudentEvaluationPage(SelectedSchedule));
+
+            Settings.SessionId = model.SessionID.ToString();
+            await GetStudentEvulation();
+            IsStudentVisible = false;
+            IsEvulationVisible = true;
+          
+        }
+        
+        [RelayCommand]
+        public async Task OpenAttendance(SessionModel model)
+        {
+
+            Settings.SessionId = model.SessionID.ToString();
+            await GetStudentAttendance();
+            IsStudentVisible = true;
+            IsEvulationVisible = false;
         }
         #endregion
 
