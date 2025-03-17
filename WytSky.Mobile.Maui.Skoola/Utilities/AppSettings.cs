@@ -24,14 +24,14 @@ public class AppSettings
             SharedResources.Culture = culture;
             Settings.Language = lang;
 
-            if (!Settings.IsLogedin)
-            {
-                App.Current.MainPage = new SignInSignUpPage();
-            }
-            else
-            {
-                App.Current.MainPage = new AppShell();
-            }
+            //if (!Settings.IsLogedin)
+            //{
+            //    App.Current.MainPage = new SignInSignUpPage();
+            //}
+            //else
+            //{
+            //    App.Current.MainPage = new AppShell();
+            //}
         }
         catch (Exception ex)
         {

@@ -35,10 +35,9 @@
 
                         <!--  User Image  -->
                         <Image
-                            Grid.Column="0"
                             Aspect="AspectFill"
                             HorizontalOptions="CenterAndExpand"
-                            Source="arabuser"
+                            Source="arabuser.png"
                             Style="{StaticResource ImageSize30}" />
 
                         <!--  Labels beside the Image  -->
