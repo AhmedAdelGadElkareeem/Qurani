@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8" ?>
-
 <pages:PopupPage
     x:Class="WytSky.Mobile.Maui.Skoola.Views.StudyGroups.AddStudyGroup"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
@@ -87,12 +86,12 @@
                 Text="{Binding Location}" />
 
 
-            <customControls:DatePickerFromTo
+            <!--<customControls:DatePickerFromTo
                 Margin="5"
                 DateRangeValue="{Binding DateRangeValue}"
                 FromDate="{Binding startDate}"
                 IsVisible="True"
-                ToDate="{Binding endDate}" />
+                ToDate="{Binding endDate}" />-->
 
             <Button
                 Command="{Binding AddStudyGroupCommand}"

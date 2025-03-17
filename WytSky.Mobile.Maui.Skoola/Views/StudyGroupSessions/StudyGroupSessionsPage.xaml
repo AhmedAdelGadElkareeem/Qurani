@@ -152,7 +152,7 @@
                         TextLable="{x:Static resource:SharedResources.AvailableStudents}" />
                     <customControls:StudentAttendanceFilter
                         Grid.Column="1"
-                        BackColor="{StaticResource TracksColor}"
+                        BackColor="{StaticResource PrimaryColor}"
                         CommanParamter="All"
                         Command="{Binding FetchStudentsCommand}"
                         TextCount="{Binding All}"
@@ -192,7 +192,6 @@
                                     <Button
                                         Grid.Column="0"
                                         BackgroundColor="White"
-                                        Clicked="OnAttendanceButtonClicked"
                                         Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.AddStudentAttendanceCommand}"
                                         CommandParameter="{Binding .}"
                                         FontAttributes="Bold"
@@ -232,7 +231,7 @@
                         TextLable="{x:Static resource:SharedResources.AvailableStudents}" />
                     <customControls:StudentAttendanceFilter
                         Grid.Column="1"
-                        BackColor="{StaticResource TracksColor}"
+                        BackColor="{StaticResource PrimaryColor}"
                         CommanParamter="All"
                         Command="{Binding FetchStudentsCommand}"
                         TextCount="{Binding All}"
@@ -301,7 +300,7 @@
                         TextLable="{x:Static resource:SharedResources.AvailableStudents}" />
                     <customControls:StudentAttendanceFilter
                         Grid.Column="1"
-                        BackColor="{StaticResource TracksColor}"
+                        BackColor="{StaticResource PrimaryColor}"
                         CommanParamter="All"
                         Command="{Binding FetchStudentsCommand}"
                         TextCount="{Binding All}"
