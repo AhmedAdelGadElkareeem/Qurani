@@ -18,10 +18,10 @@
             ColumnSpacing="5"
             HorizontalOptions="Center"
             VerticalOptions="Center">
-            <Label
+            <!--<Label
                 FontSize="Subtitle"
                 Text="{Binding TextLabel}"
-                TextColor="White" />
+                TextColor="White" />-->
             <Button
                 Grid.Column="0"
                 Margin="5,0"

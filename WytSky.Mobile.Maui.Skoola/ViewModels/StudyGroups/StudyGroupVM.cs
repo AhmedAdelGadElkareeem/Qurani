@@ -36,19 +36,19 @@ public partial class StudyGroupVM : StudentsVM
     [ObservableProperty] public CentersModel selectedCenter;
     [ObservableProperty] public StaffModel selectedTeacher;
 
-    [ObservableProperty] public int? centerID;
-    [ObservableProperty] public string? teacherID;
+    [ObservableProperty] public int centerID;
+    [ObservableProperty] public string teacherID;
     //[ObservableProperty] public int? subjectID;
-    [ObservableProperty] public string? subjectName;
+    [ObservableProperty] public string subjectName;
 
-    [ObservableProperty] public DateTime? startDate = DateTime.Now;
-    [ObservableProperty] public DateTime? endDate = DateTime.Now;
-    [ObservableProperty] public object? notes;
-    [ObservableProperty] public int? studentCount;
-    [ObservableProperty] public string? location;
+    [ObservableProperty] public DateTime startDate = DateTime.Now;
+    [ObservableProperty] public DateTime endDate = DateTime.Now;
+    [ObservableProperty] public string notes;
+    [ObservableProperty] public int studentCount;
+    [ObservableProperty] public string location;
 
-    [ObservableProperty] public string? centerName;
-    [ObservableProperty] public string? complexName;
+    [ObservableProperty] public new string centerName;
+    [ObservableProperty] public new string complexName;
 
     #region Methods
     public async Task GetStudyGroupsByStaffIdOrCenterId()

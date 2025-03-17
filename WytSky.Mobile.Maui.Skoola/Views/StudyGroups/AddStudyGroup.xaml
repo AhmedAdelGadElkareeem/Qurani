@@ -59,7 +59,6 @@
             <Border
                 Grid.Column="1"
                 Padding="0"
-                BackgroundColor="{StaticResource Yellow400Accent}"
                 HorizontalOptions="Center"
                 StrokeShape="RoundRectangle 5,20,5,0"
                 StrokeThickness="0">
