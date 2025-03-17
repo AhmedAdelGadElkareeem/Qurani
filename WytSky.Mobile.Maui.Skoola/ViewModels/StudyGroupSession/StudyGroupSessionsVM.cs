@@ -4,6 +4,7 @@ using CommunityToolkit.Mvvm.Input;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -248,6 +249,8 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudyGroupSession
         {
             try
             {
+                Debug.WriteLine("Start GetGroupAttendance");
+
                 GroupAttendance = await ServiceAttendance.GetGroupAttendance();
                 FilteredGroupAttendance = new ObservableCollection<AttendanceModel>(GroupAttendance);
                 if (GroupAttendance != null)
@@ -263,8 +266,10 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudyGroupSession
                 ExtensionLogMethods.LogExtension(ex, "", "StudyGroupSessionsVM", "GetGroupAttendance");
             }
         }
-        public async Task GetAllStudents()
+        public new async Task GetAllStudents()
         {
+            Debug.WriteLine("Start GetAllStudents");
+
             IsRunning = true;
             Students = await StudentService.GetStudyGroupStudentList();
             FilteredStudents = new ObservableCollection<StudyGroupStudentList>(Students);

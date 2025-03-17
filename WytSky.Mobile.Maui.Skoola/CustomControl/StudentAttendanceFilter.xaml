@@ -14,15 +14,16 @@
         <Grid
             Padding="5"
             BackgroundColor="{Binding BackColor}"
-            ColumnDefinitions="*,*"
+            ColumnDefinitions="*,*,*"
             ColumnSpacing="5"
             HorizontalOptions="CenterAndExpand"
             VerticalOptions="CenterAndExpand">
-            <!--<Label
-            FontSize="Subtitle"
-            Style="{StaticResource WhiteLabel}"
-            Text="{Binding TextLable}" />-->
+            <Label
+                FontSize="Subtitle"
+                Text="{Binding TextLable}"
+                TextColor="White" />
             <Button
+                Grid.Column="1"
                 Margin="5,0"
                 Padding="0"
                 BackgroundColor="{Binding BackColor}"
@@ -30,11 +31,11 @@
                 CommandParameter="{Binding CommanParamter}"
                 Text="{Binding TextLable}" />
             <Label
-                Grid.Column="1"
+                Grid.Column="2"
                 FontAttributes="Bold"
                 FontSize="Medium"
-                Style="{StaticResource WhiteLabel}"
-                Text="{Binding TextCount}" />
+                Text="{Binding TextCount}"
+                TextColor="White" />
         </Grid>
     </Border>
 </ContentView>

@@ -2,7 +2,6 @@
     x:Class="WytSky.Mobile.Maui.Skoola.Views.Schedules.SchedulesPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:behaviors="clr-namespace:WytSky.Mobile.Maui.Skoola.Behaviors"
     xmlns:customControl="clr-namespace:WytSky.Mobile.Maui.Skoola.CustomControl.Borderless"
     xmlns:customControls="clr-namespace:WytSky.Mobile.Maui.Skoola.CustomControl"
     xmlns:resource="clr-namespace:WytSky.Mobile.Maui.Skoola.AppResources"
@@ -59,7 +58,7 @@
                             <!--  Entry for Search Text  -->
                             <customControl:BorderlessEntry
                                 Margin="15,0"
-                                FontFamily="AhlanWorldArbfonts"
+                                FontFamily="ManropeBold"
                                 Placeholder="{x:Static resource:SharedResources.SearchByName}"
                                 PlaceholderColor="{StaticResource DarkBlue}"
                                 Style="{StaticResource BoldLabelFont16}"
@@ -92,19 +91,16 @@
             </Border>
 
             <Grid Grid.Row="1">
-                <CollectionView ItemsSource="{Binding FilteredSchedules}">
+                <CollectionView x:Name="Scheduless" ItemsSource="{Binding FilteredSchedules}">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <Border
+                            <Frame
                                 Margin="10,10"
                                 Padding="10"
-                                HorizontalOptions="FillAndExpand"
-                                Stroke="{StaticResource PrimaryColor}"
-                                StrokeShape="RoundRectangle 20,20,20,20"
-                                StrokeThickness=".5">
+                                HorizontalOptions="FillAndExpand">
                                 <Grid ColumnDefinitions="* ,auto">
-                                    <VerticalStackLayout BackgroundColor="White">
 
+                                    <VerticalStackLayout>
                                         <!--  Day of the Week  -->
                                         <Label
                                             FontAttributes="Bold"
@@ -147,7 +143,11 @@
                                         Text="{x:Static resource:SharedResources.Txt_OpenSession}" />
 
                                 </Grid>
-                            </Border>
+
+                                <!--<Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding BindingContext.SelectScheduleCommand, Source={x:Reference Scheduless}}" CommandParameter="{Binding .}" />
+                                </Frame.GestureRecognizers>-->
+                            </Frame>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>

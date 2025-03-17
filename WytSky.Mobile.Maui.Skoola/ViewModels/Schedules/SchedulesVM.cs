@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -169,6 +170,8 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.Schedules
         {
             try
             {
+                Debug.WriteLine("Start SelectSchedule OpenPageCommand");
+
                 IsRunning = true;
                 if (schedule == null)
                 {
@@ -180,6 +183,8 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.Schedules
                 SelectedSchedule = Schedules.Where(_ => _.ScheduleID == schedule.ScheduleID).FirstOrDefault();
                 Settings.ScheduleId = SelectedSchedule.ScheduleID.ToString();
                 await OpenPushAsyncPage(new StudyGroupSessionsPage(SelectedSchedule));
+                Debug.WriteLine("End SelectSchedule OpenPageCommand");
+
             }
             catch (Exception ex)
             {

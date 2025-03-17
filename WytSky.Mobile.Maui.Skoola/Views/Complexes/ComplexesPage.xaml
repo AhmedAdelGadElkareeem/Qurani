@@ -95,7 +95,7 @@
                             <!--  Entry for Search Text  -->
                             <customControl:BorderlessEntry
                                 Margin="10,0"
-                                FontFamily="AhlanWorldArbfonts"
+                                FontFamily="ManropeBold"
                                 Placeholder="{x:Static resource:SharedResources.SearchByName}"
                                 PlaceholderColor="{StaticResource DarkBlue}"
                                 Style="{StaticResource BoldLabelFont16}"
