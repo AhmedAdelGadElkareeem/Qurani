@@ -160,7 +160,7 @@
                         Text="{x:Static resource:SharedResources.AddStudents}"
                         TextColor="{StaticResource DarkBlue}" />
                     <Button
-                        Grid.Column="1"
+                        Grid.Column="2"
                         BackgroundColor="{StaticResource PrimaryColor}"
                         Command="{Binding OpenSessionsCommand}"
                         CommandParameter="{Binding .}"

@@ -57,52 +57,41 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudyGroupSession
         #region Session 
 
         [RelayCommand]
-        public async Task OpenSesion()
+        public async Task SelectSession(SessionModel model)
         {
             try
             {
                 IsRunning = true;
-                if (Sessions.Count > 1)
-                {
-                    SessinId = Sessions[0].SessionID;
-                    Settings.SessionId = SessinId.ToString();
-                    Toast.ShowToastError(SharedResources.Msg_SessionExpired);
-                }
-                else
-                {
-                    var formData = new Dictionary<string, object>
-                    {
-                         { "SessionDate", SessionSchedule.CreatedDate?.ToString("yyyy-MM-ddTHH:mm:ss.fff") ?? string.Empty },
-                         { "DayOfWeekName" , SessionSchedule.DayOfWeekName ?? string.Empty },
-                         { "StartTime" , SessionSchedule.StartTime?.ToString() ?? string.Empty },
-                         { "EndTime" , SessionSchedule.EndTime?.ToString() ?? string.Empty },
-                         { "GroupID" , Settings.StudyGroupId },
-                         { "ScheduleID" , SessionSchedule.ScheduleID }
-                    };
-
-                    var result = await APIs.SessionService.AddStudyGroupSession(formData);
-
-                    if (result != null)
-                    {
-                        Toast.ShowToastSuccess(SharedResources.AddedSuccessfully);
-                    }
-                    else
-                    {
-                        Toast.ShowToastError("");
-                    }
-                }
+               
+                    Settings.SessionId = model.SessionID.ToString();
+                
                 IsStudentVisible = true;
-                await GetSessions();
+                await GetStudentAttendance();
+                await GetStudentEvulation();
             }
             catch (Exception ex)
             {
-                ExtensionLogMethods.LogExtension(ex, "", "StudyGroupSessionsVM", "AddSesion");
+                ExtensionLogMethods.LogExtension(ex, "", "SessionsVM", "SelectSession");
                 Toast.ShowToastError("Error", "An unexpected error occurred");
             }
             finally
             {
                 IsRunning = false;
             }
+        }
+
+        private async Task GetStudentEvulation()
+        {
+            IsRunning = true;
+            Filteredsessions = await APIs.SessionService.GetStudyGroupSessionsByGroupId();
+            IsRunning = false;
+        }
+
+        private async Task GetStudentAttendance()
+        {
+            IsRunning = true;
+            Filteredsessions = await APIs.SessionService.GetStudyGroupSessionsByGroupId();
+            IsRunning = false;
         }
 
         [RelayCommand]
@@ -161,7 +150,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudyGroupSession
         public async Task GetSessions()
         {
             IsRunning = true;
-            Sessions = await APIs.SessionService.GetStudyGroupSessionsByGroupId();
+            Filteredsessions = await APIs.SessionService.GetStudyGroupSessionsByGroupId();
             IsRunning = false;
 
         }

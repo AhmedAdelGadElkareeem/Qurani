@@ -9,6 +9,7 @@ using WytSky.Mobile.Maui.Skoola.Models;
 using WytSky.Mobile.Maui.Skoola.ViewModels.StudyGroups;
 using WytSky.Mobile.Maui.Skoola.Views.Schedules;
 using WytSky.Mobile.Maui.Skoola.Views.Students;
+using WytSky.Mobile.Maui.Skoola.Views.StudyGroupSessions;
 using WytSky.Mobile.Maui.Skoola.Views.StudyGroupStudentList;
 
 
@@ -110,7 +111,7 @@ public partial class StudyGroupStudentListVM : StudyGroupVM
     [RelayCommand]
     private async Task OpenSessions()
     {
-        await OpenPushAsyncPage(new SchedulesPage());
+        await OpenPushAsyncPage(new SessionsPage());
     }
 
     #endregion
