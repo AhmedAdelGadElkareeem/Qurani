@@ -57,6 +57,7 @@ namespace WytSky.Mobile.Maui.Skoola.APIs
                 var result = await Services.RequestProvider.Current.PostDataMultipart<SessionModel>(BASE, "studyGroupSessions", dictionary, formData, Enums.AuthorizationType.UserNamePassword);
                 if (result != null && result.IsPassed)
                 {
+                    Settings.SessionId = result.Data.SessionID.ToString();
                     return result.Data;
                 }
                 else

@@ -27,6 +27,7 @@ public partial class StudyGroupSessionsPage : ContentPage
         {
             await _studyGroupSessionsVM.GetSessions();
             await _studyGroupSessionsVM.GetAllStudents();
+            await _studyGroupSessionsVM.GetGroupAttendance();
         }
         else
         {

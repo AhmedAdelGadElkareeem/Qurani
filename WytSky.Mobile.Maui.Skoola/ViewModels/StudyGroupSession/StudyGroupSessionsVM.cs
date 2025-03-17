@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Maui.Core.Extensions;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System;
 using System.Collections.Generic;
@@ -23,11 +24,13 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudyGroupSession
     {
         #region Propreties
 
-        [ObservableProperty] private ObservableCollection<SessionModel> sessions;
+        [ObservableProperty] private ObservableCollection<SessionModel> sessions = new ObservableCollection<SessionModel>();
 
-        [ObservableProperty] private ObservableCollection<StudyGroupStudentList> students 
+        [ObservableProperty]
+        private ObservableCollection<StudyGroupStudentList> students
                                      = new ObservableCollection<StudyGroupStudentList>();
-        [ObservableProperty] private ObservableCollection<StudyGroupStudentList> filteredStudents 
+        [ObservableProperty]
+        private ObservableCollection<StudyGroupStudentList> filteredStudents
                                      = new ObservableCollection<StudyGroupStudentList>();
 
         [ObservableProperty] private string searchText;
@@ -42,11 +45,15 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudyGroupSession
 
 
         #region Attendance
-        [ObservableProperty] private ObservableCollection<AttendanceModel> groupAttendance;
+        [ObservableProperty] private ObservableCollection<AttendanceModel> groupAttendance = new ObservableCollection<AttendanceModel>();
+        [ObservableProperty] private ObservableCollection<AttendanceModel> filteredGroupAttendance = new ObservableCollection<AttendanceModel>();
         [ObservableProperty] public StudentModel selectedStudent;
         [ObservableProperty] public int all = 0;
+        [ObservableProperty] public bool allStudents = false;
         [ObservableProperty] public int availableCount = 0;
+        [ObservableProperty] public bool availableStudents = false;
         [ObservableProperty] public int absentCount = 0;
+        [ObservableProperty] public bool absentStudents = false;
         //[ObservableProperty]
         //public ObservableCollection<StudyGroupStudentList> FilteredStudents = new ObservableCollection<StudyGroupStudentList>();
         #endregion
@@ -66,8 +73,6 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudyGroupSession
                 IsRunning = true;
                 if (Sessions.Count > 1)
                 {
-                    SessinId = Sessions[0].SessionID;
-                    Settings.SessionId = SessinId.ToString();
                     Toast.ShowToastError(SharedResources.Msg_SessionExpired);
                 }
                 else
@@ -93,7 +98,9 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudyGroupSession
                         Toast.ShowToastError("");
                     }
                 }
-                IsStudentVisible = true;
+                AllStudents = true;
+                AvailableStudents = false;
+                AbsentStudents = false;
                 await GetSessions();
             }
             catch (Exception ex)
@@ -121,34 +128,48 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudyGroupSession
             try
             {
                 IsRunning = true;
+                //bool hasAttendance = GroupAttendance
+                //            .Where(a => a.Status > 1 && GroupAttendance.Any(s => s.StudentID == a.StudentID)).Any();
 
-                var formData = new Dictionary<string, object>
+                // Check if the student already has attendance with a status greater than 0
+                bool hasAttendance = GroupAttendance
+                    .Any(a => a.StudentID == StudyGroupStudentModel.StudentID && a.Status > 0);
+                if (hasAttendance)
                 {
-                    { "GroupID", Settings.StudyGroupId },
-                    { "CenterID", Settings.CenterId },
-                    { "StudentID", StudyGroupStudentModel.StudentID},
-                    { "ComplexID" , Settings.ComplexId},
-                    { "Status" , false},
-                    { "SessionDayOfWeekName" , SessionSchedule.DayOfWeekName },
-                    { "TimeIn" , DateTime.Now.ToString("HH:mm:ss") },
-                    { "TimeOut" , SessionSchedule.EndTime },
-                    { "SessionID" , SessinId},
-                };
-                var result = await APIs.ServiceAttendance.AddGroupAttendance(formData);
-
-                if (result != null)
-                {
-                    Toast.ShowToastSuccess(SharedResources.AddedSuccessfully);
-                    await GetAllStudents();
+                    Toast.ShowToastError("Student already attended");
+                    return;
                 }
                 else
                 {
-                    Toast.ShowToastError("Error");
+                    var formData = new Dictionary<string, object>
+                    {
+                        { "GroupID", Settings.StudyGroupId },
+                        { "CenterID", Settings.CenterId },
+                        { "StudentID", StudyGroupStudentModel.StudentID},
+                        { "ComplexID" , Settings.ComplexId},
+                        { "Status" , 1},
+                        { "SessionDayOfWeekName" , SessionSchedule.DayOfWeekName },
+                        { "TimeIn" , DateTime.Now.ToString("HH:mm:ss") },
+                        { "TimeOut" , SessionSchedule.EndTime },
+                        { "SessionID" , Settings.SessionId},
+                    };
+                    var result = await APIs.ServiceAttendance.AddGroupAttendance(formData);
+
+                    if (result != null)
+                    {
+                        Toast.ShowToastSuccess(SharedResources.AddedSuccessfully);
+                        //await GetAllStudents();
+                        await GetGroupAttendance();
+                    }
+                    else
+                    {
+                        Toast.ShowToastError(SharedResources.Msg_Error,SharedResources.Msg_ConnectionError);
+                    }
                 }
             }
             catch (Exception ex)
             {
-                Toast.ShowToastError("Error", ex.Message);
+                Toast.ShowToastError(SharedResources.Text_Error, ex.Message);
             }
             finally
             {
@@ -163,23 +184,45 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudyGroupSession
             {
                 // Clear the current filtered list
                 FilteredStudents.Clear();
+                FilteredGroupAttendance.Clear();
+                if (obj == StudentsStatus.All)
+                {
+                    FilteredStudents = Students;
+                    AllStudents = true;
+                    AvailableStudents = false;
+                    AbsentStudents = false;
+                }
+                else if (obj == StudentsStatus.Available)
+                {
+                    FilteredGroupAttendance = GroupAttendance.Where(_ => _.Status == 1).ToObservableCollection();
+                    AllStudents = false;
+                    AvailableStudents = true;
+                    AbsentStudents = false;
+                }
+                else if (obj == StudentsStatus.Absent)
+                {
+                    FilteredGroupAttendance = GroupAttendance.Where(_ => _.Status != 1).ToObservableCollection();
+                    AllStudents = false;
+                    AvailableStudents = false;
+                    AbsentStudents = true;
+                }
 
                 #endregion
                 // Filter based on the user status using a switch expression
-                IEnumerable<StudyGroupStudentList> filteredStudents = obj switch
-                {
-                StudentsStatus.Available => FilteredStudents.Where(x => x.Status == "true"),
-                //StudentsStatus.All => FilteredStudents.Count(),
-                StudentsStatus.Absent => FilteredStudents.Where(x => x.Status == "false"),
-                StudentsStatus.All => FilteredStudents = Students,
-                _ => FilteredStudents, // If no specific filter, just display all users
-                };
+                //IEnumerable<StudyGroupStudentList> filteredStudents = obj switch
+                //{
+                //StudentsStatus.Available => FilteredStudents.Where(x => x.Status == "true"),
+                ////StudentsStatus.All => FilteredStudents.Count(),
+                //StudentsStatus.Absent => FilteredStudents.Where(x => x.Status == "false"),
+                //StudentsStatus.All => FilteredStudents = Students,
+                //_ => FilteredStudents, // If no specific filter, just display all users
+                //};
 
-                // Add filtered  to FilteredStudents collection
-                foreach (var student in filteredStudents)
-                {
-                    FilteredStudents.Add(student);
-                }
+                //// Add filtered  to FilteredStudents collection
+                //foreach (var student in filteredStudents)
+                //{
+                //    FilteredStudents.Add(student);
+                //}
             }
             catch (Exception ex)
             {
@@ -200,17 +243,37 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudyGroupSession
             IsRunning = false;
 
         }
+
+        public async Task GetGroupAttendance()
+        {
+            try
+            {
+                GroupAttendance = await ServiceAttendance.GetGroupAttendance();
+                FilteredGroupAttendance = new ObservableCollection<AttendanceModel>(GroupAttendance);
+                if (GroupAttendance != null)
+                {
+                    //All = GroupAttendance.Count();
+                    AvailableCount = GroupAttendance.Where(x => x.Status > 0).Count();
+                    AbsentCount = GroupAttendance.Where(x => x.Status < 1).Count();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                ExtensionLogMethods.LogExtension(ex, "", "StudyGroupSessionsVM", "GetGroupAttendance");
+            }
+        }
         public async Task GetAllStudents()
         {
             IsRunning = true;
             Students = await StudentService.GetStudyGroupStudentList();
             FilteredStudents = new ObservableCollection<StudyGroupStudentList>(Students);
-            if (FilteredStudents != null )
+            if (FilteredStudents != null)
             {
                 FilteredStudents = new ObservableCollection<StudyGroupStudentList>(Students); // Initialize with all data
-                    All = FilteredStudents.Count();
-                    AvailableCount = FilteredStudents.Where(x => x.Status == "true").Count();
-                    AbsentCount = FilteredStudents.Where(x => x.Status == "false").Count();
+                All = FilteredStudents.Count();
+                //AvailableCount = FilteredStudents.Where(x => x.Status == "true").Count();
+                //AbsentCount = FilteredStudents.Where(x => x.Status == "false").Count();
             }
             else
             {

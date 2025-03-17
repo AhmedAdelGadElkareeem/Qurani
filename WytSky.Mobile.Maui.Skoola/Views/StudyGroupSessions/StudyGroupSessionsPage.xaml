@@ -155,7 +155,7 @@
         <!--  Students List  -->
         <Grid
             Grid.Row="2"
-            IsVisible="{Binding IsStudentVisible}"
+            IsVisible="{Binding AllStudents}"
             RowDefinitions="auto, *">
             <Grid Grid.Row="0">
                 <Grid
@@ -192,6 +192,8 @@
 
                 </Grid>
             </Grid>
+
+            <!--  All Students  -->
             <CollectionView
                 Grid.Row="1"
                 Margin="15,10,15,0"
@@ -224,6 +226,154 @@
                                     HorizontalOptions="Start"
                                     Text="{x:Static resource:SharedResources.Txt_Attendance}"
                                     TextColor="{StaticResource DarkBlue}" />
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+                <CollectionView.EmptyView>
+                    <customControls:EmptyView />
+                </CollectionView.EmptyView>
+            </CollectionView>
+        </Grid>
+
+        <!--  Avialble  -->
+        <Grid
+            Grid.Row="2"
+            IsVisible="{Binding AvailableStudents}"
+            RowDefinitions="auto, *">
+
+            <Grid Grid.Row="0">
+                <Grid
+                    Grid.Row="1"
+                    Margin="0,10,0,5"
+                    ColumnDefinitions="auto,auto,auto"
+                    ColumnSpacing="10"
+                    HorizontalOptions="CenterAndExpand">
+
+                    <customControls:StudentAttendanceFilter
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        BackColor="Green"
+                        CommanParamter="Available"
+                        Command="{Binding FetchStudentsCommand}"
+                        TextCount="{Binding AvailableCount}"
+                        TextLable="{x:Static resource:SharedResources.AvailableStudents}" />
+                    <customControls:StudentAttendanceFilter
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        BackColor="{StaticResource TracksColor}"
+                        CommanParamter="All"
+                        Command="{Binding FetchStudentsCommand}"
+                        TextCount="{Binding All}"
+                        TextLable="{x:Static resource:SharedResources.AllStudents}" />
+                    <customControls:StudentAttendanceFilter
+                        Grid.Row="0"
+                        Grid.Column="2"
+                        BackColor="Red"
+                        CommanParamter="Absent"
+                        Command="{Binding FetchStudentsCommand}"
+                        TextCount="{Binding AbsentCount}"
+                        TextLable="{x:Static resource:SharedResources.AbsentStudents}" />
+
+                </Grid>
+            </Grid>
+
+            <!--  Available Students  -->
+            <CollectionView
+                Grid.Row="1"
+                Margin="15,10,15,0"
+                ItemsSource="{Binding FilteredGroupAttendance}">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout ItemSpacing="15" Orientation="Vertical" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border
+                            Padding="5"
+                            Background="{StaticResource PrimaryColor}"
+                            HeightRequest="50"
+                            StrokeShape="RoundRectangle 5">
+                            <Grid ColumnDefinitions="*">
+                                <Label
+                                    Grid.Column="1"
+                                    HorizontalOptions="CenterAndExpand"
+                                    Style="{StaticResource BoldLabelFont16}"
+                                    Text="{Binding StudentFullName}"
+                                    TextColor="{StaticResource Black}" />
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+                <CollectionView.EmptyView>
+                    <customControls:EmptyView />
+                </CollectionView.EmptyView>
+            </CollectionView>
+        </Grid>
+
+        <!--  Absent  -->
+        <Grid
+            Grid.Row="2"
+            IsVisible="{Binding AbsentStudents}"
+            RowDefinitions="auto, *">
+
+            <Grid Grid.Row="0">
+                <Grid
+                    Grid.Row="1"
+                    Margin="0,10,0,5"
+                    ColumnDefinitions="auto,auto,auto"
+                    ColumnSpacing="10"
+                    HorizontalOptions="CenterAndExpand">
+
+                    <customControls:StudentAttendanceFilter
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        BackColor="Green"
+                        CommanParamter="Available"
+                        Command="{Binding FetchStudentsCommand}"
+                        TextCount="{Binding AvailableCount}"
+                        TextLable="{x:Static resource:SharedResources.AvailableStudents}" />
+                    <customControls:StudentAttendanceFilter
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        BackColor="{StaticResource TracksColor}"
+                        CommanParamter="All"
+                        Command="{Binding FetchStudentsCommand}"
+                        TextCount="{Binding All}"
+                        TextLable="{x:Static resource:SharedResources.AllStudents}" />
+                    <customControls:StudentAttendanceFilter
+                        Grid.Row="0"
+                        Grid.Column="2"
+                        BackColor="Red"
+                        CommanParamter="Absent"
+                        Command="{Binding FetchStudentsCommand}"
+                        TextCount="{Binding AbsentCount}"
+                        TextLable="{x:Static resource:SharedResources.AbsentStudents}" />
+
+                </Grid>
+            </Grid>
+
+            <!--  Absent Students  -->
+            <CollectionView
+                Grid.Row="1"
+                Margin="15,10,15,0"
+                ItemsSource="{Binding FilteredGroupAttendance}">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout ItemSpacing="15" Orientation="Vertical" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border
+                            Padding="5"
+                            Background="{StaticResource PrimaryColor}"
+                            HeightRequest="50"
+                            StrokeShape="RoundRectangle 5">
+                            <Grid ColumnDefinitions="*">
+                                <Label
+                                    Grid.Column="1"
+                                    HorizontalOptions="CenterAndExpand"
+                                    Style="{StaticResource BoldLabelFont16}"
+                                    Text="{Binding StudentFullName}"
+                                    TextColor="{StaticResource Black}" />
                             </Grid>
                         </Border>
                     </DataTemplate>

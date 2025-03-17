@@ -167,16 +167,30 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.Schedules
         [RelayCommand]
         private async Task SelectSchedule(ScheduleModel schedule)
         {
-            if (schedule == null)
+            try
             {
-                Toast.ShowToastError("Error: Schedule is null");
-                return;
-            }
+                IsRunning = true;
+                if (schedule == null)
+                {
+                    Toast.ShowToastError("Error: Schedule is null");
+                    return;
+                }
 
-            Schedules = await ServiceSchedule.GetScheduleById();
-            SelectedSchedule = Schedules.Where(_ => _.ScheduleID == schedule.ScheduleID).FirstOrDefault();
-            Settings.ScheduleId = SelectedSchedule.ScheduleID.ToString();
-            await OpenPushAsyncPage(new StudyGroupSessionsPage(SelectedSchedule));
+                Schedules = await ServiceSchedule.GetScheduleById();
+                SelectedSchedule = Schedules.Where(_ => _.ScheduleID == schedule.ScheduleID).FirstOrDefault();
+                Settings.ScheduleId = SelectedSchedule.ScheduleID.ToString();
+                await OpenPushAsyncPage(new StudyGroupSessionsPage(SelectedSchedule));
+            }
+            catch (Exception ex)
+            {
+
+                ExtensionLogMethods.LogExtension(ex, "", "SchedulesVM", "SelectSchedule");
+            }
+            finally
+            {
+                IsRunning = false;
+            }
+            
         }
         #endregion
 

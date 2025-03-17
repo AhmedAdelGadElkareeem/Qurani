@@ -111,7 +111,7 @@ public partial class StudyGroupStudentListVM : StudyGroupVM
     [RelayCommand]
     private async Task OpenSessions()
     {
-        await OpenPushAsyncPage(new SessionsPage());
+        await OpenPushAsyncPage(new SessionsPage(StudentList.FirstOrDefault()));
     }
 
     #endregion

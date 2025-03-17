@@ -29,40 +29,48 @@
                     <!--  Centered Content  -->
                     <Grid
                         Margin="10,10,10,0"
-                        ColumnDefinitions="auto, *"
-                        HorizontalOptions="Start"
+                        HorizontalOptions="CenterAndExpand"
+                        RowDefinitions="auto, *"
                         VerticalOptions="Start">
 
                         <!--  User Image  -->
                         <Image
                             Grid.Column="0"
-                            Aspect="AspectFit"
-                            HorizontalOptions="Start"
+                            Aspect="AspectFill"
+                            HorizontalOptions="CenterAndExpand"
                             Source="arabuser"
-                            Style="{StaticResource ImageSize60}" />
+                            Style="{StaticResource ImageSize30}" />
 
                         <!--  Labels beside the Image  -->
                         <VerticalStackLayout
-                            Grid.Column="1"
-                            Margin="10,0,0,0"
+                            Grid.Row="1"
+                            Margin="10,0,10,0"
+                            HorizontalOptions="CenterAndExpand"
                             VerticalOptions="Center">
-                            <Label FontAttributes="Bold" TextColor="{StaticResource Black}">
+                            <Label
+                                FontAttributes="Bold"
+                                HorizontalOptions="CenterAndExpand"
+                                TextColor="{StaticResource Black}">
                                 <Label.FormattedText>
                                     <FormattedString>
                                         <Span
+                                            FontAttributes="Bold"
                                             FontFamily="ManropeBold"
-                                            FontSize="16"
-                                            Text="{x:Static resource:SharedResources.Text_Hi}" />
+                                            FontSize="Medium"
+                                            Text="{x:Static resource:SharedResources.Text_Hi}"
+                                            TextColor="{StaticResource Black}" />
                                         <Span Text=", " />
                                         <Span
                                             FontFamily="ManropeBold"
-                                            FontSize="16"
+                                            FontSize="Large"
                                             Text="{Binding UserName}" />
                                     </FormattedString>
                                 </Label.FormattedText>
                             </Label>
                             <Label
-                                Style="{StaticResource RegularLabelFont14}"
+                                FontAttributes="Bold"
+                                HorizontalOptions="CenterAndExpand"
+                                Style="{StaticResource RegularLabelFont18}"
                                 Text="{x:Static resource:SharedResources.Text_WelcomeToQurani}"
                                 TextColor="{StaticResource Black}" />
                         </VerticalStackLayout>
@@ -70,9 +78,9 @@
 
                     <!--  Bottom Search Bar  -->
                     <Border
-                        Margin="30,30,30,10"
+                        Margin="30,30,30,5"
                         Padding="0"
-                        HeightRequest="50"
+                        HeightRequest="40"
                         HorizontalOptions="FillAndExpand"
                         Stroke="{StaticResource Gray400}"
                         StrokeShape="RoundRectangle 20,20,20,20"

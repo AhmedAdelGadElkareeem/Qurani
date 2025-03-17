@@ -144,12 +144,21 @@ public partial class StudyGroupVM : StudentsVM
     [RelayCommand]
     private async Task OpenAddStudyGroup()
     {
-        await GetTeachers();
-        await GetComplexes();
-        await GetCenters();
-        var popup = new AddStudyGroup();
-        popup.BindingContext = this;
-        ShowPopup(popup);
+        try
+        {
+            await GetTeachers();
+            await GetComplexes();
+            await GetCenters();
+            var popup = new AddStudyGroup();
+            popup.BindingContext = this;
+            ShowPopup(popup);
+        }
+        catch (Exception ex)
+        {
+
+            ExtensionLogMethods.LogExtension(ex, "", "StudyGroupVM", "OpenAddStudyGroup");
+        }
+        
     }
 
     [RelayCommand]

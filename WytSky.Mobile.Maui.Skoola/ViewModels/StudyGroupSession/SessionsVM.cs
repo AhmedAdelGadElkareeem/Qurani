@@ -19,7 +19,8 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudyGroupSession
     {
         #region Propreties
 
-        [ObservableProperty] private ObservableCollection<SessionModel> sessions;
+        [ObservableProperty] private ObservableCollection<SessionModel> sessions 
+                                     = new ObservableCollection<SessionModel>();
 
         [ObservableProperty]
         private ObservableCollection<StudyGroupStudentList> students
@@ -27,9 +28,17 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudyGroupSession
         [ObservableProperty]
         private ObservableCollection<SessionModel> filteredsessions
                                      = new ObservableCollection<SessionModel>();
+
+        [ObservableProperty]
+        private ObservableCollection<AttendanceModel> attendance
+                                     = new ObservableCollection<AttendanceModel>();
         [ObservableProperty]
         private ObservableCollection<AttendanceModel> filteredAttendance
                                      = new ObservableCollection<AttendanceModel>();
+
+        [ObservableProperty]
+        private ObservableCollection<StudentEvaluationModel> evuluations
+                                     = new ObservableCollection<StudentEvaluationModel>();
         [ObservableProperty]
         private ObservableCollection<StudentEvaluationModel> filteredEvuluation
                                      = new ObservableCollection<StudentEvaluationModel>();
@@ -89,37 +98,90 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudyGroupSession
 
         private async Task GetStudentEvulation()
         {
-            IsRunning = true;
-            FilteredAttendance = await APIs.ServiceAttendance.GetGroupAttendance();
-            IsRunning = false;
+            try
+            {
+                IsRunning = true;
+                Attendance = await APIs.ServiceAttendance.GetGroupAttendance();
+                FilteredAttendance = new ObservableCollection<AttendanceModel>(Attendance);
+                IsRunning = false;
+            }
+            catch (Exception ex)
+            {
+
+                ExtensionLogMethods.LogExtension(ex, "", "SessionVM", "GetStudentEvulation");
+            }
+            finally
+            {
+                IsRunning = false;
+            }
         }
 
         private async Task GetStudentAttendance()
         {
-            IsRunning = true;
-            FilteredEvuluation = await APIs.ServiceStudentEvaluation.GetStudentEvulationBySessionId();
-            IsRunning = false;
+            try
+            {
+                IsRunning = true;
+                Evuluations = await APIs.ServiceStudentEvaluation.GetStudentEvulationBySessionId();
+                FilteredEvuluation = new ObservableCollection<StudentEvaluationModel>(Evuluations);
+                IsRunning = false;
+            }
+            catch (Exception ex)
+            {
+
+                ExtensionLogMethods.LogExtension(ex, "", "SessionVM", "GetStudentAttendance");
+
+            }
+            finally
+            {
+                IsRunning = false;
+            }
         }
 
         [RelayCommand]
         public async Task OpenEvuluation(SessionModel model)
         {
 
-            Settings.SessionId = model.SessionID.ToString();
-            await GetStudentEvulation();
-            IsStudentVisible = false;
-            IsEvulationVisible = true;
-          
+            try
+            {
+                IsRunning = true;
+                Settings.SessionId = model.SessionID.ToString();
+                await GetStudentEvulation();
+                IsStudentVisible = false;
+                IsEvulationVisible = true;
+            }
+            catch (Exception ex)
+            {
+
+                ExtensionLogMethods.LogExtension(ex, "", "SessionVM", "OpenEvuluation");
+
+            }
+            finally
+            {
+                IsRunning = false;
+            }
+
         }
         
         [RelayCommand]
         public async Task OpenAttendance(SessionModel model)
         {
 
-            Settings.SessionId = model.SessionID.ToString();
-            await GetStudentAttendance();
-            IsStudentVisible = true;
-            IsEvulationVisible = false;
+            try
+            {
+                IsRunning = true;
+                Settings.SessionId = model.SessionID.ToString();
+                await GetStudentAttendance();
+                IsStudentVisible = true;
+                IsEvulationVisible = false;
+            }
+            catch (Exception ex)
+            {
+                ExtensionLogMethods.LogExtension(ex, "", "SessionVM", "OpenAttendance");
+            }
+            finally
+            {
+                IsRunning = false;
+            }
         }
         #endregion
 
@@ -172,7 +234,8 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudyGroupSession
         public async Task GetSessions()
         {
             IsRunning = true;
-            Filteredsessions = await APIs.SessionService.GetStudyGroupSessionsByGroupId();
+            Sessions = await APIs.SessionService.GetStudyGroupSessionsByGroupId();
+            Filteredsessions = new ObservableCollection<SessionModel>(Sessions);
             IsRunning = false;
 
         }
@@ -200,12 +263,12 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudyGroupSession
             {
                 if (!string.IsNullOrEmpty(value) || value.Length > 0)
                 {
-                    FilteredStudents =
-                        new ObservableCollection<StudyGroupStudentList>(Students.Where(x => x.StudentFullName.ToLower().Contains(value)).ToList());
+                    Filteredsessions =
+                        new ObservableCollection<SessionModel>(Sessions.Where(x => x.GroupSubjectName.ToLower().Contains(value)).ToList());
                 }
                 else
                 {
-                    FilteredStudents = Students;
+                    Filteredsessions = Sessions;
                 }
             }
             catch (Exception ex)
