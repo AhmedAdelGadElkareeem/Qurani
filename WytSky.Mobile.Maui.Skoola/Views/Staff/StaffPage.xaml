@@ -76,7 +76,7 @@
                                 BackgroundColor="Transparent"
                                 Command="{Binding ClearTextCommand}"
                                 HorizontalOptions="Start"
-                                IsVisible="{Binding SearchText, Converter={StaticResource StringToBoolConverter}}"
+                                IsVisible="{Binding SearchText}"
                                 VerticalOptions="Center">
                                 <!--<Button.ImageSource>
                                 <FileImageSource File="clearfilter.png" />
