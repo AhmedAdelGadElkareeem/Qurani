@@ -31,6 +31,18 @@ public partial class StudentAttendanceFilter : ContentView
         set => SetValue(TextLableProperty, value);
     }
 
+    public static readonly BindableProperty TextLabelProperty =
+    BindableProperty.Create(nameof(TextLabel),
+    typeof(string), typeof(StudentAttendanceFilter), default,
+    BindingMode.TwoWay);
+
+    public string TextLabel
+    {
+        get => (string)GetValue(TextLabelProperty);
+        set => SetValue(TextLabelProperty, value);
+    }
+
+
     #endregion
 
     #region TextCount
@@ -85,6 +97,32 @@ public partial class StudentAttendanceFilter : ContentView
     {
         get => (Enums.StudentsStatus)GetValue(CommanParamterProperty);
         set => SetValue(CommanParamterProperty, value);
+    }
+
+
+    public static readonly BindableProperty CommandParameterProperty =
+    BindableProperty.Create(nameof(CommandParameter),
+    typeof(Enums.StudentsStatus), typeof(StudentAttendanceFilter), default,
+    BindingMode.TwoWay);
+
+    public Enums.StudentsStatus CommandParameter
+    {
+        get => (Enums.StudentsStatus)GetValue(CommandParameterProperty);
+        set => SetValue(CommandParameterProperty, value);
+    }
+
+    #endregion
+
+    #region buttontext
+    public static readonly BindableProperty ButtonTextProperty =
+    BindableProperty.Create(nameof(ButtonText),
+    typeof(string), typeof(StudentAttendanceFilter), default,
+    BindingMode.TwoWay);
+
+    public string ButtonText
+    {
+        get => (string)GetValue(ButtonTextProperty);
+        set => SetValue(ButtonTextProperty, value);
     }
 
     #endregion
