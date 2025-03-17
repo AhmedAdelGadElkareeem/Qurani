@@ -54,8 +54,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudyGroupSession
         [ObservableProperty] public bool availableStudents = false;
         [ObservableProperty] public int absentCount = 0;
         [ObservableProperty] public bool absentStudents = false;
-        //[ObservableProperty]
-        //public ObservableCollection<StudyGroupStudentList> FilteredStudents = new ObservableCollection<StudyGroupStudentList>();
+       
         #endregion
 
         #endregion
@@ -71,7 +70,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudyGroupSession
             try
             {
                 IsRunning = true;
-                if (Sessions.Count > 1)
+                if (Sessions == null || Sessions.Count > 1)
                 {
                     Toast.ShowToastError(SharedResources.Msg_SessionExpired);
                 }

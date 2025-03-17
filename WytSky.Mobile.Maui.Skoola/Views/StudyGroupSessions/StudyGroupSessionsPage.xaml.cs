@@ -34,21 +34,6 @@ public partial class StudyGroupSessionsPage : ContentPage
             Toast.ShowToastError("Error: ViewModel is null in StudyGroupSessionsPage.");
         }
     }
-    private void OnAttendanceButtonClicked(object sender, EventArgs e)
-    {
-        if (sender is Button button)
-        {
-            if (!_buttonStates.ContainsKey(button))
-            {
-                _buttonStates[button] = false; // Initialize state if not present
-            }
-
-            _buttonStates[button] = !_buttonStates[button];
-
-            // Change button appearance based on state
-            button.BackgroundColor = _buttonStates[button] ? Colors.Gray : Colors.White;
-            button.Text = _buttonStates[button] ? "Present" : "Mark Attendance"; // Update text
-        }
-    }
+   
 
 }
