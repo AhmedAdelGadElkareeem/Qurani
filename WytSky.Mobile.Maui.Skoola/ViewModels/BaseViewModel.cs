@@ -255,11 +255,12 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
         {
             try
             {
-                await App.Current.MainPage.Navigation.PushAsync(page);
+                await Shell.Current.Navigation.PushAsync(page);
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                string er = e.Message;
+                ExtensionLogMethods.LogExtension(ex, null, "BasseViewModel", "OpenPushAsyncPage");
+
             }
         }
         public void ShowPopup(PopupPage popup)
