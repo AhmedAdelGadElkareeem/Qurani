@@ -10,6 +10,7 @@
     Title="{x:Static resource:SharedResources.Txt_Sessions}">
     <Grid RowDefinitions="*">
         <Grid RowDefinitions="auto,*" VerticalOptions="FillAndExpand">
+
             <Border
                 Padding="0"
                 BackgroundColor="{StaticResource PrimaryColor}"
@@ -91,88 +92,88 @@
                     </Border>
                 </Grid>
             </Border>
-            <CarouselView
-                x:Name="parentCategories"
-                Margin="15,10,15,0"
-                HeightRequest="120"
-                ItemsSource="{Binding Filteredsessions}"
-                Loop="False">
+            <Grid Grid.Row="1">
+                <CarouselView
+                    x:Name="parentCategories"
+                    Margin="5,5"
+                    HeightRequest="120"
+                    ItemsSource="{Binding Filteredsessions}"
+                    Loop="False">
+                    <CarouselView.ItemsLayout>
+                        <LinearItemsLayout ItemSpacing="10" Orientation="Horizontal" />
+                    </CarouselView.ItemsLayout>
+                    <CarouselView.ItemTemplate>
+                        <DataTemplate>
+                            <Border
+                                Margin="0"
+                                Padding="10"
+                                HorizontalOptions="FillAndExpand"
+                                Stroke="{StaticResource PrimaryColor}"
+                                StrokeShape="RoundRectangle 20,20,20,20"
+                                StrokeThickness=".5">
+                                <Grid ColumnDefinitions="auto,*">
+                                    <VerticalStackLayout BackgroundColor="White">
 
-                <CarouselView.ItemsLayout>
-                    <LinearItemsLayout ItemSpacing="10" Orientation="Horizontal" />
-                </CarouselView.ItemsLayout>
-
-                <CarouselView.ItemTemplate>
-                    <DataTemplate>
-                        <Border
-                            Margin="10,10"
-                            Padding="10"
-                            HorizontalOptions="FillAndExpand"
-                            Stroke="{StaticResource PrimaryColor}"
-                            StrokeShape="RoundRectangle 20,20,20,20"
-                            StrokeThickness=".5">
-                            <Grid ColumnDefinitions="*, auto">
-                                <VerticalStackLayout BackgroundColor="White">
-                                    <Grid ColumnDefinitions="*,*" ColumnSpacing="5">
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="Medium"
+                                            HorizontalOptions="CenterAndExpand"
+                                            HorizontalTextAlignment="Center"
+                                            Text="{Binding GroupTeacherFullName}"
+                                            TextColor="{StaticResource Black}" />
                                         <!--  Day of the Week  -->
                                         <Label
                                             FontAttributes="Bold"
-                                            FontSize="18"
+                                            FontSize="Medium"
                                             Text="{Binding DayOfWeekName}"
                                             TextColor="{StaticResource Black}" />
-                                        <Label
-                                            FontAttributes="Bold"
-                                            FontSize="18"
-                                            Text="{Binding GroupTeacherFullName}"
-                                            TextColor="{StaticResource Black}" />
-                                    </Grid>
 
-                                    <!--  Start & End Time  -->
-                                    <HorizontalStackLayout Spacing="10">
-                                        <Label
-                                            FontAttributes="Bold"
-                                            FontSize="14"
-                                            Text="{x:Static resource:SharedResources.FromDate}"
-                                            TextColor="Black" />
-                                        <Label
-                                            FontAttributes="Bold"
-                                            FontSize="15"
-                                            Text="{Binding StartTime, StringFormat='{0:hh\\:mm}'}"
-                                            TextColor="{StaticResource Black}" />
-                                        <Label
-                                            FontAttributes="Bold"
-                                            FontSize="14"
-                                            Text="{x:Static resource:SharedResources.ToDate}"
-                                            TextColor="Black" />
-                                        <Label
-                                            FontAttributes="Bold"
-                                            FontSize="15"
-                                            Text="{Binding EndTime, StringFormat='{0:hh\\:mm}'}"
-                                            TextColor="{StaticResource Black}" />
-                                    </HorizontalStackLayout>
-                                </VerticalStackLayout>
 
-                                <Button
-                                    Grid.Column="1"
-                                    BackgroundColor="{StaticResource PrimaryColor}"
-                                    Command="{Binding Source={RelativeSource AncestorType={x:Type CarouselView}}, Path=BindingContext.SelectSessionCommand}"
-                                    CommandParameter="{Binding .}"
-                                    FontAttributes="Bold"
-                                    Style="{StaticResource BaseButton}"
-                                    Text="{x:Static resource:SharedResources.Txt_OpenSession}" />
-                            </Grid>
-                        </Border>
-                    </DataTemplate>
-                </CarouselView.ItemTemplate>
+                                        <!--  Start & End Time  -->
+                                        <HorizontalStackLayout Spacing="10">
+                                            <Label
+                                                FontAttributes="Bold"
+                                                FontSize="14"
+                                                Text="{x:Static resource:SharedResources.FromDate}"
+                                                TextColor="Black" />
+                                            <Label
+                                                FontAttributes="Bold"
+                                                FontSize="15"
+                                                Text="{Binding StartTime, StringFormat='{0:hh\\:mm}'}"
+                                                TextColor="{StaticResource Black}" />
+                                            <Label
+                                                FontAttributes="Bold"
+                                                FontSize="14"
+                                                Text="{x:Static resource:SharedResources.ToDate}"
+                                                TextColor="Black" />
+                                            <Label
+                                                FontAttributes="Bold"
+                                                FontSize="15"
+                                                Text="{Binding EndTime, StringFormat='{0:hh\\:mm}'}"
+                                                TextColor="{StaticResource Black}" />
+                                        </HorizontalStackLayout>
+                                    </VerticalStackLayout>
 
-                <CarouselView.EmptyView>
-                    <customControls:EmptyView />
-                </CarouselView.EmptyView>
-            </CarouselView>
+                                    <Button
+                                        Grid.Column="1"
+                                        BackgroundColor="{StaticResource PrimaryColor}"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type CarouselView}}, Path=BindingContext.SelectSessionCommand}"
+                                        CommandParameter="{Binding .}"
+                                        FontAttributes="Bold"
+                                        Style="{StaticResource BaseButton}"
+                                        Text="{x:Static resource:SharedResources.Txt_OpenSession}" />
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </CarouselView.ItemTemplate>
 
-            <!--  Add Button  -->
-            <Button Command="{Binding OpenAddSchedulesCommand}" Style="{StaticResource AddButton}" />
-
+                    <CarouselView.EmptyView>
+                        <customControls:EmptyView />
+                    </CarouselView.EmptyView>
+                </CarouselView>
+                <!--  Add Button  -->
+                <Button Command="{Binding OpenAddSchedulesCommand}" Style="{StaticResource AddButton}" />
+            </Grid>
         </Grid>
         <ActivityIndicator IsRunning="{Binding IsRunning}" IsVisible="{Binding IsRunning}" />
     </Grid>
