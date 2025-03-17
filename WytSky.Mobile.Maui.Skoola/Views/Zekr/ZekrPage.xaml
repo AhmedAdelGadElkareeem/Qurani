@@ -8,15 +8,15 @@
     xmlns:resources="clr-namespace:WytSky.Mobile.Maui.Skoola.AppResources"
     Title="{x:Static resources:SharedResources.PrayerontheProphet}">
     <Grid RowDefinitions="*">
-        <Grid RowDefinitions="auto,*" VerticalOptions="FillAndExpand">
+        <Grid RowDefinitions="*" VerticalOptions="FillAndExpand">
             <!--<customControls:CustomHeader
                 HasBack="True"
                 HasTitle="True"
                 PageTitle="{x:Static resources:SharedResources.PrayerontheProphet}" />-->
-            <Grid Grid.Row="1" RowDefinitions="auto,*">
+            <Grid RowDefinitions="auto,*">
                 <Frame
                     Padding="20"
-                    BackgroundColor="#00274D"
+                    BackgroundColor="{StaticResource DarkBlue}"
                     BorderColor="gold"
                     CornerRadius="20"
                     HasShadow="True">
@@ -28,10 +28,11 @@
                         TextColor="gold"
                         VerticalOptions="StartAndExpand" />
                 </Frame>
+
                 <Frame
                     Grid.Row="1"
                     Padding="20"
-                    BackgroundColor="#00274D"
+                    BackgroundColor="{StaticResource DarkBlue}"
                     BorderColor="gold"
                     CornerRadius="20"
                     HasShadow="True">
@@ -42,7 +43,7 @@
                             FontSize="Medium"
                             HorizontalOptions="Center"
                             Text="{Static resources:SharedResources.PrayonourmasterMohammad}"
-                            TextColor="gold"
+                            TextColor="Gold"
                             VerticalOptions="StartAndExpand" />
                         <Label
                             Grid.Row="1"
@@ -51,7 +52,7 @@
                             HorizontalOptions="CenterAndExpand"
                             HorizontalTextAlignment="Center"
                             Text="{Static resources:SharedResources.AbrahamicPray}"
-                            TextColor="gold"
+                            TextColor="Gold"
                             VerticalOptions="StartAndExpand" />
                         <!--  Counter Button  -->
                         <Button

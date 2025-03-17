@@ -11,7 +11,7 @@ namespace WytSky.Mobile.Maui.Skoola.Views;
 public partial class MainPage : BaseContentPage
 {
 
-    BaseViewModel BaseModelVM = new();
+    BaseViewModel BaseModelVM = new BaseViewModel();
     public MainPage()
 	{
 		InitializeComponent();

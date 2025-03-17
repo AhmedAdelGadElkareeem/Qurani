@@ -31,7 +31,21 @@
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>-->
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net9.0-android|AnyCPU'">
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-android|AnyCPU'">
+		<!--<AndroidLinkMode>SDKOnly</AndroidLinkMode>-->
+		<AndroidStoreUnstrippedLibraries>false</AndroidStoreUnstrippedLibraries>
+		<RunAOTCompilation>False</RunAOTCompilation>
+		<PublishTrimmed>False</PublishTrimmed>
+		<AndroidKeyStore>False</AndroidKeyStore>
+		<AndroidPackageFormat>apk</AndroidPackageFormat>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)'=='Release'">
+		<MonoLinkMode>None</MonoLinkMode>
+	</PropertyGroup>
+	
+	<!--<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net9.0-android|AnyCPU'">
 	  <AndroidPackageFormat>apk</AndroidPackageFormat>
 	</PropertyGroup>
 
@@ -54,7 +68,7 @@
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net9.0-ios|AnyCPU'">
 	  <ApplicationTitle>Quraani</ApplicationTitle>
 	  <ApplicationId>com.wytsky.Skoola</ApplicationId>
-	</PropertyGroup>
+	</PropertyGroup>-->
 
 	<ItemGroup>
 		<!-- App Icon -->
@@ -72,6 +86,15 @@
 
 		<!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
 		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <AndroidResource Remove="ViewModels\Attendance\**" />
+	  <Compile Remove="ViewModels\Attendance\**" />
+	  <EmbeddedResource Remove="ViewModels\Attendance\**" />
+	  <MauiCss Remove="ViewModels\Attendance\**" />
+	  <MauiXaml Remove="ViewModels\Attendance\**" />
+	  <None Remove="ViewModels\Attendance\**" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -288,6 +311,9 @@
 	  <MauiXaml Update="Views\Zekr\ZekrPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+		<MauiXaml Update="Views\Complexes\ComplexesPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -312,9 +338,5 @@
 
 	<ItemGroup>
 	  <AndroidNativeLibrary Remove="C:\Users\pv12646\.nuget\packages\videolan.libvlc.android\3.5.3\build\android-armv7\libc++_shared.so" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="ViewModels\Attendance\" />
 	</ItemGroup>
 </Project>
