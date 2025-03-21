@@ -6,15 +6,15 @@ namespace WytSky.Mobile.Maui.Skoola.Views.Complexes;
 
 public partial class AddComplex : PopupPage
 {
-    private ComplexModel selectedComplex;
+    //private ComplexModel selectedComplex;
 
     public AddComplex()
     {
         InitializeComponent();
     }
 
-    public AddComplex(ComplexModel selectedComplex)
-    {
-        this.selectedComplex = selectedComplex;
-    }
+    //public AddComplex(ComplexModel selectedComplex)
+    //{
+    //    this.selectedComplex = selectedComplex;
+    //}
 }

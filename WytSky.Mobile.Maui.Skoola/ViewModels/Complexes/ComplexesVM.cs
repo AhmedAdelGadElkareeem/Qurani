@@ -1,6 +1,7 @@
 ﻿
 using System.Collections.ObjectModel;
 using System.Globalization;
+using System.Runtime.CompilerServices;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using WytSky.Mobile.Maui.Skoola.AppResources;
@@ -176,8 +177,7 @@ public partial class ComplexesVM : BaseViewModel
 
                 //{ "SupervisorID", Settings.UserId }
             };
-            if (IsAdd)
-            {
+
                 var result = await APIs.ServiceComplex.AddComplex(formData);
                 if (result != null)
                 {
@@ -189,24 +189,6 @@ public partial class ComplexesVM : BaseViewModel
                 {
                     Toast.ShowToastError("Error", "Failed to add complex");
                 }
-            }
-            else 
-            {
-                var result = await APIs.ServiceComplex.UpdateComplex(formData);
-                if (result != null)
-                {
-                    HidePopup();
-                    Toast.ShowToastSuccess(SharedResources.AddedSuccessfully);
-                    await GetComplexs();
-                }
-                else
-                {
-                    Toast.ShowToastError("Error", "Failed to update complex");
-                }
-            }
-
-           
-           
         }
         catch (Exception ex)
         {
@@ -248,12 +230,9 @@ public partial class ComplexesVM : BaseViewModel
                 { "ComplexName", ComplexName },
                 { "CountryID", SelectedCountry.CountryID },
                 { "RegionID", SelectedRegion.RegionID},
-                { "IsActive", true},
-
-                //{ "SupervisorID", Settings.UserId }
             };
 
-            var result = await APIs.ServiceComplex.AddComplex(formData);
+            var result = await APIs.ServiceComplex.UpdateComplexx(formData);
             if (result != null)
             {
                 HidePopup();
@@ -298,6 +277,7 @@ public partial class ComplexesVM : BaseViewModel
         }
     }
 
+
     [RelayCommand]
     private async Task OpenEditComplex(ComplexModel complexModel)
     {
@@ -319,7 +299,7 @@ public partial class ComplexesVM : BaseViewModel
             await GetCountries();
             await LoadRegions(complexModel.CountryID.ToString());
 
-            var popup = new AddComplex();
+            var popup = new EditComplex();
             popup.BindingContext = this;
             ShowPopup(popup);
         }
