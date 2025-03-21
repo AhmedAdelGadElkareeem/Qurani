@@ -33,7 +33,7 @@ namespace WytSky.Mobile.Maui.Skoola.APIs
             {
                 string ExceptionMseeage = string.Format(" Error : {0} - {1} ", ex.Message, ex.InnerException != null ? ex.InnerException.FullMessage() : "");
                 System.Diagnostics.Debug.WriteLine(ExceptionMseeage);
-                ExtensionLogMethods.LogExtension(ExceptionMseeage, "", "ServiceCatgeory", "GetParentCategories");
+                ExtensionLogMethods.LogExtension(ExceptionMseeage, "", "ServiceComplex", "GetParentCategories");
                 return null;
             }
         }
@@ -60,7 +60,7 @@ namespace WytSky.Mobile.Maui.Skoola.APIs
             {
                 string ExceptionMseeage = string.Format(" Error : {0} - {1} ", ex.Message, ex.InnerException != null ? ex.InnerException.FullMessage() : "");
                 System.Diagnostics.Debug.WriteLine(ExceptionMseeage);
-                ExtensionLogMethods.LogExtension(ExceptionMseeage, "", "ServiceCatgeory", "GetParentCategories");
+                ExtensionLogMethods.LogExtension(ExceptionMseeage, "", "ServiceComplex", "GetParentCategories");
                 return null;
             }
         }

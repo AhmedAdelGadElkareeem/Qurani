@@ -79,7 +79,7 @@
                     <Border
                         Margin="30,30,30,5"
                         Padding="0"
-                        HeightRequest="40"
+                        HeightRequest="43"
                         HorizontalOptions="FillAndExpand"
                         Stroke="{StaticResource Gray400}"
                         StrokeShape="RoundRectangle 20,20,20,20"
@@ -135,7 +135,7 @@
                         <DataTemplate>
                             <Border
                                 Padding="5"
-                                HeightRequest="137"
+                                HeightRequest="165"
                                 StrokeShape="RoundRectangle 20,20,20,20">
                                 <Border.Background>
                                     <LinearGradientBrush EndPoint="0,1">
@@ -143,44 +143,88 @@
                                         <GradientStop Offset="1.0" Color="{StaticResource LightGreen}" />
                                     </LinearGradientBrush>
                                 </Border.Background>
-                                <VerticalStackLayout>
-                                    <Label
-                                        HorizontalOptions="CenterAndExpand"
-                                        HorizontalTextAlignment="Center"
-                                        Style="{StaticResource BoldLabelFont16}"
-                                        Text="{Binding CountryName}"
-                                        TextColor="{StaticResource DarkBlue}" />
-                                    <Label
-                                        HorizontalOptions="CenterAndExpand"
-                                        HorizontalTextAlignment="Center"
-                                        Style="{StaticResource BoldLabelFont16}"
-                                        Text="{Binding RegionName}"
-                                        TextColor="{StaticResource DarkBlue}" />
-                                    <Label
-                                        HorizontalOptions="CenterAndExpand"
-                                        HorizontalTextAlignment="Center"
-                                        Style="{StaticResource BoldLabelFont18}"
-                                        TextColor="{StaticResource DarkBlue}">
-                                        <Label.FormattedText>
-                                            <FormattedString>
-                                                <Span Text="{x:Static resource:SharedResources.CentersNumber}" />
-                                                <Span Text="{Binding CenterCount}" />
-                                            </FormattedString>
-                                        </Label.FormattedText>
-                                    </Label>
-                                    <Label
-                                        HorizontalOptions="CenterAndExpand"
-                                        HorizontalTextAlignment="Center"
-                                        Style="{StaticResource BoldLabelFont16}"
-                                        Text="{Binding ComplexName}"
-                                        TextColor="{StaticResource DarkBlue}" />
-                                    <Label
-                                        HorizontalOptions="CenterAndExpand"
-                                        HorizontalTextAlignment="Center"
-                                        Style="{StaticResource BoldLabelFont16}"
-                                        Text="{Binding SupervisorFullName}"
-                                        TextColor="{StaticResource DarkBlue}" />
-                                </VerticalStackLayout>
+
+                                <!--  Grid for Layout  -->
+                                <Grid>
+
+                                    <ImageButton
+                                        Margin="5"
+                                        BackgroundColor="Transparent"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.OpenEditComplexCommand}"
+                                        CommandParameter="{Binding .}"
+                                        HeightRequest="25"
+                                        HorizontalOptions="End"
+                                        Source="edit.png"
+                                        VerticalOptions="Start"
+                                        WidthRequest="25" />
+
+                                    <!--  Content Layout  -->
+                                    <VerticalStackLayout Margin="0,10,0,0">
+                                        <Label
+                                            HorizontalOptions="CenterAndExpand"
+                                            HorizontalTextAlignment="Center"
+                                            Style="{StaticResource BoldLabelFont16}"
+                                            Text="{Binding CountryName}"
+                                            TextColor="{StaticResource DarkBlue}" />
+                                        <Label
+                                            HorizontalOptions="CenterAndExpand"
+                                            HorizontalTextAlignment="Center"
+                                            Style="{StaticResource BoldLabelFont16}"
+                                            Text="{Binding RegionName}"
+                                            TextColor="{StaticResource DarkBlue}" />
+                                        <Grid
+                                            ColumnDefinitions=" Auto , *"
+                                            ColumnSpacing="20"
+                                            HorizontalOptions="Center">
+                                            <Label
+                                                Grid.Column="0"
+                                                HorizontalTextAlignment="Center"
+                                                Style="{StaticResource BoldLabelFont18}"
+                                                TextColor="{StaticResource DarkBlue}">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text="{x:Static resource:SharedResources.CentersNumber}" />
+                                                        <Span Text="{Binding CenterCount}" />
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+
+                                            <Image
+                                                Grid.Column="1"
+                                                HeightRequest="25"
+                                                HorizontalOptions="End"
+                                                Source="mosque.png"
+                                                WidthRequest="25" />
+
+                                            <!--  Centers Number Label  -->
+
+                                        </Grid>
+                                        <Grid
+                                            ColumnDefinitions=" Auto , *"
+                                            ColumnSpacing="20"
+                                            HorizontalOptions="Center">
+                                            <Label
+                                                Grid.Column="0"
+                                                HorizontalOptions="CenterAndExpand"
+                                                HorizontalTextAlignment="Center"
+                                                Style="{StaticResource BoldLabelFont16}"
+                                                Text="{Binding ComplexName}"
+                                                TextColor="{StaticResource DarkBlue}" />
+                                            <Image
+                                                Grid.Column="1"
+                                                HeightRequest="25"
+                                                HorizontalOptions="End"
+                                                Source="complexes.png"
+                                                WidthRequest="25" />
+                                        </Grid>
+                                        <Label
+                                            HorizontalOptions="CenterAndExpand"
+                                            HorizontalTextAlignment="Center"
+                                            Style="{StaticResource BoldLabelFont16}"
+                                            Text="{Binding SupervisorFullName}"
+                                            TextColor="{StaticResource DarkBlue}" />
+                                    </VerticalStackLayout>
+                                </Grid>
 
                                 <Border.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.SelectComplexCommand}" CommandParameter="{Binding .}" />

@@ -1,15 +1,17 @@
 ﻿using System.Collections.ObjectModel;
 using System.Text.Json.Nodes;
 using WytSky.Mobile.Maui.Skoola.Dtos;
+using WytSky.Mobile.Maui.Skoola.Helpers;
 using WytSky.Mobile.Maui.Skoola.Models;
 
 namespace WytSky.Mobile.Maui.Skoola.APIs
 {
-    public class ServiceCatgeory
+    public class ServiceComplex
     {
         public const string BASE = "appservices";
+        public const string KeyName = "ComplexID";
 
-        #region Categories
+        #region Complexes
         public async static Task<ObservableCollection<ComplexModel>> GetComplexs()
         {
             try
@@ -33,10 +35,45 @@ namespace WytSky.Mobile.Maui.Skoola.APIs
             {
                 string ExceptionMseeage = string.Format(" Error : {0} - {1} ", ex.Message, ex.InnerException != null ? ex.InnerException.FullMessage() : "");
                 System.Diagnostics.Debug.WriteLine(ExceptionMseeage);
-                ExtensionLogMethods.LogExtension(ExceptionMseeage, "", "ServiceCatgeory", "GetParentCategories");
+                ExtensionLogMethods.LogExtension(ExceptionMseeage, "", "ServiceComplex", "GetParentCategories");
                 return null;
             }
         }
+          public async static Task<ObservableCollection<ComplexModel>> UpdateComplex(Dictionary<string, object> formData)
+          {
+              try
+              {
+                  var dictionary = new Dictionary<string, string>()
+                  {
+                        {"_datatype", "json"},
+                        {"_jsonarray", "1"},
+                        {"_key", Settings.ComplexId },
+                        {"_keyname", KeyName }
+                  };
+                foreach (var item in formData)
+                {
+                    dictionary[item.Key] = item.Value?.ToString() ?? string.Empty;
+                }
+
+                var result = await Services.RequestProvider.Current.GetData<TempletData<ComplexModel>>(BASE, "complexes", dictionary, Enums.AuthorizationType.UserNamePassword);
+
+                  if (result != null && result.IsPassed)
+                  {
+                      return result.Data.itemData;
+                  }
+                  else
+                  {
+                      return null;
+                  }
+              }
+              catch (Exception ex)
+              {
+                  string ExceptionMseeage = string.Format(" Error : {0} - {1} ", ex.Message, ex.InnerException != null ? ex.InnerException.FullMessage() : "");
+                  System.Diagnostics.Debug.WriteLine(ExceptionMseeage);
+                  ExtensionLogMethods.LogExtension(ExceptionMseeage, "", "ServiceComplex", "GetComplexById");
+                  return null;
+              }
+          }
 
         public async static Task<ComplexModel> AddComplex(Dictionary<string, object> formData)
         {
@@ -120,7 +157,7 @@ namespace WytSky.Mobile.Maui.Skoola.APIs
             {
                 string ExceptionMseeage = string.Format(" Error : {0} - {1} ", ex.Message, ex.InnerException != null ? ex.InnerException.FullMessage() : "");
                 System.Diagnostics.Debug.WriteLine(ExceptionMseeage);
-                ExtensionLogMethods.LogExtension(ExceptionMseeage, "", "ServiceCatgeory", "GetParentCategories");
+                ExtensionLogMethods.LogExtension(ExceptionMseeage, "", "ServiceComplex", "GetParentCategories");
                 return null;
             }
         }
@@ -192,7 +229,7 @@ namespace WytSky.Mobile.Maui.Skoola.APIs
             {
                 string ExceptionMseeage = string.Format(" Error : {0} - {1} ", ex.Message, ex.InnerException != null ? ex.InnerException.FullMessage() : "");
                 System.Diagnostics.Debug.WriteLine(ExceptionMseeage);
-                ExtensionLogMethods.LogExtension(ExceptionMseeage, "", "ServiceCatgeory", "GetMainCategories");
+                ExtensionLogMethods.LogExtension(ExceptionMseeage, "", "ServiceComplex", "GetMainCategories");
                 return null;
             }
         }
@@ -220,7 +257,7 @@ namespace WytSky.Mobile.Maui.Skoola.APIs
             {
                 string ExceptionMseeage = string.Format(" Error : {0} - {1} ", ex.Message, ex.InnerException != null ? ex.InnerException.FullMessage() : "");
                 System.Diagnostics.Debug.WriteLine(ExceptionMseeage);
-                ExtensionLogMethods.LogExtension(ExceptionMseeage, "", "ServiceCatgeory", "GetCategories");
+                ExtensionLogMethods.LogExtension(ExceptionMseeage, "", "ServiceComplex", "GetCategories");
                 return null;
             }
         }

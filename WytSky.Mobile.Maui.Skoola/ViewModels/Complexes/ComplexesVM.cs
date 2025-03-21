@@ -27,10 +27,10 @@ public partial class ComplexesVM : BaseViewModel
     public string complexId;
 
     [ObservableProperty]
-    public CountryModel selectedCountry;
+    public CountryModel selectedCountry = new ();
 
     [ObservableProperty]
-    public RegionModel selectedRegion;
+    public RegionModel selectedRegion = new RegionModel();
 
     [ObservableProperty]
     private string searchText;
@@ -40,6 +40,13 @@ public partial class ComplexesVM : BaseViewModel
 
     [ObservableProperty]
     private bool isRegionPopupVisible;
+    
+    
+    [ObservableProperty]
+    private bool isEdit = false;
+    
+    [ObservableProperty]
+    private bool isAdd = false;
     #endregion
 
     #region Methods
@@ -48,7 +55,7 @@ public partial class ComplexesVM : BaseViewModel
         try
         {
             IsRunning = true;
-            Complexes = await APIs.ServiceCatgeory.GetComplexs();
+            Complexes = await APIs.ServiceComplex.GetComplexs();
             FilteredComplexes = new ObservableCollection<ComplexModel>(Complexes);
             IsRunning = false;
         }
@@ -159,6 +166,82 @@ public partial class ComplexesVM : BaseViewModel
             }
 
             IsRunning = true;
+            
+            var formData = new Dictionary<string, object>
+            {
+                { "ComplexName", ComplexName },
+                { "CountryID", SelectedCountry.CountryID },
+                { "RegionID", SelectedRegion.RegionID},
+                //{ "IsActive", true},
+
+                //{ "SupervisorID", Settings.UserId }
+            };
+            if (IsAdd)
+            {
+                var result = await APIs.ServiceComplex.AddComplex(formData);
+                if (result != null)
+                {
+                    HidePopup();
+                    Toast.ShowToastSuccess(SharedResources.AddedSuccessfully);
+                    await GetComplexs();
+                }
+                else
+                {
+                    Toast.ShowToastError("Error", "Failed to add complex");
+                }
+            }
+            else 
+            {
+                var result = await APIs.ServiceComplex.UpdateComplex(formData);
+                if (result != null)
+                {
+                    HidePopup();
+                    Toast.ShowToastSuccess(SharedResources.AddedSuccessfully);
+                    await GetComplexs();
+                }
+                else
+                {
+                    Toast.ShowToastError("Error", "Failed to update complex");
+                }
+            }
+
+           
+           
+        }
+        catch (Exception ex)
+        {
+            ExtensionLogMethods.LogExtension(ex, "", "ComplexesVM", "AddComplex");
+            Toast.ShowToastError("Error", "An unexpected error occurred");
+        }
+        finally
+        {
+            IsRunning = false;
+        }
+    }
+     [RelayCommand]
+    public async Task EditComplex()
+    {
+        try
+        {
+            if (string.IsNullOrWhiteSpace(ComplexName))
+            {
+                Toast.ShowToastError("Error", "Complex name cannot be empty");
+                return;
+            }
+
+            if (string.IsNullOrEmpty(SelectedCountry.CountryName))
+            {
+                Toast.ShowToastError("Error", "Select Country");
+                return;
+            }
+
+            if (string.IsNullOrEmpty(SelectedRegion.RegionName))
+            {
+                Toast.ShowToastError("Error", "Selecte Region");
+                return;
+            }
+
+            IsRunning = true;
 
             var formData = new Dictionary<string, object>
             {
@@ -170,7 +253,7 @@ public partial class ComplexesVM : BaseViewModel
                 //{ "SupervisorID", Settings.UserId }
             };
 
-            var result = await APIs.ServiceCatgeory.AddComplex(formData);
+            var result = await APIs.ServiceComplex.AddComplex(formData);
             if (result != null)
             {
                 HidePopup();
@@ -198,12 +281,15 @@ public partial class ComplexesVM : BaseViewModel
     {
         try
         {
+            IsAdd = true;
+            IsEdit = false;
             var popup = new AddComplex();
             await GetCountries();
             //if (Countries.Count > 0)
             //await GetRegions(Countries[0].CountryID.ToString());
             popup.BindingContext = this;
             ShowPopup(popup);
+            
         }
         catch (Exception ex)
         {
@@ -211,6 +297,38 @@ public partial class ComplexesVM : BaseViewModel
 
         }
     }
+
+    [RelayCommand]
+    private async Task OpenEditComplex(ComplexModel complexModel)
+    {
+        try
+        {
+            if (complexModel == null)
+                return;
+
+            IsAdd = false;
+            IsEdit = true;
+            Settings.ComplexId = complexModel.ComplexID.ToString();
+            ComplexId = complexModel.ComplexID.ToString();
+            ComplexName = complexModel.ComplexName;
+            SelectedCountry.CountryID = complexModel.CountryID ;     
+            SelectedCountry.CountryName = complexModel.CountryName;  
+            SelectedRegion.CountryID = complexModel.RegionID ;       
+            SelectedRegion.RegionName = complexModel.RegionName;
+                                                                
+            await GetCountries();
+            await LoadRegions(complexModel.CountryID.ToString());
+
+            var popup = new AddComplex();
+            popup.BindingContext = this;
+            ShowPopup(popup);
+        }
+        catch (Exception ex)
+        {
+            ExtensionLogMethods.LogExtension(ex, "", "ComplexesVM", "OpenEditComplex");
+        }
+    }
+
 
     [RelayCommand]
     public async Task SelectComplex(ComplexModel complexModel)

@@ -321,7 +321,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
         }
         public async Task GetComplexes()
         {
-            Complexes = await APIs.ServiceCatgeory.GetComplexs();
+            Complexes = await APIs.ServiceComplex.GetComplexs();
         }
 
         [RelayCommand]

@@ -36,7 +36,7 @@ namespace WytSky.Mobile.Maui.Skoola
                 //}
                 //else
                 //{
-                //        MainPage = new SignInSignUpPage();
+                        MainPage = new SignInSignUpPage();
                 //} 
             }
             catch (Exception ex)

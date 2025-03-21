@@ -48,7 +48,7 @@
                         Grid.Row="3"
                         Margin="30,0,30,0"
                         Padding="0"
-                        HeightRequest="40"
+                        HeightRequest="45"
                         HorizontalOptions="FillAndExpand"
                         Stroke="{StaticResource Gray400}"
                         StrokeShape="RoundRectangle 20,20,20,20"
