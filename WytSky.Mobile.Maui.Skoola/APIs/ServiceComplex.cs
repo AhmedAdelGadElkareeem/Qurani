@@ -75,6 +75,39 @@ namespace WytSky.Mobile.Maui.Skoola.APIs
               }
           }
 
+        public async static Task<ObservableCollection<ComplexModel>> UpdateComplexx(Dictionary<string, object> formData)
+        {
+            try
+            {
+                var dictionary = new Dictionary<string, string>
+                {
+                    { "_datatype", "json" },
+                    { "_jsonarray", "1" },
+                    { "_key", Settings.ComplexId },
+                    { "_keyname", KeyName }
+                };
+                foreach (var item in formData)
+                {
+                    if (item.Value != null)
+                        dictionary[item.Key] = item.Value.ToString();
+                }
+
+                var result = await Services.RequestProvider.Current.GetUpdate<TempletData<ComplexModel>>(
+                    BASE, "complexes", dictionary, Enums.AuthorizationType.UserNamePassword
+                );
+
+                return result != null && result.IsPassed ? result.Data.itemData : null;
+            }
+            catch (Exception ex)
+            {
+                string exceptionMessage = $"Error: {ex.Message} | Inner Exception: {(ex.InnerException != null ? ex.InnerException.Message : "None")}";
+                System.Diagnostics.Debug.WriteLine(exceptionMessage);
+                ExtensionLogMethods.LogExtension(exceptionMessage, "", "ServiceComplex", "UpdateComplex");
+                return null;
+            }
+        }
+
+
         public async static Task<ComplexModel> AddComplex(Dictionary<string, object> formData)
         {
             try

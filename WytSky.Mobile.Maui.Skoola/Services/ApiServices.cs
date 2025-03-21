@@ -1699,6 +1699,89 @@ namespace WytSky.Mobile.Maui.Skoola.Services
         }
         #endregion
 
+        #region GetUpdate
+        public async Task<Models.IResponse<T>> GetUpdate<T>(string control, string action, Dictionary<string, string> parameters, Enums.AuthorizationType Authorization = 0, bool isLoading = true)
+        {
+            string url = "";
+            try
+            {
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Authorization = null;
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                if (Authorization == Enums.AuthorizationType.Token)
+                {
+                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Settings.AuthoToken);
+                }
+                else if (Authorization == Enums.AuthorizationType.UserNamePassword)
+                {
+                    var byteArray = Encoding.ASCII.GetBytes($"{Settings.UserName}:{Settings.Password}");
+                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(byteArray));
+                }
+
+                HttpResponseMessage request = null;
+                StringBuilder query = new StringBuilder("?");
+
+                if (parameters != null && parameters.Count > 0)
+                {
+                    var queryParams = new Dictionary<string, string>(parameters)
+                    {
+                        { "IsActive", "true" },
+                        { "IsDelete", "false" }
+                    };
+
+                    foreach (var item in queryParams)
+                    {
+                        query.Append($"{item.Key}={Uri.EscapeDataString(item.Value)}&");
+                    }
+                    query.Length--; // Remove the last '&'
+                }
+
+                url = string.IsNullOrWhiteSpace(action) ? $"{apiAddress}{control}{query}" : $"{apiAddress}{control}/{action}{query}";
+
+                Debug.WriteLine($"Request URL: {url}");
+                request = await client.GetAsync(url);
+                var content = await request.Content.ReadAsStringAsync();
+
+                if (!request.IsSuccessStatusCode)
+                {
+                    Debug.WriteLine($"Error {content}");
+                    return new Models.IResponse<T>
+                    {
+                        IsPassed = false,
+                        Message = $"Error: {request.StatusCode} - {content}"
+                    };
+                }
+
+                var obj = JsonSerializer.Deserialize<T>(content, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+                return new Models.IResponse<T>
+                {
+                    IsPassed = true,
+                    Message = "Success",
+                    Data = obj
+                };
+            }
+            catch (Exception ex)
+            {
+                string errorMessage = $"Error: {ex.Message} | Inner Exception: {(ex.InnerException != null ? ex.InnerException.Message : "None")}";
+                Debug.WriteLine(errorMessage);
+                ExtensionLogMethods.LogExtension(errorMessage, $"URL: {url}", "ApiServices", "GetData");
+                return new Models.IResponse<T>
+                {
+                    IsPassed = false,
+                    Message = errorMessage
+                };
+            }
+            finally
+            {
+                if (isLoading && MopupService.Instance.PopupStack.Count > 0)
+                {
+                    await MopupService.Instance.PopAllAsync();
+                }
+            }
+        }
+        #endregion
+
         #region DeleteData(control,action,d,IsAuthorization)
         public async Task<Models.IResponse<T>> DeleteData<T>(string control, string action, Dictionary<string, string> d, Enums.AuthorizationType Authorization = 0)
         {
