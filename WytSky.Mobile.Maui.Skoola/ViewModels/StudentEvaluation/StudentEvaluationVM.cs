@@ -44,10 +44,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudentEvaluation
                 var formData = new Dictionary<string, object>
                 {
                     { "GroupID", Settings.StudyGroupId },
-                    { "CenterID", Settings.CenterId },
                     { "StudentID", student.StudentID },  // Use student from parameter
-                    { "ComplexID", Settings.ComplexId },
-                    { "SessionDayOfWeekName", SelectedSchedule.DayOfWeekName },
                     { "EvaluationDate", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") },
                     { "SessionID", Settings.SessionId },
                     { "AttendanceScore", AttendanceScore },
@@ -57,7 +54,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudentEvaluation
                     { "MemorizationScore", MemorizationScore },
                     { "EvaluationType", "1" },
                     { "Notes", Note },
-                };
+                };  
 
                 var result = await APIs.ServiceStudentEvaluation.AddStudentEvulation(formData);
 
@@ -85,7 +82,57 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudentEvaluation
         public async Task OpenStudyEvuluationPage()
         {
             await OpenPushAsyncPage(new StudentEvaluationPage());
+        }
 
+        [RelayCommand]
+        public async Task OpenEditStudentEvuluation(StudentEvaluationModel studentEvaluation)
+        {
+            var popup = new EditStudentEvulation();
+            Settings.EvulationId = studentEvaluation.EvaluationID.ToString();
+            AttendanceScore = studentEvaluation.AttendanceScore;
+            BehaviorScore = studentEvaluation.BehaviorScore;
+            UnderstandingScore = studentEvaluation.UnderstandingScore;
+            TajweedScore = studentEvaluation.TajweedScore;
+            MemorizationScore = studentEvaluation.MemorizationScore;
+            Note = studentEvaluation.Notes;
+            popup.BindingContext = this;
+            ShowPopup(popup);
+        }
+
+        [RelayCommand]
+        public async Task UpdateStudentEvulation()
+        {
+            try
+            {
+                IsRunning = true;
+                var formData = new Dictionary<string, object>
+                {
+                    { "AttendanceScore", AttendanceScore },
+                    { "BehaviorScore", BehaviorScore },
+                    { "UnderstandingScore", UnderstandingScore },
+                    { "TajweedScore", TajweedScore },
+                    { "MemorizationScore", MemorizationScore },
+                    { "EvaluationType", "1" },
+                    { "Notes", Note },
+                };
+                var result = await APIs.ServiceStudentEvaluation.UpdateStudentEvulation(formData);
+                if (result != null)
+                {
+                    Toast.ShowToastSuccess(SharedResources.UpdatedSuccessfully);
+                }
+                else
+                {
+                    Toast.ShowToastError("Failed to update evaluation.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Toast.ShowToastError("Error", ex.Message);
+            }
+            finally
+            {
+                IsRunning = false;
+            }
         }
         #endregion
 

@@ -39,36 +39,36 @@
                                         <Entry
                                             Keyboard="Numeric"
                                             Placeholder="{x:Static resource:SharedResources.Txt_Tajweed_Evaluate}"
-                                            Text="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.TajweedScore}" />
+                                            Text="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.TajweedScore}" />
                                         <Entry
                                             Keyboard="Numeric"
                                             Placeholder="{x:Static resource:SharedResources.Txt_Memorization_Evaluate}"
-                                            Text="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.MemorizationScore}" />
+                                            Text="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.MemorizationScore}" />
                                         <Entry
                                             Keyboard="Numeric"
                                             Placeholder="{x:Static resource:SharedResources.Txt_Understanding_Evaluate}"
-                                            Text="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.UnderstandingScore}" />
+                                            Text="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.UnderstandingScore}" />
                                         <Entry
                                             Keyboard="Numeric"
                                             Placeholder="{x:Static resource:SharedResources.Txt_Behavior_Evaluation}"
-                                            Text="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.BehaviorScore}" />
+                                            Text="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.BehaviorScore}" />
                                         <Entry
                                             Keyboard="Numeric"
                                             Placeholder="{x:Static resource:SharedResources.txt_attendanceevulate}"
-                                            Text="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.AttendanceScore}" />
+                                            Text="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.AttendanceScore}" />
                                         <Editor
                                             AutoSize="TextChanges"
                                             BackgroundColor="White"
                                             HeightRequest="80"
                                             Placeholder="{x:Static resource:SharedResources.Text_Notes}"
-                                            Text="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.Note}" />
+                                            Text="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.Note}" />
                                     </VerticalStackLayout>
 
                                     <!--  Submit Button  -->
                                     <Button
                                         Margin="0,10,0,0"
                                         BackgroundColor="{StaticResource PrimaryColor}"
-                                        Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.AddStudentEvualationCommand}"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.AddStudentEvualationCommand}"
                                         CommandParameter="{Binding}"
                                         CornerRadius="8"
                                         HeightRequest="50"

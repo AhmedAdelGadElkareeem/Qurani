@@ -84,8 +84,9 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudyGroupSession
                          { "StartTime" , SessionSchedule.StartTime?.ToString() ?? string.Empty },
                          { "EndTime" , SessionSchedule.EndTime?.ToString() ?? string.Empty },
                          { "GroupID" , Settings.StudyGroupId },
-                         { "ScheduleID" , SessionSchedule.ScheduleID }
+                         { "ScheduleID" , SessionSchedule.ScheduleID },
                     };
+                    //Settings.SessionId = sessionModel.SessionID.ToString();
 
                     var result = await APIs.SessionService.AddStudyGroupSession(formData);
 
@@ -183,6 +184,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudyGroupSession
             try
             {
                 // Clear the current filtered list
+                IsRunning = true;
                 FilteredStudents.Clear();
                 FilteredGroupAttendance.Clear();
                 if (obj == StudentsStatus.All)
@@ -230,6 +232,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudyGroupSession
             }
             finally
             {
+                IsRunning = false;
                 //IsRefreshing = false;
             }
         }

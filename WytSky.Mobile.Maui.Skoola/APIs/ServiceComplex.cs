@@ -121,8 +121,6 @@ namespace WytSky.Mobile.Maui.Skoola.APIs
             }
         }
 
-
-
         public async static Task<ComplexModel> AddComplex(Dictionary<string, object> formData)
         {
             try

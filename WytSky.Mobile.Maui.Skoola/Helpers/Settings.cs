@@ -207,6 +207,12 @@ public class    Settings
         get { return Preferences.Get("SessionId", null); }
         set { Preferences.Set("SessionId", value); }
     }
+
+    public static string EvulationId
+    {
+        get { return Preferences.Get("EvulationId", null); }
+        set { Preferences.Set("EvulationId", value); }
+    }
     public static System.Collections.ObjectModel.ObservableCollection<StItem> FavoriteItems
     {
         get

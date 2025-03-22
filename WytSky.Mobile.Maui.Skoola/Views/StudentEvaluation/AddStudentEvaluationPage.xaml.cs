@@ -12,9 +12,11 @@
         {
             InitializeComponent();
             BindingContext = _studentEvaluationsVM;
+            _studentEvaluationsVM.SelectedSchedule = schedule;
+
         }
 
-        protected override async void OnAppearing()
+    protected override async void OnAppearing()
         {
             base.OnAppearing();
             await _studentEvaluationsVM.GetStudents();

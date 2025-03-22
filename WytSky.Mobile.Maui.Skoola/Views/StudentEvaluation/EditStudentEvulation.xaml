@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage
+    x:Class="WytSky.Mobile.Maui.Skoola.Views.StudentEvaluation.EditStudentEvulation"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:customContorols="clr-namespace:WytSky.Mobile.Maui.Skoola.CustomControl.Borderless"
+    xmlns:customControl="clr-namespace:WytSky.Mobile.Maui.Skoola.CustomControl"
+    xmlns:pages="clr-namespace:Mopups.Pages;assembly=Mopups"
+    xmlns:resource="clr-namespace:WytSky.Mobile.Maui.Skoola.AppResources">
+    <Frame
+        Margin="10,5"
+        Padding="15"
+        BorderColor="LightGray"
+        CornerRadius="10"
+        HasShadow="True">
+        <VerticalStackLayout Spacing="10">
+
+            <!--  Student Name  -->
+            <Label
+                FontAttributes="Bold"
+                FontSize="18"
+                Text="{Binding StudentFullName}" />
+
+            <!--  Evaluation Inputs  -->
+            <VerticalStackLayout Spacing="8">
+                <!--  Student Name  -->
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="18"
+                    HorizontalOptions="CenterAndExpand"
+                    Text="{Binding StudentFullName}" />
+                <Entry
+                    Keyboard="Numeric"
+                    Placeholder="{x:Static resource:SharedResources.Txt_Tajweed_Evaluate}"
+                    Text="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.TajweedScore}" />
+                <Entry
+                    Keyboard="Numeric"
+                    Placeholder="{x:Static resource:SharedResources.Txt_Memorization_Evaluate}"
+                    Text="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.MemorizationScore}" />
+                <Entry
+                    Keyboard="Numeric"
+                    Placeholder="{x:Static resource:SharedResources.Txt_Understanding_Evaluate}"
+                    Text="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.UnderstandingScore}" />
+                <Entry
+                    Keyboard="Numeric"
+                    Placeholder="{x:Static resource:SharedResources.Txt_Behavior_Evaluation}"
+                    Text="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.BehaviorScore}" />
+                <Entry
+                    Keyboard="Numeric"
+                    Placeholder="{x:Static resource:SharedResources.txt_attendanceevulate}"
+                    Text="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.AttendanceScore}" />
+                <Editor
+                    AutoSize="TextChanges"
+                    BackgroundColor="White"
+                    HeightRequest="80"
+                    Placeholder="{x:Static resource:SharedResources.Text_Notes}"
+                    Text="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.Note}" />
+            </VerticalStackLayout>
+
+            <!--  Submit Button  -->
+            <Button
+                Margin="0,10,0,0"
+                BackgroundColor="{StaticResource PrimaryColor}"
+                Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.AddStudentEvualationCommand}"
+                CommandParameter="{Binding}"
+                CornerRadius="8"
+                HeightRequest="50"
+                Text="{x:Static resource:SharedResources.Text_Add}"
+                TextColor="Black" />
+        </VerticalStackLayout>
+    </Frame>
+</pages:PopupPage>

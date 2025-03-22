@@ -30,7 +30,7 @@ public partial class StudyGroupSessionsPage : ContentPage
         if (_studyGroupSessionsVM != null)
         {
             //await _studyGroupSessionsVM.GetSessions();
-            _studyGroupSessionsVM.AllStudents = true;
+            _studyGroupSessionsVM.AllStudents = false;
             await _studyGroupSessionsVM.GetAllStudents();
             await _studyGroupSessionsVM.GetGroupAttendance();
         }

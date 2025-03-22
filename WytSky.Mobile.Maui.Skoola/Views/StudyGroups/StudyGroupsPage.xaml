@@ -121,7 +121,7 @@
                                             CommandParameter="{Binding .}"
                                             HeightRequest="25"
                                             HorizontalOptions="End"
-                                            Source="edit.png"
+                                            Source="editt.png"
                                             VerticalOptions="Start"
                                             WidthRequest="25" />
 

@@ -158,6 +158,59 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.Schedules
         }
 
         [RelayCommand]
+        public void OpenEditSchedule(ScheduleModel scheduleModel)
+        {
+            var popup = new EditSchedule();
+            Settings.ScheduleId = scheduleModel.ScheduleID.ToString();
+            StartTime = TimeSpan.Parse(scheduleModel.StartTime);
+            EndTime = TimeSpan.Parse(scheduleModel.EndTime);
+            SelectedDay = scheduleModel.DayOfWeekName;
+            popup.BindingContext = this;
+            ShowPopup(popup);
+        }
+
+        [RelayCommand]
+        public async Task EditSchedule()
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(SelectedDay.ToString()))
+                {
+                    Toast.ShowToastError("Error", "يرجي إختيار وقت  للحلقة");
+                    return;
+                }
+                IsRunning = true;
+                var formData = new Dictionary<string, object>
+                {
+                    { "StartTime", StartTime.ToString(@"hh\:mm\:ss") },
+                    { "EndTime", EndTime.ToString(@"hh\:mm\:ss") },
+                    //{ "WeekDayNameListDayOfWeekName", SelectedDay },
+                    { "DayOfWeekName", SelectedDay },
+                };
+                var result = await APIs.ServiceSchedule.UpdateSchedule(formData);
+                if (result != null)
+                {
+                    HidePopup();
+                    Toast.ShowToastSuccess(SharedResources.UpdatedSuccessfully);
+                    await GetSchedules();
+                }
+                else
+                {
+                    Toast.ShowToastError("");
+                }
+            }
+            catch (Exception ex)
+            {
+                ExtensionLogMethods.LogExtension(ex, "", "SchedulesVM", "EditSchedule");
+                Toast.ShowToastError("Error", "Missed Data");
+            }
+            finally
+            {
+                IsRunning = false;
+            }
+        }
+
+        [RelayCommand]
         public void OpenAddSchedules()
         {
             var popup = new AddSchedules();
@@ -178,7 +231,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.Schedules
                     Toast.ShowToastError("Error: Schedule is null");
                     return;
                 }
-
+                
                 Schedules = await ServiceSchedule.GetScheduleById();
                 SelectedSchedule = Schedules.Where(_ => _.ScheduleID == schedule.ScheduleID).FirstOrDefault();
                 Settings.ScheduleId = SelectedSchedule.ScheduleID.ToString();

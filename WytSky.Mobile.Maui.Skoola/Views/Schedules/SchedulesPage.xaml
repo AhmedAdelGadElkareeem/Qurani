@@ -100,13 +100,26 @@
                                 HorizontalOptions="FillAndExpand">
                                 <Grid ColumnDefinitions="* ,auto">
 
-                                    <VerticalStackLayout>
+                                    <VerticalStackLayout Spacing="10">
                                         <!--  Day of the Week  -->
-                                        <Label
-                                            FontAttributes="Bold"
-                                            FontSize="18"
-                                            Text="{Binding DayOfWeekName}"
-                                            TextColor="{StaticResource Black}" />
+                                        <Grid ColumnDefinitions="auto,*" ColumnSpacing="10">
+                                            <ImageButton
+                                                Margin="5"
+                                                BackgroundColor="Transparent"
+                                                Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.OpenEditScheduleCommand}"
+                                                CommandParameter="{Binding .}"
+                                                HorizontalOptions="End"
+                                                Source="editt.png"
+                                                Style="{StaticResource ImageSize25}"
+                                                VerticalOptions="Start" />
+                                            <Label
+                                                Grid.Column="1"
+                                                FontAttributes="Bold"
+                                                FontSize="18"
+                                                Text="{Binding DayOfWeekName}"
+                                                TextColor="{StaticResource Black}" />
+
+                                        </Grid>
 
                                         <!--  Start & End Time  -->
                                         <HorizontalStackLayout Spacing="10">
@@ -131,6 +144,7 @@
                                                 Text="{Binding EndTime, StringFormat='{0:hh\\:mm}'}"
                                                 TextColor="{StaticResource Black}" />
                                         </HorizontalStackLayout>
+
                                     </VerticalStackLayout>
 
                                     <Button
@@ -144,12 +158,12 @@
 
                                 </Grid>
 
-                                <!--<Frame.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding BindingContext.SelectScheduleCommand, Source={x:Reference Scheduless}}" CommandParameter="{Binding .}" />
-                                </Frame.GestureRecognizers>-->
                             </Frame>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
+                    <CollectionView.EmptyView>
+                        <customControls:EmptyView />
+                    </CollectionView.EmptyView>
                 </CollectionView>
                 <Button Command="{Binding OpenAddSchedulesCommand}" Style="{StaticResource AddButton}" />
             </Grid>

@@ -3,6 +3,7 @@
     x:Class="WytSky.Mobile.Maui.Skoola.Views.StudentEvaluation.StudentEvaluationPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:customControls="clr-namespace:WytSky.Mobile.Maui.Skoola.CustomControl"
     xmlns:res="clr-namespace:WytSky.Mobile.Maui.Skoola.AppResources"
     xmlns:resource="clr-namespace:WytSky.Mobile.Maui.Skoola.AppResources"
     Title="{x:Static res:SharedResources.StudentEvaluations}">
@@ -21,13 +22,27 @@
                             CornerRadius="10"
                             HasShadow="True">
                             <VerticalStackLayout Spacing="10">
+                                <Grid ColumnDefinitions="*,*">
 
-                                <!--  Student Name  -->
-                                <Label
-                                    FontAttributes="Bold"
-                                    FontSize="18"
-                                    HorizontalOptions="CenterAndExpand"
-                                    Text="{Binding StudentFullName}" />
+                                    <!--  Student Name  -->
+                                    <Label
+                                        FontAttributes="Bold"
+                                        FontSize="18"
+                                        HorizontalOptions="CenterAndExpand"
+                                        Text="{Binding StudentFullName}" />
+
+                                    <ImageButton
+                                        Grid.Column="1"
+                                        Margin="5"
+                                        BackgroundColor="Transparent"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.OpenEditStudentEvuluationCommand}"
+                                        CommandParameter="{Binding .}"
+                                        HorizontalOptions="End"
+                                        Source="editt.png"
+                                        Style="{StaticResource ImageSize25}"
+                                        VerticalOptions="Start" />
+                                </Grid>
+
 
                                 <!--  Evaluation Scores with Labels in Rows  -->
                                 <Grid
@@ -123,8 +138,10 @@
                         </Frame>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
+                <CollectionView.EmptyView>
+                    <customControls:EmptyView />
+                </CollectionView.EmptyView>
             </CollectionView>
-
 
         </VerticalStackLayout>
     </ScrollView>
