@@ -1,4 +1,6 @@
 ﻿using System.Collections.ObjectModel;
+using System.Diagnostics;
+using System.Text.Json;
 using System.Text.Json.Nodes;
 using WytSky.Mobile.Maui.Skoola.Dtos;
 using WytSky.Mobile.Maui.Skoola.Helpers;
@@ -9,6 +11,7 @@ namespace WytSky.Mobile.Maui.Skoola.APIs
     public class ServiceComplex
     {
         public const string BASE = "appservices";
+        public const string FormUpdate = "api/formupdate/getupdate";
         public const string KeyName = "ComplexID";
 
         #region Complexes
@@ -55,7 +58,7 @@ namespace WytSky.Mobile.Maui.Skoola.APIs
                     dictionary[item.Key] = item.Value?.ToString() ?? string.Empty;
                 }
 
-                var result = await Services.RequestProvider.Current.GetData<TempletData<ComplexModel>>(BASE, "complexes", dictionary, Enums.AuthorizationType.UserNamePassword);
+                var result = await Services.RequestProvider.Current.GetData<TempletData<ComplexModel>>(FormUpdate, "complexes", dictionary, Enums.AuthorizationType.UserNamePassword);
 
                   if (result != null && result.IsPassed)
                   {
@@ -86,26 +89,38 @@ namespace WytSky.Mobile.Maui.Skoola.APIs
                     { "_key", Settings.ComplexId },
                     { "_keyname", KeyName }
                 };
+
+                // Add form data while ensuring null values are not added
                 foreach (var item in formData)
                 {
                     if (item.Value != null)
                         dictionary[item.Key] = item.Value.ToString();
                 }
 
+                // Call API
                 var result = await Services.RequestProvider.Current.GetUpdate<TempletData<ComplexModel>>(
-                    BASE, "complexes", dictionary, Enums.AuthorizationType.UserNamePassword
+                    FormUpdate, "complexes", dictionary, Enums.AuthorizationType.UserNamePassword
                 );
 
-                return result != null && result.IsPassed ? result.Data.itemData : null;
+                // Ensure result and data are valid
+                if (result == null || !result.IsPassed || result.Data == null)
+                {
+                    Debug.WriteLine("❌ Update failed: Response is null or not passed.");
+                    return null;
+                }
+
+                Debug.WriteLine("✅ Update Successful!");
+                return result.Data.itemData ?? new ObservableCollection<ComplexModel>();
             }
             catch (Exception ex)
             {
                 string exceptionMessage = $"Error: {ex.Message} | Inner Exception: {(ex.InnerException != null ? ex.InnerException.Message : "None")}";
                 System.Diagnostics.Debug.WriteLine(exceptionMessage);
-                ExtensionLogMethods.LogExtension(exceptionMessage, "", "ServiceComplex", "UpdateComplex");
+                ExtensionLogMethods.LogExtension(exceptionMessage, $"Form Data: {JsonSerializer.Serialize(formData)}", "ServiceComplex", "UpdateComplex");
                 return null;
             }
         }
+
 
 
         public async static Task<ComplexModel> AddComplex(Dictionary<string, object> formData)

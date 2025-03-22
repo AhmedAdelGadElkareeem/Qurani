@@ -1705,10 +1705,12 @@ namespace WytSky.Mobile.Maui.Skoola.Services
             string url = "";
             try
             {
+                // Clear and set headers
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Authorization = null;
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
+                // Set Authorization
                 if (Authorization == Enums.AuthorizationType.Token)
                 {
                     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Settings.AuthoToken);
@@ -1719,33 +1721,34 @@ namespace WytSky.Mobile.Maui.Skoola.Services
                     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(byteArray));
                 }
 
-                HttpResponseMessage request = null;
+                // Construct Query String
                 StringBuilder query = new StringBuilder("?");
-
                 if (parameters != null && parameters.Count > 0)
                 {
-                    var queryParams = new Dictionary<string, string>(parameters)
+                    foreach (var item in parameters)
                     {
-                        { "IsActive", "true" },
-                        { "IsDelete", "false" }
-                    };
-
-                    foreach (var item in queryParams)
-                    {
-                        query.Append($"{item.Key}={Uri.EscapeDataString(item.Value)}&");
+                        query.Append($"{Uri.EscapeDataString(item.Key)}={Uri.EscapeDataString(item.Value)}&");
                     }
-                    query.Length--; // Remove the last '&'
+                    query.Length--; // Remove trailing '&'
                 }
 
+                // Construct the final URL
                 url = string.IsNullOrWhiteSpace(action) ? $"{apiAddress}{control}{query}" : $"{apiAddress}{control}/{action}{query}";
 
-                Debug.WriteLine($"Request URL: {url}");
-                request = await client.GetAsync(url);
-                var content = await request.Content.ReadAsStringAsync();
+                // Debugging: Print request details
+                Debug.WriteLine($"🔹 [GET] Request URL: {url}");
+                Debug.WriteLine($"🔹 Headers: {string.Join(", ", client.DefaultRequestHeaders)}");
+
+                // Send GET request
+                HttpResponseMessage request = await client.GetAsync(url);
+                string content = await request.Content.ReadAsStringAsync();
+
+                // Debugging: Print API Response
+                Debug.WriteLine($"🔹 Raw API Response: {content}");
 
                 if (!request.IsSuccessStatusCode)
                 {
-                    Debug.WriteLine($"Error {content}");
+                    Debug.WriteLine($"🔴 Error: {request.StatusCode} - {content}");
                     return new Models.IResponse<T>
                     {
                         IsPassed = false,
@@ -1753,7 +1756,20 @@ namespace WytSky.Mobile.Maui.Skoola.Services
                     };
                 }
 
+                // Handle empty API responses
+                if (string.IsNullOrWhiteSpace(content))
+                {
+                    Debug.WriteLine("⚠️ Warning: API returned an empty response.");
+                    return new Models.IResponse<T>
+                    {
+                        IsPassed = false,
+                        Message = "API returned an empty response."
+                    };
+                }
+
+                // Deserialize response
                 var obj = JsonSerializer.Deserialize<T>(content, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+
                 return new Models.IResponse<T>
                 {
                     IsPassed = true,
@@ -1763,9 +1779,9 @@ namespace WytSky.Mobile.Maui.Skoola.Services
             }
             catch (Exception ex)
             {
-                string errorMessage = $"Error: {ex.Message} | Inner Exception: {(ex.InnerException != null ? ex.InnerException.Message : "None")}";
+                string errorMessage = $"❌ Exception: {ex.Message} | Inner: {(ex.InnerException?.Message ?? "None")}";
                 Debug.WriteLine(errorMessage);
-                ExtensionLogMethods.LogExtension(errorMessage, $"URL: {url}", "ApiServices", "GetData");
+                ExtensionLogMethods.LogExtension(errorMessage, $"URL: {url}", "ApiServices", "GetUpdate");
                 return new Models.IResponse<T>
                 {
                     IsPassed = false,
@@ -1774,6 +1790,7 @@ namespace WytSky.Mobile.Maui.Skoola.Services
             }
             finally
             {
+                // Close popup if needed
                 if (isLoading && MopupService.Instance.PopupStack.Count > 0)
                 {
                     await MopupService.Instance.PopAllAsync();
@@ -1781,6 +1798,7 @@ namespace WytSky.Mobile.Maui.Skoola.Services
             }
         }
         #endregion
+
 
         #region DeleteData(control,action,d,IsAuthorization)
         public async Task<Models.IResponse<T>> DeleteData<T>(string control, string action, Dictionary<string, string> d, Enums.AuthorizationType Authorization = 0)

@@ -1,7 +1,9 @@
 ﻿
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Globalization;
 using System.Runtime.CompilerServices;
+using System.Text.Json;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using WytSky.Mobile.Maui.Skoola.AppResources;
@@ -200,7 +202,7 @@ public partial class ComplexesVM : BaseViewModel
             IsRunning = false;
         }
     }
-     [RelayCommand]
+    [RelayCommand]
     public async Task EditComplex()
     {
         try
@@ -219,34 +221,39 @@ public partial class ComplexesVM : BaseViewModel
 
             if (string.IsNullOrEmpty(SelectedRegion.RegionName))
             {
-                Toast.ShowToastError("Error", "Selecte Region");
+                Toast.ShowToastError("Error", "Select Region");
                 return;
             }
 
             IsRunning = true;
 
             var formData = new Dictionary<string, object>
-            {
-                { "ComplexName", ComplexName },
-                { "CountryID", SelectedCountry.CountryID },
-                { "RegionID", SelectedRegion.RegionID},
-            };
+        {
+            { "ComplexName", ComplexName }, // Ensure ComplexName is included
+            { "CountryID", SelectedCountry.CountryID },
+            { "RegionID", SelectedRegion.RegionID },
+        };
+
+
 
             var result = await APIs.ServiceComplex.UpdateComplexx(formData);
             if (result != null)
             {
+                Debug.WriteLine("Update successful!");
                 HidePopup();
                 Toast.ShowToastSuccess(SharedResources.AddedSuccessfully);
                 await GetComplexs();
             }
             else
             {
-                Toast.ShowToastError("Error", "Failed to add complex");
+                Debug.WriteLine("Update failed!");
+                Toast.ShowToastError("Error", "Failed to update complex");
             }
         }
         catch (Exception ex)
         {
-            ExtensionLogMethods.LogExtension(ex, "", "ComplexesVM", "AddComplex");
+            Debug.WriteLine($"Exception: {ex.Message}");
+            ExtensionLogMethods.LogExtension(ex, "", "ComplexesVM", "EditComplex");
             Toast.ShowToastError("Error", "An unexpected error occurred");
         }
         finally
