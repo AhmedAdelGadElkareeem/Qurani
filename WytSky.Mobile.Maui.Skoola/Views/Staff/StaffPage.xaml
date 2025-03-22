@@ -113,26 +113,44 @@
                                         <GradientStop Offset="1.0" Color="{StaticResource LightGreen}" />
                                     </LinearGradientBrush>
                                 </Border.Background>
-                                <VerticalStackLayout>
-                                    <Label
-                                        HorizontalOptions="CenterAndExpand"
-                                        HorizontalTextAlignment="Center"
-                                        Style="{StaticResource BoldLabelFont16}"
-                                        Text="{Binding FullName}"
-                                        TextColor="{StaticResource DarkBlue}" />
-                                    <Label
-                                        HorizontalOptions="CenterAndExpand"
-                                        HorizontalTextAlignment="Center"
-                                        Style="{StaticResource BoldLabelFont14}"
-                                        Text="{Binding StaffTypeName}"
-                                        TextColor="{StaticResource DarkBlue}" />
-                                    <Label
-                                        HorizontalOptions="CenterAndExpand"
-                                        HorizontalTextAlignment="Center"
-                                        Style="{StaticResource BoldLabelFont14}"
-                                        Text="{Binding Address}"
-                                        TextColor="{StaticResource DarkBlue}" />
-                                </VerticalStackLayout>
+
+                                <!--  Grid Layout  -->
+                                <Grid>
+                                    <!--  Edit Button  -->
+                                    <ImageButton
+                                        Margin="5"
+                                        BackgroundColor="Transparent"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.OpenEditStaffCommand}"
+                                        CommandParameter="{Binding .}"
+                                        HeightRequest="25"
+                                        HorizontalOptions="End"
+                                        Source="edit.png"
+                                        VerticalOptions="Start"
+                                        WidthRequest="25" />
+
+                                    <!--  Staff Information  -->
+                                    <VerticalStackLayout>
+                                        <Label
+                                            HorizontalOptions="CenterAndExpand"
+                                            HorizontalTextAlignment="Center"
+                                            Style="{StaticResource BoldLabelFont16}"
+                                            Text="{Binding FullName}"
+                                            TextColor="{StaticResource DarkBlue}" />
+                                        <Label
+                                            HorizontalOptions="CenterAndExpand"
+                                            HorizontalTextAlignment="Center"
+                                            Style="{StaticResource BoldLabelFont14}"
+                                            Text="{Binding StaffTypeName}"
+                                            TextColor="{StaticResource DarkBlue}" />
+                                        <Label
+                                            HorizontalOptions="CenterAndExpand"
+                                            HorizontalTextAlignment="Center"
+                                            Style="{StaticResource BoldLabelFont14}"
+                                            Text="{Binding Address}"
+                                            TextColor="{StaticResource DarkBlue}" />
+                                    </VerticalStackLayout>
+                                </Grid>
+
                                 <Border.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.SelectStaffCommand}" CommandParameter="{Binding .}" />
                                 </Border.GestureRecognizers>
@@ -145,6 +163,7 @@
                 </CollectionView>
                 <Button Command="{Binding OpenAddStaffCommand}" Style="{StaticResource AddButton}" />
             </Grid>
+
         </Grid>
         <ActivityIndicator IsRunning="{Binding IsRunning}" IsVisible="{Binding IsRunning}" />
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <pages:PopupPage
-    x:Class="WytSky.Mobile.Maui.Skoola.Views.StudyGroups.AddStudyGroup"
+    x:Class="WytSky.Mobile.Maui.Skoola.Views.StudyGroups.EditStudyGroup"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:customControls="clr-namespace:WytSky.Mobile.Maui.Skoola.CustomControl"
@@ -57,7 +57,9 @@
                 Placeholder="{x:Static res:SharedResources.StudyGroupEn}"
                 Text="{Binding StudyGroupNameEn}" />
             <Border
-                HorizontalOptions="CenterAndExpand"
+                Grid.Column="1"
+                Padding="0"
+                HorizontalOptions="Center"
                 StrokeShape="RoundRectangle 5,20,5,0"
                 StrokeThickness="0">
                 <Picker
@@ -71,10 +73,6 @@
             </Border>
             <Entry
                 HorizontalOptions="CenterAndExpand"
-                Placeholder="{x:Static res:SharedResources.Text_Subject}"
-                Text="{Binding SubjectName}" />
-            <Entry
-                HorizontalOptions="CenterAndExpand"
                 Placeholder="{x:Static res:SharedResources.Text_Notes}"
                 Text="{Binding Notes}" />
             <Entry
@@ -82,16 +80,8 @@
                 Placeholder="{x:Static res:SharedResources.Text_Location}"
                 Text="{Binding Location}" />
 
-
-            <!--<customControls:DatePickerFromTo
-                Margin="5"
-                DateRangeValue="{Binding DateRangeValue}"
-                FromDate="{Binding startDate}"
-                IsVisible="True"
-                ToDate="{Binding endDate}" />-->
-
             <Button
-                Command="{Binding AddStudyGroupCommand}"
+                Command="{Binding EditStudyGroupCommand}"
                 Style="{StaticResource BaseButton}"
                 Text="{x:Static res:SharedResources.Text_Save}" />
         </VerticalStackLayout>

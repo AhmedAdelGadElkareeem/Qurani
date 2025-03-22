@@ -23,8 +23,8 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
         [ObservableProperty] public string password;
         [ObservableProperty] public string mobile;
         [ObservableProperty] public string email;
-        [ObservableProperty] public StaffTypeModel selectedStaffType;
-        [ObservableProperty] public CentersModel selectedCenter;
+        [ObservableProperty] public StaffTypeModel selectedStaffType = new();
+        [ObservableProperty] public CentersModel selectedCenter= new();
 
 
         #region Methods
@@ -102,6 +102,27 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
             popup.BindingContext = this;
             ShowPopup(popup);
         }
+         
+        [RelayCommand]
+        public void OpenEditStaff(StaffModel model)
+        {
+            if (model == null)
+                return; 
+            Settings.StaffId = model.StaffID.ToString();
+
+            FirstName = model.FirstName;
+            LastName = model.LastName;
+            UserName = model.UserName;
+            Password = model.Password;
+            Mobile = model.Mobile;
+            Email = model.Email;
+            SelectedCenter = Centers.FirstOrDefault(x => x.CenterID == model.CenterID);
+            SelectedStaffType = StaffTypes.FirstOrDefault(x => x.StaffTypeID == model.StaffTypeID);
+
+            var popup = new EditStaff();
+            popup.BindingContext = this;
+            ShowPopup(popup);
+        }
 
         [RelayCommand]
         public async Task AddStaff()
@@ -113,11 +134,12 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
                 var formData = new Dictionary<string, object>
                 {
                     { "FirstName", FirstName },
-                    { "LastNme", LastName },
+                    { "LastName", LastName },
                     { "FullName", $"{FirstName} {LastName}"},
                     { "CenterID" , SelectedCenter.CenterID },
                     { "CenterName" , SelectedCenter.CenterName },
-                    { "StaffTypeName" , SelectedStaffType.TypeName },
+                    { "StaffTypeID" , SelectedStaffType.StaffTypeID },
+                    //{ "StaffTypeName" , SelectedStaffType.TypeName },
                     { "UserName" , UserName },
                     { "Password", Password},
                     { "Mobile" , Mobile}, 
@@ -132,6 +154,52 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
                 if (result != null)
                 {
                     Toast.ShowToastSuccess(SharedResources.AddedSuccessfully);
+                    await GetStaff();
+                }
+                else
+                {
+                    Toast.ShowToastError("Error");
+                }
+            }
+            catch (Exception ex)
+            {
+                Toast.ShowToastError("Error", ex.Message);
+            }
+            finally
+            {
+                IsRunning = false;
+                HidePopup();
+            }
+        }
+
+        [RelayCommand]
+        public async Task EditStaff()
+        {
+            try
+            {
+                IsRunning = true;
+
+                var formData = new Dictionary<string, object>
+                {
+                    { "FirstName", FirstName },
+                    { "LastName", LastName },
+                    { "FullName", $"{FirstName} {LastName}"},
+                    { "CenterID" , SelectedCenter.CenterID },
+                    { "StaffTypeID" , SelectedStaffType.StaffTypeID },
+                    { "UserName" , UserName },
+                    { "Password", Password},
+                    { "Mobile" , Mobile}, 
+                    { "Email" , Email} 
+                  
+
+                };
+                var result = await APIs.ServiceStaff.UpdateStaff(formData);
+
+                var exsistStudyGroups = await APIs.StudyGroupService.GetStudyGroupsByCenterId();
+
+                if (result != null)
+                {
+                    Toast.ShowToastSuccess(SharedResources.UpdatedSuccessfully);
                     await GetStaff();
                 }
                 else

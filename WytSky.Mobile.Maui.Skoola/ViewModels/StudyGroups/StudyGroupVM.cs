@@ -32,14 +32,14 @@ public partial class StudyGroupVM : StudentsVM
     [ObservableProperty] public string studyGroupName;
     [ObservableProperty] public string studyGroupNameEn;
 
-    [ObservableProperty] public ComplexModel selectedComplex;
-    [ObservableProperty] public CentersModel selectedCenter;
-    [ObservableProperty] public StaffModel selectedTeacher;
+    [ObservableProperty] public ComplexModel selectedComplex = new();
+    [ObservableProperty] public CentersModel selectedCenter = new();
+    [ObservableProperty] public StaffModel selectedTeacher = new();
 
     [ObservableProperty] public int centerID;
     [ObservableProperty] public string teacherID;
     //[ObservableProperty] public int? subjectID;
-    [ObservableProperty] public string subjectName;
+    [ObservableProperty] public string? subjectName;
 
     [ObservableProperty] public DateTime startDate = DateTime.Now;
     [ObservableProperty] public DateTime endDate = DateTime.Now;
@@ -160,6 +160,38 @@ public partial class StudyGroupVM : StudentsVM
         }
         
     }
+    
+    [RelayCommand]
+    private async Task OpenEditStudyGroup(StudyGroupModel model)
+    {
+        try
+        {
+            Settings.StudyGroupId = model.GroupID.ToString();
+
+            StudyGroupName = model.GroupName;
+            StudyGroupNameEn = model.GroupNameEn;
+            //SelectedComplex = Complexes.FirstOrDefault(c => c.ComplexID == model.ComplexID);
+            //SelectedCenter = Centers.FirstOrDefault(c => c.CenterID == model.CenterID);
+            //SelectedTeacher = Teachers.FirstOrDefault(t => t.StaffID == model.TeacherID);
+            SubjectName = model.SubjectName;
+            Notes = model.Notes.ToString();
+            Location = model.Location;
+
+
+            await GetTeachers();
+            await GetComplexes();
+            await GetCenters();
+            var popup = new EditStudyGroup();
+            popup.BindingContext = this;
+            ShowPopup(popup);
+        }
+        catch (Exception ex)
+        {
+
+            ExtensionLogMethods.LogExtension(ex, "", "StudyGroupVM", "OpenAddStudyGroup");
+        }
+        
+    }
 
     [RelayCommand]
     private async Task AddStudyGroup()
@@ -167,26 +199,13 @@ public partial class StudyGroupVM : StudentsVM
         try
         {
             LoadCenterDetails();
-            //if (SelectedComplex.ComplexID == null)
-            //{
-            //    Toast.ShowToastError("Error", "Select Complex");
-            //}
-            //if (SelectedCenter.CenterID == null)
-            //{
-            //    Toast.ShowToastError("Error", "Select Center");
-            //}
-            //if (SelectedTeacher.StaffID == null)
-            //{
-            //    Toast.ShowToastError("Error", "Select Teacher");
-            //}
+            
             var formData = new Dictionary<string, object>()
             {
                 { "GroupName", StudyGroupName },
                 { "GroupNameEn", StudyGroupNameEn },
                 { "ComplexID", Settings.ComplexId},
                 { "CenterID",Settings.CenterId},
-                { "CenterName",CenterName},
-                { "ComplexName",ComplexName},
                 { "TeacherID", SelectedTeacher.StaffID},
                 { "TeacherFullName", SelectedTeacher.FullName},
                 { "SubjectName", SubjectName},
@@ -199,6 +218,41 @@ public partial class StudyGroupVM : StudentsVM
             {
                 await GetStudyGroupsByStaffIdOrCenterId();
                 Toast.ShowToastError(SharedResources.AddedSuccessfully);
+            }
+        }
+        catch (Exception e)
+        {
+            string er = e.Message;
+        }
+        finally
+        {
+            HidePopup();
+        }
+    }
+    [RelayCommand]
+    private async Task EditStudyGroup()
+    {
+        try
+        {
+            LoadCenterDetails();
+            
+            var formData = new Dictionary<string, object>()
+            {
+                { "GroupName", StudyGroupName },
+                { "GroupNameEn", StudyGroupNameEn },
+                { "ComplexID", Settings.ComplexId},
+                { "CenterID",Settings.CenterId},
+                { "TeacherID", SelectedTeacher.StaffID},
+                //{ "SubjectName", SubjectName},
+                { "Notes", Notes},
+                { "Location", Location},
+            };
+
+            var addedStudyGroup = await StudyGroupService.UpdateStaff(formData);
+            if (addedStudyGroup != null)
+            {
+                await GetStudyGroupsByStaffIdOrCenterId();
+                Toast.ShowToastError(SharedResources.UpdatedSuccessfully);
             }
         }
         catch (Exception e)
