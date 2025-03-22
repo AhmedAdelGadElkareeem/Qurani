@@ -97,7 +97,6 @@
             </Border>
 
             <Grid Grid.Row="1" RowDefinitions="*,auto">
-
                 <CollectionView Margin="15,10,15,0" ItemsSource="{Binding FilteredStudyGroups}">
                     <CollectionView.ItemsLayout>
                         <LinearItemsLayout ItemSpacing="10" Orientation="Vertical" />
@@ -112,40 +111,55 @@
                                             <GradientStop Offset="1.0" Color="{StaticResource LightGreen}" />
                                         </LinearGradientBrush>
                                     </Border.Background>
-                                    <VerticalStackLayout>
 
-                                        <Label
-                                            HorizontalOptions="CenterAndExpand"
-                                            Style="{StaticResource BoldLabelFont16}"
-                                            Text="{Binding Name}"
-                                            TextColor="{StaticResource DarkBlue}">
-                                            <Label.FormattedText>
-                                                <FormattedString>
-                                                    <Span Text="{x:Static resource:SharedResources.StudyGroupName}" />
-                                                    <Span Text=" : " />
-                                                    <Span Text="{Binding Name}" />
-                                                </FormattedString>
-                                            </Label.FormattedText>
-                                        </Label>
-                                        <Label
-                                            HorizontalOptions="CenterAndExpand"
-                                            Style="{StaticResource BoldLabelFont16}"
-                                            Text="{Binding TeacherFullName}"
-                                            TextColor="{StaticResource DarkBlue}" />
-                                        <Label
-                                            HorizontalOptions="CenterAndExpand"
-                                            HorizontalTextAlignment="Center"
-                                            Style="{StaticResource BoldLabelFont18}"
-                                            TextColor="{StaticResource DarkBlue}">
-                                            <Label.FormattedText>
-                                                <FormattedString>
-                                                    <Span Text="{x:Static resource:SharedResources.Students}" />
-                                                    <Span Text=" : " />
-                                                    <Span Text="{Binding StudentCount}" />
-                                                </FormattedString>
-                                            </Label.FormattedText>
-                                        </Label>
-                                    </VerticalStackLayout>
+                                    <Grid>
+                                        <!--  Edit Button  -->
+                                        <ImageButton
+                                            Margin="5"
+                                            BackgroundColor="Transparent"
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.OpenEditStudyGroupCommand}"
+                                            CommandParameter="{Binding .}"
+                                            HeightRequest="25"
+                                            HorizontalOptions="End"
+                                            Source="edit.png"
+                                            VerticalOptions="Start"
+                                            WidthRequest="25" />
+
+                                        <!--  Study Group Info  -->
+                                        <VerticalStackLayout>
+                                            <Label
+                                                HorizontalOptions="CenterAndExpand"
+                                                Style="{StaticResource BoldLabelFont16}"
+                                                Text="{Binding Name}"
+                                                TextColor="{StaticResource DarkBlue}">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text="{x:Static resource:SharedResources.StudyGroupName}" />
+                                                        <Span Text=" : " />
+                                                        <Span Text="{Binding Name}" />
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+                                            <Label
+                                                HorizontalOptions="CenterAndExpand"
+                                                Style="{StaticResource BoldLabelFont16}"
+                                                Text="{Binding TeacherFullName}"
+                                                TextColor="{StaticResource DarkBlue}" />
+                                            <Label
+                                                HorizontalOptions="CenterAndExpand"
+                                                HorizontalTextAlignment="Center"
+                                                Style="{StaticResource BoldLabelFont18}"
+                                                TextColor="{StaticResource DarkBlue}">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text="{x:Static resource:SharedResources.Students}" />
+                                                        <Span Text=" : " />
+                                                        <Span Text="{Binding StudentCount}" />
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+                                        </VerticalStackLayout>
+                                    </Grid>
 
                                     <Border.GestureRecognizers>
                                         <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.SelectStudyGroupCommand}" CommandParameter="{Binding .}" />
@@ -165,6 +179,7 @@
                     IsVisible="{Binding AddVisibility}"
                     Style="{StaticResource AddButton}" />
             </Grid>
+
         </Grid>
         <ActivityIndicator IsRunning="{Binding IsRunning}" IsVisible="{Binding IsRunning}" />
     </Grid>

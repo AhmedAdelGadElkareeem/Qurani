@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 
 <pages:PopupPage
-    x:Class="WytSky.Mobile.Maui.Skoola.Views.Staff.AddStaff"
+    x:Class="WytSky.Mobile.Maui.Skoola.Views.Staff.EditStaff"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:pages="clr-namespace:Mopups.Pages;assembly=Mopups"
@@ -91,7 +91,7 @@
                 TitleColor="{StaticResource Black}" />
 
             <Button
-                Command="{Binding AddStaffCommand}"
+                Command="{Binding EditStaffCommand}"
                 Style="{StaticResource BaseButton}"
                 Text="{x:Static res:SharedResources.Text_Save}"
                 TextColor="{StaticResource DarkBlue}" />

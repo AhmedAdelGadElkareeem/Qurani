@@ -228,11 +228,11 @@ public partial class ComplexesVM : BaseViewModel
             IsRunning = true;
 
             var formData = new Dictionary<string, object>
-        {
-            { "ComplexName", ComplexName }, // Ensure ComplexName is included
-            { "CountryID", SelectedCountry.CountryID },
-            { "RegionID", SelectedRegion.RegionID },
-        };
+            {
+                { "ComplexName", ComplexName }, 
+                { "CountryID", SelectedCountry.CountryID },
+                { "RegionID", SelectedRegion.RegionID },
+            };
 
 
 
@@ -241,7 +241,7 @@ public partial class ComplexesVM : BaseViewModel
             {
                 Debug.WriteLine("Update successful!");
                 HidePopup();
-                Toast.ShowToastSuccess(SharedResources.AddedSuccessfully);
+                Toast.ShowToastSuccess(SharedResources.UpdatedSuccessfully);
                 await GetComplexs();
             }
             else

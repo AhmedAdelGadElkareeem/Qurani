@@ -108,7 +108,7 @@
                         <DataTemplate>
                             <Border
                                 Padding="5"
-                                HeightRequest="183"
+                                HeightRequest="200"
                                 StrokeShape="RoundRectangle 5">
                                 <Border.Background>
                                     <LinearGradientBrush EndPoint="0,1">
@@ -116,73 +116,87 @@
                                         <GradientStop Offset="1.0" Color="{StaticResource LightGreen}" />
                                     </LinearGradientBrush>
                                 </Border.Background>
-                                <VerticalStackLayout>
-                                    <Label
-                                        HorizontalOptions="CenterAndExpand"
-                                        Style="{StaticResource BoldLabelFont16}"
-                                        Text="{Binding Name}"
-                                        TextColor="{StaticResource DarkBlue}" />
-                                    <Label
-                                        HorizontalOptions="CenterAndExpand"
-                                        Style="{StaticResource BoldLabelFont16}"
-                                        Text="{Binding Address}"
-                                        TextColor="{StaticResource DarkBlue}" />
-                                    <Label
-                                        HorizontalOptions="CenterAndExpand"
-                                        Style="{StaticResource BoldLabelFont16}"
-                                        Text="{Binding Phone}"
-                                        TextColor="{StaticResource DarkBlue}" />
-                                    <Label
-                                        HorizontalOptions="CenterAndExpand"
-                                        Style="{StaticResource BoldLabelFont16}"
-                                        Text="{Binding Email}"
-                                        TextColor="{StaticResource DarkBlue}" />
-                                    <Label
-                                        HorizontalOptions="CenterAndExpand"
-                                        HorizontalTextAlignment="Center"
-                                        Style="{StaticResource BoldLabelFont18}"
-                                        TextColor="{StaticResource DarkBlue}">
-                                        <Label.FormattedText>
-                                            <FormattedString>
-                                                <Span Text="{x:Static resource:SharedResources.StudyGroupCount}" />
-                                                <Span Text=" : " />
-                                                <Span Text="{Binding StudyGroupCount}" />
-                                            </FormattedString>
-                                        </Label.FormattedText>
-                                    </Label>
 
-                                    <Grid ColumnDefinitions="*,*,*" ColumnSpacing="5">
-                                        <Button
-                                            BackgroundColor="Gold"
-                                            Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.OpenStudyGroupsCommand}"
-                                            CommandParameter="{Binding .}"
-                                            CornerRadius="15"
-                                            FontSize="Medium"
-                                            Text="{x:Static resource:SharedResources.StudyGroups}"
+                                <!--  Grid for Layout  -->
+                                <Grid>
+                                    <!--  Edit Button  -->
+                                    <ImageButton
+                                        Margin="5"
+                                        BackgroundColor="Transparent"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.OpenEditCenterCommand}"
+                                        CommandParameter="{Binding .}"
+                                        HeightRequest="25"
+                                        HorizontalOptions="End"
+                                        Source="edit.png"
+                                        VerticalOptions="Start"
+                                        WidthRequest="25" />
+
+                                    <!--  Content Layout  -->
+                                    <VerticalStackLayout Margin="0,10,0,0">
+                                        <Label
+                                            HorizontalOptions="CenterAndExpand"
+                                            Style="{StaticResource BoldLabelFont16}"
+                                            Text="{Binding Name}"
                                             TextColor="{StaticResource DarkBlue}" />
-                                        <Button
-                                            Grid.Column="1"
-                                            BackgroundColor="Gold"
-                                            Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.OpenStaffsCommand}"
-                                            CommandParameter="{Binding .}"
-                                            CornerRadius="15"
-                                            FontSize="Medium"
-                                            Text="{x:Static resource:SharedResources.Staffs}"
+                                        <Label
+                                            HorizontalOptions="CenterAndExpand"
+                                            Style="{StaticResource BoldLabelFont16}"
+                                            Text="{Binding Address}"
                                             TextColor="{StaticResource DarkBlue}" />
-                                        <Button
-                                            Grid.Column="2"
-                                            BackgroundColor="Gold"
-                                            Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.OpenStudentsCommand}"
-                                            CommandParameter="{Binding .}"
-                                            CornerRadius="15"
-                                            FontSize="Medium"
-                                            Text="{x:Static resource:SharedResources.Students}"
+                                        <Label
+                                            HorizontalOptions="CenterAndExpand"
+                                            Style="{StaticResource BoldLabelFont16}"
+                                            Text="{Binding Phone}"
                                             TextColor="{StaticResource DarkBlue}" />
-                                    </Grid>
-                                </VerticalStackLayout>
-                                <!--<Border.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.SelectCenterCommand}" CommandParameter="{Binding .}" />
-                                </Border.GestureRecognizers>-->
+                                        <Label
+                                            HorizontalOptions="CenterAndExpand"
+                                            Style="{StaticResource BoldLabelFont16}"
+                                            Text="{Binding Email}"
+                                            TextColor="{StaticResource DarkBlue}" />
+                                        <Label
+                                            HorizontalOptions="CenterAndExpand"
+                                            HorizontalTextAlignment="Center"
+                                            Style="{StaticResource BoldLabelFont18}"
+                                            TextColor="{StaticResource DarkBlue}">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="{x:Static resource:SharedResources.StudyGroupCount}" />
+                                                    <Span Text=" : " />
+                                                    <Span Text="{Binding StudyGroupCount}" />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+
+                                        <Grid ColumnDefinitions="*,*,*" ColumnSpacing="5">
+                                            <Button
+                                                BackgroundColor="Gold"
+                                                Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.OpenStudyGroupsCommand}"
+                                                CommandParameter="{Binding .}"
+                                                CornerRadius="15"
+                                                FontSize="Medium"
+                                                Text="{x:Static resource:SharedResources.StudyGroups}"
+                                                TextColor="{StaticResource DarkBlue}" />
+                                            <Button
+                                                Grid.Column="1"
+                                                BackgroundColor="Gold"
+                                                Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.OpenStaffsCommand}"
+                                                CommandParameter="{Binding .}"
+                                                CornerRadius="15"
+                                                FontSize="Medium"
+                                                Text="{x:Static resource:SharedResources.Staffs}"
+                                                TextColor="{StaticResource DarkBlue}" />
+                                            <Button
+                                                Grid.Column="2"
+                                                BackgroundColor="Gold"
+                                                Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.OpenStudentsCommand}"
+                                                CommandParameter="{Binding .}"
+                                                CornerRadius="15"
+                                                FontSize="Medium"
+                                                Text="{x:Static resource:SharedResources.Students}"
+                                                TextColor="{StaticResource DarkBlue}" />
+                                        </Grid>
+                                    </VerticalStackLayout>
+                                </Grid>
                             </Border>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
@@ -192,6 +206,7 @@
                 </CollectionView>
                 <Button Command="{Binding OpenAddCenterCommand}" Style="{StaticResource AddButton}" />
             </Grid>
+
 
         </Grid>
 

@@ -20,14 +20,9 @@
                 HorizontalOptions="CenterAndExpand"
                 HorizontalTextAlignment="Center"
                 Style="{StaticResource BoldLabelFont18}"
-                Text="{x:Static res:SharedResources.AddComplex}"
+                Text="{x:Static res:SharedResources.EditComplex}"
                 VerticalOptions="StartAndExpand" />
-            <Label
-                HorizontalOptions="CenterAndExpand"
-                HorizontalTextAlignment="Center"
-                Style="{StaticResource RegularLabelFont16}"
-                Text="{x:Static res:SharedResources.AfterAddComplex}" />
-            <Entry
+          <Entry
                 BackgroundColor="White"
                 HorizontalTextAlignment="Center"
                 Placeholder="{x:Static res:SharedResources.ComplexName}"

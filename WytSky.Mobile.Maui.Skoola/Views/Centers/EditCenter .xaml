@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<pages:PopupPage
+    x:Class="WytSky.Mobile.Maui.Skoola.Views.Centers.EditCenter"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:Mopups.Pages;assembly=Mopups"
+    xmlns:res="clr-namespace:WytSky.Mobile.Maui.Skoola.AppResources">
+    <Frame
+        Margin="20,10"
+        Padding="10"
+        BackgroundColor="White"
+        CornerRadius="10"
+        HeightRequest="655">
+        <VerticalStackLayout
+            Padding="15"
+            BackgroundColor="White"
+            Spacing="3"
+            VerticalOptions="CenterAndExpand">
+            <StackLayout
+                BackgroundColor="WhiteSmoke"
+                Spacing="3"
+                VerticalOptions="FillAndExpand">
+
+                <Label
+                    HorizontalOptions="CenterAndExpand"
+                    HorizontalTextAlignment="Center"
+                    Style="{StaticResource BoldLabelFont18}"
+                    Text="{Binding ComplexNamee}"
+                    VerticalOptions="StartAndExpand" />
+                <Label
+                    HorizontalOptions="CenterAndExpand"
+                    HorizontalTextAlignment="Center"
+                    Style="{StaticResource RegularLabelFont18}"
+                    Text="{Binding ComplexRegionName}" />
+                <Label
+                    HorizontalOptions="CenterAndExpand"
+                    HorizontalTextAlignment="Center"
+                    Style="{StaticResource BoldLabelFont18}"
+                    Text="{Binding ComplexRegionCountryName}"
+                    VerticalOptions="StartAndExpand" />
+            </StackLayout>
+            <Label
+                HorizontalOptions="CenterAndExpand"
+                HorizontalTextAlignment="Center"
+                Style="{StaticResource BoldLabelFont18}"
+                Text="{x:Static res:SharedResources.AddMosque}"
+                VerticalOptions="StartAndExpand" />
+            <Label
+                HorizontalOptions="CenterAndExpand"
+                HorizontalTextAlignment="Center"
+                Style="{StaticResource RegularLabelFont16}"
+                Text="{x:Static res:SharedResources.AfterAddMosque}" />
+            <Label
+                HorizontalOptions="CenterAndExpand"
+                HorizontalTextAlignment="Center"
+                Style="{StaticResource BoldLabelFont18}"
+                Text="{Binding ComplexName}"
+                VerticalOptions="StartAndExpand" />
+            <Label
+                HorizontalOptions="CenterAndExpand"
+                HorizontalTextAlignment="Center"
+                Style="{StaticResource RegularLabelFont16}"
+                Text="{Binding CenterName}" />
+            <Entry
+                HorizontalTextAlignment="Center"
+                Placeholder="{x:Static res:SharedResources.CenterNameAr}"
+                Text="{Binding CenterName, Mode=TwoWay}"
+                TextColor="Black" />
+            <Entry
+                HorizontalTextAlignment="Center"
+                Placeholder="{x:Static res:SharedResources.CenterNameEn}"
+                Text="{Binding CenterNameEn, Mode=TwoWay}"
+                TextColor="Black" />
+            <Entry
+                HorizontalTextAlignment="Center"
+                Placeholder="{x:Static res:SharedResources.Address}"
+                Text="{Binding Address, Mode=TwoWay}"
+                TextColor="Black" />
+            <Entry
+                HorizontalTextAlignment="Center"
+                Placeholder="{x:Static res:SharedResources.City}"
+                Text="{Binding CityName, Mode=TwoWay}"
+                TextColor="Black" />
+            <Entry
+                HorizontalTextAlignment="Center"
+                Keyboard="Telephone"
+                Placeholder="{x:Static res:SharedResources.Text_Phone}"
+                Text="{Binding Phone, Mode=TwoWay}"
+                TextColor="Black" />
+            <Entry
+                HorizontalTextAlignment="Center"
+                Placeholder="{x:Static res:SharedResources.Text_Email}"
+                Text="{Binding Email, Mode=TwoWay}"
+                TextColor="Black" />
+            <Editor
+                HorizontalTextAlignment="Center"
+                Placeholder="{x:Static res:SharedResources.Text_Notes}"
+                Text="{Binding Notes, Mode=TwoWay}"
+                TextColor="Black" />
+            <Button
+                Command="{Binding EditCenterCommand}"
+                Style="{StaticResource BaseButton}"
+                Text="{x:Static res:SharedResources.Text_Save}" />
+        </VerticalStackLayout>
+    </Frame>
+</pages:PopupPage>

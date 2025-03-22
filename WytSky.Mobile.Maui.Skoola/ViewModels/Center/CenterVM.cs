@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using WytSky.Mobile.Maui.Skoola.APIs;
 using WytSky.Mobile.Maui.Skoola.AppResources;
 using WytSky.Mobile.Maui.Skoola.Helpers;
@@ -105,7 +106,79 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
             }
         }
 
+         [RelayCommand]
+        public void OpenEditCenter(CentersModel model)
+        {
+            try
+            {
+               Settings.CenterId = model.CenterID.ToString();
+                CenterName = model.CenterName;
+                CenterNameEn =model.CenterNameEn;
+                Address = model.Address;
+                CityName = model.City;
+                Phone = model.Phone;
+                Email = model.Email;
+                Notes = model.Notes;
+                ComplexId = model.ComplexID.ToString();
+
+                var popup = new EditCenter();
+                popup.BindingContext = this;
+                ShowPopup(popup);
+            }
+            catch (Exception ex)
+            {
+                ExtensionLogMethods.LogExtension(ex, "", "CenterVM", "OpenEditCenter");
+            }
+        }
+
         [RelayCommand]
+        public async Task EditCenter()
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(CenterName))
+                {
+                    Toast.ShowToastError("Error", "يجب إدخال إسم المسجد");
+                    return;
+                }
+
+                IsRunning = true;
+
+                var formData = new Dictionary<string, object>
+                {
+                    { "CenterName", CenterName },
+                    { "CenterNameEn", CenterNameEn },
+                    { "ComplexID" , Settings.ComplexId },
+                    { "Address", Address},
+                    { "City" ,CityName },
+                    { "Phone" ,Phone },
+                    { "Email" ,Email },
+                    { "Notes" ,Notes },
+                };
+
+                var result = await APIs.ServiceCenter.UpdateCenter(formData);
+                if (result != null)
+                {
+                    HidePopup();
+                    Toast.ShowToastSuccess(SharedResources.UpdatedSuccessfully);
+                    await GetCenters();
+                }
+                else
+                {
+                    Toast.ShowToastError("Error", "Failed to update complex");
+                }
+            }
+            catch (Exception ex)
+            {
+                ExtensionLogMethods.LogExtension(ex, "", "CenterVM", "EditCenter");
+                Toast.ShowToastError("Error", "An unexpected error occurred");
+            }
+            finally
+            {
+                IsRunning = false;
+            }
+        }
+          [RelayCommand]
         public async Task AddCenter()
         {
             try

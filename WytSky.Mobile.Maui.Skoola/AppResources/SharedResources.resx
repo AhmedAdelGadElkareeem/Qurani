@@ -1337,4 +1337,10 @@ Successfully Changed</value>
   <data name="evulation" xml:space="preserve">
     <value>Evulations</value>
   </data>
+  <data name="UpdatedSuccessfully" xml:space="preserve">
+    <value>Updated Successfully</value>
+  </data>
+  <data name="EditComplex" xml:space="preserve">
+    <value>Edit Complex</value>
+  </data>
 </root>

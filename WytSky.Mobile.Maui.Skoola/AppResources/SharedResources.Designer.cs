@@ -295,6 +295,15 @@ namespace WytSky.Mobile.Maui.Skoola.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Edit Complex.
+        /// </summary>
+        public static string EditComplex {
+            get {
+                return ResourceManager.GetString("EditComplex", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Evulations.
         /// </summary>
         public static string evulation {
@@ -3671,6 +3680,15 @@ namespace WytSky.Mobile.Maui.Skoola.AppResources {
         public static string Txt_Understanding_Evaluate {
             get {
                 return ResourceManager.GetString("Txt_Understanding_Evaluate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Updated Successfully.
+        /// </summary>
+        public static string UpdatedSuccessfully {
+            get {
+                return ResourceManager.GetString("UpdatedSuccessfully", resourceCulture);
             }
         }
         

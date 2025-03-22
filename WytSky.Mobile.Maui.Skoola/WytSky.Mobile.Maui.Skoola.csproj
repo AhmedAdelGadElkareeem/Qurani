@@ -199,11 +199,17 @@
 	    <AutoGen>True</AutoGen>
 	    <DependentUpon>SharedResources.resx</DependentUpon>
 	  </Compile>
+	  <Compile Update="Views\Centers\EditCenter .xaml.cs">
+	    <DependentUpon>EditCenter .xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Views\Complexes\ComplexesPage.xaml.cs">
 	    <DependentUpon>HomePage.xaml</DependentUpon>
 	  </Compile>
 	  <Compile Update="Views\Schedules\AddSchedules.xaml.cs">
 	    <DependentUpon>AddSchedules.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\Staff\EditStaff.xaml.cs">
+	    <DependentUpon>EditStaff.xaml</DependentUpon>
 	  </Compile>
 	  <Compile Update="Views\Staff\AddStaff.xaml.cs">
 	    <DependentUpon>AddStaff.xaml</DependentUpon>
@@ -215,6 +221,9 @@
 	  <Compile Update="Views\Staff\StaffPage.xaml.cs">
 	    <DependentUpon>StaffPage.xaml</DependentUpon>
 	    <SubType>Code</SubType>
+	  </Compile>
+	  <Compile Update="Views\StudyGroups\EditStudyGroup.xaml.cs">
+	    <DependentUpon>EditStudyGroup.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
@@ -265,6 +274,9 @@
 	  <MauiXaml Update="Template\CourseTemplate.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\Centers\EditCenter .xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\Complexes\EditComplex.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -275,6 +287,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\Schedules\SchedulesPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Staff\EditStaff.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\Staff\AddStaff.xaml">
@@ -296,6 +311,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\StudyGroupStudentList\StudyGroupStudentListPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\StudyGroups\EditStudyGroup.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\Tawhed\TawhedPage.xaml">

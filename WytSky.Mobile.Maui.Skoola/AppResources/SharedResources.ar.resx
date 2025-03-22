@@ -1339,4 +1339,10 @@
   <data name="evulation" xml:space="preserve">
     <value>التقييم</value>
   </data>
+  <data name="UpdatedSuccessfully" xml:space="preserve">
+    <value>تم التعديل بنجاح</value>
+  </data>
+  <data name="EditComplex" xml:space="preserve">
+    <value>تعديل مجمع</value>
+  </data>
 </root>
