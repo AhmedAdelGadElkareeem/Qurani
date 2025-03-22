@@ -147,31 +147,89 @@
                                 <!--  Grid for Layout  -->
                                 <Grid>
 
-                                    <ImageButton
-                                        Margin="5"
-                                        BackgroundColor="Transparent"
-                                        Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.OpenEditComplexCommand}"
-                                        CommandParameter="{Binding .}"
-                                        HeightRequest="25"
-                                        HorizontalOptions="End"
-                                        Source="edit.png"
-                                        VerticalOptions="Start"
-                                        WidthRequest="25" />
-
                                     <!--  Content Layout  -->
                                     <VerticalStackLayout Margin="0,10,0,0">
+
+
+                                        <Grid ColumnDefinitions="auto,*,auto">
+
+                                            <Frame
+                                                Margin="5,0"
+                                                Padding="0"
+                                                BackgroundColor="{StaticResource Green}"
+                                                CornerRadius="40"
+                                                HeightRequest="25"
+                                                HorizontalOptions="Start"
+                                                WidthRequest="25">
+                                                <Label
+                                                    Margin="0,5,0,0"
+                                                    FontSize="13"
+                                                    HorizontalOptions="Center"
+                                                    HorizontalTextAlignment="Center"
+                                                    Style="{StaticResource BlackBoldLabel}"
+                                                    Text="{Binding ComplexNumber}"
+                                                    TextColor="{StaticResource White}"
+                                                    VerticalOptions="Start" />
+                                            </Frame>
+
+                                            <Label
+                                                Grid.Column="1"
+                                                HorizontalTextAlignment="Center"
+                                                Style="{StaticResource BoldLabelFont18}"
+                                                TextColor="{StaticResource DarkBlue}">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span FontAttributes="Bold" Text="{x:Static resource:SharedResources.Text_Country}" />
+                                                        <Span Text=" : " />
+                                                        <Span FontAttributes="Bold" Text="{Binding CountryName}" />
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+
+                                            <ImageButton
+                                                Grid.Column="2"
+                                                Margin="5"
+                                                BackgroundColor="Transparent"
+                                                Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.OpenEditComplexCommand}"
+                                                CommandParameter="{Binding .}"
+                                                HorizontalOptions="End"
+                                                Source="editt.png"
+                                                Style="{StaticResource ImageSize25}"
+                                                VerticalOptions="Start" />
+                                        </Grid>
+
                                         <Label
-                                            HorizontalOptions="CenterAndExpand"
+                                            Grid.Column="0"
                                             HorizontalTextAlignment="Center"
-                                            Style="{StaticResource BoldLabelFont16}"
-                                            Text="{Binding CountryName}"
-                                            TextColor="{StaticResource DarkBlue}" />
-                                        <Label
-                                            HorizontalOptions="CenterAndExpand"
-                                            HorizontalTextAlignment="Center"
-                                            Style="{StaticResource BoldLabelFont16}"
-                                            Text="{Binding RegionName}"
-                                            TextColor="{StaticResource DarkBlue}" />
+                                            Style="{StaticResource BoldLabelFont18}"
+                                            TextColor="{StaticResource DarkBlue}">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span FontAttributes="Bold" Text="{x:Static resource:SharedResources.City}" />
+                                                    <Span Text=" : " />
+                                                    <Span FontAttributes="Bold" Text="{Binding RegionName}" />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+
+                                        <Grid
+                                            ColumnDefinitions="*"
+                                            ColumnSpacing="20"
+                                            HorizontalOptions="Center">
+                                            <Label
+                                                Grid.Column="0"
+                                                FontAttributes="Bold"
+                                                HorizontalOptions="CenterAndExpand"
+                                                HorizontalTextAlignment="Center"
+                                                Style="{StaticResource BoldLabelFont16}"
+                                                Text="{Binding ComplexName}"
+                                                TextColor="{StaticResource DarkBlue}" />
+                                            <!--<Image
+                                                Grid.Column="1"
+                                                HorizontalOptions="End"
+                                                Source="complexes.png"
+                                                Style="{StaticResource ImageSize25}" />-->
+                                        </Grid>
                                         <Grid
                                             ColumnDefinitions=" Auto , *"
                                             ColumnSpacing="20"
@@ -183,42 +241,23 @@
                                                 TextColor="{StaticResource DarkBlue}">
                                                 <Label.FormattedText>
                                                     <FormattedString>
-                                                        <Span Text="{x:Static resource:SharedResources.CentersNumber}" />
-                                                        <Span Text="{Binding CenterCount}" />
+                                                        <Span FontAttributes="Bold" Text="{x:Static resource:SharedResources.CentersNumber}" />
+                                                        <Span FontAttributes="Bold" Text="{Binding CenterCount}" />
                                                     </FormattedString>
                                                 </Label.FormattedText>
                                             </Label>
 
-                                            <Image
+                                            <!--<Image
                                                 Grid.Column="1"
-                                                HeightRequest="25"
                                                 HorizontalOptions="End"
                                                 Source="mosque.png"
-                                                WidthRequest="25" />
+                                                Style="{StaticResource ImageSize20}" />-->
 
                                             <!--  Centers Number Label  -->
 
                                         </Grid>
-                                        <Grid
-                                            ColumnDefinitions=" Auto , *"
-                                            ColumnSpacing="20"
-                                            HorizontalOptions="Center">
-                                            <Label
-                                                Grid.Column="0"
-                                                HorizontalOptions="CenterAndExpand"
-                                                HorizontalTextAlignment="Center"
-                                                Style="{StaticResource BoldLabelFont16}"
-                                                Text="{Binding ComplexName}"
-                                                TextColor="{StaticResource DarkBlue}" />
-                                            <Image
-                                                Grid.Column="1"
-                                                HeightRequest="25"
-                                                HorizontalOptions="End"
-                                                Source="complexes.png"
-                                                WidthRequest="25" />
-                                        </Grid>
+
                                         <Label
-                                            HorizontalOptions="CenterAndExpand"
                                             HorizontalTextAlignment="Center"
                                             Style="{StaticResource BoldLabelFont16}"
                                             Text="{Binding SupervisorFullName}"

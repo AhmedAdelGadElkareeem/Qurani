@@ -30,6 +30,9 @@ public partial class ComplexesVM : BaseViewModel
     public string complexId;
 
     [ObservableProperty]
+    public int complexNumber;
+
+    [ObservableProperty]
     public CountryModel selectedCountry = new ();
 
     [ObservableProperty]
@@ -60,6 +63,10 @@ public partial class ComplexesVM : BaseViewModel
             IsRunning = true;
             Complexes = await APIs.ServiceComplex.GetComplexs();
             FilteredComplexes = new ObservableCollection<ComplexModel>(Complexes);
+            foreach (var item in FilteredComplexes)
+            {
+                ComplexNumber = FilteredComplexes.IndexOf(item) + 1;
+            }
             IsRunning = false;
         }
         catch (Exception ex)
