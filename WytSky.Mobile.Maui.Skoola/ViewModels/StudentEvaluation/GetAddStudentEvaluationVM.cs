@@ -10,7 +10,7 @@ using WytSky.Mobile.Maui.Skoola.Models;
 
 namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudentEvaluation
 {
-    public partial class GetAddStudentEvaluationVM : BaseViewModel
+    public partial class GetAddStudentEvaluationVM : StudentEvaluationVM
     {
 
         [ObservableProperty] private ObservableCollection<StudentEvaluationModel> studentEvaluationList;

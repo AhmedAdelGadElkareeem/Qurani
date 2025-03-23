@@ -18,13 +18,13 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudentEvaluation
     public partial class StudentEvaluationVM : StudyGroupSessionsVM
     {
         #region Propreties
-        [ObservableProperty] private ObservableCollection<StudyGroupStudentList> studentGroup;
-        [ObservableProperty] private double? tajweedScore;
-        [ObservableProperty] private double? memorizationScore;
-        [ObservableProperty] private double? understandingScore;
-        [ObservableProperty] private double? behaviorScore;
-        [ObservableProperty] private double? attendanceScore;
-        [ObservableProperty] private string? note;
+        [ObservableProperty] public ObservableCollection<StudyGroupStudentList> studentGroup;
+        [ObservableProperty] public double tajweedScore;
+        [ObservableProperty] public double memorizationScore;
+        [ObservableProperty] public double understandingScore;
+        [ObservableProperty] public double behaviorScore;
+        [ObservableProperty] public double attendanceScore;
+        [ObservableProperty] public string note;
 
         #endregion
 
@@ -85,7 +85,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudentEvaluation
         }
 
         [RelayCommand]
-        public async Task OpenEditStudentEvuluation(StudentEvaluationModel studentEvaluation)
+        public void OpenEditStudentEvuluation(StudentEvaluationModel studentEvaluation)
         {
             var popup = new EditStudentEvulation();
             Settings.EvulationId = studentEvaluation.EvaluationID.ToString();

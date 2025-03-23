@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage
+<base:BaseContentPage
     x:Class="WytSky.Mobile.Maui.Skoola.Views.StudentEvaluation.StudentEvaluationPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:base="clr-namespace:WytSky.Mobile.Maui.Skoola.Views"
     xmlns:customControls="clr-namespace:WytSky.Mobile.Maui.Skoola.CustomControl"
     xmlns:res="clr-namespace:WytSky.Mobile.Maui.Skoola.AppResources"
     xmlns:resource="clr-namespace:WytSky.Mobile.Maui.Skoola.AppResources"
     Title="{x:Static res:SharedResources.StudentEvaluations}">
 
-    <ScrollView>
-        <VerticalStackLayout Padding="15" Spacing="10">
+    <VerticalStackLayout Padding="15" Spacing="10">
 
-            <!--  List of Student Evaluations  -->
-            <CollectionView ItemsSource="{Binding StudentEvaluationList}">
+        <!--  List of Student Evaluations  -->
+        <ScrollView>
+
+            <CollectionView x:Name="StudentEvaluations" ItemsSource="{Binding StudentEvaluationList}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Frame
@@ -22,6 +24,7 @@
                             CornerRadius="10"
                             HasShadow="True">
                             <VerticalStackLayout Spacing="10">
+
                                 <Grid ColumnDefinitions="*,*">
 
                                     <!--  Student Name  -->
@@ -41,6 +44,18 @@
                                         Source="editt.png"
                                         Style="{StaticResource ImageSize25}"
                                         VerticalOptions="Start" />
+
+                                    <Image
+                                        Grid.Column="2"
+                                        Margin="5,0"
+                                        HeightRequest="30"
+                                        Source="editt.png"
+                                        WidthRequest="30">
+                                        <Image.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding BindingContext.OpenEditStudentEvuluationCommand, Source={x:Reference StudentEvaluations}, ConverterParameter={Binding .}}" />
+                                        </Image.GestureRecognizers>
+                                    </Image>
+
                                 </Grid>
 
 
@@ -142,7 +157,7 @@
                     <customControls:EmptyView />
                 </CollectionView.EmptyView>
             </CollectionView>
+        </ScrollView>
 
-        </VerticalStackLayout>
-    </ScrollView>
-</ContentPage>
+    </VerticalStackLayout>
+</base:BaseContentPage>

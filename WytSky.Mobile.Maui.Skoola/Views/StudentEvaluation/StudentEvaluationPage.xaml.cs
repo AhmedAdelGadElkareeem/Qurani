@@ -2,9 +2,9 @@ using WytSky.Mobile.Maui.Skoola.ViewModels.StudentEvaluation;
 
 namespace WytSky.Mobile.Maui.Skoola.Views.StudentEvaluation;
 
-public partial class StudentEvaluationPage : ContentPage
+public partial class StudentEvaluationPage : BaseContentPage
 {
-    public GetAddStudentEvaluationVM _vm = new GetAddStudentEvaluationVM ();
+    public GetAddStudentEvaluationVM _vm = new GetAddStudentEvaluationVM();
 	public StudentEvaluationPage()
 	{
 		InitializeComponent();
