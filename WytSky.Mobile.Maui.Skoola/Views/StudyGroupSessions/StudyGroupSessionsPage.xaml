@@ -149,26 +149,26 @@
                             Grid.Row="0"
                             Grid.Column="0"
                             BackColor="Green"
-                            ButtonText="{x:Static resource:SharedResources.AvailableStudents}"
                             CommanParamter="Available"
                             Command="{Binding FetchStudentsCommand}"
-                            TextCount="{Binding AvailableCount}" />
+                            TextCount="{Binding AvailableCount}"
+                            TextLable="{x:Static resource:SharedResources.AvailableStudents}" />
                         <customControls:StudentAttendanceFilter
                             Grid.Row="0"
                             Grid.Column="1"
                             BackColor="{StaticResource TracksColor}"
-                            ButtonText="{x:Static resource:SharedResources.AllStudents}"
                             CommanParamter="All"
                             Command="{Binding FetchStudentsCommand}"
-                            TextCount="{Binding All}" />
+                            TextCount="{Binding All}"
+                            TextLable="{x:Static resource:SharedResources.AllStudents}" />
                         <customControls:StudentAttendanceFilter
                             Grid.Row="0"
                             Grid.Column="2"
                             BackColor="Red"
-                            ButtonText="{x:Static resource:SharedResources.AbsentStudents}"
                             CommanParamter="Absent"
                             Command="{Binding FetchStudentsCommand}"
-                            TextCount="{Binding AbsentCount}" />
+                            TextCount="{Binding AbsentCount}"
+                            TextLable="{x:Static resource:SharedResources.AbsentStudents}" />
 
                     </Grid>
                 </Grid>
@@ -234,26 +234,26 @@
                             Grid.Row="0"
                             Grid.Column="0"
                             BackColor="Green"
-                            ButtonText="{x:Static resource:SharedResources.AvailableStudents}"
                             CommanParamter="Available"
                             Command="{Binding FetchStudentsCommand}"
-                            TextCount="{Binding AvailableCount}" />
+                            TextCount="{Binding AvailableCount}"
+                            TextLable="{x:Static resource:SharedResources.AvailableStudents}" />
                         <customControls:StudentAttendanceFilter
                             Grid.Row="0"
                             Grid.Column="1"
                             BackColor="{StaticResource TracksColor}"
-                            ButtonText="{x:Static resource:SharedResources.AllStudents}"
                             CommanParamter="All"
                             Command="{Binding FetchStudentsCommand}"
-                            TextCount="{Binding All}" />
+                            TextCount="{Binding All}"
+                            TextLable="{x:Static resource:SharedResources.AllStudents}" />
                         <customControls:StudentAttendanceFilter
                             Grid.Row="0"
                             Grid.Column="2"
                             BackColor="Red"
-                            ButtonText="{x:Static resource:SharedResources.AbsentStudents}"
                             CommanParamter="Absent"
                             Command="{Binding FetchStudentsCommand}"
-                            TextCount="{Binding AbsentCount}" />
+                            TextCount="{Binding AbsentCount}"
+                            TextLable="{x:Static resource:SharedResources.AbsentStudents}" />
 
                     </Grid>
                 </Grid>
@@ -308,26 +308,26 @@
                             Grid.Row="0"
                             Grid.Column="0"
                             BackColor="Green"
-                            ButtonText="{x:Static resource:SharedResources.AvailableStudents}"
                             CommanParamter="Available"
                             Command="{Binding FetchStudentsCommand}"
-                            TextCount="{Binding AvailableCount}" />
+                            TextCount="{Binding AvailableCount}"
+                            TextLable="{x:Static resource:SharedResources.AvailableStudents}" />
                         <customControls:StudentAttendanceFilter
                             Grid.Row="0"
                             Grid.Column="1"
                             BackColor="{StaticResource TracksColor}"
-                            ButtonText="{x:Static resource:SharedResources.AllStudents}"
                             CommanParamter="All"
                             Command="{Binding FetchStudentsCommand}"
-                            TextCount="{Binding All}" />
+                            TextCount="{Binding All}"
+                            TextLable="{x:Static resource:SharedResources.AllStudents}" />
                         <customControls:StudentAttendanceFilter
                             Grid.Row="0"
                             Grid.Column="2"
                             BackColor="Red"
-                            ButtonText="{x:Static resource:SharedResources.AbsentStudents}"
                             CommanParamter="Absent"
                             Command="{Binding FetchStudentsCommand}"
-                            TextCount="{Binding AbsentCount}" />
+                            TextCount="{Binding AbsentCount}"
+                            TextLable="{x:Static resource:SharedResources.AbsentStudents}" />
 
                     </Grid>
                 </Grid>

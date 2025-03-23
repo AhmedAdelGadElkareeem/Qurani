@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -7,8 +8,10 @@ using System.Threading.Tasks;
 
 namespace WytSky.Mobile.Maui.Skoola.Models
 {
-    public class ComplexModel
+    public partial class ComplexModel : ObservableObject
     {
+        [ObservableProperty]
+        public long? complexNumber;
         public string ComplexName { get; set; }
         public int? CountryID { get; set; }
         public int? RegionID { get; set; }

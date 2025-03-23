@@ -19,6 +19,8 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudentEvaluation
     {
         #region Propreties
         [ObservableProperty] public ObservableCollection<StudyGroupStudentList> studentGroup;
+        [ObservableProperty] private ObservableCollection<StudentEvaluationModel> studentEvaluationList;
+
         [ObservableProperty] public double tajweedScore;
         [ObservableProperty] public double memorizationScore;
         [ObservableProperty] public double understandingScore;
@@ -27,6 +29,16 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudentEvaluation
         [ObservableProperty] public string note;
 
         #endregion
+
+        #region Methods
+        public async Task GetStudentEvaulations()
+        {
+            IsRunning = true;
+            StudentEvaluationList = await ServiceStudentEvaluation.GetStudentEvulationBySessionId();
+            IsRunning = false;
+        }
+        #endregion
+
 
         #region Commands
         [RelayCommand]
@@ -89,11 +101,11 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudentEvaluation
         {
             var popup = new EditStudentEvulation();
             Settings.EvulationId = studentEvaluation.EvaluationID.ToString();
-            AttendanceScore = studentEvaluation.AttendanceScore;
-            BehaviorScore = studentEvaluation.BehaviorScore;
-            UnderstandingScore = studentEvaluation.UnderstandingScore;
-            TajweedScore = studentEvaluation.TajweedScore;
-            MemorizationScore = studentEvaluation.MemorizationScore;
+            AttendanceScore = studentEvaluation.AttendanceScore.Value;
+            BehaviorScore = studentEvaluation.BehaviorScore.Value;
+            UnderstandingScore = studentEvaluation.UnderstandingScore.Value;
+            TajweedScore = studentEvaluation.TajweedScore.Value;
+            MemorizationScore = studentEvaluation.MemorizationScore.Value;
             Note = studentEvaluation.Notes;
             popup.BindingContext = this;
             ShowPopup(popup);
@@ -134,6 +146,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudentEvaluation
                 IsRunning = false;
             }
         }
+
         #endregion
 
         public async Task GetStudents()

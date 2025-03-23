@@ -13,14 +13,17 @@ public partial class CenterPage : BaseContentPage
         InitializeComponent();
         CenterVM = new CenterVM();
         //Title = complex.ComplexName;
-        BindingContext = CenterVM;
         CenterVM.CountryName = complex.CountryName;
         CenterVM.ComplexNamee = complex.ComplexName;
         CenterVM.ComplexRegionName = complex.RegionName;
+        BindingContext = CenterVM;
+        
     }
     public CenterPage()
     {
+        InitializeComponent();
         CenterVM = new CenterVM();
+        CenterVM.FromMainPage = true;
         BindingContext = CenterVM;
     }
     

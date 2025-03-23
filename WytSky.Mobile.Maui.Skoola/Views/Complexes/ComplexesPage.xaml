@@ -156,17 +156,17 @@
                                             <Frame
                                                 Margin="5,0"
                                                 Padding="0"
-                                                BackgroundColor="{StaticResource Green}"
-                                                CornerRadius="40"
-                                                HeightRequest="25"
+                                                BackgroundColor="Green"
+                                                CornerRadius="30"
+                                                HeightRequest="28"
                                                 HorizontalOptions="Start"
-                                                WidthRequest="25">
+                                                WidthRequest="28">
                                                 <Label
                                                     Margin="0,5,0,0"
-                                                    FontSize="13"
+                                                    FontAttributes="Bold"
+                                                    FontSize="Small"
                                                     HorizontalOptions="Center"
                                                     HorizontalTextAlignment="Center"
-                                                    Style="{StaticResource BlackBoldLabel}"
                                                     Text="{Binding ComplexNumber}"
                                                     TextColor="{StaticResource White}"
                                                     VerticalOptions="Start" />

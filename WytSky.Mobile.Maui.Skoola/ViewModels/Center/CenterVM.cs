@@ -36,6 +36,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
         [ObservableProperty] public string studentCenterName;
         [ObservableProperty] public string groupName;
         [ObservableProperty] public string teacherFullName;
+        [ObservableProperty] public bool fromMainPage = false;
 
 
 
@@ -45,8 +46,16 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
             try
             {
                 IsRunning = true;
-                Centers = await APIs.ServiceCenter.GetCenter();
-                FilteredCenters = new ObservableCollection<CentersModel>(Centers);
+                if (FromMainPage)
+                {
+                    Centers = await APIs.ServiceCenter.GetCenters();
+                    FilteredCenters = new ObservableCollection<CentersModel>(Centers);
+                }
+                else
+                {
+                    Centers = await APIs.ServiceCenter.GetCenter();
+                    FilteredCenters = new ObservableCollection<CentersModel>(Centers);
+                }
                 IsRunning = false;
             }
             catch (Exception ex)
