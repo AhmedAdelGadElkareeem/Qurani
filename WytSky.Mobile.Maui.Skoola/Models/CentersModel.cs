@@ -1,8 +1,12 @@
 ﻿
+using CommunityToolkit.Mvvm.ComponentModel;
+
 namespace WytSky.Mobile.Maui.Skoola.Models
 {
-    public class CentersModel 
+    public partial class CentersModel : ObservableObject
     {
+        [ObservableProperty]
+        public long? centerNumber;
         public int? CenterID { get; set; }
         public int? ComplexID { get; set; }
         public string? CenterName { get; set; }
