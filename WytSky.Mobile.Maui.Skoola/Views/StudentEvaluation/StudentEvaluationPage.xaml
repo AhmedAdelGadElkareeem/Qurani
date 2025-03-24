@@ -14,7 +14,7 @@
         <!--  List of Student Evaluations  -->
         <ScrollView>
 
-            <CollectionView x:Name="StudentEvaluations" ItemsSource="{Binding StudentEvaluationListt}">
+            <CollectionView ItemsSource="{Binding StudentEvaluationListt}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Frame
@@ -38,8 +38,8 @@
                                         Grid.Column="1"
                                         Margin="5"
                                         BackgroundColor="Transparent"
-                                        Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.OpenEditStudentEvuluationCommand}"
-                                        CommandParameter="{Binding .}"
+                                        Command="{Binding Path=BindingContext.OpenEditStudentEvuluationCommand, Source={RelativeSource AncestorType={x:Type ContentPage}}}"
+                                        CommandParameter="{Binding}"
                                         HorizontalOptions="End"
                                         Source="editt.png"
                                         Style="{StaticResource ImageSize30}"
