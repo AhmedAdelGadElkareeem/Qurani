@@ -193,6 +193,7 @@
                                                 Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.OpenEditComplexCommand}"
                                                 CommandParameter="{Binding .}"
                                                 HorizontalOptions="End"
+                                                IsVisible="{Binding IsAdmin}"
                                                 Source="editt.png"
                                                 Style="{StaticResource ImageSize25}"
                                                 VerticalOptions="Start" />
@@ -275,7 +276,10 @@
                         <customControls:EmptyView />
                     </CollectionView.EmptyView>
                 </CollectionView>
-                <Button Command="{Binding OpenAddComplexCommand}" Style="{StaticResource AddButton}" />
+                <Button
+                    Command="{Binding OpenAddComplexCommand}"
+                    IsVisible="{Binding IsAdmin}"
+                    Style="{StaticResource AddButton}" />
             </Grid>
         </Grid>
 

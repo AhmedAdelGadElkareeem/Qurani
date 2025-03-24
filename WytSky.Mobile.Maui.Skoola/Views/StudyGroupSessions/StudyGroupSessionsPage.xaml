@@ -156,7 +156,7 @@
                         <customControls:StudentAttendanceFilter
                             Grid.Row="0"
                             Grid.Column="1"
-                            BackColor="{StaticResource TracksColor}"
+                            BackColor="{StaticResource PrimaryColor}"
                             CommanParamter="All"
                             Command="{Binding FetchStudentsCommand}"
                             TextCount="{Binding All}"
@@ -241,7 +241,7 @@
                         <customControls:StudentAttendanceFilter
                             Grid.Row="0"
                             Grid.Column="1"
-                            BackColor="{StaticResource TracksColor}"
+                            BackColor="{StaticResource PrimaryColor}"
                             CommanParamter="All"
                             Command="{Binding FetchStudentsCommand}"
                             TextCount="{Binding All}"
@@ -315,7 +315,7 @@
                         <customControls:StudentAttendanceFilter
                             Grid.Row="0"
                             Grid.Column="1"
-                            BackColor="{StaticResource TracksColor}"
+                            BackColor="{StaticResource PrimaryColor}"
                             CommanParamter="All"
                             Command="{Binding FetchStudentsCommand}"
                             TextCount="{Binding All}"

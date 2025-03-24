@@ -121,6 +121,7 @@
                                             CommandParameter="{Binding .}"
                                             HeightRequest="25"
                                             HorizontalOptions="End"
+                                            IsVisible="{Binding IsAdminAndIsSupervisor}"
                                             Source="editt.png"
                                             VerticalOptions="Start"
                                             WidthRequest="25" />
@@ -176,7 +177,7 @@
                 <Button
                     Grid.Row="1"
                     Command="{Binding OpenAddStudyGroupCommand}"
-                    IsVisible="{Binding AddVisibility}"
+                    IsVisible="{Binding IsAdminAndIsSupervisor}"
                     Style="{StaticResource AddButton}" />
             </Grid>
 

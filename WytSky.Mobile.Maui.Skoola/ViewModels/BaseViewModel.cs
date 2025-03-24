@@ -15,6 +15,7 @@ using WytSky.Mobile.Maui.Skoola.Views.Complexes;
 using WytSky.Mobile.Maui.Skoola.Views.Zekr;
 using WytSky.Mobile.Maui.Skoola.Views.Tawhed;
 using WytSky.Mobile.Maui.Skoola.APIs;
+using Microsoft.Maui.Controls;
 
 namespace WytSky.Mobile.Maui.Skoola.ViewModels
 {
@@ -88,6 +89,45 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
 
         // Dictionary to cache regions for each country
         public Dictionary<string, List<RegionModel>> _cachedRegions = new Dictionary<string, List<RegionModel>>();
+
+
+        #region booleans
+
+        [ObservableProperty]
+        private bool isAdmin = Settings.IsAdmin;
+
+        [ObservableProperty]
+        private bool isSupervisor = Settings.IsSupervisor;
+
+        [ObservableProperty]
+        private bool isTeacher = Settings.IsTeacher;
+
+        [ObservableProperty]
+        private bool isStudent = Settings.IsUsers;
+
+        public bool IsAdminAndIsSupervisor => IsAdmin || IsSupervisor;
+        public bool IsAdminAndIsSupervisorAndIsTeacher => IsAdmin || IsSupervisor || IsTeacher;
+
+        // Override OnPropertyChanged
+        partial void OnIsAdminChanged(bool oldValue, bool newValue)
+        {
+            OnPropertyChanged(nameof(IsAdminAndIsSupervisor));
+            OnPropertyChanged(nameof(IsAdminAndIsSupervisorAndIsTeacher));
+        }
+
+        partial void OnIsSupervisorChanged(bool oldValue, bool newValue)
+        {
+            OnPropertyChanged(nameof(IsAdminAndIsSupervisor));
+            OnPropertyChanged(nameof(IsAdminAndIsSupervisorAndIsTeacher));
+        }
+
+        partial void OnIsTeacherChanged(bool oldValue, bool newValue)
+        {
+            OnPropertyChanged(nameof(IsAdminAndIsSupervisorAndIsTeacher));
+        }
+
+        #endregion
+
         #endregion
 
 

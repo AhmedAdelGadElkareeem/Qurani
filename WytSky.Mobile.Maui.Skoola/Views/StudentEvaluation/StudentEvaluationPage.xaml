@@ -41,6 +41,7 @@
                                         Command="{Binding Path=BindingContext.OpenEditStudentEvuluationCommand, Source={RelativeSource AncestorType={x:Type ContentPage}}}"
                                         CommandParameter="{Binding}"
                                         HorizontalOptions="End"
+                                        IsVisible="{Binding IsTeacher}"
                                         Source="editt.png"
                                         Style="{StaticResource ImageSize30}"
                                         VerticalOptions="Start" />

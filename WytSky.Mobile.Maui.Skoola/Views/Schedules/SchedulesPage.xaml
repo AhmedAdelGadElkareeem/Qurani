@@ -109,6 +109,7 @@
                                                 Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.OpenEditScheduleCommand}"
                                                 CommandParameter="{Binding .}"
                                                 HorizontalOptions="End"
+                                                IsVisible="{Binding IsAdminAndIsSupervisorAndIsTeacher}"
                                                 Source="editt.png"
                                                 Style="{StaticResource ImageSize25}"
                                                 VerticalOptions="Start" />
@@ -165,7 +166,10 @@
                         <customControls:EmptyView />
                     </CollectionView.EmptyView>
                 </CollectionView>
-                <Button Command="{Binding OpenAddSchedulesCommand}" Style="{StaticResource AddButton}" />
+                <Button
+                    Command="{Binding OpenAddSchedulesCommand}"
+                    IsVisible="{Binding IsAdminAndIsSupervisorAndIsTeacher}"
+                    Style="{StaticResource AddButton}" />
             </Grid>
         </Grid>
         <ActivityIndicator IsRunning="{Binding IsRunning}" IsVisible="{Binding IsRunning}" />

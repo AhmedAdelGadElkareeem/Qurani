@@ -168,6 +168,7 @@
                                                 Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.OpenEditCenterCommand}"
                                                 CommandParameter="{Binding .}"
                                                 HorizontalOptions="End"
+                                                IsVisible="{Binding IsAdminAndIsSupervisor}"
                                                 Source="editt.png"
                                                 Style="{StaticResource ImageSize25}"
                                                 VerticalOptions="Start" />
@@ -213,6 +214,7 @@
                                                 CommandParameter="{Binding .}"
                                                 CornerRadius="15"
                                                 FontSize="Medium"
+                                                IsVisible="{Binding IsAdminAndIsSupervisorAndIsTeacher}"
                                                 Text="{x:Static resource:SharedResources.StudyGroups}"
                                                 TextColor="{StaticResource DarkBlue}" />
                                             <Button
@@ -222,6 +224,7 @@
                                                 CommandParameter="{Binding .}"
                                                 CornerRadius="15"
                                                 FontSize="Medium"
+                                                IsVisible="{Binding IsAdminAndIsSupervisor}"
                                                 Text="{x:Static resource:SharedResources.Staffs}"
                                                 TextColor="{StaticResource DarkBlue}" />
                                             <Button
@@ -231,6 +234,7 @@
                                                 CommandParameter="{Binding .}"
                                                 CornerRadius="15"
                                                 FontSize="Medium"
+                                                IsVisible="{Binding IsAdminAndIsSupervisor}"
                                                 Text="{x:Static resource:SharedResources.Students}"
                                                 TextColor="{StaticResource DarkBlue}" />
                                         </Grid>
@@ -243,7 +247,10 @@
                         <customControls:EmptyView />
                     </CollectionView.EmptyView>
                 </CollectionView>
-                <Button Command="{Binding OpenAddCenterCommand}" Style="{StaticResource AddButton}" />
+                <Button
+                    Command="{Binding OpenAddCenterCommand}"
+                    IsVisible="{Binding IsAdminAndIsSupervisor}"
+                    Style="{StaticResource AddButton}" />
             </Grid>
 
 
