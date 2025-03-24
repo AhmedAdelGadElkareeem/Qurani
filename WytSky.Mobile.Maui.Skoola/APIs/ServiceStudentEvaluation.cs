@@ -10,7 +10,7 @@ namespace WytSky.Mobile.Maui.Skoola.APIs
     {
         public const string BASE = "appservices";
         public const string FormUpdate = "api/formupdate/getupdate";
-        public const string KeyName = "EvulationID";
+        public const string KeyName = "EvaluationID";
         public async static Task<ObservableCollection<StudentEvaluationModel>> GetStudentEvulationBySessionId()
         {
             try
@@ -40,6 +40,37 @@ namespace WytSky.Mobile.Maui.Skoola.APIs
                 return null;
             }
         }
+        public async static Task<ObservableCollection<StudentEvaluationModel>> GetStudentEvulationByEvaluationID()
+        {
+            try
+            {
+                var dictionary = new Dictionary<string, string>()
+                {
+                      {"_datatype", "json"},
+                      {"_jsonarray", "1"},
+                      {"SessionID", Settings.SessionId},
+                };
+
+                var result = await Services.RequestProvider.Current.GetData<TempletData<StudentEvaluationModel>>(BASE, "studentevaluation", dictionary, Enums.AuthorizationType.UserNamePassword);
+                if (result != null && result.IsPassed)
+                {
+                    return result.Data.itemData;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                string ExceptionMseeage = string.Format(" Error : {0} - {1} ", ex.Message, ex.InnerException != null ? ex.InnerException.FullMessage() : "");
+                System.Diagnostics.Debug.WriteLine(ExceptionMseeage);
+                ExtensionLogMethods.LogExtension(ExceptionMseeage, "", "ServiceComplex", "GetParentCategories");
+                return null;
+            }
+        }
+
+
         public async static Task<StudentEvaluationModel> AddStudentEvulation(Dictionary<string, object> formData)
         {
             try
@@ -77,7 +108,7 @@ namespace WytSky.Mobile.Maui.Skoola.APIs
                 {
                     { "_datatype", "json" },
                     { "_jsonarray", "1" },
-                    { "_key", Settings.StudentId },
+                    { "_key", Settings.EvulationId },
                     { "_keyname", KeyName }
                 };
 
@@ -90,7 +121,7 @@ namespace WytSky.Mobile.Maui.Skoola.APIs
 
                 // Call API
                 var result = await Services.RequestProvider.Current.GetUpdate<TempletData<StudentEvaluationModel>>(
-                    FormUpdate, "evulations", dictionary, Enums.AuthorizationType.UserNamePassword
+                    FormUpdate, "studentevaluation", dictionary, Enums.AuthorizationType.UserNamePassword
                 );
 
                 // Ensure result and data are valid

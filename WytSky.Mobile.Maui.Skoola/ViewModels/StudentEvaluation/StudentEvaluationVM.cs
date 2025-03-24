@@ -21,6 +21,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudentEvaluation
         [ObservableProperty] public ObservableCollection<StudyGroupStudentList> studentGroup;
         [ObservableProperty] private ObservableCollection<StudentEvaluationModel> studentEvaluationListt;
 
+        [ObservableProperty] public string studentFullName;
         [ObservableProperty] public double tajweedScore;
         [ObservableProperty] public double memorizationScore;
         [ObservableProperty] public double understandingScore;
@@ -99,6 +100,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudentEvaluation
         [RelayCommand]
         public void OpenEditStudentEvuluation(StudentEvaluationModel studentEvaluation)
         {
+            StudentFullName = studentEvaluation.StudentFullName;
             Settings.EvulationId = studentEvaluation.EvaluationID.ToString();
             AttendanceScore = studentEvaluation.AttendanceScore.Value;
             BehaviorScore = studentEvaluation.BehaviorScore.Value;
@@ -128,6 +130,8 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudentEvaluation
                     { "Notes", Note },
                 };
                 var result = await APIs.ServiceStudentEvaluation.UpdateStudentEvulation(formData);
+                Settings.EvulationId = result.Select(_=> _.EvaluationID).ToString();
+                StudentEvaluationListt = await ServiceStudentEvaluation.GetStudentEvulationByEvaluationID();
                 if (result != null)
                 {
                     Toast.ShowToastSuccess(SharedResources.UpdatedSuccessfully);

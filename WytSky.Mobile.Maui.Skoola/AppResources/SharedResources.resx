@@ -1352,4 +1352,7 @@ Successfully Changed</value>
   <data name="EditTeachers" xml:space="preserve">
     <value>Edit Teacher</value>
   </data>
+  <data name="EditStudentEvaluation" xml:space="preserve">
+    <value>Edit Student Evaluation</value>
+  </data>
 </root>

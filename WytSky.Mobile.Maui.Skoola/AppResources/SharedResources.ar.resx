@@ -1354,4 +1354,7 @@
   <data name="EditTeachers" xml:space="preserve">
     <value>تعـديل المعـلـم</value>
   </data>
+  <data name="EditStudentEvaluation" xml:space="preserve">
+    <value>تعديل تقييم الطـالـب</value>
+  </data>
 </root>
