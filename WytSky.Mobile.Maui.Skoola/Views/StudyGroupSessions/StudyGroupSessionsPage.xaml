@@ -374,6 +374,7 @@
                 FontSize="16"
                 HeightRequest="50"
                 HorizontalOptions="Fill"
+                IsVisible="{Binding IsSessionStarted}"
                 Text="{x:Static resource:SharedResources.Add_Evaluation}"
                 TextColor="{StaticResource Black}" />
         </Grid>

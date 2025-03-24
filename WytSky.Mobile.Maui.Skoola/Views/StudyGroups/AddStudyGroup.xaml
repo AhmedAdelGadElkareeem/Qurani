@@ -50,10 +50,12 @@
                 Text="{x:Static res:SharedResources.AfterAddStudyGruops}" />
             <Entry
                 HorizontalOptions="CenterAndExpand"
+                HorizontalTextAlignment="Center"
                 Placeholder="{x:Static res:SharedResources.StudyGroupAr}"
                 Text="{Binding StudyGroupName}" />
             <Entry
                 HorizontalOptions="CenterAndExpand"
+                HorizontalTextAlignment="Center"
                 Placeholder="{x:Static res:SharedResources.StudyGroupEn}"
                 Text="{Binding StudyGroupNameEn}" />
             <Border
@@ -71,14 +73,17 @@
             </Border>
             <Entry
                 HorizontalOptions="CenterAndExpand"
+                HorizontalTextAlignment="Center"
                 Placeholder="{x:Static res:SharedResources.Text_Subject}"
                 Text="{Binding SubjectName}" />
             <Entry
                 HorizontalOptions="CenterAndExpand"
+                HorizontalTextAlignment="Center"
                 Placeholder="{x:Static res:SharedResources.Text_Notes}"
                 Text="{Binding Notes}" />
             <Entry
                 HorizontalOptions="CenterAndExpand"
+                HorizontalTextAlignment="Center"
                 Placeholder="{x:Static res:SharedResources.Text_Location}"
                 Text="{Binding Location}" />
 

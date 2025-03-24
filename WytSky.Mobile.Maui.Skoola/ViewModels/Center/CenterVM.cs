@@ -59,6 +59,10 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
                 {
                     Centers = await APIs.ServiceCenter.GetCenter();
                     FilteredCenters = new ObservableCollection<CentersModel>(Centers);
+                    foreach (var item in FilteredCenters)
+                    {
+                        item.CenterNumber = FilteredCenters.IndexOf(item) + 1;
+                    }
                 }
                 IsRunning = false;
             }

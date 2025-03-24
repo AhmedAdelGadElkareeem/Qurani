@@ -17,10 +17,7 @@
             BackgroundColor="White"
             Spacing="3"
             VerticalOptions="CenterAndExpand">
-            <StackLayout
-                BackgroundColor="WhiteSmoke"
-                Spacing="3"
-                VerticalOptions="FillAndExpand">
+            <StackLayout Spacing="3" VerticalOptions="FillAndExpand">
 
                 <Label
                     HorizontalOptions="CenterAndExpand"
@@ -40,17 +37,25 @@
                     Text="{Binding ComplexRegionCountryName}"
                     VerticalOptions="StartAndExpand" />
             </StackLayout>
-            <Label
-                HorizontalOptions="CenterAndExpand"
-                HorizontalTextAlignment="Center"
-                Style="{StaticResource BoldLabelFont18}"
-                Text="{x:Static res:SharedResources.AddMosque}"
-                VerticalOptions="StartAndExpand" />
-            <Label
+            <Frame
+                Margin="0,0,0,5"
+                Padding="5"
+                BackgroundColor="{StaticResource Orange}"
+                CornerRadius="30"
+                HorizontalOptions="CenterAndExpand">
+                <Label
+                    Margin="5"
+                    HorizontalOptions="CenterAndExpand"
+                    HorizontalTextAlignment="Center"
+                    Style="{StaticResource BoldLabelFont18}"
+                    Text="{x:Static res:SharedResources.EditMosque}"
+                    VerticalOptions="CenterAndExpand" />
+            </Frame>
+            <!--<Label
                 HorizontalOptions="CenterAndExpand"
                 HorizontalTextAlignment="Center"
                 Style="{StaticResource RegularLabelFont16}"
-                Text="{x:Static res:SharedResources.AfterAddMosque}" />
+                Text="{x:Static res:SharedResources.AfterAddMosque}" />-->
             <Label
                 HorizontalOptions="CenterAndExpand"
                 HorizontalTextAlignment="Center"

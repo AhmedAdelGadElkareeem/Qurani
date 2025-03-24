@@ -16,13 +16,22 @@
             BackgroundColor="White"
             Spacing="3"
             VerticalOptions="CenterAndExpand">
-            <Label
-                HorizontalOptions="CenterAndExpand"
-                HorizontalTextAlignment="Center"
-                Style="{StaticResource BoldLabelFont18}"
-                Text="{x:Static res:SharedResources.EditComplex}"
-                VerticalOptions="StartAndExpand" />
-          <Entry
+
+            <Frame
+                Margin="0,0,0,5"
+                Padding="5"
+                BackgroundColor="{StaticResource Orange}"
+                CornerRadius="30"
+                HorizontalOptions="CenterAndExpand">
+                <Label
+                    Margin="5"
+                    HorizontalOptions="CenterAndExpand"
+                    HorizontalTextAlignment="Center"
+                    Style="{StaticResource BoldLabelFont18}"
+                    Text="{x:Static res:SharedResources.EditComplex}"
+                    VerticalOptions="CenterAndExpand" />
+            </Frame>
+            <Entry
                 BackgroundColor="White"
                 HorizontalTextAlignment="Center"
                 Placeholder="{x:Static res:SharedResources.ComplexName}"

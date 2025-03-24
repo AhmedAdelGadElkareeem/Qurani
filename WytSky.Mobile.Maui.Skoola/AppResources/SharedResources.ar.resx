@@ -1343,6 +1343,15 @@
     <value>تم التعديل بنجاح</value>
   </data>
   <data name="EditComplex" xml:space="preserve">
-    <value>تعديل مجمع</value>
+    <value>تعديل المجمـع</value>
+  </data>
+  <data name="EditMosque" xml:space="preserve">
+    <value>تعـديـل المسجـد</value>
+  </data>
+  <data name="EditStudyGruops" xml:space="preserve">
+    <value>تعـديل الحـلقــة</value>
+  </data>
+  <data name="EditTeachers" xml:space="preserve">
+    <value>تعـديل المعـلـم</value>
   </data>
 </root>

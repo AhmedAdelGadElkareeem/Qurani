@@ -55,6 +55,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudyGroupSession
         [ObservableProperty] public bool availableStudents = false;
         [ObservableProperty] public int absentCount = 0;
         [ObservableProperty] public bool absentStudents = false;
+        [ObservableProperty] public bool isSessionStarted = false;
        
         #endregion
 
@@ -102,6 +103,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudyGroupSession
                 AllStudents = true;
                 AvailableStudents = false;
                 AbsentStudents = false;
+                IsSessionStarted = true;
                 await GetSessions();
             }
             catch (Exception ex)

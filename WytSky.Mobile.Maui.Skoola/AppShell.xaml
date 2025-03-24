@@ -146,13 +146,13 @@
             Route="ComplexesPage" />
     </FlyoutItem>
 
-    <!--<FlyoutItem Title="Centers" FlyoutDisplayOptions="AsMultipleItems">
+    <FlyoutItem Title="Centers" FlyoutDisplayOptions="AsMultipleItems">
         <ShellContent
             Title="{x:Static resources:SharedResources.Centers}"
             ContentTemplate="{DataTemplate Centers:CenterPage}"
             Icon="mosque.png"
             Route="CenterPage" />
-    </FlyoutItem>-->
+    </FlyoutItem>
 
     <MenuItem
         Command="{Binding ChangeLanguageCommand}"

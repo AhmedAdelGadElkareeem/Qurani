@@ -1343,4 +1343,13 @@ Successfully Changed</value>
   <data name="EditComplex" xml:space="preserve">
     <value>Edit Complex</value>
   </data>
+  <data name="EditMosque" xml:space="preserve">
+    <value>Edit Mosque</value>
+  </data>
+  <data name="EditStudyGruops" xml:space="preserve">
+    <value>Edit Study Gruop</value>
+  </data>
+  <data name="EditTeachers" xml:space="preserve">
+    <value>Edit Teacher</value>
+  </data>
 </root>
