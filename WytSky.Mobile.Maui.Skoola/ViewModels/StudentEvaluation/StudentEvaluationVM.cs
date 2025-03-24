@@ -34,7 +34,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudentEvaluation
         public async Task GetStudentEvaulations()
         {
             IsRunning = true;
-            StudentEvaluationList = await ServiceStudentEvaluation.GetStudentEvulationBySessionId();
+            StudentEvaluationListt = await ServiceStudentEvaluation.GetStudentEvulationBySessionId();
             IsRunning = false;
         }
         #endregion
@@ -99,7 +99,6 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudentEvaluation
         [RelayCommand]
         public void OpenEditStudentEvuluation(StudentEvaluationModel studentEvaluation)
         {
-            var popup = new EditStudentEvulation();
             Settings.EvulationId = studentEvaluation.EvaluationID.ToString();
             AttendanceScore = studentEvaluation.AttendanceScore.Value;
             BehaviorScore = studentEvaluation.BehaviorScore.Value;
@@ -107,6 +106,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudentEvaluation
             TajweedScore = studentEvaluation.TajweedScore.Value;
             MemorizationScore = studentEvaluation.MemorizationScore.Value;
             Note = studentEvaluation.Notes;
+            var popup = new EditStudentEvulation();
             popup.BindingContext = this;
             ShowPopup(popup);
         }

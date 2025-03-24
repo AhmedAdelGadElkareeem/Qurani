@@ -16,10 +16,10 @@
         <VerticalStackLayout Spacing="10">
 
             <!--  Student Name  -->
-            <Label
+            <!--<Label
                 FontAttributes="Bold"
                 FontSize="18"
-                Text="{Binding StudentFullName}" />
+                Text="{Binding StudentFullName}" />-->
 
             <!--  Evaluation Inputs  -->
             <VerticalStackLayout Spacing="8">
@@ -31,22 +31,27 @@
                     Text="{Binding StudentFullName}" />
                 <Entry
                     Keyboard="Numeric"
+                    MaxLength="10"
                     Placeholder="{x:Static resource:SharedResources.Txt_Tajweed_Evaluate}"
                     Text="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.TajweedScore}" />
                 <Entry
                     Keyboard="Numeric"
+                    MaxLength="10"
                     Placeholder="{x:Static resource:SharedResources.Txt_Memorization_Evaluate}"
                     Text="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.MemorizationScore}" />
                 <Entry
                     Keyboard="Numeric"
+                    MaxLength="10"
                     Placeholder="{x:Static resource:SharedResources.Txt_Understanding_Evaluate}"
                     Text="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.UnderstandingScore}" />
                 <Entry
                     Keyboard="Numeric"
+                    MaxLength="10"
                     Placeholder="{x:Static resource:SharedResources.Txt_Behavior_Evaluation}"
                     Text="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.BehaviorScore}" />
                 <Entry
                     Keyboard="Numeric"
+                    MaxLength="10"
                     Placeholder="{x:Static resource:SharedResources.txt_attendanceevulate}"
                     Text="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.AttendanceScore}" />
                 <Editor
