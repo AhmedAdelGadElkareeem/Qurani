@@ -11,6 +11,8 @@ namespace WytSky.Mobile.Maui.Skoola.APIs
         public const string BASE = "appservices";
         public const string FormUpdate = "api/formupdate/getupdate";
         public const string KeyName = "EvaluationID";
+
+        #region GetStudentEvulationBySessionId
         public async static Task<ObservableCollection<StudentEvaluationModel>> GetStudentEvulationBySessionId()
         {
             try
@@ -40,6 +42,9 @@ namespace WytSky.Mobile.Maui.Skoola.APIs
                 return null;
             }
         }
+        #endregion
+
+        #region GetStudentEvulationByEvaluationID
         public async static Task<ObservableCollection<StudentEvaluationModel>> GetStudentEvulationByEvaluationID()
         {
             try
@@ -69,8 +74,9 @@ namespace WytSky.Mobile.Maui.Skoola.APIs
                 return null;
             }
         }
+        #endregion
 
-
+        #region AddStudentEvulation
         public async static Task<StudentEvaluationModel> AddStudentEvulation(Dictionary<string, object> formData)
         {
             try
@@ -99,7 +105,9 @@ namespace WytSky.Mobile.Maui.Skoola.APIs
                 return null;
             }
         }
+        #endregion
 
+        #region UpdateStudentEvulation
         public async static Task<ObservableCollection<StudentEvaluationModel>> UpdateStudentEvulation(Dictionary<string, object> formData)
         {
             try
@@ -142,5 +150,74 @@ namespace WytSky.Mobile.Maui.Skoola.APIs
                 return null;
             }
         }
+        #endregion
+
+        #region StudentEvaluationByStudyGroup
+        public async static Task<ObservableCollection<StudentEvaluationModel>> GetStudentEvaluationByStudyGroupID
+                                                                                (string studentId, string groupId)
+        {
+            try
+            {
+                var dictionary = new Dictionary<string, string>()
+                {
+                      {"_datatype", "json"},
+                      {"_jsonarray", "1"},
+                      {"StudentID", studentId},
+                      {"GroupID", groupId},
+                };
+
+                var result = await Services.RequestProvider.Current.GetData<TempletData<StudentEvaluationModel>>(BASE, "studentevaluation", dictionary, Enums.AuthorizationType.UserNamePassword);
+                if (result != null && result.IsPassed)
+                {
+                    return result.Data.itemData;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                string ExceptionMseeage = string.Format(" Error : {0} - {1} ", ex.Message, ex.InnerException != null ? ex.InnerException.FullMessage() : "");
+                System.Diagnostics.Debug.WriteLine(ExceptionMseeage);
+                ExtensionLogMethods.LogExtension(ExceptionMseeage, "", "ServiceComplex", "GetParentCategories");
+                return null;
+            }
+        }
+        #endregion
+
+        #region StudentAttendanceByStudyGroup
+        public async static Task<ObservableCollection<StudentattendanceModel>> GetStudentAttendanceByStudyGroupID
+                                                                                (string studentId, string groupId)
+        {
+            try
+            {
+                var dictionary = new Dictionary<string, string>()
+                {
+                      {"_datatype", "json"},
+                      {"_jsonarray", "1"},
+                      {"StudentID", studentId},
+                      {"GroupID", groupId},
+                };
+
+                var result = await Services.RequestProvider.Current.GetData<TempletData<StudentattendanceModel>>(BASE, "studentattendance", dictionary, Enums.AuthorizationType.UserNamePassword);
+                if (result != null && result.IsPassed)
+                {
+                    return result.Data.itemData;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                string ExceptionMseeage = string.Format(" Error : {0} - {1} ", ex.Message, ex.InnerException != null ? ex.InnerException.FullMessage() : "");
+                System.Diagnostics.Debug.WriteLine(ExceptionMseeage);
+                ExtensionLogMethods.LogExtension(ExceptionMseeage, "", "ServiceComplex", "GetParentCategories");
+                return null;
+            }
+        }
+        #endregion
     }
 }

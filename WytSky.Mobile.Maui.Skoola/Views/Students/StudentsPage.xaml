@@ -129,7 +129,7 @@
                                 </VerticalStackLayout>
 
                                 <Border.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.SelectStaffCommand}" CommandParameter="{Binding .}" />
+                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.StudentSelectedCommand}" CommandParameter="{Binding .}" />
                                 </Border.GestureRecognizers>
                             </Border>
                         </DataTemplate>

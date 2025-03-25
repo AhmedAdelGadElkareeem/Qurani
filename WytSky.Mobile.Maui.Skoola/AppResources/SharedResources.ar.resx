@@ -1357,4 +1357,40 @@
   <data name="EditStudentEvaluation" xml:space="preserve">
     <value>تعديل تقييم الطـالـب</value>
   </data>
+  <data name="StudentDetails" xml:space="preserve">
+    <value>بيانات الطالب</value>
+  </data>
+  <data name="CenterName" xml:space="preserve">
+    <value>اسم المسجـد</value>
+  </data>
+  <data name="GroupSubjectName" xml:space="preserve">
+    <value>موضوع الحلقة</value>
+  </data>
+  <data name="StudentFullName" xml:space="preserve">
+    <value>اسم الطالب</value>
+  </data>
+  <data name="StudentEvaluation" xml:space="preserve">
+    <value>تقييمات الطالب</value>
+  </data>
+  <data name="StudentAttendance" xml:space="preserve">
+    <value>حضور الطالب</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>التاريخ</value>
+  </data>
+  <data name="Day" xml:space="preserve">
+    <value>اليوم</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>الحالة</value>
+  </data>
+  <data name="Present" xml:space="preserve">
+    <value>حضر</value>
+  </data>
+  <data name="NotPresent" xml:space="preserve">
+    <value>لم يحضر</value>
+  </data>
+  <data name="Absent" xml:space="preserve">
+    <value>غائب</value>
+  </data>
 </root>

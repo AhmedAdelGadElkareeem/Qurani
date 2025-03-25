@@ -1355,4 +1355,40 @@ Successfully Changed</value>
   <data name="EditStudentEvaluation" xml:space="preserve">
     <value>Edit Student Evaluation</value>
   </data>
+  <data name="StudentDetails" xml:space="preserve">
+    <value>Student Details</value>
+  </data>
+  <data name="CenterName" xml:space="preserve">
+    <value>Center Name</value>
+  </data>
+  <data name="GroupSubjectName" xml:space="preserve">
+    <value>Group Subject Name</value>
+  </data>
+  <data name="StudentFullName" xml:space="preserve">
+    <value>Student Name</value>
+  </data>
+  <data name="StudentEvaluation" xml:space="preserve">
+    <value>Student Evaluation</value>
+  </data>
+  <data name="StudentAttendance" xml:space="preserve">
+    <value>Student Attendance</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="Day" xml:space="preserve">
+    <value>Day</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="Present" xml:space="preserve">
+    <value>Present</value>
+  </data>
+  <data name="NotPresent" xml:space="preserve">
+    <value>Not Present</value>
+  </data>
+  <data name="Absent" xml:space="preserve">
+    <value>Absent</value>
+  </data>
 </root>

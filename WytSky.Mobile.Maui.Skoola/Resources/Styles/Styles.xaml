@@ -7,7 +7,7 @@
 
     <converter:InverseBoolConverter x:Key="InverseBoolConverter" />
     <converter:LanguageTextConverter x:Key="LanguageTextConverter" />
-
+    <converter:StatusToColorConverter x:Key="StatusToColorConverter" />
 
 
     <Style TargetType="NavigationPage">

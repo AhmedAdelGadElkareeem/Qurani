@@ -1,0 +1,476 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<base:BaseContentPage
+    x:Class="WytSky.Mobile.Maui.Skoola.Views.Students.StudentDetailsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:base="clr-namespace:WytSky.Mobile.Maui.Skoola.Views"
+    xmlns:customControl="clr-namespace:WytSky.Mobile.Maui.Skoola.CustomControl.Borderless"
+    xmlns:customControls="clr-namespace:WytSky.Mobile.Maui.Skoola.CustomControl"
+    xmlns:resources="clr-namespace:WytSky.Mobile.Maui.Skoola.AppResources"
+    Title="{x:Static resources:SharedResources.StudentDetails}">
+    <Grid RowDefinitions="*">
+        <Grid RowDefinitions="auto,*" VerticalOptions="FillAndExpand">
+
+            <Border
+                Padding="0"
+                BackgroundColor="{StaticResource PrimaryColor}"
+                HeightRequest="130"
+                HorizontalOptions="FillAndExpand"
+                Stroke="{StaticResource PrimaryColor}"
+                StrokeShape="RoundRectangle 0,0,70,70"
+                StrokeThickness=".5"
+                VerticalOptions="Start">
+                <Grid
+                    Margin="0"
+                    Padding="0"
+                    RowDefinitions="auto,auto,auto,*">
+                    <Label
+                        HorizontalOptions="CenterAndExpand"
+                        Style="{StaticResource BoldLabelFont18}"
+                        Text="{Binding CountryName}"
+                        TextColor="{StaticResource DarkBlue}" />
+                    <Label
+                        Grid.Row="1"
+                        HorizontalOptions="CenterAndExpand"
+                        Style="{StaticResource BoldLabelFont18}"
+                        Text="{Binding ComplexNamee}"
+                        TextColor="{StaticResource DarkBlue}" />
+                    <Label
+                        Grid.Row="2"
+                        HorizontalOptions="CenterAndExpand"
+                        Style="{StaticResource BoldLabelFont16}"
+                        Text="{Binding CenterName}"
+                        TextColor="{StaticResource DarkBlue}" />
+                </Grid>
+            </Border>
+
+            <!--  Student Evaluation  -->
+            <Grid Grid.Row="1" IsVisible="{Binding IsStudentEvaluations}">
+                <CollectionView Margin="15,10,15,0" ItemsSource="{Binding StudentEvaluations}">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout ItemSpacing="10" Orientation="Vertical" />
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Border Padding="5" StrokeShape="RoundRectangle 5">
+                                <Border.Background>
+                                    <LinearGradientBrush EndPoint="0,1">
+                                        <GradientStop Offset="0.1" Color="{StaticResource PrimaryColor}" />
+                                        <GradientStop Offset="1.0" Color="{StaticResource LightGreen}" />
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                                <VerticalStackLayout Margin="5">
+                                    <Label
+                                        HorizontalOptions="CenterAndExpand"
+                                        Style="{StaticResource BoldLabelFont16}"
+                                        Text="{Binding StudentComplexName}"
+                                        TextColor="{StaticResource DarkBlue}" />
+
+                                    <!--<Label VerticalOptions="CenterAndExpand">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span
+                                                    FontAttributes="Bold"
+                                                    FontFamily="AhlanWorldArbfonts"
+                                                    FontSize="15"
+                                                    Text="{x:Static resources:SharedResources.ComplexName}"
+                                                    TextColor="{StaticResource AmericanExpress}" />
+                                                <Span Text=" : " />
+                                                <Span
+                                                    FontFamily="AhlanWorldArbfonts"
+                                                    FontSize="Medium"
+                                                    Text="{Binding StudentComplexName}"
+                                                    TextColor="{StaticResource Black}" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>-->
+
+                                    <Label VerticalOptions="CenterAndExpand">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span
+                                                    FontAttributes="Bold"
+                                                    FontFamily="AhlanWorldArbfonts"
+                                                    FontSize="15"
+                                                    Text="{x:Static resources:SharedResources.CenterName}"
+                                                    TextColor="{StaticResource AmericanExpress}" />
+                                                <Span Text=" : " />
+                                                <Span
+                                                    FontFamily="AhlanWorldArbfonts"
+                                                    FontSize="Medium"
+                                                    Text="{Binding StudentCenterName}"
+                                                    TextColor="{StaticResource Black}" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+
+                                    <Label VerticalOptions="CenterAndExpand">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span
+                                                    FontAttributes="Bold"
+                                                    FontFamily="AhlanWorldArbfonts"
+                                                    FontSize="15"
+                                                    Text="{x:Static resources:SharedResources.StudyGroupName}"
+                                                    TextColor="{StaticResource AmericanExpress}" />
+                                                <Span Text=" : " />
+                                                <Span
+                                                    FontFamily="AhlanWorldArbfonts"
+                                                    FontSize="Medium"
+                                                    Text="{Binding GroupName}"
+                                                    TextColor="{StaticResource Black}" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+
+                                    <Label VerticalOptions="CenterAndExpand">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span
+                                                    FontAttributes="Bold"
+                                                    FontFamily="AhlanWorldArbfonts"
+                                                    FontSize="15"
+                                                    Text="{x:Static resources:SharedResources.GroupSubjectName}"
+                                                    TextColor="{StaticResource AmericanExpress}" />
+                                                <Span Text=" : " />
+                                                <Span
+                                                    FontFamily="AhlanWorldArbfonts"
+                                                    FontSize="Medium"
+                                                    Text="{Binding GroupSubjectName}"
+                                                    TextColor="{StaticResource Black}" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+
+                                    <Label
+                                        Margin="5"
+                                        HorizontalOptions="CenterAndExpand"
+                                        VerticalOptions="CenterAndExpand">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span
+                                                    FontAttributes="Bold"
+                                                    FontSize="Large"
+                                                    Text=" ‟ "
+                                                    TextColor="{StaticResource Black}" />
+                                                <Span
+                                                    FontAttributes="Bold"
+                                                    FontFamily="AhlanWorldArbfonts"
+                                                    FontSize="Medium"
+                                                    Text="{Binding StudentFullName}"
+                                                    TextColor="{StaticResource AmericanExpress}" />
+                                                <Span
+                                                    FontAttributes="Bold"
+                                                    FontSize="Large"
+                                                    Text=" ‟ "
+                                                    TextColor="{StaticResource Black}" />
+
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+
+                                    <BoxView
+                                        HeightRequest="3"
+                                        HorizontalOptions="FillAndExpand"
+                                        VerticalOptions="CenterAndExpand"
+                                        Color="Black" />
+
+                                    <!--  Evaluation Scores with Labels in Rows  -->
+                                    <Grid
+                                        ColumnDefinitions="*,*"
+                                        RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto"
+                                        VerticalOptions="Start">
+
+                                        <!--  Tajweed Score  -->
+                                        <Label
+                                            Grid.Row="0"
+                                            Grid.Column="0"
+                                            HorizontalOptions="Start"
+                                            Style="{StaticResource BoldLabelFont16}"
+                                            Text="{x:Static resources:SharedResources.Txt_Tajweed_Evaluate}"
+                                            TextColor="{StaticResource AmericanExpress}" />
+                                        <Label
+                                            Grid.Row="0"
+                                            Grid.Column="1"
+                                            HorizontalOptions="End"
+                                            Style="{StaticResource BoldLabelFont16}"
+                                            Text="{Binding TajweedScore}" />
+
+                                        <!--  Memorization Score  -->
+                                        <Label
+                                            Grid.Row="1"
+                                            Grid.Column="0"
+                                            HorizontalOptions="Start"
+                                            Style="{StaticResource BoldLabelFont16}"
+                                            Text="{x:Static resources:SharedResources.Txt_Memorization_Evaluate}"
+                                            TextColor="{StaticResource AmericanExpress}" />
+                                        <Label
+                                            Grid.Row="1"
+                                            Grid.Column="1"
+                                            HorizontalOptions="End"
+                                            Style="{StaticResource BoldLabelFont16}"
+                                            Text="{Binding MemorizationScore}" />
+
+                                        <!--  Understanding Score  -->
+                                        <Label
+                                            Grid.Row="2"
+                                            Grid.Column="0"
+                                            HorizontalOptions="Start"
+                                            Style="{StaticResource BoldLabelFont16}"
+                                            Text="{x:Static resources:SharedResources.Txt_Understanding_Evaluate}"
+                                            TextColor="{StaticResource AmericanExpress}" />
+                                        <Label
+                                            Grid.Row="2"
+                                            Grid.Column="1"
+                                            HorizontalOptions="End"
+                                            Style="{StaticResource BoldLabelFont16}"
+                                            Text="{Binding UnderstandingScore}" />
+
+                                        <!--  Behavior Score  -->
+                                        <Label
+                                            Grid.Row="3"
+                                            Grid.Column="0"
+                                            HorizontalOptions="Start"
+                                            Style="{StaticResource BoldLabelFont16}"
+                                            Text="{x:Static resources:SharedResources.Txt_Behavior_Evaluation}"
+                                            TextColor="{StaticResource AmericanExpress}" />
+                                        <Label
+                                            Grid.Row="3"
+                                            Grid.Column="1"
+                                            HorizontalOptions="End"
+                                            Style="{StaticResource BoldLabelFont16}"
+                                            Text="{Binding BehaviorScore}" />
+
+                                        <!--  Attendance Score  -->
+                                        <Label
+                                            Grid.Row="4"
+                                            Grid.Column="0"
+                                            HorizontalOptions="Start"
+                                            Style="{StaticResource BoldLabelFont16}"
+                                            Text="{x:Static resources:SharedResources.txt_attendanceevulate}"
+                                            TextColor="{StaticResource AmericanExpress}" />
+                                        <Label
+                                            Grid.Row="4"
+                                            Grid.Column="1"
+                                            HorizontalOptions="End"
+                                            Style="{StaticResource BoldLabelFont16}"
+                                            Text="{Binding AttendanceScore}" />
+
+                                    </Grid>
+
+                                </VerticalStackLayout>
+
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                    <CollectionView.EmptyView>
+                        <customControls:EmptyView />
+                    </CollectionView.EmptyView>
+                </CollectionView>
+            </Grid>
+
+            <!--  Student Attendance  -->
+            <Grid Grid.Row="1" IsVisible="{Binding IsStudentAttendance}">
+                <CollectionView Margin="15,10,15,0" ItemsSource="{Binding StudentAttendances}">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout ItemSpacing="10" Orientation="Vertical" />
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Border Padding="5" StrokeShape="RoundRectangle 5">
+                                <Border.Background>
+                                    <LinearGradientBrush EndPoint="0,1">
+                                        <GradientStop Offset="0.1" Color="{StaticResource PrimaryColor}" />
+                                        <GradientStop Offset="1.0" Color="{StaticResource LightGreen}" />
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                                <VerticalStackLayout>
+                                    <Label
+                                        HorizontalOptions="CenterAndExpand"
+                                        Style="{StaticResource BoldLabelFont16}"
+                                        Text="{Binding StudentComplexName}"
+                                        TextColor="{StaticResource DarkBlue}" />
+
+                                    <Label VerticalOptions="CenterAndExpand">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span
+                                                    FontAttributes="Bold"
+                                                    FontFamily="AhlanWorldArbfonts"
+                                                    FontSize="15"
+                                                    Text="{x:Static resources:SharedResources.CenterName}"
+                                                    TextColor="{StaticResource AmericanExpress}" />
+                                                <Span Text=" : " />
+                                                <Span
+                                                    FontFamily="AhlanWorldArbfonts"
+                                                    FontSize="Medium"
+                                                    Text="{Binding StudentCenterName}"
+                                                    TextColor="{StaticResource Black}" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+
+                                    <Label VerticalOptions="CenterAndExpand">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span
+                                                    FontAttributes="Bold"
+                                                    FontFamily="AhlanWorldArbfonts"
+                                                    FontSize="15"
+                                                    Text="{x:Static resources:SharedResources.StudyGroupName}"
+                                                    TextColor="{StaticResource AmericanExpress}" />
+                                                <Span Text=" : " />
+                                                <Span
+                                                    FontFamily="AhlanWorldArbfonts"
+                                                    FontSize="Medium"
+                                                    Text="{Binding GroupName}"
+                                                    TextColor="{StaticResource Black}" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+
+                                    <Label VerticalOptions="CenterAndExpand">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span
+                                                    FontAttributes="Bold"
+                                                    FontFamily="AhlanWorldArbfonts"
+                                                    FontSize="15"
+                                                    Text="{x:Static resources:SharedResources.GroupSubjectName}"
+                                                    TextColor="{StaticResource AmericanExpress}" />
+                                                <Span Text=" : " />
+                                                <Span
+                                                    FontFamily="AhlanWorldArbfonts"
+                                                    FontSize="Medium"
+                                                    Text="{Binding GroupSubjectName}"
+                                                    TextColor="{StaticResource Black}" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+
+                                    <Label
+                                        Margin="5"
+                                        HorizontalOptions="CenterAndExpand"
+                                        VerticalOptions="CenterAndExpand">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span
+                                                    FontAttributes="Bold"
+                                                    FontSize="Large"
+                                                    Text=" ‟ "
+                                                    TextColor="{StaticResource Black}" />
+                                                <Span
+                                                    FontAttributes="Bold"
+                                                    FontFamily="AhlanWorldArbfonts"
+                                                    FontSize="Medium"
+                                                    Text="{Binding StudentFullName}"
+                                                    TextColor="{StaticResource AmericanExpress}" />
+                                                <Span
+                                                    FontAttributes="Bold"
+                                                    FontSize="Large"
+                                                    Text=" ‟ "
+                                                    TextColor="{StaticResource Black}" />
+
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+
+                                    <BoxView
+                                        HeightRequest="3"
+                                        HorizontalOptions="FillAndExpand"
+                                        VerticalOptions="CenterAndExpand"
+                                        Color="Black" />
+
+                                    <Grid
+                                        ColumnDefinitions="*,*"
+                                        RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto"
+                                        VerticalOptions="Start">
+                                        <!--  AttendanceDate  -->
+                                        <Label
+                                            Grid.Row="1"
+                                            Grid.Column="0"
+                                            HorizontalOptions="Start"
+                                            Style="{StaticResource BoldLabelFont16}"
+                                            Text="{x:Static resources:SharedResources.Date}"
+                                            TextColor="{StaticResource AmericanExpress}" />
+                                        <Label
+                                            Grid.Row="1"
+                                            Grid.Column="1"
+                                            Margin="10,0"
+                                            HorizontalOptions="End"
+                                            Style="{StaticResource BoldLabelFont16}"
+                                            Text="{Binding AttendanceDate}" />
+                                        <!--  SessionDayOfWeekName  -->
+                                        <Label
+                                            Grid.Row="0"
+                                            Grid.Column="0"
+                                            HorizontalOptions="Start"
+                                            Style="{StaticResource BoldLabelFont16}"
+                                            Text="{x:Static resources:SharedResources.Day}"
+                                            TextColor="{StaticResource AmericanExpress}" />
+                                        <Label
+                                            Grid.Row="0"
+                                            Grid.Column="1"
+                                            Margin="10,0"
+                                            FontAttributes="Bold"
+                                            HorizontalOptions="End"
+                                            Style="{StaticResource BoldLabelFont18}"
+                                            Text="{Binding SessionDayOfWeekName}" />
+                                        <!--  Status  -->
+                                        <Label
+                                            Grid.Row="2"
+                                            Grid.Column="0"
+                                            HorizontalOptions="Start"
+                                            Style="{StaticResource BoldLabelFont16}"
+                                            Text="{x:Static resources:SharedResources.Status}"
+                                            TextColor="{StaticResource AmericanExpress}" />
+                                        <Label
+                                            Grid.Row="2"
+                                            Grid.Column="1"
+                                            Margin="10,0"
+                                            HorizontalOptions="End"
+                                            Style="{StaticResource BoldLabelFont18}"
+                                            Text="{Binding Status}"
+                                            TextColor="{Binding Status, Converter={StaticResource StatusToColorConverter}}" />
+
+                                    </Grid>
+                                </VerticalStackLayout>
+
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                    <CollectionView.EmptyView>
+                        <customControls:EmptyView />
+                    </CollectionView.EmptyView>
+                </CollectionView>
+            </Grid>
+
+            <Grid
+                Grid.Row="2"
+                Margin="15"
+                ColumnDefinitions="*,*"
+                ColumnSpacing="5"
+                HeightRequest="50"
+                VerticalOptions="End">
+                <Button
+                    Grid.Column="0"
+                    BackgroundColor="{StaticResource PrimaryColor}"
+                    Command="{Binding AllStudentEvaluationsByStudyGroupIDCommand}"
+                    FontAttributes="Bold"
+                    Text="{x:Static resources:SharedResources.StudentEvaluation}"
+                    TextColor="{StaticResource DarkBlue}" />
+                <Button
+                    Grid.Column="1"
+                    BackgroundColor="{StaticResource PrimaryColor}"
+                    Command="{Binding AllStudentAttendanceByStudyGroupIDCommand}"
+                    CommandParameter="{Binding .}"
+                    FontAttributes="Bold"
+                    Text="{x:Static resources:SharedResources.StudentAttendance}"
+                    TextColor="{StaticResource DarkBlue}" />
+
+            </Grid>
+        </Grid>
+
+        <ActivityIndicator IsRunning="{Binding IsRunning}" IsVisible="{Binding IsRunning}" />
+    </Grid>
+</base:BaseContentPage>

@@ -34,10 +34,17 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.Students
         [ObservableProperty]
         public string regVerficationCode;
         #endregion
-        //public StudentsVM()
-        //{
-        //     GetStudentsByCenterId();
-        //}
+
+        #region Student Details Properties
+        [ObservableProperty] private ObservableCollection<StudentEvaluationModel> studentEvaluations;
+        [ObservableProperty] private ObservableCollection<StudentattendanceModel> studentAttendances;
+        [ObservableProperty] public string sudentId;
+        [ObservableProperty] public string groupId;
+        [ObservableProperty] private bool isStudentAttendance = true;
+        [ObservableProperty] private bool isStudentEvaluations = false;
+        #endregion
+
+        #region Methods
         public async Task GetStudentsByStudyGroupId()
         {
             IsRunning = true;
@@ -93,7 +100,43 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.Students
                 ExtensionLogMethods.LogExtension(ex, "", "StudentsVM", "OnSearchTextChanging");
             }
         }
+        private bool ChekRegisterData()
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(UserName.Value) || UserName.Value.Length < 5)
+                {
+                    Toast.ShowToastError(SharedResources.Msg_NotValidName);
+                    return false;
+                }
+                else if (string.IsNullOrEmpty(Email.Value) || !Behaviors.EmailValidBehavior.RegexIsMatch(Email.Value))
+                {
+                    Toast.ShowToastError(SharedResources.Msg_NotValidEmail);
+                    return false;
+                }
+                else if (string.IsNullOrEmpty(Password.Value) || !Behaviors.PasswordValidBehavior.RegexIsMatch(Password.Value))
+                {
+                    Toast.ShowToastError(SharedResources.Msg_PasswordValdation);
+                    return false;
+                }
+                else if (string.IsNullOrEmpty(ConfirmPassword.Value) || Password.Value != ConfirmPassword.Value)
+                {
+                    Toast.ShowToastError(SharedResources.Msg_PasswordNotMatch);
+                    return false;
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                string ExceptionMseeage = string.Format(" Error : {0} - {1} ", ex.Message, ex.InnerException != null ? ex.InnerException.FullMessage() : "");
+                System.Diagnostics.Debug.WriteLine(ExceptionMseeage);
+                ExtensionLogMethods.LogExtension(ExceptionMseeage, "", "SignInSignUpVM", "update");
+                return false;
+            }
+        }
+        #endregion
 
+        #region Commmands
         [RelayCommand]
         public void OpenAddStudent()
         {
@@ -108,6 +151,14 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.Students
                 ExtensionLogMethods.LogExtension(ex, "", "StaffVM", "OpenAddStudent");
             }
 
+        }
+
+        [RelayCommand]
+        public async Task StudentSelected(StudentModel studentModel)
+        {
+            StudentID = studentModel.StudentID.ToString();
+            GroupId = studentModel.GroupID.ToString();
+            await OpenPushAsyncPage(new StudentDetailsPage(studentModel));
         }
 
         [RelayCommand]
@@ -177,20 +228,20 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.Students
                         { "PhoneNumber", Phone.Value  },
                         { "CenterID", Settings.CenterId  },
                         { "ComplexID", Settings.ComplexId  },
-          
+
                     });
 
                     if (addedStudent != null && addedStudent.rowsAffected > 0)
                     {
 
                         await GetStudentsByStudyGroupId();
-                        LastAddedStudent =  await StudentService.GetStudents();
+                        LastAddedStudent = await StudentService.GetStudents();
                         if (fromStudyGroup == "fromS")
                         {
-                            await AddNewStudentStudyGroupList(LastAddedStudent.Select(s=> s.StudentID.ToString()).First());
+                            await AddNewStudentStudyGroupList(LastAddedStudent.Select(s => s.StudentID.ToString()).First());
                         }
                         Toast.ShowToastError(SharedResources.AddedSuccessfully);
-                        
+
                     }
                 }
             }
@@ -204,39 +255,93 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.Students
                 HidePopup();
             }
         }
-        private bool ChekRegisterData()
+        #endregion
+
+        #region Student Details Methods
+        public async Task GetStudentEvaluationByStudyGroupID()
         {
             try
             {
-                if (string.IsNullOrEmpty(UserName.Value) || UserName.Value.Length < 5)
+                var studentEvaluation = await ServiceStudentEvaluation.GetStudentEvaluationByStudyGroupID(StudentID, GroupId);
+                if (studentEvaluation != null)
                 {
-                    Toast.ShowToastError(SharedResources.Msg_NotValidName);
-                    return false;
+                    StudentEvaluations = studentEvaluation;
                 }
-                else if (string.IsNullOrEmpty(Email.Value) || !Behaviors.EmailValidBehavior.RegexIsMatch(Email.Value))
-                {
-                    Toast.ShowToastError(SharedResources.Msg_NotValidEmail);
-                    return false;
-                }
-                else if (string.IsNullOrEmpty(Password.Value) || !Behaviors.PasswordValidBehavior.RegexIsMatch(Password.Value))
-                {
-                    Toast.ShowToastError(SharedResources.Msg_PasswordValdation);
-                    return false;
-                }
-                else if (string.IsNullOrEmpty(ConfirmPassword.Value) || Password.Value != ConfirmPassword.Value)
-                {
-                    Toast.ShowToastError(SharedResources.Msg_PasswordNotMatch);
-                    return false;
-                }
-                return true;
             }
             catch (Exception ex)
             {
-                string ExceptionMseeage = string.Format(" Error : {0} - {1} ", ex.Message, ex.InnerException != null ? ex.InnerException.FullMessage() : "");
-                System.Diagnostics.Debug.WriteLine(ExceptionMseeage);
-                ExtensionLogMethods.LogExtension(ExceptionMseeage, "", "SignInSignUpVM", "update");
-                return false;
+                ExtensionLogMethods.LogExtension(ex, "", "StudentsVM", "GetStudentEvaluationByStudyGroupID");
             }
         }
+        public async Task GetStudentAttendanceByStudyGroupID()
+        {
+            try
+            {
+                var studentAttendance= await ServiceStudentEvaluation.GetStudentAttendanceByStudyGroupID(StudentID, GroupId);
+                if (studentAttendance != null)
+                {   
+                    // Process attendance status
+                    foreach (var attendance in studentAttendance)
+                    {
+                        if (attendance.Status == null)
+                        {
+                            attendance.Status = SharedResources.Absent;
+                        }
+                        else
+                        {
+                            // Try converting the object to an integer
+                            if (int.TryParse(attendance.Status?.ToString(), out int statusValue))
+                            {
+                                attendance.Status = statusValue == 1 ? SharedResources.Present : SharedResources.NotPresent;
+                            }
+                            else
+                            {
+                                attendance.Status = "Invalid Status"; // Handle unexpected cases
+                            }
+                        }
+                    }
+                    StudentAttendances = studentAttendance;
+                }
+            }
+            catch (Exception ex)
+            {
+                ExtensionLogMethods.LogExtension(ex, "", "StudentsVM", "GetStudentAttendanceByStudyGroupID");
+            }
+        }
+        #endregion
+
+        #region Student Details Commands
+        [RelayCommand]
+        public async Task AllStudentEvaluationsByStudyGroupID()
+        {
+            try
+            {
+                IsStudentEvaluations = true;
+                IsStudentAttendance = false;
+                await GetStudentEvaluationByStudyGroupID();
+            }
+            catch (Exception ex)
+            {
+                ExtensionLogMethods.LogExtension(ex, "", "StudentsVM", "AllStudentEvaluationsByStudyGroupID");
+            }
+        }
+
+        [RelayCommand]
+        public async Task AllStudentAttendanceByStudyGroupID()
+        {
+            try
+            {
+                IsStudentAttendance = true;
+                IsStudentEvaluations = false;
+                await GetStudentAttendanceByStudyGroupID();
+            }
+            catch (Exception ex)
+            {
+                ExtensionLogMethods.LogExtension(ex, "", "StudentsVM", "AllStudentAttendanceByStudyGroupID");
+            }
+        }
+        #endregion
+
+
     }
 }

@@ -70,6 +70,15 @@ namespace WytSky.Mobile.Maui.Skoola.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Absent.
+        /// </summary>
+        public static string Absent {
+            get {
+                return ResourceManager.GetString("Absent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Absent Students.
         /// </summary>
         public static string AbsentStudents {
@@ -223,6 +232,15 @@ namespace WytSky.Mobile.Maui.Skoola.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Center Name.
+        /// </summary>
+        public static string CenterName {
+            get {
+                return ResourceManager.GetString("CenterName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Center name arabic.
         /// </summary>
         public static string CenterNameAr {
@@ -282,6 +300,24 @@ namespace WytSky.Mobile.Maui.Skoola.AppResources {
         public static string ComplexName {
             get {
                 return ResourceManager.GetString("ComplexName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date.
+        /// </summary>
+        public static string Date {
+            get {
+                return ResourceManager.GetString("Date", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Day.
+        /// </summary>
+        public static string Day {
+            get {
+                return ResourceManager.GetString("Day", resourceCulture);
             }
         }
         
@@ -354,6 +390,15 @@ namespace WytSky.Mobile.Maui.Skoola.AppResources {
         public static string FromDate {
             get {
                 return ResourceManager.GetString("FromDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Group Subject Name.
+        /// </summary>
+        public static string GroupSubjectName {
+            get {
+                return ResourceManager.GetString("GroupSubjectName", resourceCulture);
             }
         }
         
@@ -676,6 +721,15 @@ namespace WytSky.Mobile.Maui.Skoola.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Not Present.
+        /// </summary>
+        public static string NotPresent {
+            get {
+                return ResourceManager.GetString("NotPresent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Payment Added Successfully.
         /// </summary>
         public static string PaymentAddedSuccessfully {
@@ -699,6 +753,15 @@ namespace WytSky.Mobile.Maui.Skoola.AppResources {
         public static string PrayonourmasterMohammad {
             get {
                 return ResourceManager.GetString("PrayonourmasterMohammad", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Present.
+        /// </summary>
+        public static string Present {
+            get {
+                return ResourceManager.GetString("Present", resourceCulture);
             }
         }
         
@@ -739,11 +802,56 @@ namespace WytSky.Mobile.Maui.Skoola.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Status.
+        /// </summary>
+        public static string Status {
+            get {
+                return ResourceManager.GetString("Status", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Student Attendance.
+        /// </summary>
+        public static string StudentAttendance {
+            get {
+                return ResourceManager.GetString("StudentAttendance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Student Details.
+        /// </summary>
+        public static string StudentDetails {
+            get {
+                return ResourceManager.GetString("StudentDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Student Evaluation.
+        /// </summary>
+        public static string StudentEvaluation {
+            get {
+                return ResourceManager.GetString("StudentEvaluation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Student evaluations.
         /// </summary>
         public static string StudentEvaluations {
             get {
                 return ResourceManager.GetString("StudentEvaluations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Student Name.
+        /// </summary>
+        public static string StudentFullName {
+            get {
+                return ResourceManager.GetString("StudentFullName", resourceCulture);
             }
         }
         
