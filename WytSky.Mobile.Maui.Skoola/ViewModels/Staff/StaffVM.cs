@@ -49,7 +49,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
             try
             {
                 IsRunning = true;
-                Staff = await APIs.ServiceStaff.GetCenterStaff();
+                Staff = await APIs.ServiceStaff.GetStaffByCenterId();
                 FilteredStaff= new ObservableCollection<StaffModel>(Staff);
 
             }

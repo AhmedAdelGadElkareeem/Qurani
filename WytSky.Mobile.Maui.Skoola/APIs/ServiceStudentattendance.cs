@@ -49,5 +49,39 @@ namespace WytSky.Mobile.Maui.Skoola.APIs
                 return null;
             }
         }
+
+        #region StudentAttendanceByStudyGroup
+        public async static Task<ObservableCollection<StudentattendanceModel>> GetStudentAttendanceByStudyGroupID
+                                                                                (string studentId, string groupId)
+        {
+            try
+            {
+                var dictionary = new Dictionary<string, string>()
+                {
+                      {"_datatype", "json"},
+                      {"_jsonarray", "1"},
+                      {"StudentID", studentId},
+                      {"GroupID", groupId},
+                };
+
+                var result = await Services.RequestProvider.Current.GetData<TempletData<StudentattendanceModel>>(BASE, "studentattendance", dictionary, Enums.AuthorizationType.UserNamePassword);
+                if (result != null && result.IsPassed)
+                {
+                    return result.Data.itemData;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                string ExceptionMseeage = string.Format(" Error : {0} - {1} ", ex.Message, ex.InnerException != null ? ex.InnerException.FullMessage() : "");
+                System.Diagnostics.Debug.WriteLine(ExceptionMseeage);
+                ExtensionLogMethods.LogExtension(ExceptionMseeage, "", "ServiceComplex", "GetParentCategories");
+                return null;
+            }
+        }
+        #endregion
     }
 }

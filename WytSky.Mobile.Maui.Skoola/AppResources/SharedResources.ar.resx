@@ -1399,4 +1399,7 @@
   <data name="EndTime" xml:space="preserve">
     <value>وقت النهاية</value>
   </data>
+  <data name="EditStudent" xml:space="preserve">
+    <value>تعديل الطالب</value>
+  </data>
 </root>

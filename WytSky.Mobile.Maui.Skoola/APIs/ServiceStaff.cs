@@ -14,7 +14,7 @@ namespace WytSky.Mobile.Maui.Skoola.APIs
 
 
         #region staff
-        public async static Task<ObservableCollection<StaffModel>> GetCenterStaff()
+        public async static Task<ObservableCollection<StaffModel>> GetStaffByCenterId()
         {
             try
             {
@@ -38,7 +38,7 @@ namespace WytSky.Mobile.Maui.Skoola.APIs
             {
                 string ExceptionMseeage = string.Format(" Error : {0} - {1} ", ex.Message, ex.InnerException != null ? ex.InnerException.FullMessage() : "");
                 System.Diagnostics.Debug.WriteLine(ExceptionMseeage);
-                ExtensionLogMethods.LogExtension(ExceptionMseeage, "", "ServiceComplex", "GetParentCategories");
+                ExtensionLogMethods.LogExtension(ExceptionMseeage, "", "ServiceComplex", "GetStaffByCenterId");
                 return null;
             }
         }
@@ -127,7 +127,7 @@ namespace WytSky.Mobile.Maui.Skoola.APIs
             }
         }
 
-        public async static Task<ObservableCollection<ComplexModel>> UpdateStaff(Dictionary<string, object> formData)
+        public async static Task<ObservableCollection<StaffModel>> UpdateStaff(Dictionary<string, object> formData)
         {
             try
             {
@@ -147,7 +147,7 @@ namespace WytSky.Mobile.Maui.Skoola.APIs
                 }
 
                 // Call API
-                var result = await Services.RequestProvider.Current.GetUpdate<TempletData<ComplexModel>>(
+                var result = await Services.RequestProvider.Current.GetUpdate<TempletData<StaffModel>>(
                     FormUpdate, "staff", dictionary, Enums.AuthorizationType.UserNamePassword
                 );
 
@@ -159,7 +159,7 @@ namespace WytSky.Mobile.Maui.Skoola.APIs
                 }
 
                 Debug.WriteLine("✅ Update Successful!");
-                return result.Data.itemData ?? new ObservableCollection<ComplexModel>();
+                return result.Data.itemData ?? new ObservableCollection<StaffModel>();
             }
             catch (Exception ex)
             {

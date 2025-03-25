@@ -110,23 +110,35 @@
                                         <GradientStop Offset="1.0" Color="{StaticResource LightGreen}" />
                                     </LinearGradientBrush>
                                 </Border.Background>
-                                <VerticalStackLayout>
-                                    <Label
-                                        HorizontalOptions="CenterAndExpand"
-                                        Style="{StaticResource BoldLabelFont16}"
-                                        Text="{Binding FullName}"
-                                        TextColor="{StaticResource DarkBlue}" />
-                                    <Label
-                                        HorizontalOptions="CenterAndExpand"
-                                        Style="{StaticResource BoldLabelFont16}"
-                                        Text="{Binding GroupName}"
-                                        TextColor="{StaticResource DarkBlue}" />
-                                    <Label
-                                        HorizontalOptions="CenterAndExpand"
-                                        Style="{StaticResource BoldLabelFont16}"
-                                        Text="{Binding Address}"
-                                        TextColor="{StaticResource DarkBlue}" />
-                                </VerticalStackLayout>
+                                <Grid>
+                                    <ImageButton
+                                        Margin="5"
+                                        BackgroundColor="Transparent"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.OpenEditStudentCommand}"
+                                        CommandParameter="{Binding .}"
+                                        HeightRequest="25"
+                                        HorizontalOptions="End"
+                                        Source="editt.png"
+                                        VerticalOptions="Start"
+                                        WidthRequest="25" />
+                                    <VerticalStackLayout>
+                                        <Label
+                                            HorizontalOptions="CenterAndExpand"
+                                            Style="{StaticResource BoldLabelFont16}"
+                                            Text="{Binding FullName}"
+                                            TextColor="{StaticResource DarkBlue}" />
+                                        <Label
+                                            HorizontalOptions="CenterAndExpand"
+                                            Style="{StaticResource BoldLabelFont16}"
+                                            Text="{Binding GroupName}"
+                                            TextColor="{StaticResource DarkBlue}" />
+                                        <Label
+                                            HorizontalOptions="CenterAndExpand"
+                                            Style="{StaticResource BoldLabelFont16}"
+                                            Text="{Binding Address}"
+                                            TextColor="{StaticResource DarkBlue}" />
+                                    </VerticalStackLayout>
+                                </Grid>
 
                                 <Border.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.StudentSelectedCommand}" CommandParameter="{Binding .}" />

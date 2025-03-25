@@ -349,6 +349,15 @@ namespace WytSky.Mobile.Maui.Skoola.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Edit Student.
+        /// </summary>
+        public static string EditStudent {
+            get {
+                return ResourceManager.GetString("EditStudent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Edit Student Evaluation.
         /// </summary>
         public static string EditStudentEvaluation {

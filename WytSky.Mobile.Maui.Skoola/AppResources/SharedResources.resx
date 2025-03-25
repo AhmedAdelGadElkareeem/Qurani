@@ -1397,4 +1397,7 @@ Successfully Changed</value>
   <data name="EndTime" xml:space="preserve">
     <value>End Time</value>
   </data>
+  <data name="EditStudent" xml:space="preserve">
+    <value>Edit Student</value>
+  </data>
 </root>

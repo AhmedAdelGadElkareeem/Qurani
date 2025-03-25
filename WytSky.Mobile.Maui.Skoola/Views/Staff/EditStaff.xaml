@@ -50,59 +50,154 @@
                     Text="{x:Static res:SharedResources.EditTeachers}"
                     VerticalOptions="CenterAndExpand" />
             </Frame>
-            <Entry
-                BackgroundColor="White"
-                HorizontalTextAlignment="Center"
-                Placeholder="{x:Static res:SharedResources.Text_FirstName}"
-                Text="{Binding FirstName, Mode=TwoWay}"
-                TextColor="Black" />
-            <Entry
-                BackgroundColor="White"
-                HorizontalTextAlignment="Center"
-                Placeholder="{x:Static res:SharedResources.Text_LastName}"
-                Text="{Binding LastName, Mode=TwoWay}"
-                TextColor="Black" />
-            <Picker
-                Title="{x:Static res:SharedResources.Centers}"
-                HorizontalTextAlignment="Center"
-                ItemDisplayBinding="{Binding CenterName}"
-                ItemsSource="{Binding Centers}"
-                SelectedItem="{Binding SelectedCenter, Mode=TwoWay}"
-                TextColor="{StaticResource Black}"
-                TitleColor="{StaticResource Black}" />
-            <Entry
-                BackgroundColor="White"
-                HorizontalTextAlignment="Center"
-                Keyboard="Numeric"
-                Placeholder="{x:Static res:SharedResources.Text_Mobile}"
-                Text="{Binding Mobile, Mode=TwoWay}"
-                TextColor="Black" />
-            <Entry
-                BackgroundColor="White"
-                HorizontalTextAlignment="Center"
-                Placeholder="{x:Static res:SharedResources.Text_UserName}"
-                Text="{Binding UserName, Mode=TwoWay}"
-                TextColor="Black" />
-            <Entry
-                BackgroundColor="White"
-                HorizontalTextAlignment="Center"
-                Placeholder="{x:Static res:SharedResources.Text_Password}"
-                Text="{Binding Password, Mode=TwoWay}"
-                TextColor="Black" />
-            <Entry
-                BackgroundColor="White"
-                HorizontalTextAlignment="Center"
-                Placeholder="{x:Static res:SharedResources.Text_Email}"
-                Text="{Binding Email, Mode=TwoWay}"
-                TextColor="Black" />
-            <Picker
-                Title="{x:Static res:SharedResources.Text_StaffTypes}"
-                HorizontalTextAlignment="Center"
-                ItemDisplayBinding="{Binding TypeName}"
-                ItemsSource="{Binding StaffTypes}"
-                SelectedItem="{Binding SelectedStaffType, Mode=TwoWay}"
-                TextColor="{StaticResource Black}"
-                TitleColor="{StaticResource Black}" />
+            <Grid ColumnDefinitions="*,*" RowDefinitions="auto,auto,auto,auto,auto,auto,auto,auto">
+
+                <Label
+                    Grid.Row="0"
+                    Grid.ColumnSpan="2"
+                    HorizontalOptions="Center"
+                    VerticalOptions="CenterAndExpand">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span
+                                FontAttributes="Bold"
+                                FontFamily="AhlanWorldArbfonts"
+                                FontSize="15"
+                                Text="{x:Static res:SharedResources.Text_UserName}"
+                                TextColor="{StaticResource AmericanExpress}" />
+                            <Span Text=" : " />
+                            <Span
+                                FontFamily="AhlanWorldArbfonts"
+                                FontSize="Medium"
+                                Text="{Binding UserName}"
+                                TextColor="{StaticResource AmericanExpress}" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <!--<Label
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    HorizontalOptions="Start"
+                    Style="{StaticResource BoldLabelFont16}"
+                    Text="{x:Static res:SharedResources.Text_Email}"
+                    TextColor="{StaticResource AmericanExpress}" />
+                <Entry
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    BackgroundColor="White"
+                    HorizontalTextAlignment="Center"
+                    Placeholder="{x:Static res:SharedResources.Text_Email}"
+                    Text="{Binding Email, Mode=TwoWay}"
+                    TextColor="Black" />-->
+
+                <Label
+                    Grid.Row="1"
+                    Grid.ColumnSpan="2"
+                    HorizontalOptions="Center"
+                    VerticalOptions="CenterAndExpand">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span
+                                FontAttributes="Bold"
+                                FontFamily="AhlanWorldArbfonts"
+                                FontSize="15"
+                                Text="{x:Static res:SharedResources.Text_Email}"
+                                TextColor="{StaticResource AmericanExpress}" />
+                            <Span Text=" : " />
+                            <Span
+                                FontFamily="AhlanWorldArbfonts"
+                                FontSize="Medium"
+                                Text="{Binding Email}"
+                                TextColor="{StaticResource AmericanExpress}" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+
+                <Label
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    HorizontalOptions="Start"
+                    Style="{StaticResource BoldLabelFont16}"
+                    Text="{x:Static res:SharedResources.Text_FirstName}"
+                    TextColor="{StaticResource AmericanExpress}" />
+                <Entry
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    BackgroundColor="White"
+                    HorizontalTextAlignment="Center"
+                    Placeholder="{x:Static res:SharedResources.Text_FirstName}"
+                    Text="{Binding FirstName, Mode=TwoWay}"
+                    TextColor="Black" />
+
+                <Label
+                    Grid.Row="3"
+                    Grid.Column="0"
+                    HorizontalOptions="Start"
+                    Style="{StaticResource BoldLabelFont16}"
+                    Text="{x:Static res:SharedResources.Text_LastName}"
+                    TextColor="{StaticResource AmericanExpress}" />
+                <Entry
+                    Grid.Row="3"
+                    Grid.Column="1"
+                    BackgroundColor="White"
+                    HorizontalTextAlignment="Center"
+                    Placeholder="{x:Static res:SharedResources.Text_LastName}"
+                    Text="{Binding LastName, Mode=TwoWay}"
+                    TextColor="Black" />
+
+                <Label
+                    Grid.Row="4"
+                    Grid.Column="0"
+                    HorizontalOptions="Start"
+                    Style="{StaticResource BoldLabelFont16}"
+                    Text="{x:Static res:SharedResources.Centers}"
+                    TextColor="{StaticResource AmericanExpress}" />
+                <Picker
+                    Title="{x:Static res:SharedResources.Centers}"
+                    Grid.Row="4"
+                    Grid.Column="1"
+                    HorizontalTextAlignment="Center"
+                    ItemDisplayBinding="{Binding CenterName}"
+                    ItemsSource="{Binding Centers}"
+                    SelectedItem="{Binding SelectedCenter, Mode=TwoWay}"
+                    TextColor="{StaticResource Black}"
+                    TitleColor="{StaticResource Black}" />
+
+                <Label
+                    Grid.Row="5"
+                    Grid.Column="0"
+                    HorizontalOptions="Start"
+                    Style="{StaticResource BoldLabelFont16}"
+                    Text="{x:Static res:SharedResources.Text_Mobile}"
+                    TextColor="{StaticResource AmericanExpress}" />
+                <Entry
+                    Grid.Row="5"
+                    Grid.Column="1"
+                    BackgroundColor="White"
+                    HorizontalTextAlignment="Center"
+                    Keyboard="Numeric"
+                    Placeholder="{x:Static res:SharedResources.Text_Mobile}"
+                    Text="{Binding Mobile, Mode=TwoWay}"
+                    TextColor="Black" />
+
+                <Label
+                    Grid.Row="6"
+                    Grid.Column="0"
+                    HorizontalOptions="Start"
+                    Style="{StaticResource BoldLabelFont16}"
+                    Text="{x:Static res:SharedResources.Staffs}"
+                    TextColor="{StaticResource AmericanExpress}" />
+                <Picker
+                    Title="{x:Static res:SharedResources.Text_StaffTypes}"
+                    Grid.Row="6"
+                    Grid.Column="1"
+                    HorizontalTextAlignment="Center"
+                    ItemDisplayBinding="{Binding TypeName}"
+                    ItemsSource="{Binding StaffTypes}"
+                    SelectedItem="{Binding SelectedStaffType, Mode=TwoWay}"
+                    TextColor="{StaticResource Black}"
+                    TitleColor="{StaticResource Black}" />
+            </Grid>
 
             <Button
                 Command="{Binding EditStaffCommand}"
