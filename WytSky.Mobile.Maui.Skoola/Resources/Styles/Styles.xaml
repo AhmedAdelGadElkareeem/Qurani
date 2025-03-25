@@ -8,7 +8,8 @@
     <converter:InverseBoolConverter x:Key="InverseBoolConverter" />
     <converter:LanguageTextConverter x:Key="LanguageTextConverter" />
     <converter:StatusToColorConverter x:Key="StatusToColorConverter" />
-
+    <converter:DateTimeConverter x:Key="DateTimeConverter" />
+    <converter:TimeConverter x:Key="TimeConverter" />
 
     <Style TargetType="NavigationPage">
         <Setter Property="BarBackgroundColor" Value="{StaticResource PrimaryColor}" />

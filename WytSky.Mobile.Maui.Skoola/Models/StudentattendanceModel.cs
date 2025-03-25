@@ -19,8 +19,8 @@ namespace WytSky.Mobile.Maui.Skoola.Models
         public string? GroupSubjectName { get; set; }
         public DateTime? AttendanceDate { get; set; }
         public object? Status { get; set; }
-        public string? TimeIn { get; set; }
-        public string? TimeOut { get; set; }
+        public TimeSpan? TimeIn { get; set; }
+        public TimeSpan? TimeOut { get; set; }
         public string? Notes { get; set; }
         public int? AttendanceID { get; set; }
         public string? SessionDayOfWeekName { get; set; }

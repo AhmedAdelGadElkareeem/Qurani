@@ -262,6 +262,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.Students
         {
             try
             {
+                IsRunning = true;
                 var studentEvaluation = await ServiceStudentEvaluation.GetStudentEvaluationByStudyGroupID(StudentID, GroupId);
                 if (studentEvaluation != null)
                 {
@@ -272,14 +273,20 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.Students
             {
                 ExtensionLogMethods.LogExtension(ex, "", "StudentsVM", "GetStudentEvaluationByStudyGroupID");
             }
+            finally
+            {
+                IsRunning = false;
+            }
         }
         public async Task GetStudentAttendanceByStudyGroupID()
         {
             try
             {
+                IsRunning = true;
                 var studentAttendance= await ServiceStudentEvaluation.GetStudentAttendanceByStudyGroupID(StudentID, GroupId);
                 if (studentAttendance != null)
                 {   
+
                     // Process attendance status
                     foreach (var attendance in studentAttendance)
                     {
@@ -299,6 +306,13 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.Students
                                 attendance.Status = "Invalid Status"; // Handle unexpected cases
                             }
                         }
+
+                        // Fix TimeIn & TimeOut Parsing
+                        if (!string.IsNullOrEmpty(attendance?.TimeIn?.ToString()))
+                            attendance.TimeIn = TimeSpan.Parse(attendance.TimeIn.ToString());
+
+                        if (!string.IsNullOrEmpty(attendance?.TimeOut?.ToString()))
+                            attendance.TimeOut = TimeSpan.Parse(attendance.TimeOut.ToString());
                     }
                     StudentAttendances = studentAttendance;
                 }
@@ -307,6 +321,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.Students
             {
                 ExtensionLogMethods.LogExtension(ex, "", "StudentsVM", "GetStudentAttendanceByStudyGroupID");
             }
+            finally { IsRunning = false; }
         }
         #endregion
 
@@ -316,6 +331,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.Students
         {
             try
             {
+                IsRunning= true;
                 IsStudentEvaluations = true;
                 IsStudentAttendance = false;
                 await GetStudentEvaluationByStudyGroupID();
@@ -324,6 +340,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.Students
             {
                 ExtensionLogMethods.LogExtension(ex, "", "StudentsVM", "AllStudentEvaluationsByStudyGroupID");
             }
+            finally { IsRunning = false; }
         }
 
         [RelayCommand]
@@ -331,6 +348,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.Students
         {
             try
             {
+                IsRunning= true;
                 IsStudentAttendance = true;
                 IsStudentEvaluations = false;
                 await GetStudentAttendanceByStudyGroupID();
@@ -339,6 +357,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.Students
             {
                 ExtensionLogMethods.LogExtension(ex, "", "StudentsVM", "AllStudentAttendanceByStudyGroupID");
             }
+            finally { IsRunning = false; }
         }
         #endregion
 

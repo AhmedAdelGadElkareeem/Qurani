@@ -117,9 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Text_AboutUs" xml:space="preserve">
-    <value>من نحن</value>
-  </data>
   <data name="Text_Close" xml:space="preserve">
     <value>إغلاق</value>
   </data>
@@ -1390,7 +1387,16 @@
   <data name="NotPresent" xml:space="preserve">
     <value>لم يحضر</value>
   </data>
+  <data name="Text_AboutUs" xml:space="preserve">
+    <value>من نحن</value>
+  </data>
   <data name="Absent" xml:space="preserve">
     <value>غائب</value>
+  </data>
+  <data name="StartTime" xml:space="preserve">
+    <value>وقت البداية</value>
+  </data>
+  <data name="EndTime" xml:space="preserve">
+    <value>وقت النهاية</value>
   </data>
 </root>
