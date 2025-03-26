@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,8 +7,10 @@ using System.Threading.Tasks;
 
 namespace WytSky.Mobile.Maui.Skoola.Models
 {
-    public class AttendanceModel
+    public partial class AttendanceModel : ObservableObject
     {
+        [ObservableProperty] public string studentStatus;
+
         public int? SessionID { get; set; }
         public string? SessionGroupName { get; set; }
         public int? StudentID { get; set; }

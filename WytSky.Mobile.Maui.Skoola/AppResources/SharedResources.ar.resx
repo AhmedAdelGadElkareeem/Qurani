@@ -949,7 +949,7 @@
     <value>الكورسات</value>
   </data>
   <data name="Text_Students" xml:space="preserve">
-    <value>طالب</value>
+    <value>الطلاب</value>
   </data>
   <data name="Text_Website" xml:space="preserve">
     <value>الموقع</value>
@@ -1117,7 +1117,7 @@
     <value>نوع المستخدم</value>
   </data>
   <data name="Text_Student" xml:space="preserve">
-    <value>طالب</value>
+    <value>الطالب</value>
   </data>
   <data name="Text_Parent" xml:space="preserve">
     <value>ولي أمر</value>
@@ -1144,16 +1144,16 @@
     <value>المنطقة</value>
   </data>
   <data name="ComplexName" xml:space="preserve">
-    <value>اسم المجمع</value>
+    <value>المجمع</value>
   </data>
   <data name="CenterNameAr" xml:space="preserve">
-    <value>اسم المسجد بالعربي</value>
+    <value> المسجد بالعربي</value>
   </data>
   <data name="CenterNameEn" xml:space="preserve">
-    <value>اسم المسجد بالانجليزي</value>
+    <value>المسجد بالانجليزي</value>
   </data>
   <data name="DitrictName" xml:space="preserve">
-    <value>اسم الحي</value>
+    <value>الحي</value>
   </data>
   <data name="City" xml:space="preserve">
     <value>المدينة</value>
@@ -1168,10 +1168,10 @@
     <value>الحلقات</value>
   </data>
   <data name="StudyGroupAr" xml:space="preserve">
-    <value>اسم الحلقة بالعربي</value>
+    <value>الحلقة بالعربي</value>
   </data>
   <data name="StudyGroupEn" xml:space="preserve">
-    <value>اسم الحلقة بالانجليزى</value>
+    <value>الحلقة بالانجليزى</value>
   </data>
   <data name="Complexes" xml:space="preserve">
     <value>المجمعات</value>
@@ -1226,7 +1226,7 @@
     <value>المعلمين</value>
   </data>
   <data name="Text_UserName" xml:space="preserve">
-    <value>اسم المستخدم</value>
+    <value>المستخدم</value>
   </data>
   <data name="Text_Mobile" xml:space="preserve">
     <value>رقم الموبايل</value>
@@ -1244,7 +1244,7 @@
     <value>بدأ الجلسه</value>
   </data>
   <data name="Txt_Attendance" xml:space="preserve">
-    <value>حضور</value>
+    <value>الحضور</value>
   </data>
   <data name="AddComplex" xml:space="preserve">
     <value>إضافة مجمـع</value>
@@ -1313,7 +1313,7 @@
     <value>إضافة طلاب</value>
   </data>
   <data name="StudyGroupName" xml:space="preserve">
-    <value>اسم الحلقة</value>
+    <value> الحلقة</value>
   </data>
   <data name="AddStudentEvaluation" xml:space="preserve">
     <value>إضافة تقييم للطلاب</value>
@@ -1358,13 +1358,13 @@
     <value>بيانات الطالب</value>
   </data>
   <data name="CenterName" xml:space="preserve">
-    <value>اسم المسجـد</value>
+    <value> المسجـد</value>
   </data>
   <data name="GroupSubjectName" xml:space="preserve">
     <value>موضوع الحلقة</value>
   </data>
   <data name="StudentFullName" xml:space="preserve">
-    <value>اسم الطالب</value>
+    <value>الطالب</value>
   </data>
   <data name="StudentEvaluation" xml:space="preserve">
     <value>تقييمات الطالب</value>
@@ -1401,5 +1401,14 @@
   </data>
   <data name="EditStudent" xml:space="preserve">
     <value>تعديل الطالب</value>
+  </data>
+  <data name="TeacherName" xml:space="preserve">
+    <value>المعلم</value>
+  </data>
+  <data name="SupervisorName" xml:space="preserve">
+    <value>المشرف</value>
+  </data>
+  <data name="SessionDetails" xml:space="preserve">
+    <value>بيانات الجلسة</value>
   </data>
 </root>

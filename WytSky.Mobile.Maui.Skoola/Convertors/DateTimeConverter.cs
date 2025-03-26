@@ -12,12 +12,12 @@ public class DateTimeConverter : IValueConverter
 
         if (value is DateTime dateTime)
         {
-            return dateTime.ToString("dddd, dd MMM yyyy"); // Example: "Sunday, 09 Mar 2025"
+            return dateTime.ToString("dddd, dd MMM yyyy, hh:mm tt"); // Example: "Sunday, 09 Mar 2025"
         }
-
+        // Format includes both date and time (e.g., "Sunday, 09 Mar 2025, 12:34 PM")
         if (DateTime.TryParse(value.ToString(), out DateTime parsedDate))
         {
-            return parsedDate.ToString("dddd, dd MMM yyyy");
+            return parsedDate.ToString("dddd, dd MMM yyyy, hh:mm tt");
         }
 
         return value;

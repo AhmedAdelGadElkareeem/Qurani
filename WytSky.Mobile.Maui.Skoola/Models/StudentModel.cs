@@ -1,7 +1,10 @@
-﻿namespace WytSky.Mobile.Maui.Skoola.Models;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 
-public class StudentModel
+namespace WytSky.Mobile.Maui.Skoola.Models;
+
+public partial class StudentModel : ObservableObject
 {
+    [ObservableProperty] public long? studentNumber;
     public int? ComplexID { get; set; }
     public int? CountryID { get; set; }
     public int? RegionID { get; set; }

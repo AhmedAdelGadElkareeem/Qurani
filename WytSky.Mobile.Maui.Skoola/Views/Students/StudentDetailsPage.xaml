@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<base:BaseContentPage
+<ContentPage
     x:Class="WytSky.Mobile.Maui.Skoola.Views.Students.StudentDetailsPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -9,7 +9,7 @@
     xmlns:resources="clr-namespace:WytSky.Mobile.Maui.Skoola.AppResources"
     Title="{x:Static resources:SharedResources.StudentDetails}">
     <Grid RowDefinitions="*">
-        <Grid RowDefinitions="auto,*" VerticalOptions="FillAndExpand">
+        <Grid RowDefinitions="auto,*,auto" VerticalOptions="FillAndExpand">
 
             <Border
                 Padding="0"
@@ -71,13 +71,13 @@
                                             <FormattedString>
                                                 <Span
                                                     FontAttributes="Bold"
-                                                    FontFamily="AhlanWorldArbfonts"
+                                                    FontFamily="ManropeBold"
                                                     FontSize="15"
                                                     Text="{x:Static resources:SharedResources.ComplexName}"
                                                     TextColor="{StaticResource AmericanExpress}" />
                                                 <Span Text=" : " />
                                                 <Span
-                                                    FontFamily="AhlanWorldArbfonts"
+                                                    FontFamily="ManropeBold"
                                                     FontSize="Medium"
                                                     Text="{Binding StudentComplexName}"
                                                     TextColor="{StaticResource Black}" />
@@ -90,13 +90,13 @@
                                             <FormattedString>
                                                 <Span
                                                     FontAttributes="Bold"
-                                                    FontFamily="AhlanWorldArbfonts"
+                                                    FontFamily="ManropeBold"
                                                     FontSize="15"
                                                     Text="{x:Static resources:SharedResources.CenterName}"
                                                     TextColor="{StaticResource AmericanExpress}" />
                                                 <Span Text=" : " />
                                                 <Span
-                                                    FontFamily="AhlanWorldArbfonts"
+                                                    FontFamily="ManropeBold"
                                                     FontSize="Medium"
                                                     Text="{Binding StudentCenterName}"
                                                     TextColor="{StaticResource Black}" />
@@ -109,13 +109,13 @@
                                             <FormattedString>
                                                 <Span
                                                     FontAttributes="Bold"
-                                                    FontFamily="AhlanWorldArbfonts"
+                                                    FontFamily="ManropeBold"
                                                     FontSize="15"
                                                     Text="{x:Static resources:SharedResources.StudyGroupName}"
                                                     TextColor="{StaticResource AmericanExpress}" />
                                                 <Span Text=" : " />
                                                 <Span
-                                                    FontFamily="AhlanWorldArbfonts"
+                                                    FontFamily="ManropeBold"
                                                     FontSize="Medium"
                                                     Text="{Binding GroupName}"
                                                     TextColor="{StaticResource Black}" />
@@ -128,13 +128,13 @@
                                             <FormattedString>
                                                 <Span
                                                     FontAttributes="Bold"
-                                                    FontFamily="AhlanWorldArbfonts"
+                                                    FontFamily="ManropeBold"
                                                     FontSize="15"
                                                     Text="{x:Static resources:SharedResources.GroupSubjectName}"
                                                     TextColor="{StaticResource AmericanExpress}" />
                                                 <Span Text=" : " />
                                                 <Span
-                                                    FontFamily="AhlanWorldArbfonts"
+                                                    FontFamily="ManropeBold"
                                                     FontSize="Medium"
                                                     Text="{Binding GroupSubjectName}"
                                                     TextColor="{StaticResource Black}" />
@@ -155,7 +155,7 @@
                                                     TextColor="{StaticResource Black}" />
                                                 <Span
                                                     FontAttributes="Bold"
-                                                    FontFamily="AhlanWorldArbfonts"
+                                                    FontFamily="ManropeBold"
                                                     FontSize="Medium"
                                                     Text="{Binding StudentFullName}"
                                                     TextColor="{StaticResource AmericanExpress}" />
@@ -296,13 +296,13 @@
                                             <FormattedString>
                                                 <Span
                                                     FontAttributes="Bold"
-                                                    FontFamily="AhlanWorldArbfonts"
+                                                    FontFamily="ManropeBold"
                                                     FontSize="15"
                                                     Text="{x:Static resources:SharedResources.CenterName}"
                                                     TextColor="{StaticResource AmericanExpress}" />
                                                 <Span Text=" : " />
                                                 <Span
-                                                    FontFamily="AhlanWorldArbfonts"
+                                                    FontFamily="ManropeBold"
                                                     FontSize="Medium"
                                                     Text="{Binding StudentCenterName}"
                                                     TextColor="{StaticResource Black}" />
@@ -315,13 +315,13 @@
                                             <FormattedString>
                                                 <Span
                                                     FontAttributes="Bold"
-                                                    FontFamily="AhlanWorldArbfonts"
+                                                    FontFamily="ManropeBold"
                                                     FontSize="15"
                                                     Text="{x:Static resources:SharedResources.StudyGroupName}"
                                                     TextColor="{StaticResource AmericanExpress}" />
                                                 <Span Text=" : " />
                                                 <Span
-                                                    FontFamily="AhlanWorldArbfonts"
+                                                    FontFamily="ManropeBold"
                                                     FontSize="Medium"
                                                     Text="{Binding GroupName}"
                                                     TextColor="{StaticResource Black}" />
@@ -334,13 +334,13 @@
                                             <FormattedString>
                                                 <Span
                                                     FontAttributes="Bold"
-                                                    FontFamily="AhlanWorldArbfonts"
+                                                    FontFamily="ManropeBold"
                                                     FontSize="15"
                                                     Text="{x:Static resources:SharedResources.GroupSubjectName}"
                                                     TextColor="{StaticResource AmericanExpress}" />
                                                 <Span Text=" : " />
                                                 <Span
-                                                    FontFamily="AhlanWorldArbfonts"
+                                                    FontFamily="ManropeBold"
                                                     FontSize="Medium"
                                                     Text="{Binding GroupSubjectName}"
                                                     TextColor="{StaticResource Black}" />
@@ -361,7 +361,7 @@
                                                     TextColor="{StaticResource Black}" />
                                                 <Span
                                                     FontAttributes="Bold"
-                                                    FontFamily="AhlanWorldArbfonts"
+                                                    FontFamily="ManropeBold"
                                                     FontSize="Medium"
                                                     Text="{Binding StudentFullName}"
                                                     TextColor="{StaticResource AmericanExpress}" />
@@ -483,17 +483,19 @@
                 VerticalOptions="End">
                 <Button
                     Grid.Column="0"
-                    BackgroundColor="{StaticResource PrimaryColor}"
+                    BackgroundColor="{StaticResource Orange}"
                     Command="{Binding AllStudentEvaluationsByStudyGroupIDCommand}"
                     FontAttributes="Bold"
+                    FontSize="Medium"
                     Text="{x:Static resources:SharedResources.StudentEvaluation}"
                     TextColor="{StaticResource DarkBlue}" />
                 <Button
                     Grid.Column="1"
-                    BackgroundColor="{StaticResource PrimaryColor}"
+                    BackgroundColor="{StaticResource Orange}"
                     Command="{Binding AllStudentAttendanceByStudyGroupIDCommand}"
                     CommandParameter="{Binding .}"
                     FontAttributes="Bold"
+                    FontSize="Medium"
                     Text="{x:Static resources:SharedResources.StudentAttendance}"
                     TextColor="{StaticResource DarkBlue}" />
 
@@ -502,4 +504,4 @@
 
         <ActivityIndicator IsRunning="{Binding IsRunning}" IsVisible="{Binding IsRunning}" />
     </Grid>
-</base:BaseContentPage>
+</ContentPage>

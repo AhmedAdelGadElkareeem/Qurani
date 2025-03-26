@@ -114,7 +114,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudentEvaluation
         }
 
         [RelayCommand]
-        public async Task UpdateStudentEvulation()
+        public async Task EditStudentEvulation()
         {
             try
             {

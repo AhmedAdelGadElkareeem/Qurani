@@ -1146,16 +1146,16 @@ Successfully Changed</value>
     <value>Region</value>
   </data>
   <data name="ComplexName" xml:space="preserve">
-    <value>Complex name</value>
+    <value>Complex </value>
   </data>
   <data name="CenterNameAr" xml:space="preserve">
-    <value>Center name arabic</value>
+    <value>Center arabic</value>
   </data>
   <data name="CenterNameEn" xml:space="preserve">
-    <value>Center name english</value>
+    <value>Center english</value>
   </data>
   <data name="DitrictName" xml:space="preserve">
-    <value>Ditrict name</value>
+    <value>Ditrict </value>
   </data>
   <data name="City" xml:space="preserve">
     <value>City</value>
@@ -1311,7 +1311,7 @@ Successfully Changed</value>
     <value>Add Students</value>
   </data>
   <data name="StudyGroupName" xml:space="preserve">
-    <value>Group name</value>
+    <value>Group </value>
   </data>
   <data name="AddStudentEvaluation" xml:space="preserve">
     <value>Add student evaluation</value>
@@ -1356,13 +1356,13 @@ Successfully Changed</value>
     <value>Student Details</value>
   </data>
   <data name="CenterName" xml:space="preserve">
-    <value>Center Name</value>
+    <value>Center </value>
   </data>
   <data name="GroupSubjectName" xml:space="preserve">
-    <value>Group Subject Name</value>
+    <value>Group Subject </value>
   </data>
   <data name="StudentFullName" xml:space="preserve">
-    <value>Student Name</value>
+    <value>Student </value>
   </data>
   <data name="StudentEvaluation" xml:space="preserve">
     <value>Student Evaluation</value>
@@ -1399,5 +1399,14 @@ Successfully Changed</value>
   </data>
   <data name="EditStudent" xml:space="preserve">
     <value>Edit Student</value>
+  </data>
+  <data name="TeacherName" xml:space="preserve">
+    <value>Teacher </value>
+  </data>
+  <data name="SupervisorName" xml:space="preserve">
+    <value>Supervisor</value>
+  </data>
+  <data name="SessionDetails" xml:space="preserve">
+    <value>Session Details</value>
   </data>
 </root>

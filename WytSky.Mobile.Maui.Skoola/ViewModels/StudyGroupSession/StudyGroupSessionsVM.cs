@@ -23,15 +23,13 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudyGroupSession
 {
     public partial class StudyGroupSessionsVM : SchedulesVM
     {
-        #region Propreties
 
-        [ObservableProperty] private ObservableCollection<SessionModel> sessions = new ObservableCollection<SessionModel>();
-
+        [ObservableProperty] 
+        private ObservableCollection<SessionModel> sessions = new ObservableCollection<SessionModel>();
         [ObservableProperty]
-        private ObservableCollection<StudyGroupStudentList> students
-                                     = new ObservableCollection<StudyGroupStudentList>();
+        private ObservableCollection<StudyGroupStudentList> students = new ObservableCollection<StudyGroupStudentList>();
         [ObservableProperty]
-        private ObservableCollection<StudyGroupStudentList> filteredStudents
+        private new ObservableCollection<StudyGroupStudentList> filteredStudents
                                      = new ObservableCollection<StudyGroupStudentList>();
 
         [ObservableProperty] private string searchText;
@@ -39,35 +37,23 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudyGroupSession
         [ObservableProperty] private int? sessinId;
         [ObservableProperty] private bool isStudentVisible = false;
 
-
-
-
-
-
-
         #region Attendance
-        [ObservableProperty] private ObservableCollection<AttendanceModel> groupAttendance = new ObservableCollection<AttendanceModel>();
-        [ObservableProperty] private ObservableCollection<AttendanceModel> filteredGroupAttendance = new ObservableCollection<AttendanceModel>();
-        [ObservableProperty] public StudentModel selectedStudent;
-        [ObservableProperty] public int all = 0;
-        [ObservableProperty] public bool allStudents = false;
-        [ObservableProperty] public int availableCount = 0;
-        [ObservableProperty] public bool availableStudents = false;
-        [ObservableProperty] public int absentCount = 0;
-        [ObservableProperty] public bool absentStudents = false;
-        [ObservableProperty] public bool isSessionStarted = false;
-       
+        [ObservableProperty] 
+        private ObservableCollection<AttendanceModel> groupAttendance = new ObservableCollection<AttendanceModel>();
+        [ObservableProperty] 
+        private ObservableCollection<AttendanceModel> filteredGroupAttendance = new ObservableCollection<AttendanceModel>();
+        [ObservableProperty] public new int all = 0;
+        [ObservableProperty] public new bool allStudents = false;
+        [ObservableProperty] public new int availableCount = 0;
+        [ObservableProperty] public new bool availableStudents = false;
+        [ObservableProperty] public new int absentCount = 0;
+        [ObservableProperty] public new bool absentStudents = false;
+        [ObservableProperty] public new bool isSessionStarted = false;
         #endregion
-
-        #endregion
-
 
         #region Commands
-
-        #region Session 
-
         [RelayCommand]
-        public async Task StartSesion()
+        public async Task StartSesions()
         {
             try
             {
@@ -118,15 +104,13 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudyGroupSession
         }
 
         [RelayCommand]
-        public async Task OpenEvaluationPage()
+        public async Task OpenEvaluationPages()
         {
             await OpenPushAsyncPage(new AddStudentEvaluationPage(SelectedSchedule));
         }
-        #endregion
 
-        #region Attendance
         [RelayCommand]
-        public async Task AddStudentAttendance(StudyGroupStudentList StudyGroupStudentModel)
+        public async Task AddStudentAttendances(StudyGroupStudentList StudyGroupStudentModel)
         {
             try
             {
@@ -166,7 +150,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudyGroupSession
                     }
                     else
                     {
-                        Toast.ShowToastError(SharedResources.Msg_Error,SharedResources.Msg_ConnectionError);
+                        Toast.ShowToastError(SharedResources.Msg_Error, SharedResources.Msg_ConnectionError);
                     }
                 }
             }
@@ -211,7 +195,6 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudyGroupSession
                     AbsentStudents = true;
                 }
 
-                #endregion
                 // Filter based on the user status using a switch expression
                 //IEnumerable<StudyGroupStudentList> filteredStudents = obj switch
                 //{
@@ -241,15 +224,14 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudyGroupSession
         #endregion
 
         #region Methods
-        public async Task GetSessions()
+        public new async Task GetSessions()
         {
             IsRunning = true;
             Sessions = await APIs.SessionService.GetStudyGroupSessionByScheduleId();
             IsRunning = false;
 
         }
-
-        public async Task GetGroupAttendance()
+        public new async Task GetGroupAttendance()
         {
             try
             {
@@ -310,7 +292,6 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudyGroupSession
             }
         }
         #endregion
-
 
 
     }

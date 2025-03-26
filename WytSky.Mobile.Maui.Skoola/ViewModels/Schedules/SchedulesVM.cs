@@ -109,7 +109,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.Schedules
 
         #region Commands
         [RelayCommand]
-        public async Task AddSchedule()
+        public async Task AddSchedulee()
         {
             try
             {
@@ -158,7 +158,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.Schedules
         }
 
         [RelayCommand]
-        public void OpenEditSchedule(ScheduleModel scheduleModel)
+        public void OpenEditSchedulee(ScheduleModel scheduleModel)
         {
             var popup = new EditSchedule();
             Settings.ScheduleId = scheduleModel.ScheduleID.ToString();
@@ -170,7 +170,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.Schedules
         }
 
         [RelayCommand]
-        public async Task EditSchedule()
+        public async Task EditSchedulee()
         {
             try
             {
@@ -219,7 +219,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.Schedules
         }
 
         [RelayCommand]
-        private async Task SelectSchedule(ScheduleModel schedule)
+        private async Task SelectSchedules(ScheduleModel schedule)
         {
             try
             {
@@ -232,7 +232,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.Schedules
                     return;
                 }
                 
-                Schedules = await ServiceSchedule.GetScheduleById();
+                Schedules = await ServiceSchedule.GetSchedules();
                 SelectedSchedule = Schedules.Where(_ => _.ScheduleID == schedule.ScheduleID).FirstOrDefault();
                 Settings.ScheduleId = SelectedSchedule.ScheduleID.ToString();
                 await OpenPushAsyncPage(new StudyGroupSessionsPage(SelectedSchedule));

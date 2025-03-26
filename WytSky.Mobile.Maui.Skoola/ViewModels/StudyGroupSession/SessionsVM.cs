@@ -73,7 +73,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudyGroupSession
         #region Session 
 
         [RelayCommand]
-        public async Task SelectSession(SessionModel model)
+        public async Task SelectSessions(SessionModel model)
         {
             try
             {
@@ -139,7 +139,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudyGroupSession
         }
 
         [RelayCommand]
-        public async Task OpenEvuluation(SessionModel model)
+        public new async Task OpenEvuluations(SessionModel model)
         {
 
             try
@@ -164,7 +164,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudyGroupSession
         }
         
         [RelayCommand]
-        public async Task OpenAttendance(SessionModel model)
+        public new async Task OpenAttendances(SessionModel model)
         {
 
             try
@@ -188,7 +188,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudyGroupSession
 
         #region Attendance
         [RelayCommand]
-        public async Task AddStudentAttendance(StudyGroupStudentList StudyGroupStudentModel)
+        public async Task AddStudentAttendances(StudyGroupStudentList StudyGroupStudentModel)
         {
             try
             {

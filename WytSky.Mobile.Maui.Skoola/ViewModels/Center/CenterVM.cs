@@ -99,6 +99,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
         {
             try
             {
+                IsRunning = true;
                 Settings.CenterId = centerModel.CenterID.ToString();
                 await OpenPushAsyncPage(new StaffPage(centerModel));
             }
@@ -106,6 +107,10 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
             {
                 ExtensionLogMethods.LogExtension(ex.Message, "", "CenterVM", "SelectCenter");
             }
+            finally
+            {
+                IsRunning = false;
+            } 
         }
 
         [RelayCommand]
@@ -113,6 +118,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
         {
             try
             {
+                IsRunning = true;
                 var popup = new AddCenter();
                 popup.BindingContext = this;
                 ShowPopup(popup);
@@ -121,6 +127,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
             {
                 ExtensionLogMethods.LogExtension(ex, "", "CenterVM", "OpenAddCenter");
             }
+            finally { IsRunning = false; }
         }
 
          [RelayCommand]
@@ -128,6 +135,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
         {
             try
             {
+                IsRunning = true;
                Settings.CenterId = model.CenterID.ToString();
                 CenterName = model.CenterName;
                 CenterNameEn =model.CenterNameEn;
@@ -146,6 +154,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
             {
                 ExtensionLogMethods.LogExtension(ex, "", "CenterVM", "OpenEditCenter");
             }
+            finally { IsRunning = false; }
         }
 
         [RelayCommand]
@@ -249,6 +258,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
         {
             try
             {
+                IsRunning = true;
                 Settings.CenterId = centerModel.CenterID.ToString();
                 //string name = App.IsArabic ? centerModel.CenterName : centerModel.CenterNameEn;
                 await OpenPushAsyncPage(new StudyGroupsPage(centerModel));
@@ -257,6 +267,10 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
             {
                 ExtensionLogMethods.LogExtension(ex, "", "CenterVM", "OpenStudyGroups");
             }
+            finally
+            {
+                IsRunning = false;
+            }   
         }
 
         [RelayCommand]
@@ -264,6 +278,7 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
         {
             try
             {
+                IsRunning = true;
                 Settings.CenterId = centerModel.CenterID.ToString();
                 await OpenPushAsyncPage(new StaffPage(centerModel));
             }
@@ -271,6 +286,10 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
             {
                 ExtensionLogMethods.LogExtension(ex, "", "CenterVM", "OpenStaffs");
             }
+            finally
+            {
+                IsRunning = false;
+            }   
         }
 
         [RelayCommand]
@@ -278,12 +297,17 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
         {
             try
             {
+                IsRunning = true;
                 Settings.CenterId = centerModel.CenterID.ToString();
                 await OpenPushAsyncPage(new StudentsPage(centerModel));
             }
             catch (Exception ex)
             {
                 ExtensionLogMethods.LogExtension(ex, "", "CenterVM", "OpenStudents");
+            }
+            finally
+            {
+                IsRunning = false;
             }
         }
         #endregion

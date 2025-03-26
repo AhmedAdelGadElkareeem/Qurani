@@ -219,6 +219,15 @@
 	    <DependentUpon>StaffPage.xaml</DependentUpon>
 	    <SubType>Code</SubType>
 	  </Compile>
+	  <Compile Update="Views\StudyGroupStudentList\UpdateStudentEvulation.xaml.cs">
+	    <DependentUpon>UpdateStudentEvulation.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\StudyGroupStudentList\UpdateStudentPopup.xaml.cs">
+	    <DependentUpon>UpdateStudentPopup.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\StudyGroupStudentList\StudyGroupSessionDetailsPage.xaml.cs">
+	    <DependentUpon>StudyGroupSessionDetailsPage.xaml</DependentUpon>
+	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -308,6 +317,15 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\StudyGroupStudentList\AddStudyGroupStudentList.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\StudyGroupStudentList\UpdateStudentEvulation.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\StudyGroupStudentList\UpdateStudentPopup.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\StudyGroupStudentList\StudyGroupSessionDetailsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\StudyGroupStudentList\StudyGroupStudentListPage.xaml">

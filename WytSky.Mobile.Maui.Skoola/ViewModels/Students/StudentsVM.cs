@@ -72,6 +72,10 @@ public partial class StudentsVM : CenterVM
         {
             Students = await StudentService.GetStudentsByCenterId();
             FilteredStudents = new ObservableCollection<StudentModel>(Students);
+            foreach (var item in FilteredStudents)
+            {
+                item.StudentNumber = FilteredStudents.IndexOf(item) + 1;
+            }
         }
         catch (Exception ex)
         {

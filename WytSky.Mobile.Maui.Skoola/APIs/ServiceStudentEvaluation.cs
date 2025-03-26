@@ -53,7 +53,7 @@ namespace WytSky.Mobile.Maui.Skoola.APIs
                 {
                       {"_datatype", "json"},
                       {"_jsonarray", "1"},
-                      {"SessionID", Settings.SessionId},
+                      {"EvaluationID", Settings.EvulationId},
                 };
 
                 var result = await Services.RequestProvider.Current.GetData<TempletData<StudentEvaluationModel>>(BASE, "studentevaluation", dictionary, Enums.AuthorizationType.UserNamePassword);

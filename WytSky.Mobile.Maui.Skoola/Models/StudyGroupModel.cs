@@ -1,7 +1,10 @@
+using CommunityToolkit.Mvvm.ComponentModel;
+
 namespace WytSky.Mobile.Maui.Skoola.Models;
 
-public class StudyGroupModel
+public partial class StudyGroupModel : ObservableObject
 {
+    [ObservableProperty] public long? studyGroupNumber;
     public string? GroupName { get; set; }
     public string? GroupNameEn { get; set; }
     public string? Name { get { return App.IsArabic ? GroupName : GroupNameEn; } }

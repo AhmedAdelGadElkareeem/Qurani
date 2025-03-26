@@ -61,13 +61,13 @@
                         <FormattedString>
                             <Span
                                 FontAttributes="Bold"
-                                FontFamily="AhlanWorldArbfonts"
+                                FontFamily="ManropeBold"
                                 FontSize="15"
                                 Text="{x:Static res:SharedResources.Text_UserName}"
                                 TextColor="{StaticResource AmericanExpress}" />
                             <Span Text=" : " />
                             <Span
-                                FontFamily="AhlanWorldArbfonts"
+                                FontFamily="ManropeBold"
                                 FontSize="Medium"
                                 Text="{Binding UserName}"
                                 TextColor="{StaticResource AmericanExpress}" />
@@ -99,13 +99,13 @@
                         <FormattedString>
                             <Span
                                 FontAttributes="Bold"
-                                FontFamily="AhlanWorldArbfonts"
+                                FontFamily="ManropeBold"
                                 FontSize="15"
                                 Text="{x:Static res:SharedResources.Text_Email}"
                                 TextColor="{StaticResource AmericanExpress}" />
                             <Span Text=" : " />
                             <Span
-                                FontFamily="AhlanWorldArbfonts"
+                                FontFamily="ManropeBold"
                                 FontSize="Medium"
                                 Text="{Binding Email}"
                                 TextColor="{StaticResource AmericanExpress}" />

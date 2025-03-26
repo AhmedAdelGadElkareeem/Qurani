@@ -5,7 +5,18 @@ namespace WytSky.Mobile.Maui.Skoola.Views.StudyGroups;
 
 public partial class StudyGroupsPage : BaseContentPage
 {
-    StudyGroupVM studyGroupVM = new();
+    StudyGroupVM studyGroupVM = new StudyGroupVM();
+    public StudyGroupsPage(StaffModel staffModel)
+    {
+        InitializeComponent();
+        BindingContext = studyGroupVM;
+        studyGroupVM.TeacherID = staffModel.StaffID.ToString();
+        studyGroupVM.CenterID = staffModel.CenterID.ToString();
+        studyGroupVM.ComplexNamee = staffModel.CenterComplexName;
+        studyGroupVM.CenterName = staffModel.CenterName;
+        studyGroupVM.ComplexRegionName = staffModel.CenterComplexRegionName;
+        studyGroupVM.FromCenter = false;
+    }
     public StudyGroupsPage(CentersModel model)
     {
         InitializeComponent();
@@ -16,12 +27,8 @@ public partial class StudyGroupsPage : BaseContentPage
         studyGroupVM.ComplexNamee = model.ComplexName;
         studyGroupVM.CenterName = model.CenterName;
         studyGroupVM.ComplexRegionName = model.ComplexRegionName;
-    }
-    public StudyGroupsPage()
-    {
-        InitializeComponent();
-        BindingContext = studyGroupVM;
         studyGroupVM.FromCenter = true;
+
     }
     protected async override void OnAppearing()
     {

@@ -130,24 +130,105 @@
 
                                     <!--  Staff Information  -->
                                     <VerticalStackLayout>
-                                        <Label
+
+                                        <Grid ColumnDefinitions="auto,auto" ColumnSpacing="15">
+                                            <Frame
+                                                Margin="5,0"
+                                                Padding="0"
+                                                BackgroundColor="Green"
+                                                CornerRadius="30"
+                                                HeightRequest="28"
+                                                HorizontalOptions="Start"
+                                                WidthRequest="28">
+                                                <Label
+                                                    Margin="0,5,0,0"
+                                                    FontAttributes="Bold"
+                                                    FontSize="Small"
+                                                    HorizontalOptions="Center"
+                                                    HorizontalTextAlignment="Center"
+                                                    Text="{Binding StaffNumber}"
+                                                    TextColor="{StaticResource White}"
+                                                    VerticalOptions="Start" />
+                                            </Frame>
+                                            <Label
+                                                Grid.Column="1"
+                                                HorizontalOptions="Start"
+                                                HorizontalTextAlignment="Center">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span
+                                                            FontAttributes="Bold"
+                                                            FontFamily="ManropeBold"
+                                                            FontSize="Medium"
+                                                            Text="{x:Static resource:SharedResources.TeacherName}"
+                                                            TextColor="{StaticResource AmericanExpress}" />
+                                                        <Span Text=" : " />
+                                                        <Span
+                                                            FontAttributes="Bold"
+                                                            FontFamily="ManropeBold"
+                                                            FontSize="Medium"
+                                                            Text="{Binding FullName}"
+                                                            TextColor="{StaticResource Black}" />
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+                                        </Grid>
+                                        <!--<Label
                                             HorizontalOptions="CenterAndExpand"
                                             HorizontalTextAlignment="Center"
                                             Style="{StaticResource BoldLabelFont16}"
                                             Text="{Binding FullName}"
+                                            TextColor="{StaticResource DarkBlue}" />-->
+                                        <Label HorizontalOptions="CenterAndExpand">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span
+                                                        FontAttributes="Bold"
+                                                        FontFamily="ManropeBold"
+                                                        FontSize="Medium"
+                                                        Text="{x:Static resource:SharedResources.Text_Mobile}"
+                                                        TextColor="{StaticResource AmericanExpress}" />
+                                                    <Span Text=" : " />
+                                                    <Span
+                                                        FontAttributes="Bold"
+                                                        FontFamily="ManropeBold"
+                                                        FontSize="Medium"
+                                                        Text="{Binding Mobile}"
+                                                        TextColor="{StaticResource Black}" />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <Label HorizontalOptions="CenterAndExpand">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span
+                                                        FontAttributes="Bold"
+                                                        FontFamily="ManropeBold"
+                                                        FontSize="15"
+                                                        Text="{x:Static resource:SharedResources.Text_Email}"
+                                                        TextColor="{StaticResource AmericanExpress}" />
+                                                    <Span Text=" : " />
+                                                    <Span
+                                                        FontAttributes="Bold"
+                                                        FontFamily="ManropeBold"
+                                                        FontSize="Medium"
+                                                        Text="{Binding Email}"
+                                                        TextColor="{StaticResource Black}" />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <!--<Label
+                                            HorizontalOptions="CenterAndExpand"
+                                            HorizontalTextAlignment="Center"
+                                            Style="{StaticResource BoldLabelFont14}"
+                                            Text="{Binding Mobile}"
                                             TextColor="{StaticResource DarkBlue}" />
                                         <Label
                                             HorizontalOptions="CenterAndExpand"
                                             HorizontalTextAlignment="Center"
                                             Style="{StaticResource BoldLabelFont14}"
-                                            Text="{Binding StaffTypeName}"
-                                            TextColor="{StaticResource DarkBlue}" />
-                                        <Label
-                                            HorizontalOptions="CenterAndExpand"
-                                            HorizontalTextAlignment="Center"
-                                            Style="{StaticResource BoldLabelFont14}"
-                                            Text="{Binding Address}"
-                                            TextColor="{StaticResource DarkBlue}" />
+                                            Text="{Binding Email}"
+                                            TextColor="{StaticResource DarkBlue}" />-->
                                     </VerticalStackLayout>
                                 </Grid>
 

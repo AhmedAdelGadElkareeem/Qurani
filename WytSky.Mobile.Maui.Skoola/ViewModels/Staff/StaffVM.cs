@@ -51,6 +51,10 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
                 IsRunning = true;
                 Staff = await APIs.ServiceStaff.GetStaffByCenterId();
                 FilteredStaff= new ObservableCollection<StaffModel>(Staff);
+                foreach (var item in FilteredStaff)
+                {
+                    item.StaffNumber = FilteredStaff.IndexOf(item) + 1;
+                }
 
             }
             catch (Exception ex)
@@ -87,12 +91,13 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels
         }
         #endregion
 
-        //[RelayCommand]
-        //public async Task SelectStaff(StaffModel staff)
-        //{
-        //    Settings.StaffId = staff.StaffID.ToString();
-        //    await OpenPushAsyncPage(new StudyGroupsPage(staff.StaffID.ToString()));
-        //}
+        [RelayCommand]
+        public async Task SelectStaff(StaffModel staff)
+        {
+            Settings.StaffId = staff.StaffID.ToString();
+            //Settings.CenterId = staff.CenterID.ToString();
+            await OpenPushAsyncPage(new StudyGroupsPage(staff));
+        }
 
         [RelayCommand]
         public void OpenAddStaff()

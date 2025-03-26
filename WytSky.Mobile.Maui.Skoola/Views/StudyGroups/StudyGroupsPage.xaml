@@ -127,38 +127,95 @@
                                             WidthRequest="25" />
 
                                         <!--  Study Group Info  -->
-                                        <VerticalStackLayout>
-                                            <Label
-                                                HorizontalOptions="CenterAndExpand"
-                                                Style="{StaticResource BoldLabelFont16}"
-                                                Text="{Binding Name}"
-                                                TextColor="{StaticResource DarkBlue}">
-                                                <Label.FormattedText>
-                                                    <FormattedString>
-                                                        <Span FontSize="Medium" Text="{x:Static resource:SharedResources.StudyGroupName}" />
-                                                        <Span Text=" : " />
-                                                        <Span FontSize="Medium" Text="{Binding Name}" />
-                                                    </FormattedString>
-                                                </Label.FormattedText>
-                                            </Label>
-                                            <Label
-                                                HorizontalOptions="CenterAndExpand"
-                                                Style="{StaticResource BoldLabelFont16}"
-                                                Text="{Binding TeacherFullName}"
-                                                TextColor="{StaticResource DarkBlue}" />
-                                            <Label
-                                                HorizontalOptions="CenterAndExpand"
-                                                HorizontalTextAlignment="Center"
-                                                Style="{StaticResource BoldLabelFont18}"
-                                                TextColor="{StaticResource DarkBlue}">
-                                                <Label.FormattedText>
-                                                    <FormattedString>
-                                                        <Span FontSize="Medium" Text="{x:Static resource:SharedResources.Students}" />
-                                                        <Span Text=" : " />
-                                                        <Span Text="{Binding StudentCount}" />
-                                                    </FormattedString>
-                                                </Label.FormattedText>
-                                            </Label>
+                                        <VerticalStackLayout Spacing="10">
+                                            <Grid ColumnDefinitions="auto,auto" ColumnSpacing="15">
+                                                <Frame
+                                                    Margin="5,0"
+                                                    Padding="0"
+                                                    BackgroundColor="Green"
+                                                    CornerRadius="30"
+                                                    HeightRequest="28"
+                                                    HorizontalOptions="Start"
+                                                    WidthRequest="28">
+                                                    <Label
+                                                        Margin="0,5,0,0"
+                                                        FontAttributes="Bold"
+                                                        FontSize="Small"
+                                                        HorizontalOptions="Center"
+                                                        HorizontalTextAlignment="Center"
+                                                        Text="{Binding StudyGroupNumber}"
+                                                        TextColor="{StaticResource White}"
+                                                        VerticalOptions="Start" />
+                                                </Frame>
+                                                <Label
+                                                    Grid.Column="1"
+                                                    HorizontalOptions="Center"
+                                                    HorizontalTextAlignment="Center">
+                                                    <Label.FormattedText>
+                                                        <FormattedString>
+                                                            <Span
+                                                                FontAttributes="Bold"
+                                                                FontFamily="ManropeBold"
+                                                                FontSize="Medium"
+                                                                Text="{x:Static resource:SharedResources.StudyGroupName}"
+                                                                TextColor="{StaticResource AmericanExpress}" />
+                                                            <Span Text=" : " />
+                                                            <Span
+                                                                FontAttributes="Bold"
+                                                                FontFamily="ManropeBold"
+                                                                FontSize="Medium"
+                                                                Text="{Binding Name}"
+                                                                TextColor="{StaticResource Black}" />
+                                                        </FormattedString>
+                                                    </Label.FormattedText>
+                                                </Label>
+                                            </Grid>
+
+                                            <Grid ColumnDefinitions="auto,*">
+                                                <Label
+                                                    Margin="20,0"
+                                                    HorizontalOptions="Center"
+                                                    VerticalOptions="CenterAndExpand">
+                                                    <Label.FormattedText>
+                                                        <FormattedString>
+                                                            <Span
+                                                                FontAttributes="Bold"
+                                                                FontFamily="ManropeBold"
+                                                                FontSize="15"
+                                                                Text="{x:Static resource:SharedResources.TeacherName}"
+                                                                TextColor="{StaticResource AmericanExpress}" />
+                                                            <Span Text=" : " />
+                                                            <Span
+                                                                FontAttributes="Bold"
+                                                                FontFamily="ManropeBold"
+                                                                FontSize="Medium"
+                                                                Text="{Binding TeacherFullName}"
+                                                                TextColor="{StaticResource Black}" />
+                                                        </FormattedString>
+                                                    </Label.FormattedText>
+                                                </Label>
+
+                                                <Label
+                                                    Grid.Column="1"
+                                                    HorizontalOptions="CenterAndExpand"
+                                                    HorizontalTextAlignment="Start"
+                                                    Style="{StaticResource BoldLabelFont18}"
+                                                    TextColor="{StaticResource DarkBlue}">
+                                                    <Label.FormattedText>
+                                                        <FormattedString>
+                                                            <Span
+                                                                FontAttributes="Bold"
+                                                                FontSize="Medium"
+                                                                Text="{x:Static resource:SharedResources.Students}"
+                                                                TextColor="{StaticResource AmericanExpress}" />
+                                                            <Span Text=" : " />
+                                                            <Span Text="{Binding StudentCount}" />
+                                                        </FormattedString>
+                                                    </Label.FormattedText>
+                                                </Label>
+
+                                            </Grid>
+
                                         </VerticalStackLayout>
                                     </Grid>
 

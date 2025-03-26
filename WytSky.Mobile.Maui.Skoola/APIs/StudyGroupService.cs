@@ -49,7 +49,7 @@ public class StudyGroupService
             return null;
         }
     }
-    public static async Task<ObservableCollection<StudyGroupModel>> GetStudyGroupsByTeacherId(string id)
+    public static async Task<ObservableCollection<StudyGroupModel>> GetStudyGroupsByTeacherIdandCenterId(string id)
     {
         try
         {
@@ -62,6 +62,7 @@ public class StudyGroupService
             //if (!string.IsNullOrEmpty(Settings.StaffId))
             //    dictionary.Add("TeacherID", Settings.StaffId);
             //else  
+            dictionary.Add("CenterID", Settings.CenterId);
             dictionary.Add("TeacherID", id.ToString());
 
             var result = await Services.RequestProvider.Current.GetData<TempletData<StudyGroupModel>>(BASE, CONTROLR, dictionary, Enums.AuthorizationType.UserNamePassword);

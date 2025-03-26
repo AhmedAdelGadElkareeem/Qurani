@@ -18,7 +18,7 @@
             <Border
                 Padding="0"
                 BackgroundColor="{StaticResource PrimaryColor}"
-                HeightRequest="150"
+                HeightRequest="120"
                 HorizontalOptions="FillAndExpand"
                 Stroke="{StaticResource Gray400}"
                 StrokeShape="RoundRectangle 0,0,70,70"
@@ -28,51 +28,39 @@
                 <Grid>
                     <!--  Centered Content  -->
                     <Grid
-                        Margin="10,10,10,0"
+                        Margin="10,20"
+                        ColumnDefinitions="*,*"
                         HorizontalOptions="CenterAndExpand"
-                        RowDefinitions="auto, *"
                         VerticalOptions="Start">
-
+                        <!--  Labels beside the Image  -->
+                        <Label
+                            FontAttributes="Bold"
+                            HorizontalOptions="CenterAndExpand"
+                            TextColor="{StaticResource Black}">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span
+                                        FontAttributes="Bold"
+                                        FontFamily="ManropeBold"
+                                        FontSize="Medium"
+                                        Text="{x:Static resource:SharedResources.Text_Hi}"
+                                        TextColor="{StaticResource Black}" />
+                                    <Span Text=", " />
+                                    <Span
+                                        FontFamily="ManropeBold"
+                                        FontSize="Large"
+                                        Text="{Binding UserName}" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
                         <!--  User Image  -->
                         <Image
+                            Grid.Column="1"
                             Aspect="AspectFill"
                             HorizontalOptions="CenterAndExpand"
                             Source="arabuser.png"
                             Style="{StaticResource ImageSize30}" />
-
-                        <!--  Labels beside the Image  -->
-                        <VerticalStackLayout
-                            Grid.Row="1"
-                            Margin="10,0,10,0"
-                            HorizontalOptions="CenterAndExpand"
-                            VerticalOptions="Center">
-                            <Label
-                                FontAttributes="Bold"
-                                HorizontalOptions="CenterAndExpand"
-                                TextColor="{StaticResource Black}">
-                                <Label.FormattedText>
-                                    <FormattedString>
-                                        <Span
-                                            FontAttributes="Bold"
-                                            FontFamily="ManropeBold"
-                                            FontSize="Medium"
-                                            Text="{x:Static resource:SharedResources.Text_Hi}"
-                                            TextColor="{StaticResource Black}" />
-                                        <Span Text=", " />
-                                        <Span
-                                            FontFamily="ManropeBold"
-                                            FontSize="Large"
-                                            Text="{Binding UserName}" />
-                                    </FormattedString>
-                                </Label.FormattedText>
-                            </Label>
-                            <Label
-                                FontAttributes="Bold"
-                                HorizontalOptions="CenterAndExpand"
-                                Style="{StaticResource RegularLabelFont18}"
-                                Text="{x:Static resource:SharedResources.Text_WelcomeToQurani}"
-                                TextColor="{StaticResource Black}" />
-                        </VerticalStackLayout>
+                        <!--</HorizontalStackLayout>-->
                     </Grid>
 
                     <!--  Bottom Search Bar  -->
@@ -175,11 +163,13 @@
                                             <Label
                                                 Grid.Column="1"
                                                 HorizontalTextAlignment="Center"
-                                                Style="{StaticResource BoldLabelFont18}"
-                                                TextColor="{StaticResource DarkBlue}">
+                                                Style="{StaticResource BoldLabelFont18}">
                                                 <Label.FormattedText>
                                                     <FormattedString>
-                                                        <Span FontAttributes="Bold" Text="{x:Static resource:SharedResources.Text_Country}" />
+                                                        <Span
+                                                            FontAttributes="Bold"
+                                                            Text="{x:Static resource:SharedResources.Text_Country}"
+                                                            TextColor="{StaticResource AmericanExpress}" />
                                                         <Span Text=" : " />
                                                         <Span FontAttributes="Bold" Text="{Binding CountryName}" />
                                                     </FormattedString>
@@ -206,7 +196,10 @@
                                             TextColor="{StaticResource DarkBlue}">
                                             <Label.FormattedText>
                                                 <FormattedString>
-                                                    <Span FontAttributes="Bold" Text="{x:Static resource:SharedResources.City}" />
+                                                    <Span
+                                                        FontAttributes="Bold"
+                                                        Text="{x:Static resource:SharedResources.City}"
+                                                        TextColor="{StaticResource AmericanExpress}" />
                                                     <Span Text=" : " />
                                                     <Span FontAttributes="Bold" Text="{Binding RegionName}" />
                                                 </FormattedString>
@@ -242,27 +235,32 @@
                                                 TextColor="{StaticResource DarkBlue}">
                                                 <Label.FormattedText>
                                                     <FormattedString>
-                                                        <Span FontAttributes="Bold" Text="{x:Static resource:SharedResources.CentersNumber}" />
+                                                        <Span
+                                                            FontAttributes="Bold"
+                                                            Text="{x:Static resource:SharedResources.CentersNumber}"
+                                                            TextColor="{StaticResource AmericanExpress}" />
                                                         <Span FontAttributes="Bold" Text="{Binding CenterCount}" />
                                                     </FormattedString>
                                                 </Label.FormattedText>
                                             </Label>
-
-                                            <!--<Image
-                                                Grid.Column="1"
-                                                HorizontalOptions="End"
-                                                Source="mosque.png"
-                                                Style="{StaticResource ImageSize20}" />-->
-
-                                            <!--  Centers Number Label  -->
-
                                         </Grid>
 
                                         <Label
+                                            Grid.Column="0"
                                             HorizontalTextAlignment="Center"
-                                            Style="{StaticResource BoldLabelFont16}"
-                                            Text="{Binding SupervisorFullName}"
-                                            TextColor="{StaticResource DarkBlue}" />
+                                            Style="{StaticResource BoldLabelFont18}"
+                                            TextColor="{StaticResource DarkBlue}">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span
+                                                        FontAttributes="Bold"
+                                                        Text="{x:Static resource:SharedResources.SupervisorName}"
+                                                        TextColor="{StaticResource AmericanExpress}" />
+                                                    <Span Text=" : " />
+                                                    <Span FontAttributes="Bold" Text="{Binding SupervisorFullName}" />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
                                     </VerticalStackLayout>
                                 </Grid>
 

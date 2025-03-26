@@ -162,8 +162,6 @@ namespace WytSky.Mobile.Maui.Skoola.APIs
                       {"_datatype", "json"},
                       {"_jsonarray", "1"},
                 };
-
-  
                 dictionary.Add("GroupID", Settings.StudyGroupId);
 
                 var result = await Services.RequestProvider.Current.GetData<TempletData<StudyGroupStudentList>>(BASE, "studygroupstudentlist", dictionary, Enums.AuthorizationType.UserNamePassword);

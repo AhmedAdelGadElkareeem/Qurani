@@ -1,8 +1,11 @@
 ﻿
+using CommunityToolkit.Mvvm.ComponentModel;
+
 namespace WytSky.Mobile.Maui.Skoola.Models;
 
-public class StudyGroupStudentList
+public partial class StudyGroupStudentList : ObservableObject
 {
+    [ObservableProperty] public long? studyGroupStudentNumber;
     public int? StudentID { get; set; }
     public string? StudentCenterName { get; set; }
     public string? StudentComplexName { get; set; }

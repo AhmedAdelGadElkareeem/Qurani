@@ -232,7 +232,7 @@ namespace WytSky.Mobile.Maui.Skoola.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Center Name.
+        ///   Looks up a localized string similar to Center .
         /// </summary>
         public static string CenterName {
             get {
@@ -241,7 +241,7 @@ namespace WytSky.Mobile.Maui.Skoola.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Center name arabic.
+        ///   Looks up a localized string similar to Center arabic.
         /// </summary>
         public static string CenterNameAr {
             get {
@@ -250,7 +250,7 @@ namespace WytSky.Mobile.Maui.Skoola.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Center name english.
+        ///   Looks up a localized string similar to Center english.
         /// </summary>
         public static string CenterNameEn {
             get {
@@ -295,7 +295,7 @@ namespace WytSky.Mobile.Maui.Skoola.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Complex name.
+        ///   Looks up a localized string similar to Complex .
         /// </summary>
         public static string ComplexName {
             get {
@@ -322,7 +322,7 @@ namespace WytSky.Mobile.Maui.Skoola.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ditrict name.
+        ///   Looks up a localized string similar to Ditrict .
         /// </summary>
         public static string DitrictName {
             get {
@@ -412,7 +412,7 @@ namespace WytSky.Mobile.Maui.Skoola.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Group Subject Name.
+        ///   Looks up a localized string similar to Group Subject .
         /// </summary>
         public static string GroupSubjectName {
             get {
@@ -802,6 +802,15 @@ namespace WytSky.Mobile.Maui.Skoola.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Session Details.
+        /// </summary>
+        public static string SessionDetails {
+            get {
+                return ResourceManager.GetString("SessionDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to I bear witness that there is no god but God and that Muhammad is the Messenger of God.
         /// </summary>
         public static string Shehada {
@@ -874,7 +883,7 @@ namespace WytSky.Mobile.Maui.Skoola.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Student Name.
+        ///   Looks up a localized string similar to Student .
         /// </summary>
         public static string StudentFullName {
             get {
@@ -919,7 +928,7 @@ namespace WytSky.Mobile.Maui.Skoola.AppResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Group name.
+        ///   Looks up a localized string similar to Group .
         /// </summary>
         public static string StudyGroupName {
             get {
@@ -955,6 +964,15 @@ namespace WytSky.Mobile.Maui.Skoola.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Supervisor.
+        /// </summary>
+        public static string SupervisorName {
+            get {
+                return ResourceManager.GetString("SupervisorName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tawhed.
         /// </summary>
         public static string Tawhed {
@@ -969,6 +987,15 @@ namespace WytSky.Mobile.Maui.Skoola.AppResources {
         public static string TawhedPage {
             get {
                 return ResourceManager.GetString("TawhedPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Teacher .
+        /// </summary>
+        public static string TeacherName {
+            get {
+                return ResourceManager.GetString("TeacherName", resourceCulture);
             }
         }
         

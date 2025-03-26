@@ -1,7 +1,11 @@
-﻿namespace WytSky.Mobile.Maui.Skoola.Models
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+
+namespace WytSky.Mobile.Maui.Skoola.Models
 {
-    public class StaffModel
+    public partial class StaffModel : ObservableObject
     {
+        [ObservableProperty] public long? staffNumber;
+
         public int? StaffTypeID { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }

@@ -36,7 +36,7 @@ public partial class StudyGroupVM : StudentsVM
     [ObservableProperty] public CentersModel selectedCenter = new();
     [ObservableProperty] public StaffModel selectedTeacher = new();
 
-    [ObservableProperty] public int centerID;
+    [ObservableProperty] private string centerID;
     [ObservableProperty] public string teacherID;
     //[ObservableProperty] public int? subjectID;
     [ObservableProperty] public string? subjectName;
@@ -59,8 +59,13 @@ public partial class StudyGroupVM : StudentsVM
             
             if (TeacherID != null)
             {
-                StudyGroups = await StudyGroupService.GetStudyGroupsByTeacherId(TeacherID.ToString());
+                Settings.CenterId = CenterID;
+                StudyGroups = await StudyGroupService.GetStudyGroupsByTeacherIdandCenterId(TeacherID.ToString());
                 FilteredStudyGroups = new ObservableCollection<StudyGroupModel>(StudyGroups);
+                foreach (var item in FilteredStudyGroups)
+                {
+                    item.StudyGroupNumber = FilteredStudyGroups.IndexOf(item) + 1;
+                }
                 //if(FilteredStudyGroups.Count > 0)
                 //{
                 //    ComplexNamee = StudyGroups.Select(_ => _.ComplexName).FirstOrDefault();
@@ -73,6 +78,10 @@ public partial class StudyGroupVM : StudentsVM
             {
                 StudyGroups = await StudyGroupService.GetStudyGroupsByCenterId();
                 FilteredStudyGroups = new ObservableCollection<StudyGroupModel>(StudyGroups);
+                foreach (var item in FilteredStudyGroups)
+                {
+                    item.StudyGroupNumber = FilteredStudyGroups.IndexOf(item) + 1;
+                }
                 //ComplexNamee = StudyGroups.Select(_ => _.ComplexName).FirstOrDefault();
                 ////== null ? ComplexName = TeacherStudyGroups.Select(_ => _.ComplexName).FirstOrDefault() : "";
                 //ComplexRegionName = StudyGroups.Select(_ => _.ComplexRegionName).FirstOrDefault();

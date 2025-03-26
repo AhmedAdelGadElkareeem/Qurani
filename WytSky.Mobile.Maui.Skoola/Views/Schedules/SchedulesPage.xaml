@@ -132,7 +132,7 @@
                                             <Label
                                                 FontAttributes="Bold"
                                                 FontSize="15"
-                                                Text="{Binding StartTime, StringFormat='{0:hh\\:mm}'}"
+                                                Text="{Binding StartTime, Converter={StaticResource TimeConverter}}"
                                                 TextColor="{StaticResource Black}" />
                                             <Label
                                                 FontAttributes="Bold"
@@ -142,7 +142,7 @@
                                             <Label
                                                 FontAttributes="Bold"
                                                 FontSize="15"
-                                                Text="{Binding EndTime, StringFormat='{0:hh\\:mm}'}"
+                                                Text="{Binding EndTime, Converter={StaticResource TimeConverter}}"
                                                 TextColor="{StaticResource Black}" />
                                         </HorizontalStackLayout>
 
