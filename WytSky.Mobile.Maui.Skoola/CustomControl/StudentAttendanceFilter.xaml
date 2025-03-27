@@ -15,6 +15,7 @@
             Padding="5"
             BackgroundColor="{Binding BackColor}"
             ColumnDefinitions="*,*"
+            ColumnSpacing="15"
             HorizontalOptions="CenterAndExpand"
             VerticalOptions="CenterAndExpand">
             <!--<Label
@@ -27,6 +28,8 @@
                 BackgroundColor="{Binding BackColor}"
                 Command="{Binding Command}"
                 CommandParameter="{Binding CommanParamter}"
+                FontAttributes="Bold"
+                FontSize="Small"
                 Text="{Binding TextLable}" />
             <Label
                 Grid.Column="1"

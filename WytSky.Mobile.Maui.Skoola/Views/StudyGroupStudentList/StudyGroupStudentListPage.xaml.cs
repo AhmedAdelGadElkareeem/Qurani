@@ -19,6 +19,7 @@ public partial class StudyGroupStudentListPage : ContentPage
         studyGroupStudentListVM.CenterName = model.CenterName;
         studyGroupStudentListVM.GroupName = model.GroupName;
         studyGroupStudentListVM.TeacherFullName = model.TeacherFullName;
+        studyGroupStudentListVM.AddStudentFromCenter = true;
 
 
     }

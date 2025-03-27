@@ -55,13 +55,13 @@
                 HorizontalOptions="CenterAndExpand"
                 HorizontalTextAlignment="Center"
                 Style="{StaticResource BoldLabelFont18}"
-                Text="{Binding ComplexName}"
+                Text="{Binding ComplexNamee}"
                 VerticalOptions="StartAndExpand" />
-            <Label
+            <!--<Label
                 HorizontalOptions="CenterAndExpand"
                 HorizontalTextAlignment="Center"
                 Style="{StaticResource RegularLabelFont16}"
-                Text="{Binding CenterName}" />
+                Text="{Binding CenterName}" />-->
             <Entry
                 HorizontalTextAlignment="Center"
                 Placeholder="{x:Static res:SharedResources.CenterNameAr}"

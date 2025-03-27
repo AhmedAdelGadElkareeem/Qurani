@@ -201,7 +201,12 @@ public class    Settings
     {
         get { return Preferences.Get("StudentId", null); }
         set { Preferences.Set("StudentId", value); }
-    } 
+    }
+    public static string AttendanceId
+    {
+        get { return Preferences.Get("AttendanceId", null); }
+        set { Preferences.Set("AttendanceId", value); }
+    }
     public static string SessionId
     {
         get { return Preferences.Get("SessionId", null); }

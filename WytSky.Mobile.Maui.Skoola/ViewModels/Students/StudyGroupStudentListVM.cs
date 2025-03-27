@@ -6,6 +6,8 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using WytSky.Mobile.Maui.Skoola.APIs;
 using WytSky.Mobile.Maui.Skoola.AppResources;
+using WytSky.Mobile.Maui.Skoola.Convertors;
+using WytSky.Mobile.Maui.Skoola.Dtos;
 using WytSky.Mobile.Maui.Skoola.Enums;
 using WytSky.Mobile.Maui.Skoola.Helpers;
 using WytSky.Mobile.Maui.Skoola.Models;
@@ -33,16 +35,31 @@ public partial class StudyGroupStudentListVM : StudyGroupVM
     [ObservableProperty] public double behaviorScore;
     [ObservableProperty] public double attendanceScore;
     [ObservableProperty] public string note;
+    public ObservableCollection<AttendanceOption> AttendanceOptions { get; } = new()
+    {
+        new AttendanceOption { DisplayName = SharedResources.Absent, Value = 0 },
+        new AttendanceOption { DisplayName = SharedResources.Present, Value = 1 }
+    };
 
+    private AttendanceOption _selectedOption;
+    public AttendanceOption SelectedOption
+    {
+        get => _selectedOption;
+        set
+        {
+            _selectedOption = value;
+            OnPropertyChanged();
+        }
+    }
     #endregion
 
     [ObservableProperty] private string searchText;
     [ObservableProperty] public string pageTitle;
     [ObservableProperty] private string teacherFullName;
-    [ObservableProperty] private bool isStudentList   = false;
-    [ObservableProperty] private bool isSessionsList  = true;
+    [ObservableProperty] private bool isStudentList = false;
+    [ObservableProperty] private bool isSessionsList = true;
     [ObservableProperty] private bool isSchedulesList = false;
-    [ObservableProperty] private bool isGroupSessionList   = false;
+    [ObservableProperty] private bool isGroupSessionList = false;
 
     #region Students Properties
     [ObservableProperty] private ObservableCollection<StudyGroupStudentList> studyGroupStudentList;
@@ -162,7 +179,7 @@ public partial class StudyGroupStudentListVM : StudyGroupVM
         }
         finally { IsRunning = false; }
     }
-    public new async Task GetGroupStudents()
+    public async Task GetGroupStudents()
     {
         Debug.WriteLine("Start GetGroupStudents");
 
@@ -204,7 +221,7 @@ public partial class StudyGroupStudentListVM : StudyGroupVM
         }
         finally { IsRunning = false; }
     }
-    private async Task GetStudentEvulation()
+    public async Task GetStudentEvulation()
     {
         try
         {
@@ -228,8 +245,8 @@ public partial class StudyGroupStudentListVM : StudyGroupVM
         try
         {
             IsRunning = true;
-            IsAttendnaceVisible = true;
-            IsEvulationVisible = false;
+            //IsAttendnaceVisible = true;
+            //IsEvulationVisible = false;
             Attendance = await APIs.ServiceAttendance.GetGroupAttendance();
             FilteredAttendance = new ObservableCollection<AttendanceModel>(Attendance);
             // Process attendance status
@@ -243,7 +260,7 @@ public partial class StudyGroupStudentListVM : StudyGroupVM
                 {
                     if (attendance.Status == 1)
                     {
-                        attendance.StudentStatus = SharedResources.Present ;
+                        attendance.StudentStatus = SharedResources.Present;
                     }
                     else
                     {
@@ -256,7 +273,7 @@ public partial class StudyGroupStudentListVM : StudyGroupVM
         {
             ExtensionLogMethods.LogExtension(ex, "", "StudyGroupStudentListVM", "GetStudentAttendance");
         }
-        finally {IsRunning = false;}
+        finally { IsRunning = false; }
     }
     public async Task GetSessionsByGroupId()
     {
@@ -275,7 +292,7 @@ public partial class StudyGroupStudentListVM : StudyGroupVM
             ExtensionLogMethods.LogExtension(ex, "", "StudyGroupStudentListVM", "GetSessionsByGroupId");
         }
 
-       finally{IsRunning = false;}
+        finally { IsRunning = false; }
 
     }
     public async Task GetGroupAttendance()
@@ -308,11 +325,13 @@ public partial class StudyGroupStudentListVM : StudyGroupVM
         {
             IsRunning = true;
             Schedules = await APIs.ServiceSchedule.GetScheduleGroup();
-            GroupName = Schedules.Where(_ => _.GroupID == int.Parse(Settings.StudyGroupId)).Select(_ => _.GroupName).FirstOrDefault().ToString();
-            ComplexNamee = Schedules.Select(_ => _.GroupCenterComplexName).FirstOrDefault().ToString();
-            CenterName = Schedules.Select(_ => _.GroupCenterName).FirstOrDefault().ToString();
             FilteredSchedules = new ObservableCollection<ScheduleModel>(Schedules);
-
+            if (FilteredSchedules != null & FilteredSchedules.Count > 0)
+            {
+                GroupName = FilteredSchedules.Where(_ => _.GroupID == int.Parse(Settings.StudyGroupId)).Select(_ => _.GroupName).FirstOrDefault().ToString();
+                ComplexNamee = FilteredSchedules.Select(_ => _.GroupCenterComplexName).FirstOrDefault().ToString();
+                CenterName = FilteredSchedules.Select(_ => _.GroupCenterName).FirstOrDefault().ToString();
+            }
         }
         catch (Exception ex)
         {
@@ -431,6 +450,14 @@ public partial class StudyGroupStudentListVM : StudyGroupVM
             //await GetStudentAttendance();
             //await GetStudentEvulation();
             await OpenPushAsyncPage(new StudyGroupSessionDetailsPage(model));
+            //--------------------------------//
+            AllStudents = true;
+            AvailableStudents = false;
+            AbsentStudents = false;
+            //-------------------------------//
+            IsStudentList = false;
+            IsSessionsList = false;
+            IsSchedulesList = false;
         }
         catch (Exception ex)
         {
@@ -444,15 +471,17 @@ public partial class StudyGroupStudentListVM : StudyGroupVM
     }
 
     [RelayCommand]
-    public new async Task OpenEvuluation()
+    public async Task OpenEvuluation()
     {
         try
         {
             IsRunning = true;
             //Settings.SessionId = model.SessionID.ToString();
             await GetStudentEvulation();
-            IsAttendnaceVisible = false;
             IsEvulationVisible = true;
+            IsAttendnaceVisible = false;
+            IsGroupSessionList = false;
+            PageTitle = SharedResources.Text_Ratings;
         }
         catch (Exception ex)
         {
@@ -468,7 +497,7 @@ public partial class StudyGroupStudentListVM : StudyGroupVM
     }
 
     [RelayCommand]
-    public new async Task OpenAttendance()
+    public async Task OpenAttendance()
     {
 
         try
@@ -478,6 +507,10 @@ public partial class StudyGroupStudentListVM : StudyGroupVM
             await GetStudentAttendance();
             IsAttendnaceVisible = true;
             IsEvulationVisible = false;
+            IsGroupSessionList = false;
+            PageTitle = SharedResources.AttendanceAbsence;
+
+
         }
         catch (Exception ex)
         {
@@ -498,6 +531,9 @@ public partial class StudyGroupStudentListVM : StudyGroupVM
             IsRunning = true;
             FilteredGroupStudents.Clear();
             FilteredGroupAttendance.Clear();
+            IsEvulationVisible = false;
+            IsAttendnaceVisible = false;
+            IsGroupSessionList = true;
             if (obj == StudentsStatus.All)
             {
                 FilteredGroupStudents = await StudentService.GetStudyGroupStudentList(); ;
@@ -519,6 +555,7 @@ public partial class StudyGroupStudentListVM : StudyGroupVM
                 AvailableStudents = false;
                 AbsentStudents = true;
             }
+            PageTitle = SharedResources.SessionDetails;
         }
         catch (Exception ex)
         {
@@ -532,26 +569,22 @@ public partial class StudyGroupStudentListVM : StudyGroupVM
     }
 
     [RelayCommand]
-    public void OpenUpdateStudent(AttendanceModel model)
+    public void OpenUpdateStudentAttendance(AttendanceModel model)
     {
         if (model == null)
             return;
         Settings.StudentId = model.StudentID.ToString();
+        Settings.SessionId = model.SessionID.ToString();
+        Settings.AttendanceId = model.AttendanceID.ToString();
 
         StudentName = model.StudentFullName;
-        //PhoneNumber = model.PhoneNumber;
-        //StudentEmail = model.Email;
-        //ComplexId = model.ComplexID.ToString();
-        //GroupId = model.GroupID.ToString();
-        //CenterId = model.CenterID.ToString();
-
         var popup = new UpdateStudentPopup();
         popup.BindingContext = this;
         ShowPopup(popup);
     }
 
     [RelayCommand]
-    public async Task UpdateStudent()
+    public async Task UpdateStudentAttendance()
     {
         try
         {
@@ -559,15 +592,11 @@ public partial class StudyGroupStudentListVM : StudyGroupVM
 
             var formData = new Dictionary<string, object>
             {
-                { "FullName", StudentName},
-                //{ "PhoneNumber" , PhoneNumber},
-                //{ "Email" , StudentEmail},
-                //{ "ComplexID" , ComplexId},
-                //{ "GroupID" , GroupId},
-                //{ "CenterID" , CenterId},
+                { "StudentID", Settings.StudentId },
+                { "SessionID", Settings.SessionId },
+                { "Status", SelectedOption.Value},
             };
-
-            var result = await APIs.StudentService.UpdateStudent(formData);
+            var result = await APIs.ServiceStudentattendance.UpdateStudentAttendance(formData);
             if (result != null)
             {
                 Toast.ShowToastSuccess(SharedResources.UpdatedSuccessfully);
@@ -645,6 +674,33 @@ public partial class StudyGroupStudentListVM : StudyGroupVM
         }
     }
 
+    [RelayCommand]
+    public async Task OpenEditStudentDetails(StudyGroupStudentList model)
+    {
+        ObservableCollection< StudentModel> students = await StudentService.GetStudentByIdAndGroupID();
+        StudentModel exsistStudent = new StudentModel(); 
+        if (students != null)
+        {
+            exsistStudent = students.Where(_=> _.StudentID == model.StudentID).FirstOrDefault();
+        }
+        if (model == null)
+            return;
+        Settings.StudentId = model.StudentID.ToString();
+
+        StudentName = exsistStudent.FullName;
+        PhoneNumber = exsistStudent.PhoneNumber;
+        StudentEmail = exsistStudent.Email;
+        ComplexId = exsistStudent.ComplexID.ToString();
+        GroupId = model.GroupID.ToString();
+        CenterId = exsistStudent.CenterID.ToString();
+
+        var popup = new EditStudentPopup();
+        popup.BindingContext = this;
+        this.ComplexRegionName = exsistStudent.CenterName;
+        this.ComplexRegionCountryName = exsistStudent.GroupName;
+        ShowPopup(popup);
+    }
+
     #endregion
 
     #region Schedules Commands
@@ -718,7 +774,7 @@ public partial class StudyGroupStudentListVM : StudyGroupVM
             ExtensionLogMethods.LogExtension(ex, "", "SchedulesVM", "AddSchedule");
             Toast.ShowToastError("Error", "Missed Data");
         }
-        finally {IsRunning = false;}
+        finally { IsRunning = false; }
     }
 
     [RelayCommand]
@@ -813,6 +869,47 @@ public partial class StudyGroupStudentListVM : StudyGroupVM
         try
         {
             IsRunning = true;
+            // Check Current & Schedule day -- Convert schedule day from backend to DayOfWeek
+            var scheduleDay = DayOfWeekHelper.ConvertToDayOfWeek(scheduleModel.DayOfWeekName);
+            if (scheduleDay == null)
+            {
+                Toast.ShowToastError(SharedResources.Text_Error, "تنسيق يوم الجدول غير صالح");
+                return;
+            }
+            // Get current day & Compare days
+            var currentDay = DateTime.Now.DayOfWeek;
+            if (currentDay != scheduleDay.Value)
+            {
+                var currentDayName = DayOfWeekHelper.GetLocalizedDayName(currentDay);
+                var scheduleDayName = DayOfWeekHelper.GetLocalizedDayName(scheduleDay.Value);
+
+                Toast.ShowToastError(SharedResources.Text_Error, $"{SharedResources.ScheduleDayNotMatch} :  '{scheduleDayName}'");
+                return;
+            }
+
+            #region Time Check
+            // Then check if current time is within the schedule time window
+            //if (TimeSpan.TryParse(scheduleModel.StartTime, out var startTime) &&
+            //    TimeSpan.TryParse(scheduleModel.EndTime, out var endTime))
+            //{
+            //    var now = DateTime.Now.TimeOfDay;
+
+            //    // Optional: Add a buffer period (e.g., 15 minutes before/after)
+            //    var buffer = TimeSpan.FromMinutes(15);
+
+            //    if (now < endTime - buffer || now > startTime + buffer)
+            //    {
+            //        Toast.ShowToastError(SharedResources.Text_Error, $"{SharedResources.ScheduleDayNotMatch} :  '{scheduleModel.StartTime}'");
+            //        return;
+            //    }
+            //}
+            //else
+            //{
+            //    Toast.ShowToastError("Error", "تنسيق وقت الجدول غير صالح");
+            //    return;
+            //}
+            #endregion
+
             if (Sessions == null || Sessions.Count > 1)
             {
                 Toast.ShowToastError(SharedResources.Msg_SessionExpired);
@@ -852,10 +949,11 @@ public partial class StudyGroupStudentListVM : StudyGroupVM
             IsStudentList = false;
             IsSessionsList = false;
             IsSchedulesList = false;
-            IsGroupSessionList = true;
-            PageTitle = SharedResources.SessionDetails;
 
-            await GetSessions();
+            await OpenPushAsyncPage(new StudyGroupSessionDetailsPage(scheduleModel));
+            //IsGroupSessionList = true;
+            //PageTitle = SharedResources.SessionDetails;
+            //await GetSessions();
         }
         catch (Exception ex)
         {

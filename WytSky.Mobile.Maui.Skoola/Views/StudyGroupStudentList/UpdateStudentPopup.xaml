@@ -47,31 +47,49 @@
                     HorizontalOptions="CenterAndExpand"
                     HorizontalTextAlignment="Center"
                     Style="{StaticResource BoldLabelFont18}"
-                    Text="{x:Static res:SharedResources.EditStudent}"
+                    Text="{x:Static res:SharedResources.UpdateAttendance}"
                     VerticalOptions="CenterAndExpand" />
             </Frame>
 
-            <Grid ColumnDefinitions="*,*" RowDefinitions="auto,auto,auto,auto,auto,auto">
+            <Grid ColumnDefinitions="*,*">
 
-                <Label
-                    Grid.Row="0"
-                    Grid.Column="0"
+                <!--<Label
+                    Grid.ColumnSpan="1"
                     HorizontalOptions="Start"
                     Style="{StaticResource BoldLabelFont16}"
                     Text="{x:Static res:SharedResources.Text_FullName}"
-                    TextColor="{StaticResource AmericanExpress}" />
-                <Entry
-                    Grid.Row="0"
-                    Grid.Column="1"
+                    TextColor="{StaticResource AmericanExpress}" />-->
+                <Label
+                    Grid.ColumnSpan="2"
                     BackgroundColor="White"
+                    FontAttributes="Bold"
+                    FontSize="Medium"
                     HorizontalTextAlignment="Center"
-                    Placeholder="{x:Static res:SharedResources.Text_FullName}"
-                    Text="{Binding StudentName, Mode=TwoWay}"
+                    Text="{Binding StudentName}"
                     TextColor="Black" />
+            </Grid>
+            <Grid ColumnDefinitions="*,auto">
+
+                <Label
+                    Grid.Column="1"
+                    HorizontalOptions="Start"
+                    Style="{StaticResource BoldLabelFont16}"
+                    Text="{x:Static res:SharedResources.Status}"
+                    TextColor="{StaticResource AmericanExpress}" />
+                <Picker
+                    Title="{Binding Status}"
+                    Grid.Column="0"
+                    HorizontalOptions="CenterAndExpand"
+                    HorizontalTextAlignment="Center"
+                    ItemDisplayBinding="{Binding DisplayName}"
+                    ItemsSource="{Binding AttendanceOptions}"
+                    SelectedItem="{Binding SelectedOption, Mode=TwoWay}"
+                    TextColor="{StaticResource Black}"
+                    TitleColor="{StaticResource Black}" />
             </Grid>
 
             <Button
-                Command="{Binding UpdateStudentCommand}"
+                Command="{Binding UpdateStudentAttendanceCommand}"
                 Style="{StaticResource BaseButton}"
                 Text="{x:Static res:SharedResources.Text_Save}"
                 TextColor="{StaticResource DarkBlue}" />

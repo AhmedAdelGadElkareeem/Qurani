@@ -1,3 +1,4 @@
+using Microsoft.Maui.Graphics.Text;
 using System.Windows.Input;
 
 namespace WytSky.Mobile.Maui.Skoola.CustomControl;
@@ -123,6 +124,21 @@ public partial class StudentAttendanceFilter : ContentView
     {
         get => (string)GetValue(ButtonTextProperty);
         set => SetValue(ButtonTextProperty, value);
+    }
+
+    #endregion
+
+    #region TextColor
+
+    public static readonly BindableProperty TextColorProperty =
+        BindableProperty.Create(nameof(TextColor),
+        typeof(Color), typeof(StudentAttendanceFilter), Colors.Silver,
+        BindingMode.TwoWay);
+    // Gets or sets TextColor value  
+    public Color TextColor
+    {
+        get => (Color)GetValue(TextColorProperty);
+        set => SetValue(TextColorProperty, value);
     }
 
     #endregion

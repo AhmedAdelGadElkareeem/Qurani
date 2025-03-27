@@ -1409,4 +1409,13 @@ Successfully Changed</value>
   <data name="SessionDetails" xml:space="preserve">
     <value>Session Details</value>
   </data>
+  <data name="ScheduleDayNotMatch" xml:space="preserve">
+    <value>You cannot start the session on an appointment</value>
+  </data>
+  <data name="AttendanceAbsence" xml:space="preserve">
+    <value>Attendance &amp; Absence</value>
+  </data>
+  <data name="UpdateAttendance" xml:space="preserve">
+    <value>Update Attendance</value>
+  </data>
 </root>

@@ -1244,7 +1244,7 @@
     <value>بدأ الجلسه</value>
   </data>
   <data name="Txt_Attendance" xml:space="preserve">
-    <value>الحضور</value>
+    <value>تحضير</value>
   </data>
   <data name="AddComplex" xml:space="preserve">
     <value>إضافة مجمـع</value>
@@ -1410,5 +1410,14 @@
   </data>
   <data name="SessionDetails" xml:space="preserve">
     <value>بيانات الجلسة</value>
+  </data>
+  <data name="ScheduleDayNotMatch" xml:space="preserve">
+    <value>لا يمكنك بدء الجلسة في غير موعدها</value>
+  </data>
+  <data name="AttendanceAbsence" xml:space="preserve">
+    <value>الحضور - الغياب</value>
+  </data>
+  <data name="UpdateAttendance" xml:space="preserve">
+    <value>تعديل الحضور</value>
   </data>
 </root>

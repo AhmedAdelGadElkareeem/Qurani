@@ -326,6 +326,8 @@
                             <Frame
                                 Margin="10,10"
                                 Padding="10"
+                                BackgroundColor="Khaki"
+                                CornerRadius="10"
                                 HorizontalOptions="FillAndExpand">
                                 <Grid ColumnDefinitions="* ,auto">
 
@@ -428,7 +430,7 @@
                             <customControls:StudentAttendanceFilter
                                 Grid.Row="0"
                                 Grid.Column="1"
-                                BackColor="{StaticResource PrimaryColor}"
+                                BackColor="{StaticResource AmericanExpress}"
                                 CommanParamter="All"
                                 Command="{Binding FetchStudentsFilterCommand}"
                                 TextCount="{Binding All}"
@@ -436,7 +438,7 @@
                             <customControls:StudentAttendanceFilter
                                 Grid.Row="0"
                                 Grid.Column="2"
-                                BackColor="Red"
+                                BackColor="{StaticResource DangerColor}"
                                 CommanParamter="Absent"
                                 Command="{Binding FetchStudentsFilterCommand}"
                                 TextCount="{Binding AbsentCount}"

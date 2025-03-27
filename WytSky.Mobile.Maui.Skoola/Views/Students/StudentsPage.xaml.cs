@@ -15,7 +15,7 @@ public partial class StudentsPage : BaseContentPage
         StudentsVM.ComplexNamee = model.ComplexName;
         StudentsVM.CenterName = model.CenterName;
         StudentsVM.ComplexRegionName = model.ComplexRegionName;
-
+        StudentsVM.AddStudentFromCenter = false;
     }
 
     protected async override void OnAppearing()

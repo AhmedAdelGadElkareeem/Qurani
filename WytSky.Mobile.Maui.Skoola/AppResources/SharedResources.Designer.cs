@@ -214,6 +214,15 @@ namespace WytSky.Mobile.Maui.Skoola.AppResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Attendance &amp; Absence.
+        /// </summary>
+        public static string AttendanceAbsence {
+            get {
+                return ResourceManager.GetString("AttendanceAbsence", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Available Students.
         /// </summary>
         public static string AvailableStudents {
@@ -780,6 +789,15 @@ namespace WytSky.Mobile.Maui.Skoola.AppResources {
         public static string Present {
             get {
                 return ResourceManager.GetString("Present", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You cannot start the session on an appointment.
+        /// </summary>
+        public static string ScheduleDayNotMatch {
+            get {
+                return ResourceManager.GetString("ScheduleDayNotMatch", resourceCulture);
             }
         }
         
@@ -3878,6 +3896,15 @@ namespace WytSky.Mobile.Maui.Skoola.AppResources {
         public static string Txt_Understanding_Evaluate {
             get {
                 return ResourceManager.GetString("Txt_Understanding_Evaluate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update Attendance.
+        /// </summary>
+        public static string UpdateAttendance {
+            get {
+                return ResourceManager.GetString("UpdateAttendance", resourceCulture);
             }
         }
         

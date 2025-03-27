@@ -23,6 +23,8 @@ public partial class StudentsVM : CenterVM
     [ObservableProperty] private string studentEmail;
     [ObservableProperty] private string centerId;
     [ObservableProperty] private string currentGroupID;
+    [ObservableProperty] public bool addStudentFromCenter = false;
+
     #region Register Values
     [ObservableProperty]
     public ValidatableObject<string> userName = new ValidatableObject<string>();
@@ -241,12 +243,14 @@ public partial class StudentsVM : CenterVM
                 if (addedStudent != null && addedStudent.rowsAffected > 0)
                 {
 
-                    await GetStudentsByStudyGroupId();
                     LastAddedStudent = await StudentService.GetStudents();
-                    if (fromStudyGroup == "fromS")
+                    if (!AddStudentFromCenter)
                     {
+                        await GetStudentsByStudyGroupId();
                         await AddNewStudentStudyGroupList(LastAddedStudent.Select(s => s.StudentID.ToString()).First());
                     }
+                    else if(AddStudentFromCenter) {await GetStudentsByCenterId();}
+
                     Toast.ShowToastError(SharedResources.AddedSuccessfully);
 
                 }
@@ -304,6 +308,7 @@ public partial class StudentsVM : CenterVM
             {
                 Toast.ShowToastSuccess(SharedResources.UpdatedSuccessfully);
                 await GetStudentsByCenterId();
+
             }
             else
             {

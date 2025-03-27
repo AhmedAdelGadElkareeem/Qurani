@@ -22,4 +22,13 @@ public partial class StudyGroupStudentList : ObservableObject
     public int? ID { get; set; }
     public string? StudentFullName { get; set; }
     public string? GroupName { get; set; }
+
+
+
+    public double? TajweedScore { get; set; }
+    public double? MemorizationScore { get; set; }
+    public double? UnderstandingScore { get; set; }
+    public double? BehaviorScore { get; set; }
+    public double? AttendanceScore { get; set; }
+    public string? Note { get; set; }
 }

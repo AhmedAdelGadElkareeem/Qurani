@@ -74,6 +74,13 @@ namespace WytSky.Mobile.Maui.Skoola.ViewModels.StudentEvaluation
                 if (result != null)
                 {
                     Toast.ShowToastSuccess(SharedResources.AddedSuccessfully);
+                    // Clear the student's evaluation after successful submission if needed
+                    student.TajweedScore = 0;
+                    student.MemorizationScore = 0;
+                    student.UnderstandingScore = 0;
+                    student.BehaviorScore = 0;
+                    student.AttendanceScore = 0;
+                    student.Note = string.Empty;
                 }
                 else
                 {

@@ -8,9 +8,9 @@
     xmlns:customControl="clr-namespace:WytSky.Mobile.Maui.Skoola.CustomControl.Borderless"
     xmlns:customControls="clr-namespace:WytSky.Mobile.Maui.Skoola.CustomControl"
     xmlns:resource="clr-namespace:WytSky.Mobile.Maui.Skoola.AppResources"
-    Title="{x:Static resource:SharedResources.SessionDetails}">
+    Title="{Binding PageTitle}">
     <Grid RowDefinitions="*">
-        <Grid RowDefinitions="auto,*,auto" VerticalOptions="FillAndExpand">
+        <Grid RowDefinitions="auto,auto,*,auto" VerticalOptions="FillAndExpand">
 
             <!--  Header  -->
             <Border
@@ -95,8 +95,175 @@
                 </Grid>
             </Border>
 
+            <!--  Filter Header -  All - Absent - Available  -->
+            <Grid
+                Grid.Row="1"
+                Margin="0,10,0,5"
+                ColumnDefinitions="auto,auto,auto"
+                ColumnSpacing="10"
+                HorizontalOptions="Center"
+                IsVisible="True">
+
+                <customControls:StudentAttendanceFilter
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    BackColor="Green"
+                    CommanParamter="Available"
+                    Command="{Binding FetchStudentsFilterCommand}"
+                    TextCount="{Binding AvailableCount}"
+                    TextLable="{x:Static resource:SharedResources.AvailableStudents}" />
+                <customControls:StudentAttendanceFilter
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    BackColor="{StaticResource AmericanExpress}"
+                    CommanParamter="All"
+                    Command="{Binding FetchStudentsFilterCommand}"
+                    TextCount="{Binding All}"
+                    TextLable="{x:Static resource:SharedResources.AllStudents}" />
+                <customControls:StudentAttendanceFilter
+                    Grid.Row="0"
+                    Grid.Column="2"
+                    BackColor="{StaticResource DangerColor}"
+                    CommanParamter="Absent"
+                    Command="{Binding FetchStudentsFilterCommand}"
+                    TextCount="{Binding AbsentCount}"
+                    TextLable="{x:Static resource:SharedResources.AbsentStudents}" />
+
+            </Grid>
+
+            <Grid Grid.Row="2" IsVisible="{Binding IsGroupSessionList}">
+
+                <!--  Students List  -->
+                <Grid
+                    Grid.Row="1"
+                    IsVisible="{Binding AllStudents}"
+                    RowDefinitions="*">
+
+                    <!--  All Students  -->
+                    <CollectionView Margin="15,10,15,0" ItemsSource="{Binding FilteredGroupStudents}">
+                        <CollectionView.ItemsLayout>
+                            <LinearItemsLayout ItemSpacing="15" Orientation="Vertical" />
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Border
+                                    Padding="5"
+                                    Background="{StaticResource PrimaryColor}"
+                                    HeightRequest="50"
+                                    StrokeShape="RoundRectangle 5">
+                                    <Grid ColumnDefinitions="auto,*,auto">
+                                        <ImageButton
+                                            Grid.Column="0"
+                                            Margin="5"
+                                            BackgroundColor="Transparent"
+                                            Command="{Binding Path=BindingContext.OpenEditStudentDetailsCommand, Source={RelativeSource AncestorType={x:Type ContentPage}}}"
+                                            CommandParameter="{Binding}"
+                                            HorizontalOptions="End"
+                                            IsVisible="{Binding IsTeacher}"
+                                            Source="editt.png"
+                                            Style="{StaticResource ImageSize30}"
+                                            VerticalOptions="Start" />
+                                        <Label
+                                            Grid.Column="1"
+                                            HorizontalOptions="CenterAndExpand"
+                                            HorizontalTextAlignment="Center"
+                                            Style="{StaticResource BoldLabelFont16}"
+                                            Text="{Binding StudentFullName}"
+                                            TextColor="{StaticResource Black}" />
+                                        <Button
+                                            Grid.Column="2"
+                                            BackgroundColor="LightGreen"
+                                            Clicked="OnAttendanceButtonClicked"
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.AddStudentAttendanceCommand}"
+                                            CommandParameter="{Binding .}"
+                                            FontAttributes="Bold"
+                                            FontSize="16"
+                                            HorizontalOptions="Start"
+                                            Text="{x:Static resource:SharedResources.Txt_Attendance}"
+                                            TextColor="{StaticResource DarkBlue}" />
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                        <CollectionView.EmptyView>
+                            <customControls:EmptyView />
+                        </CollectionView.EmptyView>
+                    </CollectionView>
+                </Grid>
+
+                <!--  Avialble  -->
+                <Grid
+                    Grid.Row="1"
+                    IsVisible="{Binding AvailableStudents}"
+                    RowDefinitions="*">
+
+                    <!--  Available Students  -->
+                    <CollectionView Margin="15,10,15,0" ItemsSource="{Binding FilteredGroupAttendance}">
+                        <CollectionView.ItemsLayout>
+                            <LinearItemsLayout ItemSpacing="15" Orientation="Vertical" />
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Border
+                                    Padding="5"
+                                    Background="{StaticResource PrimaryColor}"
+                                    HeightRequest="50"
+                                    StrokeShape="RoundRectangle 5">
+                                    <Grid ColumnDefinitions="*">
+                                        <Label
+                                            Grid.Column="1"
+                                            HorizontalOptions="Center"
+                                            Style="{StaticResource BoldLabelFont16}"
+                                            Text="{Binding StudentFullName}"
+                                            TextColor="{StaticResource Black}" />
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                        <CollectionView.EmptyView>
+                            <customControls:EmptyView />
+                        </CollectionView.EmptyView>
+                    </CollectionView>
+                </Grid>
+
+                <!--  Absent  -->
+                <Grid
+                    Grid.Row="1"
+                    IsVisible="{Binding AbsentStudents}"
+                    RowDefinitions="auto, *">
+
+                    <!--  Absent Students  -->
+                    <CollectionView Margin="15,10,15,0" ItemsSource="{Binding FilteredGroupAttendance}">
+                        <CollectionView.ItemsLayout>
+                            <LinearItemsLayout ItemSpacing="15" Orientation="Vertical" />
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Border
+                                    Padding="5"
+                                    Background="{StaticResource PrimaryColor}"
+                                    HeightRequest="50"
+                                    StrokeShape="RoundRectangle 5">
+                                    <Grid ColumnDefinitions="*">
+                                        <Label
+                                            Grid.Column="1"
+                                            HorizontalOptions="Center"
+                                            Style="{StaticResource BoldLabelFont16}"
+                                            Text="{Binding StudentFullName}"
+                                            TextColor="{StaticResource Black}" />
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                        <CollectionView.EmptyView>
+                            <customControls:EmptyView />
+                        </CollectionView.EmptyView>
+                    </CollectionView>
+                </Grid>
+            </Grid>
+
             <!--  Attendance Section  -->
-            <Grid Grid.Row="1" IsVisible="{Binding IsAttendnaceVisible}">
+            <Grid Grid.Row="2" IsVisible="{Binding IsAttendnaceVisible}">
                 <CollectionView Margin="0,10" ItemsSource="{Binding FilteredAttendance}">
                     <CollectionView.ItemsLayout>
                         <LinearItemsLayout ItemSpacing="15" Orientation="Vertical" />
@@ -109,14 +276,10 @@
                                 HeightRequest="50"
                                 StrokeShape="RoundRectangle 5">
                                 <Grid ColumnDefinitions="auto,auto,*">
-                                    <!--<Label
-                            Style="{StaticResource BoldLabelFont16}"
-                            Text="{Binding StudentStatus}"
-                            TextColor="{StaticResource AmericanExpress}" />-->
                                     <ImageButton
-                                        Margin="15,0,15,0"
+                                        Margin="5"
                                         BackgroundColor="Transparent"
-                                        Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.OpenUpdateStudentCommand}"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.OpenUpdateStudentAttendanceCommand}"
                                         CommandParameter="{Binding .}"
                                         HeightRequest="25"
                                         HorizontalOptions="End"
@@ -126,7 +289,8 @@
                                     <!--  Status  -->
                                     <Label
                                         Grid.Column="1"
-                                        Style="{StaticResource BoldLabelFont20}"
+                                        Margin="5"
+                                        Style="{StaticResource BoldLabelFont18}"
                                         Text="{Binding StudentStatus}">
                                         <Label.Triggers>
                                             <!--  Present (Green)  -->
@@ -141,7 +305,7 @@
                                             <DataTrigger
                                                 Binding="{Binding Status}"
                                                 TargetType="Label"
-                                                Value="2">
+                                                Value="0">
                                                 <Setter Property="TextColor" Value="Red" />
                                             </DataTrigger>
 
@@ -185,18 +349,18 @@
             </Grid>
 
             <!--  Evalutaion Section  -->
-            <Grid Grid.Row="1" IsVisible="{Binding IsEvulationVisible}">
+            <Grid Grid.Row="2" IsVisible="{Binding IsEvulationVisible}">
                 <!--  List of Student Evaluations  -->
                 <CollectionView Margin="0,10" ItemsSource="{Binding FilteredEvuluation}">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <Frame
-                                Margin="10,5"
+                                Margin="10,0"
                                 Padding="15"
                                 BorderColor="LightGray"
                                 CornerRadius="10"
                                 HasShadow="True">
-                                <VerticalStackLayout Spacing="10">
+                                <VerticalStackLayout Spacing="5">
 
                                     <Grid ColumnDefinitions="auto,*">
                                         <ImageButton
@@ -210,14 +374,6 @@
                                             Source="editt.png"
                                             Style="{StaticResource ImageSize30}"
                                             VerticalOptions="Start" />
-
-                                        <!--  Student Name  -->
-                                        <!--<Label
-                                            Grid.Column="1"
-                                            FontAttributes="Bold"
-                                            FontSize="18"
-                                            HorizontalOptions="CenterAndExpand"
-                                            Text="{Binding StudentFullName}" />-->
                                         <Label Grid.Column="1" HorizontalTextAlignment="Center">
                                             <Label.FormattedText>
                                                 <FormattedString>
@@ -339,31 +495,51 @@
                         <customControls:EmptyView />
                     </CollectionView.EmptyView>
                 </CollectionView>
+
+                <!--  Evaluation Button  -->
+                <!--
+                <Button
+                    Grid.Row="3"
+                    Margin="50"
+                    BackgroundColor="{StaticResource PrimaryColor}"
+                    Command="{Binding OpenEvaluationPageCommand}"
+                    FontAttributes="Bold"
+                    FontSize="16"
+                    Style="{StaticResource AddButton}"
+                    Text="{x:Static resource:SharedResources.Add_Evaluation}" />-->
+
+                <Button
+                    Margin="20,0,20,80"
+                    BackgroundColor="LightGreen"
+                    Command="{Binding OpenEvaluationPageCommand}"
+                    FontAttributes="Bold"
+                    FontSize="20"
+                    IsVisible="{Binding IsAdminAndIsSupervisor}"
+                    Style="{StaticResource AddButton}" />
             </Grid>
 
+            <!--  Footer  Buttons  -->
             <Grid
                 Grid.Row="2"
-                Margin="15"
+                Margin="15,5"
                 ColumnDefinitions="*,*"
                 ColumnSpacing="5"
-                HeightRequest="25"
                 VerticalOptions="End">
                 <Button
                     Grid.Column="0"
-                    BackgroundColor="{StaticResource PrimaryColor}"
+                    BackgroundColor="{StaticResource Orange}"
                     Command="{Binding OpenAttendanceCommand}"
                     FontAttributes="Bold"
                     Style="{StaticResource BaseButton}"
-                    Text="{x:Static resource:SharedResources.Txt_Attendance}" />
+                    Text="{x:Static resource:SharedResources.AttendanceAbsence}" />
                 <Button
                     Grid.Column="1"
-                    BackgroundColor="{StaticResource PrimaryColor}"
+                    BackgroundColor="{StaticResource Orange}"
                     Command="{Binding OpenEvuluationCommand}"
                     FontAttributes="Bold"
                     Style="{StaticResource BaseButton}"
-                    Text="{x:Static resource:SharedResources.evulation}" />
+                    Text="{x:Static resource:SharedResources.Text_Ratings}" />
             </Grid>
-
 
         </Grid>
         <ActivityIndicator IsRunning="{Binding IsRunning}" IsVisible="{Binding IsRunning}" />
